@@ -158,8 +158,8 @@
     headindent=0pt,
     headfont=\bfseries,
     postheadspace=5pt plus 1pt minus 1pt,
-    headpunct=\(\boldmath \colon\),
-    notefont=\bfseries\boldmath,
+    headpunct=\(\colon\),
+    notefont=\bfseries,
 ]{theorem}
 
 \declaretheorem[style=theorem, numberwithin=section, name=Definition]{defn}
@@ -168,7 +168,7 @@
 \declaretheorem[style=theorem, numberlike=defn, name=Proposition]{prop}
 \declaretheorem[style=theorem, numberlike=defn, name=Lemma]{lem}
 \declaretheorem[style=theorem, numberlike=defn, name=Corollary]{cor}
-\declaretheorem[style=theorem, numbered=no, name=Exercise]{exercise}
+\declaretheorem[style=theorem, numberwithin=section, name=Exercise]{exercise}
 
 % TODO: Find a good way to typeset proofs without a QED
 \declaretheoremstyle[
@@ -177,8 +177,8 @@
     headindent=0pt,
     headfont=\bfseries,
     postheadspace=5pt plus 1pt minus 1pt,
-    headpunct=\(\boldmath \colon\),
-    notefont=\bfseries\boldmath,
+    headpunct=\(\colon\),
+    notefont=\bfseries,
     qed=\qedsymbol,
 ]{solution}
 \declaretheorem[style=solution, name=Proof, numbered=no]{pf}

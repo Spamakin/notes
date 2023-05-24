@@ -719,12 +719,79 @@ However, we do not need this notation very often.
   Show that a metric space $X$ is second countable if and only if it has a countable dense set.
 \end{exercise}
 \begin{pf}
+  Suppose that $X$ is second countable with a countable basis $\set{B_{i}}_{i \in \N}$.
+  Without loss of generality, suppose all the $B_{i}$ are non-empty.
+  Let $x_{i} \in B_{i}$ and $D = \set{x_{i} \mid i \in \N}$.
+  We claim that $D$ is dense in $X$.
+  Clearly $\overline{D} \subseteq X$ so let $x \in X$.
+  Then for all open $U$ with $x \in U$, we have $U \cap D \neq \emptyset$.
+  This is because $U$ is a union of members of $\set{B_{i}}$ and so contains some $x_{i}$.
+
+  Now let $D$ be a countable dense set of $X$.
+  Let $B = \set{B_{q}(x) | x \in D,~ q \in \Q^{\times}}$.
+  We claim that $B$ is a countable basis for $X$.
+  Let $U$ be an open set in $X$.
+  Then for all $x \in U$, there exists $\e > 0$ such that $B_{\e}(x) \subseteq U$.
+  $D$ is dense in $X$ and so there exists $d_{x} \in D$ such that $d_{x} \in B_{\e /2}(x)$.
+  By the density of $\Q$ in $\R$, there exists $q_{x} \in \Q$ such that $\dist(x, d_{x}) < q_{x} < \frac{\e}{2}$.
+  Thus $B_{q}(d_{x})$ contains $x$ and $B_{d_{x}}(x) \subseteq B_{e}(x) \subseteq U$ which means that
+  \[
+    U = \bigcup_{x \in U} B_{q_{x}}(d_{x})
+  \]
+  and $B$ is a countable basis for $X$.
 \end{pf}
 
 
 \begin{defn}[Separable Space]
   A topological space is \emph{separable} if it has a countable dense set.
 \end{defn}
+
+\begin{exercise}[\cite{book:Bredon} 1.3.4]
+  The union of two nowhere dense sets is nowhere dense.
+\end{exercise}
+\begin{pf}
+  Let $A$ and $B$ be two nowhere dense subsets of a topological space $X$.
+  Suppose we have some non-empty $U \subseteq \overline{A \cup B} = \overline{A} \cup \overline{B}$.
+  Let $V = U \cap (X \setminus \overline{A})$.
+  Note that $V$ is open.
+  Suppose that $V$ was empty, then $U \subseteq \overline{A}$ which is impossible.
+  Thus $V$ is nonempty.
+  $U \subseteq \overline{A} \cup \overline{B}$ and has non-empty intersection with $X \setminus \overline{A}$ and thus $V \subseteq \overline{B}$.
+  This is also impossible meaning that $U$ must be empty.
+\end{pf}
+
+\begin{defn}[Irreducible Space]
+  A topological space $X$ is said to be \emph{irreducible} if whenever $X = F \cup G$ with $F, G$ closed we have $X = F$ or $X = G$.
+  A subspace is irreducible if it is irreducible in the subspace topology.
+\end{defn}
+
+\begin{defn}[Zariski Space]
+  A \emph{Zariski} space is a topological space such that every descending chain $F_{1} \containsneq F_{2} \containsneq F_{3} \containsneq \cdots$ of closed sets is eventually constant.
+\end{defn}
+
+\begin{exercise}[\cite{book:Bredon} 1.3.5, 1.3.6, 1.3.7]
+  \quest{TODO}
+\end{exercise}
+
+\clearpage
+
+\begin{exercise}[\cite{book:Bredon} 1.3.8]
+  Let $X = A \cup B$ where $A, B$ are closed.
+  Let $f\colon X \to Y$ be a function.
+  If $f\mid_{A}$ and $f\mid_{B}$ are both continuous, then $f$ is continuous.
+\end{exercise}
+\begin{pf}
+  Let $U \subseteq Y$ be open.
+  Then $f\mid_{A}^{-1}(U)$ and $f\mid_{B}^{-1}(U)$ are both open.
+  Thus their union is open.
+  We have
+  \begin{align*}
+    f\mid_{A}^{-1}(U) \cup f\mid_{B}^{-1}(U) &= \set{x \in A | f(x) \in U} \cup \set{x \in B | f(x) \in U} \\
+                                             &=  \set{x \in A \cup B | f(x) \in U} \\
+    &= f^{-1}(U)
+  \end{align*}
+  and so $f$ is continuous.
+\end{pf}
 
 \clearpage
 
@@ -843,6 +910,182 @@ Another intuition is that the space doesn't have two or more separated pieces.
   The intersection of closed sets is closed, so quasi-components are closed.
   Components are constant on every DVM, so they are contained in some quasi-component.
 \end{pf}
+
+There is another closely related notion of connectedness which can be easier to deal with.
+
+\begin{defn}[Arcwise / Pathwise Connected Space]
+  A topological space $X$ is \emph{arcwise connected} or \emph{pathwise connected} if for any two points $p,q \in X$ there exists a map $\lambda\colon [0, 1] \to X$ with $\lambda(0) = p$ and $\lambda(1) = q$.
+  $\lambda$ is called a \emph{path}.
+\end{defn}
+
+\begin{defn}[Locally Arcwise Connected Space]
+  A topological space $X$ is \emph{locally arcwise connected} if every neighborhood of any point contains an arcwise connected neighborhood.
+\end{defn}
+
+We now prove some immediate properties of arcwise connectivity relating it to the other definition of connectivity we have seen.
+
+\begin{prop}[\cite{book:Bredon} 1.4.5.a]
+  An arcwise connected space is connected.
+\end{prop}
+\begin{pf}
+  Suppose $X$ is arcwise connected but not connected with separation $X = U \sqcup V$.
+  Let $p \in U$ and $q \in V$ with $\lambda$ the path connecting the two points.
+  $\lambda$ is continuous and so $\lambda^{-1}(U), \lambda^{-1}(V)$ are open and disjoint and thus form a separation of $[0, 1]$.
+  This implies $[0, 1]$ is not connected which is a contradiction of the fact that $[0, 1]$ is connected (\Cref{exercise:unit_interval_connected}).
+\end{pf}
+
+\begin{prop}[\cite{book:Bredon} 1.4.5.b]\label{prop: arc_eq_rel}
+  The relation ``$p \sim q$ if and only if there exists a map $\lambda\colon [0, 1] \to X$ with $\lambda(0) = p$ and $\lambda(1) = q$'' over a space $X$ is an equivalence relation.
+\end{prop}
+\begin{pf}
+  Straightforward.
+\end{pf}
+
+\begin{defn}[Arc Component]
+  The equivalence classes of \Cref{prop: arc_eq_rel} are called \emph{arc components} and they are the maximally arcwise connected subsets of a space $X$.
+\end{defn}
+
+\begin{prop}[\cite{book:Bredon} 1.4.5.c]
+  An arc component of a space is contained in some component.
+\end{prop}
+\begin{pf}
+  Arc components are connected and so an arc component must be contained in some component.
+\end{pf}
+
+\begin{prop}[\cite{book:Bredon} 1.4.5.d]
+  Arc components of locally arcwise connected space $X$ are clopen and coincide with the components.
+\end{prop}
+\begin{pf}
+  We already know that arc components are connected which means they are closed.
+  Now let $A$ be an arc component in a locally arcwise connected space $X$ and $x \in A$.
+  $X$ is a neighborhood of $x$ and so there exists an arcwise connected neighborhood of $x$, call it $V$.
+  $V$ is arcwise connected and contains $x$ so $V \subseteq A$.
+  $V$ is a neighborhood of $x$ and so it contains an open subset $U$ such that $x \in U \subseteq V \subseteq A$ and thus $A$ is also open.
+
+  Now let $C$ be the component that $A$ is contained in and suppose $A \subsetneq C$.
+  let $Q$ be the union of all path connected components $\neq A$ that intersect $C$.
+  $Q \subseteq C$ and since arc components are disjoint we have $C = A \sqcup Q$.
+  $A$ is open and  $Q$ is open meaning that they form a separation of $C$ which is a contradiction to the fact that $C$ is connected.
+  Thus $A = C$.
+\end{pf}
+
+\begin{ex}[An Arcwise Connected Space with Two Points]
+  Let the two points be $p$ and $q$ and suppose we have open sets $\emptyset, \set{p}$ and $\set{p, q}$.
+  Clearly $p$ and $q$ are arcwise connected to themselves.
+  $p$ is arcwise connected to $q$ with $\lambda\colon [0, 1] \to \set{p, q}$ such that $\lambda(1) = q$ and $\lambda(x) = p$ otherwise.
+  Note that $[0, 1)$ is open in $[0, 1]$ (but not in $\R$).
+  Thus we have that $\lambda^{-1}(p)$ is open and $\lambda^{-1}(q)$ is closed as desired and $\lambda$ is our desired path.
+  Thus this space is arcwise connected.
+\end{ex}
+
+\clearpage
+
+\begin{ex}[Topologist's Sine Curve, A Space that is Connected but not Arcwise Connected]
+  The following is due to \quest{citation needed}.
+  The \emph{Topologist's Sine Curve} is the subset of the real plane
+  \[
+    S = \Set{\pqty{x, \sin\pqty{\frac{1}{x}}} | 0 < x \leq 1 } \subseteq \R^{2}.
+  \]
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figs/Topologists_Sine_Curve}
+    \caption{The Topologist's Sine Curve}
+    \label{fig:topologists_sine_curve}
+  \end{figure}
+
+  Clearly $S$ is arcwise connected and thus connected.
+  This is because $\sin\pqty{\frac{1}{x}}$ is continuous and so we can just parameterize along the path.
+
+  Consider the set
+  \[
+    T = (\set{0} \times [-1, 1]) \sqcup \Set{\pqty{x, \sin\pqty{\frac{1}{x}}} | 0 < x \leq 1 } \subseteq \R^{2}.
+  \]
+  We will show this path is connected but not arcwise connected.
+  The intuition here is that we cannot ``get to'' a portion of the $y$-axis in finite time starting from a point on the sine curve due to the rapid oscillation.
+
+  We claim that $\overline{S} = T$.
+  Note that the function $\sin\pqty{\frac{1}{x}}$ is continuous for all $x > 0$ and so every point on it is a limit point.
+  Now consider a point $(0, y)$ where $y \in [-1, 1]$.
+  Then due to the rapid oscillation of $\sin\pqty{\frac{1}{x}}$ as $x \to 0$ we have that every open ball around $(0, y)$ has non-trivial intersection with the curve infinitely often and so $(0, y)$ is a limit point of some sequence of points in $S$.
+  Thus every point in $T$ is a limit point of some sequence of points in $S$ and $T \subseteq \overline{S}$.
+
+  To show that $\overline{S} \subseteq T$ it suffices to show that $T$ is closed since $S \subseteq T$.
+  Closed sets contain their limit points so let $\set{(x_{n}, y_{n})}$ be a sequence of points in $T$ with limit $(x, y)$.
+  We know that $x = \lim x_{n}$ and $y = \lim y_{n}$ so $x \geq 0$ and $y \in [-1, 1]$.
+  If $x = 0$ then we are done since $(0, y) \in T$ for $y \in [-1, 1]$.
+  So now suppose $x > 0$ and we can assume that after dropping some number of starting terms $x_{n} > 0$ for all $n$.
+  Thus $(x_{n}, y_{n})$ lies on the curve $\sin\pqty{\frac{1}{x}}$.
+  Since this function is continuous we get that $(x, y)$ lies on the curve and thus $T$ is closed.
+  Thus $\overline{S} \subseteq T$ and overall we have equality.
+
+  Note that since $S$ is connected, since it is arcwise connected, we have that $T$ is also connected by \Cref{lem: closure_of_connected_is_connected}. We now show that $T$ is not path-connected.
+  Suppose that we have some path $\lambda$ connecting a point $\lambda(0) = p$ on the sine curve to $\lambda(1) = (0, 1)$.
+  Let $\e = \frac{1}{2}$.
+  By continuity of $\lambda$ there is some $\delta > 0$ such that $\abs{\lambda(t) - (0, 1)} < \frac{1}{2}$ for $t \in [1 - \delta, 1]$.
+  The sine curve keeps escaping the disc of radius $\frac{1}{2}$ around $(0, 1)$.
+  In particular this means that we cannot have continuity since the curve will eventually be of distance $> \frac{1}{2}$ from $(0, 1)$.
+  This $T$ is not path-connected.
+\end{ex}
+
+\clearpage
+
+\begin{exercise}[\cite{book:Bredon} 1.4.1]
+  If $A$ is a connected subset of a topological space $X$ and $A \subseteq B \subseteq \overline{A}$ then $B$ is connected.
+\end{exercise}
+\begin{pf}
+  Suppose $U, V$ are a separation of $B$.
+  Then note that $A = (U \cap A) \sqcup (V \cap A)$.
+  But $U \cap A$ and $V \cap A$ are open in $A$ and since $A$ is connected we have that one of these, say $U \cap A$, is empty.
+  Thus $A \subseteq X \setminus U$ which is closed.
+  This means that $\overline{A} \subseteq X \setminus U$.
+  So overall now we have $U \subseteq B \subseteq \overline{A} \subseteq X \setminus U$.
+  This can hold if and only if $U$ is empty.
+  Thus $B$ is connected.
+\end{pf}
+
+\begin{defn}[Locally Connected Space]
+  A topological space $X$ is \emph{locally connected} if for each $x \in X$ and each neighborhood $N$ of $x$, there is a connected neighborhood $V$ of $x$ such that $V \subseteq N$.
+\end{defn}
+
+\begin{exercise}[\cite{book:Bredon} 1.4.2]
+  If $X$ is locally connected, then its components are open and equal to its quasi-components.
+\end{exercise}
+\begin{pf}
+  Let $C$ be a component of $X$ and $x \in C$.
+  Then $X$ itself is a neighborhood of $x$ and so there is a connected neighborhood $V$ of $x$ such that $V \subseteq X$.
+  $V$ is connected so $V \subseteq C$.
+  Since $V$ is a neighborhood of $x$, there exists an open $U \subseteq V$ such that $x \in U \subseteq C$.
+  Thus $C$ is open.
+
+  We already know that components are contained in quasi-components.
+  Let $C$ be a component and $Q$ the quasi-component containing $C$ and suppose $C \subsetneq Q$.
+  $C$ is open and we know that components are also closed and so $C$ is clopen in $X$.
+  Let $x \in C$ and $y \in Q \setminus C$.
+  Then $X = C \sqcup (Q \setminus C)$ is a separation of $X$.
+  Thus there exists a DVM $d$ such that $d(x) \neq d(y)$ meaning that $x$ and $y$ are in different quasi-components.
+  But $x \in C \subseteq Q$ and $y \in Q \setminus C \subseteq Q$ which is a contradiction and so $C = Q$.
+\end{pf}
+
+\begin{exercise}[\cite{book:Bredon} 1.4.3]\label{exercise:unit_interval_connected}
+  The unit interval $[0, 1]$ is connected.
+\end{exercise}
+\begin{pf}
+  Suppose that $U, V$ formed a separation of $x$ such that $1 \in V$.
+  Let $x = \sup(U) \in [0, 1]$ since the unit interval is closed.
+  Suppose $x \in U$, then since $U$ is open there exists $\e > 0$ such that $B_{\e}(x) \subseteq U$ meaning that $x + \frac{\e}{2} \in U$ which is a contradiction to our choice of $x$.
+  Thus $x \in V$ which is also open meaning there exists $\e > 0$ such that $B_{\e}(x) \subseteq V$.
+  Thus $x - \frac{\e}{2} \in V$.
+  Suppose that $x - \frac{\e}{2}$ is not an upper bound for $U$.
+  Then there is some $p \in U$ such that $p > x - \frac{\e}{2}$.
+  Thus $p \in \pqty{\frac{x - \e}{2}, x} \subseteq B_{\e}(x) \subseteq V$ and so $p \in V$ contradicting the disjointness of $U$ and $V$.
+  Thus $x - \frac{\e}{2}$ is a lower upper bound of $U$ than $x = \sup(U)$ which is a contradiction.
+  Thus we have found $x \in [0, 1]$ such that $x \notin U$ and $x \notin V$ which is a contradiction as well and $[0, 1]$ is connected.
+\end{pf}
+
+\begin{exercise}[\cite{book:Bredon} 1.4.4]
+  \quest{TODO}
+\end{exercise}
 
 \clearpage
 
