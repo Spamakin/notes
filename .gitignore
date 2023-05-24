@@ -1,0 +1,13 @@
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.loe
+*.run.xml
+*.synctex.gz
+_region_.tex
+.auctex-auto/

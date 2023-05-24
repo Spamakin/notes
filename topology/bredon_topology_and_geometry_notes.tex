@@ -1,0 +1,1260 @@
+\documentclass[letterpaper]{article}
+
+\usepackage{style}  % If you feel like procrastinating, mess with this file
+\usepackage{algo}   % Thank you Jeff, very cool!
+\usepackage{quiver} % https://q.uiver.app/
+
+\addbibresource{refs.bib}
+
+% Required reading
+% https://jmlr.csail.mit.edu/reviewing-papers/knuth_mathematical_writing.pdf
+%   Along with required viewing:
+%   https://www.youtube.com/watch?v=N6QEgbPWUrg&list=PLOdeqCXq1tXihn5KmyB2YTOqgxaUkcNYG
+% https://faculty.math.illinois.edu/~west/grammar.html
+
+% % % % % % % % % %
+%     Cursor      %
+%     Parking     %
+%     Lot         %
+% % % % % % % % % %
+
+% Disable check for mismatched parens/brackets/braces
+%     chktex-file 9
+% Disable check for different counts of parents/brackets/braces
+%     chktex-file 17
+
+\title{Topology Notes and Exercises}
+\author{Anakin Dey}
+
+\begin{document}
+\maketitle
+
+\listoftheorems[ignoreall, show={defn}, title={List of Definitions}]
+\clearpage
+
+\listoftheorems[ignoreall, show={ex}, title={List of Examples and Counterexamples}]
+\clearpage
+
+\section{Metric Spaces}
+
+The most familiar example of a metric space is $\R^{n}$ with $\dist(x, y) = \pqty{\sum_{i = 1}^{n} (x_{i} - y_{i})^{2}}^{1/2}$.
+We also have a notion of continuity.
+A function $f$ is \emph{continuous at a point $x$} if for all $\e > 0$, there exists $\delta > 0$ such that $\dist(x, y) < \delta \implies \dist(f(x), f(y)) < \e$.
+We wish to generalize this notion.
+
+\begin{defn}[Metric Spaces]
+  A \emph{metric space} is a set $X$ equipped with a distance function $\dist\colon X \times X \to \R$ called a \emph{metric} satisfying
+  \begin{enumerate}
+    \item $\dist(x, y) \geq 0$ with equality if and only if $x = y$
+    \item $\dist(x. y) = \dist(y, x)$
+    \item $\dist(x, z) \leq \dist(x, y) + \dist(y, z)$.
+  \end{enumerate}
+\end{defn}
+
+\begin{defn}[$\e$-ball]
+  For a point $x$ in some metric space $X$, the \emph{$\e$-ball about x} is $B_{\e}(x) \defeq \set{y \in X | \dist(x, y) < \e}$.
+\end{defn}
+
+It is not hard to rephrase the definition of continuity in terms of $\e$-balls.
+
+\begin{defn}[Open and Closed Sets in $\R$]
+  A subset $U$ of some metric space $X$ is \emph{open} if for all $x \in U$ there exists $\e > 0$ such that $B_{\e}(x) \subseteq U$.
+  A subset $C$ is \emph{closed} if its complement is open.
+\end{defn}
+
+We can actually even rephrase continuity in terms of open sets.
+
+\begin{prop}[Continuity in terms of Open Sets]
+  A function $f\colon X \to Y$ between metric spaces is continuous if and only if $f^{-1}(U)$ is open for every open set $U \subseteq Y$.
+\end{prop}
+
+\begin{pf}
+  Suppose $f\colon X \to Y$ is continuous.
+  Let $U \subset Y$ be some open set and let $f(x) \in U$.
+  Then there exists $\e > 0$ such that $B_{\e}(f(x)) \subseteq U$.
+  By continuity of $f$, there exists $\delta > 0$ such that $f(B_{\delta}(x)) \subseteq B_{e}(f(x))$.
+  Thus $B_{\delta}(x) \subseteq f^{-1}(U)$ and $f^{-1}(U)$ is open.
+
+  Conversely, suppose that $f^{-1}(U)$ is open for any open $U \subseteq Y$.
+  Let $\e > 0$.
+  Then $B_{\e}(f(x))$ is open and $f^{-1}(B_{\e}(f(x)))$ is open and contains $x$.
+  Thus there exists $\delta > 0$ such that $B_{\delta}(x) \subseteq f^{-1}(B_{\e}(f(x)))$.
+  Thus $f(B_{\delta}(x)) \subseteq B_{\e}(f(x))$ and $f$ is continuous.
+\end{pf}
+
+This can also all be rephrased in terms of closed sets, rather than open sets.
+
+\begin{ex}[Other Metrics on $\R$]
+  We can also equip other metrics on $\R^{n}$.
+  \begin{align*}
+    \dist_{2}(x, y) &= \sum_{i = 1}^{n} \abs{x_{i} - y_{i}} \\
+    \dist_{3}(x, y) &= \max_{i = 1}^{n} (\abs{x_{i} - y_{i}})
+  \end{align*}
+\end{ex}
+
+However it turns out that for $\R^{n}$, choice between these 3 metrics is irrelevant.
+
+\clearpage
+
+\begin{prop}[Equivalence of Open Sets]
+  Suppose $\dist_{1}$ and $\dist_{2}$ are two metrics on the same set $X$ such that for any $x \in X$ and $\e > 0$, there exists $\delta > 0$ such that
+  \[
+    \dist_{1}(x, y) < \delta \implies \dist_{2}(x, y) < \e
+  \]
+  and
+  \[
+    \dist_{2}(x, y) < \delta \implies \dist_{1}(x, y) < \e.
+  \]
+  Then these metrics define the same open sets in $X$.
+\end{prop}
+
+\begin{pf}
+  \quest{TODO: PROOF}
+\end{pf}
+
+\begin{cor}[Equivalence of Open Sets in $\R^{n}$]
+  The following metrics define the same open sets in $\R^{n}$:
+  \begin{align*}
+    \dist(x, y) &= \pqty{\sum_{i = 1}^{n} (x_{i} - y_{i})^{2}}^{1/2} \\
+    \dist_{2}(x, y) &= \sum_{i = 1}^{n} \abs{x_{i} - y_{i}} \\
+    \dist_{3}(x, y) &= \max_{i = 1}^{n} (\abs{x_{i} - y_{i}})
+  \end{align*}
+\end{cor}
+
+\clearpage
+
+\begin{exercise}[Bredon 1.1.1]
+  Consider the set $X$ of all continuous real valued functions on $[0, 1]$.
+  Show that
+  \[
+    \dist(f, g) = \int_{0}^{1} \abs{f(x) - g(x)} \dd{x}
+  \]
+  defines a metric on $X$.
+  Is this still the case if continuity is weakened to integrability?
+\end{exercise}
+\begin{pf}
+  Positivity follows from the positivity of absolute value.
+  If $f = g$ then clearly for all $x \in [0, 1]$ we have that $\abs{f(x) - g(x)} = 0$.
+  Then if $f \neq g$ then there exists $x \in [0, 1]$ such that $\abs{f(x) - g(x)} \neq 0$.
+  Since these functions are continuous, this yields that $\int_{0}^{1} \abs{f(x) - g(x)} \dd{x} > 0$.
+
+  Symmetry follows from $\abs{f(x) - g(x)} = \abs{g(x) - f(x)}$.
+
+  The triangle inequality follows from the triangle inequality for absolute value.
+
+  Note that we require continuity.
+  Let $f(x) \defeq 0$ and let $g(x) = 0$ for all $x > 0$ and $g(0) = 1$.
+  Then $f$ and $g$ are integrable and $\dist(f, g) = 0$ but $f \neq g$.
+\end{pf}
+
+\begin{exercise}[Bredon 1.1.2]
+  If $X$ is a metric space and $x_{0}$ is a given point in $X$, show that the function $f\colon X \to \R$ given by $f(x) = \dist(x, x_{0})$ is continuous.
+\end{exercise}
+\begin{pf}
+  Let $\e > 0$.
+  Suppose that $\dist(x, y) < \e$.
+  Then we have that
+  \[
+    \abs{f(x), f(y)} = \abs{\dist(x, x_{0}) - \dist(y, x_{0})} \leq \abs{\dist(x, y)} = \dist(x, y) < \e.
+  \]
+\end{pf}
+
+\begin{exercise}[Bredon 1.1.3]
+  If $A$ is a subset of a metric space $X$ then define a real valued function $d$ on $X$ by $d(x) = \dist(x, A) \defeq \int\set{\dist(x, y) | y \in A}$.
+  Show that $d$ is continuous.
+\end{exercise}
+\begin{pf}
+  Note that for any $x, y \in X$ and $z \in A$ we have that
+  \[
+    \dist(x, z) \leq \dist(x, y) + \dist(y, z).
+  \]
+  Taking infimum yields that
+  \[
+    \dist(x, A) \leq \dist(x, y) + \dist(y, A).
+  \]
+  Thus $\dist(x, A) - \dist(y, A) \leq \dist(x, y)$ and similarly we have $\dist(y, A) - \dist(x, A) \leq \dist(x, y)$.
+  This implies that $\abs{\dist(y, A) - \dist(x, A)} \leq \dist(x, y)$.
+
+  Now let $\e > 0$.
+  Suppose that $\dist(x, y) < \e$.
+  Then we have that $\abs{d(x), d(y)} \leq \dist(x, y) < \e$.
+\end{pf}
+
+
+\clearpage
+
+\section{Topological Spaces}
+
+We usually only care about continuity, not the actual metrics.
+Continuity can be formulated in terms of open sets.
+It can be shown that a function is continuous if and only if $f^{-1}(U)$ is open for all open $U$ in the codomain.
+
+\begin{defn}[Topological Spaces]
+  A \emph{topological} space is a set $X$ with a collection of subsets of $X$ called ``open sets'' such that
+  \begin{enumerate}
+  \item the intersection of two open sets is open;
+  \item the union of any collection of open sets is open; and
+  \item $X, \emptyset$ are open.
+  \end{enumerate}
+  A subset $X \subseteq X$ is \emph{closed} if $X \setminus C$ is open.
+\end{defn}
+
+\begin{defn}[Continuous Functions]
+  A function of topological spaces $f\colon X \to Y$ is \emph{continuous} if $f^{-1}(U)$ is open for all open $U \subseteq Y$.
+  A \emph{map} is a continuous function.
+\end{defn}
+
+It isn't hard to see that a function $f\colon X \to Y$ is continuous if and only if $f^{-1}(C)$ is closed for all closed $C \subseteq Y$.
+
+\begin{defn}[Neighborhood]
+  If $X$ is a topological space, a set $N \subseteq X$ is a \emph{neighborhood} of $x \in X$ if it contains an open set $U \subseteq N$ such that $x \in U$.
+\end{defn}
+
+It is immediate that arbitrary unions and finite intersections of neighborhoods of a point $x \in X$ are still neighborhoods of $x$.
+
+\begin{defn}[Neighborhood Basis]
+  Let $X$ be a topological space and $x \in X$.
+  A collection $\textbf{B}_{x}$ of subsets of $X$ containing $x$ is called a \emph{neighborhood basis} at $x$ in $X$ if each neighborhood of $x$ contains some element of $\textbf{B}_{x}$ and each element of $\textbf{B}_{x}$ is a neighborhood of $x$.
+\end{defn}
+
+Neighborhood bases let us define continuity at a single point.
+
+\begin{defn}[Continuity at a Point]
+  A function $f\colon X \to Y$ between topological spaces is said to be \emph{continuous at $x$}, $x \in X$, if, given any neighborhood $N$ of $f(x)$ in $Y$, there is a neighborhood $M$ of $x$ in $X$ such that $f(M) \subseteq N$.
+\end{defn}
+
+This is the same as saying $f^{-1}(N)$ is a neighborhood of $x$.
+
+\begin{prop}
+  A function $f\colon X \to Y$ between topological spaces is continuous if and only if it is continuous at each point $x \in X$.
+\end{prop}
+\begin{pf}
+  Suppose $f$ is continuous and let $N$ be a neighborhood of $f(x)$ in $Y$ with open $U \subseteq N$ such that $f(x) \in U$.
+  Then $x \in f^{-1}(U) \subseteq f^{-1}(N)$ where $f^{-1}(U)$ is open in $X$.
+  Thus $f^{-1}(N)$ is a neighborhood of $x$ in $X$ and $f\pqty{f^{-1}(N)} = N \subseteq N$ and $f$ is continuous at $x \in X$.
+
+  Conversely now suppose that $f$ is continuous at each point in $X$ and let $U \subseteq Y$ be open.
+  Then for any $x \in f^{-1}(U),$ we have that $f^{-1}(U)$ is a neighborhood of $x$.
+  Thus there exists open $V_{x} \subseteq f^{-1}(U)$ with $x \in V_{x}$.
+  Thus $f^{-1}(U)$ is the union of open sets $V_{x}$ ranging over $x \in f^{-1}(U)$ and $f^{-1}(U)$ is open which yields that $f$ is continuous.
+\end{pf}
+
+\clearpage
+
+\begin{defn}[Homeomorphic Functions]
+  A function $f\colon X \to Y$ between topological spaces is called a \emph{homeomorphism} if $f^{-1}\colon Y \to X$ exists and both $f$ and $f^{-1}$ are continuous.
+  We notate that $X \approx Y$ meaning that $X$ is \emph{homeomorphic} to $Y$.
+\end{defn}
+
+Topological spaces are homeomorphic then if there is a bijection between them as sets but also there is a correspondence between the open sets.
+These sets can then essentially be regarded as the same sets.
+
+Describing topological spaces can be described in a more simple manner than listing all the open sets using the concept of a basis.
+\begin{defn}[Basis]
+  Let $X$ be a topological space and $\textbf{B}$ a collection of subsets of $X$.
+  We say that $\textbf{B}$ is a \emph{basis} for the topology of $X$ if the open sets of $X$ are precisely the unions of members of $\textbf{B}$.
+  A collection $\textbf{S}$ of subsets of $X$ is called a subbasis for the topology of $X$ if the set $\textbf{B}$ of finite intersections of members of $\textbf{S}$ forms a basis of $X$.
+\end{defn}
+
+\emph{Any} collection $\textbf{S}$ of subsets of any set $X$ is a subbasis for some topology on $X$, namely the topology where the open sets are arbitrary unions of finite intersections of members of $\textbf{S}$.
+The empty set is the union of an empty collection and $X$ is the intersection of an empty collection.
+Thus to specify a topology, a subbasis suffices.
+In a metric space, the collection of all $\e$-balls, for all $\e > 0$, forms a basis.
+So is the collection of $\e$-balls for $\e = 1, \frac{1}{2}, \frac{1}{3}, \ldots$.
+
+\begin{ex}[Examples of Topologies]
+  We now give examples of topological spaces:
+  \begin{enumerate}
+  \item (Trivial Topology) Any set $X$ where the only open sets are $X$ and $\emptyset$.
+  \item (Discrete Topology) Any set $X$ where every subset of $X$ is open.
+  \item Any sets $X$ where the closed sets are finite sets and $X$ itself.
+  \item $X = \N \cup \set{\N}$ with the open sets being all subsets of $\N$ together with complements of finite sets.
+  \item Let $X$ be any poset.
+        For $\alpha \in X$ consider the one-sided intervals $\set{\beta \in X | \alpha < \beta}$ and $\set{\beta \in X | \alpha > \beta}$.
+        The ``order topology'' on $X$ is the topology generated by these intervals.
+        The ``strong order topology'' is the topology generated by these intervals together with the complements of finite sets.
+  \item Let $X = I^{2}$ where $I = [0, 1]$ the unit intervals.
+        Give this the ``dictionary ordering'' where $(x, y) < (s, t)$ if and only if either $x < s$ or $(x = s \text{ and } y < t)$.
+        Let $X$ have the order topology for this ordering.
+  \item Let $X$ be the real line bu with the topology generated by the ``half open intervals'' $[x, y)$.
+        This is called the ``half open interval topology'' or the ``lower limit topology.''
+  \item Let $X = \Omega \cup \set{\Omega}$ be the set of ordinal numbers up to and including the least uncountable ordinal $\Omega$.
+        Give this the order topology.
+  \end{enumerate}
+\end{ex}
+
+\begin{defn}[Countability]
+  A topological space is \emph{first countable} if each point has a countable neighborhood basis.
+  A topological space is \emph{second countable} if its topology has a countable basis.
+\end{defn}
+
+Every metric space is first countable but some are not second countable.
+Consider the space if any uncountable set with metric $\dist(x, y) = 1$ if $x \neq y$ and $0$ otherwise (which yields the discrete topology).
+Euclidian spaces are second countable since the $\e$-balls, with $\e$ rational, about points with rational coordinates, is a countable basis.
+
+\begin{defn}[Uniform Convergence of Functions]
+  A sequence $f_{1}, f_{2}, \ldots$ of functions from a topological space $X$ to a metric space $Y$ is said to \emph{converge uniformly} to a function $f\colon X \to Y$ if, for all $\e > 0$, there is a number $n$ such that for all $i > n$, $\dist(f_{i}(x), f(x)) < \e$ for all $x \in X$.
+\end{defn}
+
+\begin{thrm}
+  If a sequence $f_{1}, f_{2}, \ldots$ of continuous functions from a topological space $X$ to a metric space $Y$ converges uniformly to a function $f\colon X \to Y$, then $f$ is continuous.
+\end{thrm}
+\begin{pf}
+  Given $\e > 0$, let $n_{0}$ be such that for all $x \in X$, $n \geq n_{0}$ implies that $\dist(f_{n}(x), f(x)) < \frac{\e}{3}$.
+  Given $n_{0}$, continuity of $f_{n_{0}}$ implies that there is a neighborhood $N$ of $x_{0}$ such that $x \in N$ implies that $\dist(f_{n_{0}}(x), f_{n_{0}}(x_{0})) < \frac{\e}{3}$.
+  Thus for any $x \in N$ we have that
+  \begin{align*}
+    \dist(f(x), f(x_{0})) &\leq \dist(f(x), f_{n_{0}}(x)) + \dist(f_{n_{0}}(x), f_{n_{0}}(x_{0})) + \dist(f_{n_{0}}(x), f(x_{0})) \\
+                          &< \frac{\e}{3} + \frac{\e}{3} + \frac{\e}{3} = \e.
+  \end{align*}
+  Thus $f$ is continuous.
+\end{pf}
+
+\begin{defn}[Open and Closed Functions]
+  A function $f\colon X \to Y$ between topological spaces is said to be \emph{open} if $f(U)$ is open in $Y$ for all open $U \subseteq X$.
+  It is said to be \emph{closed} if $f(C)$ is closed in $Y$ for all closed $C \subseteq X$.
+\end{defn}
+
+\begin{defn}[Smallest and Largest Topologies]
+  If $X$ is a set and some condition is given on subsets of $X$, which may or may not hold for any particular subset, then if there is a topology $T$ whose open sets satisfy the condition, and such that, for any topology $T'$ whose open sets satisfy the condition, then the $T$-open sets are also $T'$-open (i.e. $T \subseteq T'$), then $T$ is called the \emph{smallest} (or \emph{weakest} or \emph{coarsest}) topology satisfying the condition.
+  If, instead, for any topology $T'$ whose open sets satisfy the condition, any $T'$-open sets are also $T$-open (i.e. $T' \subseteq T$), then $T$ is called the \emph{largest} (or \emph{strongest} or \emph{finest}) topology satisfying the condition.
+\end{defn}
+
+\begin{ex}[Largest and Smallest Topology for a Condition]
+  If $f\colon X \to Y$ is a function and $X$ is a topological space, then there is a largest topology on $Y$ making $f$ continuous by having open sets $\set{V \subseteq Y | f^{-1}(V) \text{ is open in } X}$.
+  The smallest such topology is the trivial topology.
+\end{ex}
+
+If a topology is the largest one satisfying some condition, then there is always some other condition where the given topology is the smallest one satisfying the new condition.
+For example, the topology described in the prior example is the smallest topology satisfying the condition ``for all spaces $Z$ and functions $g\colon Y \to Z$, $g \circ f$ being continuous implies $g$ is continuous.''
+Thus there is no way to argue that a topology is ``large'' or ``small'' without knowing the defining condition.
+
+\clearpage
+
+\begin{exercise}[Bredon 1.2.1]
+  Show that in a topological space $X$:
+  \begin{enumerate}
+  \item[a.] the union of two closed sets is closed;
+  \item[b.] the intersection of any collection of closed sets is closed; and
+  \item[c.] the empty set and the whole space $X$ are closed.
+  \end{enumerate}
+\end{exercise}
+\begin{pf}
+  \begin{enumerate}
+  \item[a.] Suppose that $C_{1}, C_{2}$ are closed in $X$.
+        Then we have that $X \setminus (C_{1} \cup \C_{2}) = (X \setminus C_{1}) \cup (X \setminus C_{2})$ which is the union of two open sets.
+        Thus $C_{1} \cup C_{2}$ is closed.
+  \item[b.] \quest{Sim.}
+  \item[c.] We have that $X \setminus \emptyset = X$ which is open so $\emptyset$ is closed.
+        Similarly we have that $X \setminus X = \emptyset$ which is open so $X$ is closed.
+  \end{enumerate}
+\end{pf}
+
+\begin{exercise}[Bredon 1.2.2]
+  Consider the topology on $\R$ generated by half open intervals $[x, y)$ together with those of the form $(x, y]$.
+  Show that this coincides with the discrete topology.
+\end{exercise}
+\begin{pf}
+  Note that $(x - 1, x] \cup [x, x + 1) = \set{x}$.
+  Thus every singleton, and therefore every subset of $\R$, is open and we recover the discrete topology.
+\end{pf}
+
+\begin{exercise}[Bredon 1.2.3]
+  Show that the space $\Omega \cup \set{\Omega}$ in the order topology cannot be given a metric consistent with its topology.
+\end{exercise}
+\begin{pf}
+  \quest{TODO: What is $\Omega$?}
+\end{pf}
+
+\begin{exercise}[Bredon 1.2.4]
+  If $f\colon X \to Y$ is a function between topological space, and $f^{-1}(U)$ is open for each open $U$ in some subbasis for the topology of $Y$, show that $f$ is continuous.
+\end{exercise}
+\begin{pf}
+  Let \textbf{S} be a subbasis for $Y$ and let $U$ be open in $Y$.
+  We have that \textbf{S} generates some basis \textbf{B} for $Y$ and for some indexing set $I$ we have $U = \bigcup_{i \in I} B_{i}$ where $B_{i} \in \textbf{B}$.
+  But then each $B_{i} = S_{i_{1}} \cap S_{i_{n}}$ for $S_{i_{j}} \in \textbf{S}$.
+  We have that
+  \begin{align*}
+    f^{-1}(B_{i}) &= \bigcap_{j = 1}^{n} f^{-1}(S_{i_{j}}) \text{ where each } f^{-1}(S_{i_{j}}) \text{ is open so } f^{-1}(B_{i}) \text{ is open }; \text{ and} \\
+    f^{-1}(U) &= \bigcup_{i \in I} f^{-1}(B_{i}) \text{ where each } f^{-1}(B_{i}) \text{ is open so } f^{-1}(U) \text{ is open }.
+  \end{align*}
+  Thus $f$ is continuous.
+\end{pf}
+
+\clearpage
+
+\begin{exercise}[Bredon 1.2.5]
+  Suppose that $S$ is a set and we are given, for each $x \in S$, a collection $\textbf{N}(x)$ of subsets of $S$ satisfying:
+  \begin{enumerate}
+  \item $N \in \textbf{N}(x) \implies x \in N$;
+  \item $N, M \in \textbf{N}(x) \implies \exists P \in \textbf{N}(x) \text{ such that } P \subseteq N \cap M$; and
+  \item $x \in S \implies \textbf{N}(x) \neq \emptyset$.
+  \end{enumerate}
+  Then show that there is a unique topology on $S$ such that $\textbf{N}(x)$ is a neighborhood basis at $x$, for each $x \in S$.
+  Thus a topology can be defined by giving such a collection of neighborhoods at each point.
+\end{exercise}
+\begin{pf}
+  Let $S$ be the topology with open sets $\set{U \subseteq S | \forall x \in U,~ \exists N \in \textbf{N}(x) \text{ such that } N \subseteq U}$.
+  \begin{itemize}
+  \item $\emptyset$ is open in $S$ vacuously.
+        Now take $x \in S$.
+        $\textbf{N}(x) \neq \emptyset$ and so there exists $N \subseteq S$ such that $x \in N$.
+        Thus $S$ is also open.
+  \item Let $U, V$ be open.
+        Then let $x \in U \cap V$.
+        $x \in U$ implies there exists $N \in \textbf{N}(x)$ such that $N \subseteq U$.
+        Similarly there exists $M \in \textbf{N}(x)$ such that $M \subseteq V$.
+        We have then there exists $P \in \textbf{N}(x)$ such that $P \subseteq N \cap M$.
+        Thus $U \cap V$ is open.
+  \item \quest{TODO: Union}
+  \end{itemize}
+
+  Suppose that $Y$ is some other topology such that for each $x \in S$. $\textbf{N}(x)$ is a neighborhood basis of $x$.
+  Let $U$ be open in $Y$ and $x \in U$.
+  Then there must be $N \in \textbf{N}(x)$ with $N \subseteq U$ because $U$ is an open set containing $x$ and $\textbf{N}(x)$ is a neighborhood basis.
+  Thus $U$ is also open in $S$.
+
+  Now suppose that $U$ is open in $S$.
+  Then for $x \in  U$ there exists $N \in \textbf{N}(x)$ such that $N \subseteq U$.
+  $N$ is a neighborhood of $x$ i $Y$ also.
+  Thus there exists open $V_{x} \subseteq N$ such that $x \in V_{x}$.
+  Thus since $V_{x} \subseteq N \subseteq U$ we have that $U = \bigcup_{x \in U} V_{x}$.
+  Thus $U$ is the union of open sets in $Y$ and $U$ is open in $Y$.
+
+  Overall $S = Y$ and we have that $S$ is the unique topology we want.
+\end{pf}
+
+\clearpage
+
+\section{Subspaces}
+
+\begin{defn}[Subspace]
+  If $X$ is a topological space and $A \subseteq X$, then the \emph{relative topology} or \emph{subspace topology} on $A$ is the collection of intersections of $A$ with open sets of $X$.
+  With this topology, $A$ is called a \emph{subspace} of $X$.
+\end{defn}
+
+We have a series of basic consequences of this definition of subspace.
+
+\begin{prop}
+  If $Y$ is a subspace of $A$, then $A \subseteq Y$ is closed if and only if $A = Y \cap B$ for some closed $B \subseteq X$
+\end{prop}
+\begin{pf}
+  Suppose $A$ is closed in $Y$.
+  Then $Y \setminus A$ is open in $Y$.
+  Then $Y \setminus A = Y \cap U$ for some open $U \subseteq X$.
+  $X \setminus U$ is closed and $(Y \setminus A) \sqcup A = Y = Y \cap U \sqcup (Y \cap (X \setminus U))$.
+  This implies $A = Y \cap (X \setminus U)$.
+
+  Now suppose that $A = Y \cap B$ for some closed $B \subseteq X$.
+  Then $X \setminus B$ is open in $X$.
+  We have that $Y \setminus A = Y \setminus (Y \cap B) = Y \cap (X \setminus B)$ and so $Y \cap A$ is open meaning that $A$ is closed.
+\end{pf}
+
+\begin{prop}
+  If $X$ is a topological space and $A \subseteq X$, then there exists a largest open set $U$ with $U \subseteq A$.
+\end{prop}
+\begin{pf}
+  Let $\set{U_{i}}_{i \in I}$ be an indexed set of all open sets $\subseteq A$.
+  Then $U \defeq \bigcup_{i \in I} U_{i}$ is the largest open set in $A$.
+  This is because the union of open sets is open and if $O \subseteq A$ is open then $O = U_{j}$ for some $j$ and thus $O \subseteq U$.
+\end{pf}
+\begin{defn}[Interior]
+  let $X$ be a topological space and $A \subseteq X$.
+  The largest open set contained in $A$ is called the \emph{interior} of $A$ in $X$ and is denoted by $\inte(A)$ or $A^{\circ}$.
+\end{defn}
+
+\begin{prop}
+  If $X$ is a toplogical space and $A \subseteq X$, then there exists a smallest closed set $F$ such that $A \subseteq F \subseteq X$.
+\end{prop}
+\begin{pf}
+  Let $\set{F_{i}}_{i \in I}$ be the indexed set of all closed sets $A \subseteq F_{i} \subseteq X$.
+  Then $F \defeq \bigcup_{i \in I} F_{i}$ is the closure of $A$.
+  $F$ is closed since the intersection of closed sets is closed and $A \subseteq F$ since $A \subseteq F_{i}$ for all $i \in I$.
+  If $A \subseteq C \subseteq X$ is closed then $C = F_{j}$ for some $j$ and thus $F \subseteq C$.
+\end{pf}
+\begin{defn}[Closure]
+  let $X$ be a topological space and $A \subseteq X$.
+  The smallest closed set containing $A$ is called the \emph{closure} of $A$ in $X$ and is denoted by $\cl(A)$ or $\overline{A}$.
+\end{defn}
+
+We give more precise definitions of the interior and closure of a set.
+
+\begin{prop}[Bredon 1.3.1.a]\label{prop: defn_of_int_and_cl}
+  Let $X$ be a topological space and $A \subseteq X$.
+  Then we have that
+  \begin{align*}
+    \inte(A) &= \set{a \in A | \exists U \text{ open such that } a \in U \subseteq X} \\
+    \overline{A} &= \set{x \in X | \forall U \text{ open such that } x \in U,~ U \cap A \neq \emptyset}
+  \end{align*}
+\end{prop}
+\begin{pf}
+  \quest{Immediate from defn.}
+\end{pf}
+
+\begin{prop}[Bredon 1.3.1.b]
+  Let $X$ be a topological space and $A \subseteq X$.
+  Then $A$ is open if and only if $\inte(A) = A$ and $A$ is closed if and only if $\overline{A} = A$.
+\end{prop}
+\begin{pf}
+  \quest{Immediate from \Cref{prop: defn_of_int_and_cl}}.
+\end{pf}
+
+\clearpage
+
+\begin{prop}[Bredon 1.3.1.c]
+  Let $X$ be a topological space and $A \subseteq X$.
+  Then $X \setminus \inte(A) = \overline{X \setminus A}$ and $X \setminus \overline{A} = \inte(X \setminus A)$.
+\end{prop}
+\begin{pf}
+  Let $x \in X \setminus \inte(A)$.
+  Then for any open $U$ such that $x \in U$, we have that $U \not\subseteq A$ and so $U \cap (X \setminus A) \neq \emptyset$.
+  Thus by \Cref{prop: defn_of_int_and_cl}, $x \in \overline{X \setminus A}$.
+  Conversely let $x \in \overline{X \setminus A}$.
+  Then for any open set $U$ with $x \in U$, we have $U \cap (X \setminus A) \neq \emptyset$.
+  Thus $U \not\subseteq A$ and $x \in X \setminus \inte(A)$.
+
+  Now let $x \in X \setminus \overline{A}$.
+  Then by \Cref{prop: defn_of_int_and_cl} there exists an open set $U$ such that $x \in U$ and $U \cap A = \emptyset$.
+  Thus $U \subseteq X \setminus A$ and $x \in \inte(X \setminus A)$.
+  \quest{TODO: Reverse Inclusion}
+\end{pf}
+
+\begin{prop}[Bredon 1.3.1.d]
+  Let $X$ be a topological space and $A, B \subseteq X$.
+  Then $\inte(A \cap B) = \inte(A) \cap \inte(B)$ and $\overline{A \cup B} = \overline{A} \cup \overline{B}$.
+\end{prop}
+\begin{pf}
+  Suppose that $x \in \inte(A \cap B)$.
+  Then there exists open $U$ such that $x \in U \subseteq A \cap B$.
+  Thus $U \subseteq A$ and $U \subseteq B$ and $x \inte(A) \cap \inte(B)$.
+  Now suppose $x \in \inte(A) \cap \inte(B)$. Then there exists open sets $U_{1}$ and $U_{2}$ such that $x \in U_{1} \subseteq A$ and $x \in U_{B} \subseteq B$.
+  Thus $x \in U_{1} \cap U_{2} \subseteq A \cap B$ which implies that $x \in \inte(A \cap B)$.
+
+  Now suppose that $x \in \overline{A \cup B}$.
+  Then for all open $U$ with $x \in U$, $U \cap (A \cup B) \neq \emptyset$.
+  Thus for all open $U$ with $x \in U$, $U \cap A$ or $U \cap B$ is nonempty and $x \in \overline{A} \cup \overline{B}$.
+  Now suppose that $x \in \overline{A} \cup \overline{B}$.
+  Then for all open $U$ with $x \in U$, $U \cap A$ or $U \cap B$  is nonempty.
+  Thus $U \cap (A \cup B) \neq \emptyset$ and $x \in \overline{A \cup B}$.
+\end{pf}
+
+\begin{prop}[Bredon 1.3.1.e]
+  Let $X$ be a topological space and $\set{A_{\alpha}}$ an indexed collection of subsets of $X$.
+  \begin{enumerate}
+  \item $\Bigcap_{\alpha} \inte(A_{\alpha}) \containseq \inte\pqty{\Bigcap_{\alpha} A_{\alpha}} = \inte\pqty{\Bigcap_{\alpha} \inte(A_{\alpha})}$.
+  \item $\Bigcup_{\alpha} \overline{A_{\alpha}} \subseteq \overline{\Bigcup_{\alpha} A_{\alpha}} = \overline{\Bigcap_{\alpha} \overline{A_{\alpha}}}$.
+  \item $\Bigcup_{\alpha} \inte(A_{\alpha}) \subseteq \inte\pqty{\Bigcup_{\alpha} A_{\alpha}}$.
+  \item $\Bigcap_{\alpha} \overline{A_{\alpha}} \containseq \overline{\Bigcap_{\alpha} A_{\alpha}}$.
+  \end{enumerate}
+\end{prop}
+\begin{pf}\
+  \begin{enumerate}
+  \item In the finite case, by induction, we have that $\Bigcap_{\alpha} \inte(A_{\alpha}) \subseteq \inte\pqty{\Bigcap_{\alpha} A_{\alpha}}$.
+        \quest{The proof does not invoke finiteness / infiniteness and so this holds in the general case.}
+        We actually have equality in the case of finite intersection.
+
+        Note that $\inte\pqty{\bigcap_{\alpha} A_{\alpha}}$ is open and $\inte\pqty{\bigcap_{\alpha} A_{\alpha}} \subseteq \bigcap_{\alpha} \inte(A_{\alpha})$ and so $\inte\pqty{\bigcap_{\alpha} A_{\alpha}} \subseteq \inte\pqty{\bigcap_{\alpha} \inte(A_{\alpha})}$.
+        Now let $x \in \inte\pqty{\bigcap_{\alpha} \inte(A_{\alpha})}$.
+        Then there is some open $U$ with $x \in U$ such that $U \subseteq \bigcap_{\alpha} \inte(A_{\alpha})$.
+        Thus $U \subseteq \inte(A_{\alpha}) \subseteq A_{\alpha}$ for all $\alpha$ and so $U \subseteq \bigcap_{\alpha} A_{\alpha}$ and $x \in \inte\pqty{\bigcap_{\alpha} A_{\alpha}}$.
+  \item Let $x \in \bigcup_{\alpha} \overline{A_{\alpha}}$.
+        Then for some $\alpha$, $x \in \overline{A_{\alpha}}$.
+        So for all open $U$ with $x \in U$, $U \cap A_{\alpha} \neq \emptyset$.
+        Thus for all open $U$ with $x \in U$, $U \cap \pqty{\bigcup_{\alpha} A_{\alpha}} \neq \emptyset$ and $x \in \overline{\bigcup_{\alpha} A_{\alpha}}$.
+
+        $A_{\alpha} \subseteq \overline{A_{\alpha}}$ for all $\alpha$.
+        So $\overline{\bigcup_{\alpha} A_{\alpha}} \subseteq \overline{\bigcup_{\alpha} \overline{A_{\alpha}}}$.
+        Now let $x \in \overline{\bigcup_{\alpha} \overline{A_{\alpha}}}$.
+        Then for all open $U$ with $x \in U$, $U \cap \bigcup_{\alpha} A_{\alpha} \neq \emptyset$.
+        Since $\bigcup_{\alpha} \overline{A_{\alpha}} \subseteq \overline{\bigcup_{\alpha} A_{\alpha}}$, we have that $U \cap \overline{\bigcup_{\alpha} A_{\alpha}} \neq \emptyset$.
+        Thus $x \in \overline{\bigcup_{\alpha}}$.
+  \item Suppose that $x \in \bigcup_{\alpha} \inte(A_{\alpha})$.
+        Then there exists $\alpha$ such that $x \in \inte(A_{\alpha})$.
+        Thus there exists open $U$ with $x \in U$ such that $U \subseteq A_{\alpha}$.
+        So $U \subseteq \bigcup_{\alpha} A_{\alpha}$ and overall $x \in \inte\pqty{\bigcup_{\alpha} A_{\alpha}}$.
+  \item Let $x \in \overline{\bigcap_{\alpha} A_{\alpha}}$.
+        Then for all open $U$ with $x \in U$, $U \cap \bigcap_{\alpha} A_{\alpha} \neq \emptyset$.
+        Thus for all $\alpha$, $U \cap A_{\alpha} \neq \emptyset$ and $x \in \overline{A_{\alpha}}$ for all $\alpha$.
+        Thus $x \in \bigcap_{\alpha} \overline{A_{\alpha}}$.
+  \end{enumerate}
+\end{pf}
+
+\begin{ex}[Interior of Intersection is not Equal to Intersection of Interiors]
+  We have that $\bigcap_{\alpha} \inte(A_{\alpha}) \containseq \inte\pqty{\bigcap_{\alpha} A_{\alpha}}$.
+  We also know that we have equality in the case of finite intersections.
+  However in general we have that $\bigcap_{\alpha} \inte(A_{\alpha}) \not\subseteq \inte\pqty{ \bigcap_{\alpha} A_{\alpha}}$.
+  Let $A_{n} \defeq \pqty{1 - \frac{1}{n}, 1 + \frac{1}{n}} \subseteq \R$ for all $n \geq 1$.
+  Then
+  \begin{align*}
+    \Bigcap_{n \geq 1} \inte(A_{n}) &= \Bigcap_{n \geq 1} \pqty{1 - \frac{1}{n}, 1 + \frac{1}{n}} = \set{1}; \text{ and } \\
+    \inte\pqty{\Bigcap_{n \geq 1} A_{n}} &= \inte \set{1} = \emptyset.
+  \end{align*}
+\end{ex}
+
+\begin{ex}[Union of Closures is not Equal to Closure of Union]
+  We have that $\bigcup_{\alpha} \overline{A_{\alpha}} \subseteq \overline{\bigcup_{\alpha} A_{\alpha}}$.
+  However in general we have that  $\overline{\bigcup_{\alpha} A_{\alpha}} \not\subseteq \bigcup_{\alpha} \overline{A_{\alpha}}$.
+  Let $A_{n} = \left( \frac{1}{n}, 1 \right]$ for $n \geq 1$.
+  Then
+  \begin{align*}
+    \Bigcup_{n \geq 1} \overline{\left( \frac{1}{n}, 1 \right]} &= \Bigcup_{n \geq 1} \bqty{\frac{1}{n}, 1} =  (0, 1] \\
+    \overline{\Bigcup_{n \geq 1} \left( \frac{1}{n}, 1 \right]} &= \overline{(0, 1]} = [0, 1]
+  \end{align*}
+\end{ex}
+
+\begin{ex}[Union of Interiors is not Equal to Interior of Union]
+  We have that $\bigcup_{\alpha} \inte(A_{\alpha}) \subseteq \inte\pqty{\bigcup_{\alpha} A_{\alpha}}$.
+  However in general we have that $\inte\pqty{\bigcup_{\alpha} A_{\alpha}} \not\subseteq \bigcup_{\alpha} \inte(A_{\alpha})$.
+  Let $A_{1} = \bqty{0, \frac{1}{2}}$ and let $A_{2} = \bqty{\frac{1}{2}, 1}$.
+  Then $\inte(A_{1} \cup A_{2}) = \inte([0, 1]) = (0, 1)$.
+  However $\inte(A_{1}) \cup \inte(A_{2}) = \pqty{0, \frac{1}{2}} \cup \pqty{\frac{1}{2}, 1}$.
+\end{ex}
+
+\begin{ex}[Intersection of Closures is not Equal to Closure of Intersection]
+  We have that $\overline{\bigcap_{\alpha} A_{\alpha}} \subseteq \bigcap_{\alpha} \overline{A_{\alpha}}$.
+  However in general we have that $\bigcap_{\alpha} \overline{A_{\alpha}} \not\subseteq \overline{\bigcap_{\alpha} A_{\alpha}}$.
+  Let $A_{1} = \pqty{0, \frac{1}{2}}$ and $A_{2} = \pqty{\frac{1}{2}, 1}$.
+  Then $\overline{A_{1} \cap A_{2}} = \overline{\emptyset} = \emptyset$.
+  However $\overline{A_{1}} \cap \overline{A_{2}} = \bqty{0, \frac{1}{2}} \cap \bqty{\frac{1}{2}, 1} = \set{\frac{1}{2}}$.
+\end{ex}
+
+\begin{prop}[Bredon 1.3.1.f]
+  Let $X$ be a topological space and $A, B$ subsets of $X$.
+  If $A \subset B$, then we have that $\overline{A} \subseteq \overline{B}$ and $\inte(A) \subseteq \inte(B)$.
+\end{prop}
+\begin{pf}
+  Suppose $A \subseteq B$ and $x \in \overline{A}$.
+  Then for all open sets $U$ with $x \in U$ we have $U \cap A \neq \emptyset$.
+  Thus $U \cap B \neq \emptyset$ and $x \in \overline{B}$.
+
+  Now let $x \in \inte(A)$.
+  Then there exists open $U$ such that $x \in U \subseteq A \subseteq B$.
+  Thus $x \in \inte(B)$.
+\end{pf}
+
+We may specify the space in which a closure is taken with the notation $\overline{A}^{X}$.
+However, we do not need this notation very often.
+
+\begin{prop}
+  If $A \subseteq Y \subseteq X$, then $\overline{A}^{Y} = \overline{A}^{X} \cap Y$.
+  Thus if $Y$ is closed, then $\overline{A}^{Y} = \overline{A}^{X}$.
+\end{prop}
+\begin{pf}
+  Suppose $a \in \overline{A}^{Y}$.
+  Then $a \in X$ since $\overline{A} \subseteq Y \subseteq X$.
+  Thus $A \subseteq \overline{A} \subseteq X$ and since $a \in Y$ also, we have that $a \in \overline{A}^{X} \cap Y$.
+  The reverse inclusion is also a similar argument and thus $\overline{A}^{Y} = \overline{A}^{X} \cap Y$.
+  If $Y$ is closed, then $\overline{A} \subseteq Y$ and so $\overline{A}^{X} \cap Y = \overline{A}^{X}$.
+\end{pf}
+
+\clearpage
+
+\begin{prop}
+  If $Y \subseteq X$ then the set of intersection of $Y$ with a basis of $X$ is a basis of the relative topology of $X$.
+\end{prop}
+\begin{pf}
+  \quest{High lvl: Take open $\subseteq Y$. This is equal to $Y \cap \text{ open } \subseteq X$. Use basis of $X$, distribute intersection}.
+\end{pf}
+
+\begin{prop}
+  If $X, Y, Z$ are topological spaces and $Z$ is a subspace of $Y$, and $Y$ is a subspace of $X$, then $Z$ is a subspace of $X$.
+\end{prop}
+\begin{pf}
+  Let $U \subseteq Z$ be open.
+  Then $U = Z \cap U'$ for some open $Z' \subseteq Y$.
+  But $U' = Y \cap U''$ for some open $U'' \subseteq X$.
+  Note that $Z \subseteq Y$ so $Z \cap Y = Z$.
+  Thus $U = Z \cap U' = Z \cap Y \cap U'' = Z \cap U''$ and overall $Z$ is a subspace of $X$.
+\end{pf}
+
+\begin{prop}
+  If $X$ is a metric space and $A \subseteq X$, then $\overline{A}$ coincides with the set of limits in $X$ of sequences of points in $A$.
+\end{prop}
+\begin{pf}
+  If $x$ is the limit point of a sequence of points in $A$, then any open sets about $x$ contains a point of $A$.
+  Thus $x \notin \inte(X \setminus A)$.
+  We have that $X \setminus \inte(X \setminus A) = \overline{A}$ and so $x \in \overline{A}$.
+
+  Now suppose $x \in \overline{A}$.
+  $B_{1 / n}(x)$ must contain a point in $A$.
+  If it didn't then $x \in \int(X \setminus A)$ which is disjoint from $\overline{A}$.
+  Let $x_{n}$ be a point in $A$ which is also in $B_{a / n}(x)$.
+  Thus $x$ is a limit of a sequence of points in $A$.
+\end{pf}
+
+\begin{defn}[Boundary]
+  If $X$ is a topological space and $A \subseteq X$, then the \emph{boundary} or \emph{frontier} of $A$ is defined to be $\partial(A)$ or $\bdry(A) = \overline{A} \cap \overline{X \setminus A}$.
+\end{defn}
+
+\begin{defn}[Dense and Nowhere Dense Sets]
+  A subset $A$ of a topological space $X$ is called \emph{dense} in $X$ if $\overline{A} = X$.
+  A subset $A$ is said to be \emph{nowhere dense} in $X$ if $\inte(\overline{A}) = \emptyset$.
+\end{defn}
+
+\clearpage
+
+\begin{exercise}[Bredon 1.3.2]
+  For $A \subseteq X$, we have that $X = \inte(A) \sqcup \partial(A) \sqcup X \setminus \overline{A}$.
+\end{exercise}
+\begin{pf}
+  Recall that $X \setminus \overline{A} = \inte(X \setminus A)$ and $\partial A \defeq \overline{A} \cap \overline{X \setminus A}$.
+  Let $x \in \inte(A)$.
+  Then there exists open $N \subseteq A$ such that $x \in N$.
+  Thus $N \cap (X \setminus A) = \emptyset$ and $x \notin \overline{X \setminus A}$.
+  So $x \notin \partial A$.
+  Now suppose that $x \in \partial A = \overline{A} \cap \overline{X \setminus A}$.
+  Then for every open set $U$ such that $x \in U$, we have $U \cap (X \setminus A) \neq \emptyset$ and so in particular $U \not\subseteq A$.
+  Thus overall $\inte(A)$ and $\partial A$ are disjoint.
+  We automatically have that $\partial A$ and $X \setminus \overline{A}$ are disjoint since $x \in \partial A \implies x \in \overline{A}$.
+
+  Now let $x \in X$ such that $x \notin \inte(A) \sqcup X \setminus \overline{A}$.
+  $x \notin \inte(A)$ so for all open $U$ such that $x \in U$ we have $U \not\subseteq A$.
+  So $U \cap (X \setminus A) \neq \emptyset$ for all open $U$ containing $x$.
+  Thus $x \in \overline{X \setminus A}$.
+  Also $x \notin X \setminus \overline{A}$ so $x \in \overline{A}$.
+  Thus $x \in \partial A$ and overall $X = \inte(A) \sqcup \partial(A) \sqcup X \setminus \overline{A}$.
+\end{pf}
+
+\begin{exercise}[Bredon 1.3.3]
+  Show that a metric space $X$ is second countable if and only if it has a countable dense set.
+\end{exercise}
+\begin{pf}
+\end{pf}
+
+
+\begin{defn}[Separable Space]
+  A topological space is \emph{separable} if it has a countable dense set.
+\end{defn}
+
+\clearpage
+
+\section{Connectivity and Components}
+
+Intuitively, a connected space is a space where you can move from one space to another with no jumps.
+Another intuition is that the space doesn't have two or more separated pieces.
+
+\begin{defn}[Connected Sets and Separation]
+  A topological space $X$ is \emph{connected} if it is not the disjoint union of two nonempty open subsets.
+  If $A, B$ are two disjoint nonempty open subsets of $X$ such that $A \sqcup B = X$ then we say that $A$ and $B$ form a \emph{separation} of $X$.
+\end{defn}
+
+\begin{defn}[Clopen Sets]
+  A subset $A$ of a topological space $X$ is \emph{clopen} if it is both open and closed in $X$.
+\end{defn}
+
+\begin{prop}
+  A topological space $X$ is connected if and only if the open clopen sets are $X$ and $\emptyset$.
+\end{prop}
+\begin{prop}
+  Suppose $X$ is connected and suppose there exists clopen $\emptyset \subsetneq U \subsetneq X$.
+  Then $X \setminus U$ is also clopen and $X = (X \setminus U) \sqcup U$ forms a separation of $X$, contradiction.
+\end{prop}
+
+\begin{defn}[Discrete Valued Maps (DVM)]
+  A \emph{discrete valued map (DVM)} is a map from a topological space $X$ to a discrete space $D$.
+\end{defn}
+
+\begin{prop}
+  A topological space $X$ is connected if and only if every discrete valued map on $X$ is constant.
+\end{prop}
+\begin{pf}
+  If $X$ is connected and $d\colon X \to D$ is a DVM and $y$ is in the range of $d$, then $d^{-1}(y)$ is clopen in and non-empty.
+  Thus $d^{-1}(y) = X$ and $d$ is constant.
+
+  Now suppose that $X$ is not connected and $U \sqcup V$ form a separation of $X$.
+  Then $d\colon X \to \set{0, 1}$ where $d(x) = 0$ if and only if $x \in U$ forms a nonconstant DVM.\@
+\end{pf}
+
+\begin{prop}
+  If $f\colon X \to Y$ is continuous and $X$ is connected, then $f(X)$ is connected.
+\end{prop}
+\begin{pf}
+  Let $d\colon f(X) \to D$ be a DVM.\@
+  Then $d \circ f$ is a DVM on $X$ and thus constant.
+  This implies that $d$ is constant and thus $f(X)$ is connected.
+\end{pf}
+
+\begin{prop}
+  If $\set{Y_{i}}_{i \in I}$ is a collection of connected sets in a topological space $X$ such that no two $Y_{i}$ are disjoint, then $\bigcup_{i \in I} Y_{i}$ is connected.
+\end{prop}
+\begin{pf}
+  Let $d\colon \bigcup_{i \in I} Y_{i} \to D$ be a DVM.\@
+  Let $p, q \in \bigcup_{i \in I} Y_{i}$ such that $p \in Y_{i}$, $q \in Y_{j}$ and $v \in Y_{i} \cap Y_{j}$.
+  Then $d(p) = d(v) = d(q)$ and $d$ is constant which yields that $\bigcup_{i \in I} Y_{i}$ is connected.
+\end{pf}
+
+\begin{cor}\label{cor: connected_subset_eq}
+  The relation ``$p \sim q$ if and only if $p$ and $q$ belong to a connected subset of $X$'' is an equivalence relation.
+\end{cor}
+\begin{pf}
+  Immediate.
+\end{pf}
+
+\begin{defn}[Components]
+  The equivalence classes of the relation stated in \Cref{cor: connected_subset_eq} are called the \emph{components} of $X$.
+  These are the ``maximal'' connected subsets of $X$.
+\end{defn}
+
+
+\begin{lem}\label{lem: closure_of_connected_is_connected}
+  Let $X$ be a connected set.
+  Then $\overline{X}$ is connected.
+\end{lem}
+\begin{pf}
+  Let $d\colon \overline{X} \to \set{0, 1}$ be a DVM.\@
+  $X$ is connected so $f(X) =$, without loss of generality, $\set{0}$.
+  Then $\set{0}$ is closed so $d^{-1}(0)$ is closed and contains $X$.
+  Thus $\overline{X} \subseteq d^{-1}(0) \subseteq \overline{X}$ which means that $f$ is constant.
+\end{pf}
+
+\begin{prop}
+  Components of a topological space $X$ are connected and closed.
+  Each connected subset of $X$ is contained in a component.
+  Components are equal or disjoint and their union is $X$.
+\end{prop}
+\begin{pf}
+  The last sentence is immediate based off of \Cref{cor: connected_subset_eq}.
+  By definition, the component of $X$ containing a point $p$ is the union of all connected sets containing $p$, which itself is connected.
+  This implies that connected sets lie in components.
+  We have by \Cref{lem: closure_of_connected_is_connected} that since a component $C$ is connected $\overline{C}$ is connected and since $C \subseteq \overline{C}$ we overall have that $C = \overline{C}$ which means that $C$ is closed.
+\end{pf}
+
+\begin{prop}\label{prop: dvm_eq_rel}
+  The relation ``$p \sim q$ if and only if $d(p) = d(q)$ for every discrete valued map $d$ on $X$'' is an equivalence relation on $X$.
+\end{prop}
+\begin{pf}
+  Immediate.
+\end{pf}
+
+\begin{defn}[Quasi-components]
+  The equivalence classes of the relation stated in \Cref{prop: dvm_eq_rel} are called the \emph{quasi-components} of $X$.
+\end{defn}
+
+\begin{prop}
+  Quasi-components of a space $X$ are closed.
+  Each connected set is contained in a quasi-component and in particular each component is contained in a quasi-component.
+  Quasi-component are either equal or disjoint and their union is $X$.
+\end{prop}
+\begin{pf}
+  The last statement is immediate based off of \Cref{prop: dvm_eq_rel}.
+  If $p \in X$, then the quasi-component is $\set{q \in X | d(q) = d(p) \text{ for all DVM's } d \text{ on } X}$.
+  But this is $\bigcap \Set{d^{-1}(d(p)) | d \text{DVM on } X}$.
+  We have that $d^{-1}(d(p))$ is closed since $d$ is continuous.
+  The intersection of closed sets is closed, so quasi-components are closed.
+  Components are constant on every DVM, so they are contained in some quasi-component.
+\end{pf}
+
+\clearpage
+
+\section{Separation Axioms}
+
+\begin{defn}[Separation Axioms, Hausdorff, Regular, Normal Spaces]
+  The \emph{Separation Axioms}:
+  \begin{itemize}
+  \item[(T$_{0}$)] A topological space $X$ is called a \emph{T$_{0}$-space} if for any two points $x \neq y$ there is an open set containing one of them but not the other.
+                   This says that point can be distinguished by the open sets where they lie.
+  \item[(T$_{1}$)] A topological space $X$ is called a \emph{T$_{1}$-space} if for any two points $x \neq y$ there is an open set containing $x$ but not $y$ and another open set containing $y$ but not $x$.
+        This says that singletons, and thus finite sets, are closed.
+        Let $x \in X$.
+        For each point $y \neq x$ let $U_{y}$ be an open set containing $y$ but not $x$.
+        Then $X \setminus \set{x} = \bigcup_{y} U_{y}$ which is open and thus $\set{x}$ is closed.
+        Conversely if $\set{x}$ is closed, then $X \setminus \set{x}$ is open and contains the other point.
+  \item[(T$_{2}$)] A topological space $X$ is called a \emph{T$_{2}$-space} or \emph{Hausdorff} if for any two points $x \neq y$ there are disjoint open sets $U$, $V$ with $x \in U$ and $y \in V$.
+        This is the most useful type of space.
+        It essential means that ``limits'' are unique.
+  \item[(T$_{3}$)] A T$_{1}$-space $X$ is called a \emph{T$_{4}$-space} of \emph{regular} if for any point $x$ and closed set $F$ not containing $x$ there are disjoint open sets $U$, $V$ with $x \in U$ and $F \subseteq V$.
+  \item[(T$_{4}$)] A T$_{1}$-space $X$ is called a \emph{T$_{5}$-space} of \emph{normal} if for any two disjoint closed sets $F$, $G$ there are disjoint open sets $U$, $V$ with $F \subseteq U$ and $G \subseteq V$.
+  \end{itemize}
+\end{defn}
+
+\begin{prop}
+  A Hausdorff space $X$ is regular if and only if the closed neighborhoods of any point form a neighborhood basis of the point.
+\end{prop}
+\begin{pf}
+  Suppose $X$ is regular.
+  Let $x \in V$ for $V$ open and let $C \defeq X \setminus V$.
+  Then by regularity there exist open sets $U$ and $W$ with $x \in U$, $C \subseteq W$, and $U \cap W = \emptyset$.
+  Then $X \setminus W$ is closed and $X \setminus W \subseteq X \setminus C = V$ and so any neighborhood of $V$ of $x$ contains a closed neighborhood of $x$.
+
+  Now suppose that every point has a closed neighborhood basis.
+  Let $x \in C$ with $C$ closed and $V = X \setminus C$.
+  Then there exists open $U$ with $\overline{U} \subseteq V = X \setminus C$ and $x \in U$.
+  Then $C \subseteq X \setminus \overline{U}$ and $U \cap (X \setminus \overline{U}) = \emptyset$.
+  Thus $X$ is regular.
+\end{pf}
+
+\begin{cor}
+  A subspace of a regular space $X$ is regular.
+\end{cor}
+\begin{pf}
+  If $A \subseteq X$ is a subspace, just intersect a closed neighborhood basis in $X$ of some $a \in A$ with $A$ to obtain a closed neighborhood basis of $a$ in A.
+\end{pf}
+
+\clearpage
+
+\section{Nets (Moore-Smith Convergence)}
+
+Many results in metric spaces are stated in terms of sequences.
+We discuss a generalization of sequences called \emph{nets}.
+
+\begin{defn}[Directed Sets]
+  A \emph{directed set} $D$ is a poset such that for all $\alpha, \beta \in D$, there exists $\tau \in D$ such that $\tau \geq \alpha$ and $\tau \geq \beta$.
+\end{defn}
+
+\begin{defn}[Net]
+  A \emph{net} in a topological space $X$ is a directed set $D$ along with a function $\phi\colon D \to X$.
+\end{defn}
+
+\begin{ex}[Sequences are Nets]
+  Note that $\N$ with the usual ordering is a directed set.
+  Sequences are nets with $\N$ as the directed set.
+\end{ex}
+
+\begin{defn}[Frequently, Eventually]
+  If $\phi\colon D \to X$ is a net in a topological space $X$ and $A \subseteq X$, we say that $\phi$ is \emph{frequently} in $A$ if for all $\alpha \in D$ there exists $\beta \geq \alpha$ such that $\phi(\beta) \in A$.
+  We say that $\phi$ is \emph{eventually} in $A$ if there exists $\alpha \in D$ such that for all $\beta \geq \alpha$ we have that $\phi(\beta) \in A$.
+\end{defn}
+
+\begin{defn}[Convergence of a Net]
+  A net $\phi\colon D \to X$ in a topological space $X$ is said to \emph{converge to $x \in X$} if for any neighborhood $U$ of $x$, $\phi$ is eventually in $U$.
+\end{defn}
+
+\begin{prop}
+  A topological space $X$ is Hausdorff if and only if any two limits of a convergent net are equal.
+  Thus it makes sense to speak of the limit of a convergent net.
+\end{prop}
+\begin{pf}
+  Suppose that $X$ is Hausdorff.
+  If a net $\phi$ is eventually in two sets $U$ and $V$, then it is eventually in $U \cap V$.
+  Also this means that $U \cap V \neq \emptyset$.
+  Thus the forward direction is immediate.
+
+  Now suppose that $X$ is not Hausdorff and that $x \neq y \in X$ are two points which cannot be separated by open sets.
+  Consider a directed whose elements are pairs of open sets $(U, V)$ with $x \in U$, $y \in V$.
+  We give this directed set the ordering $(U, V) \geq (A, B)$ if and only if $(U \subseteq A) \text{ and } (V \subseteq B)$ (so smaller sets are greater).
+  Let $\phi$ be a net on this directed set such that $\phi(U, V) = $ some point in $U \cap V$.
+
+  We claim that this net converges to both $x$ and $y$.
+  Let $W$ be any neighborhood of $x$.
+  Take any open set $V$ containint $y$ and an open set $U$ with $x \in U \subseteq W$.
+  For any $(A, B) \geq (W, V)$ we have that $\phi(A, B) \in A \cap B \subseteq U \subseteq W$.
+  Thus $\phi$ is eventually in $W$ and $\phi$ converges to $x$.
+  A similar argument yields that $\phi$ also converges to $y$.
+\end{pf}
+
+\begin{prop}\label{prop: continuous_iff_net_converges}
+  $f\colon X \to Y$ between topological spaces is continuous if and only if for any net $\phi$ converging to $x \in X$, the net $f \circ \phi$ in $Y$ converges to $f(x)$.
+\end{prop}
+\begin{pf}
+  Suppose that $f$ is continuous.
+  Let $\phi$ be a net in $X$ converging to $x$.
+  Let $V \subseteq Y$ be an open set containing $f(x)$.
+  We have that $U = f^{-1}(V)$ is a neighborhood of $x$.
+  $\phi$ is eventually in $U$ so $f \circ \phi$ is eventually in $V$ and thus converges to $f(x)$.
+
+  Now suppose that $f$ is not continuous.
+  Then there is some open $V \subseteq Y$ such that $K \defeq f^{-1}(V)$ is not open.
+  Let $x \in K \setminus \inte(K)$.
+  Consider the directed set of open neighborhoods of $x$ with the ordering $A \geq B$ if and only if $A \subseteq B$.
+  Choose any neighborhood $A$ of $x$.
+  Note that $A \not\subseteq K$ so let $\phi(A) = w_{A} \in A \setminus K$ be a net.
+  If $N$ is a neighborhood of $x$ and $B \geq N$, so $B \subseteq N$, then $\phi(B) = w_{B} \in B \setminus K \subseteq N$ and so $\phi$ is eventually in $N$.
+  Thus $\phi$ converges to $x$.
+  However $(f \circ \phi)(A) \notin V$ for any $A$ and so $f \circ \phi$ is not eventually in $V$ and thus does not converge to $f(x)$.
+\end{pf}
+
+\clearpage
+
+Given a net $\phi\colon D \to X$, let $x_{\alpha} \defeq \phi(\alpha)$.
+It's common to notate this net as $\set{x_{\alpha}}_{\alpha \in D}$.
+So the condition in \Cref{prop: continuous_iff_net_converges} can be stated as
+\[
+  f\colon X \to Y \text{ continuous } \iff f(\lim x_{\alpha}) = \lim f(x_{\alpha}).
+\]
+
+\begin{prop}
+  if $A \subseteq X$ then $\overline{A}$ is the set of limits of nets in $A$ which converge to $X$.
+\end{prop}
+\begin{pf}
+  If $x \in \overline{A}$ then any open neighborhood of $x$ intersects nontrivially.
+  We can make a net of this set of neighborhoods ordered by inclusion and have $x_{U} \in U \cap A$.
+  This clearly converges to $x$.
+
+  Now suppose that we have a net $\set{x_{\alpha}}$ of points in $A$ which converges to a point $x \in X$.
+  Then this net is eventually in any neighborhood of $x$.
+  Thus any neighborhood of $x$ has nontrivial intersection with a point in $A$ and $x \in \overline{A}$.
+\end{pf}
+
+\begin{defn}[Final Functions]
+  If $D$ and $D'$ are directed sets, a function $h\colon D' \to D$ is \emph{final} if for all $\delta \in D$, there exists $\delta' \in D'$ such that $\alpha' \geq \delta'$ implies $h(\alpha') \geq \delta$.
+\end{defn}
+
+\begin{defn}[Subnets]
+  A \emph{subnet} of a net $\phi\colon D \to X$ is the composition of a final map $h\colon D' \to D$ to a net $\phi \circ h$.
+\end{defn}
+
+\begin{prop}
+  A net $\set{x_{\alpha}}$ is frequently in each neighborhood of a given point $x \in X$ if and only if it has a subnet which converges to $x$.
+\end{prop}
+\begin{pf}
+  Consider the set $D'$ be ordered pairs $(\alpha, U)$ where $\alpha \in D$, $U$ is a neighborhood of $x$, and $x_{\alpha} \in U$.
+  Give $D'$ the ordering on $D$ and by inclusion.
+  If $(\alpha, U)$ and $(\beta, V)$ are in $D'$, then since $\set{x_{\alpha}}$ is frequently in $U$ and $V$, it is frequently in $U \cap V$.
+  Thus there is some $\tau \geq \alpha, \beta$ with $x_{\tau} \in U \cap V$.
+  Thus $(\tau, U \cap V) \in D'$ and $(\tau, U \cap V) \geq (\alpha, U), (\beta, V)$.
+  So $D'$ is directed.
+
+  Map $D' \to D$ by $(\alpha, U) to \alpha$.
+  For any $\delta \in D$, $(\delta, X) \in D'$, and $(\alpha, X) \geq (\delta, X)$ implies that $\alpha \geq \delta$.
+  So this map is final and $\set{x_{\alpha, U}}$ is a subset of $\set{x_{\alpha}}$.
+
+  Let $N$ be a neighborhood of $x$.
+  Then by assumption there exists some $x_{\beta} \in N$.
+  If $(\alpha, U) \geq (\beta, N)$, then $x_{\alpha, U} = x_{\alpha} \in U \subseteq N$.
+  So $\set{x_{\alpha, N}}$ is eventually in $N$.
+
+  The converse is immediate.
+\end{pf}
+
+\begin{defn}[Universal Nets]
+  A net in a set $X$ is \emph{universal} if for any $A \subseteq X$, the net is either eventually in $A$ or $X \setminus A$.
+\end{defn}
+
+\begin{prop}
+  The composition of a universal net in $X$ with a function $f\colon X \to Y$ is a universal net in $Y$.
+\end{prop}
+\begin{pf}
+  If $A \subseteq Y$, then the net is eventually either in $f^{-1}(A)$ or $X \setminus f^{-1}(A)$.
+  But $X \setminus f^{-1}(A) = f^{-1}(Y \setminus A)$ so the composition is either in $A$ or $Y \setminus A$.
+\end{pf}
+
+\clearpage
+
+\begin{thrm}\label{thrm: net_has_universal_subnet}
+  Every net has a universal subset
+\end{thrm}
+\begin{pf}
+  Let $\set{x_{\alpha} | \alpha \in P}$ be a net in $X$.
+  Consider all collections \textbf{C} of subsets of $X$ such that
+  \begin{enumerate}
+  \item $A \in \textbf{C} \implies \set{x_{\alpha}}$ is frequently in $A$; and
+  \item $A, B \in \textbf{C} \implies A \cap B \in \textbf{C}$.
+  \end{enumerate}
+  Note that $\textbf{C} = \set{X}$ is such a collection.
+  Other the family of all such collections by inclusion.
+  The union of any \quest{simply ordered set} of collections satisfying conditions is another such collection.
+  Thus by the \quest{maximality principle} there exists a maximal such collection $\textbf{C}_{0}$.
+
+  Let $P_{0} = \set{(A, \alpha) \in \textbf{C}_{0} \times P | x_{\alpha} \in A}$ and order it by
+  \[
+    (B, \beta) \geq (A, \alpha) \iff B \subseteq A \text{ and } \beta \geq \alpha.
+  \]
+  This makes $P_{0}$ a directed set.
+  Map $(A, \alpha) \to \alpha$ which is clearly final and thus defines a subset $\set{x_{A, \alpha}}$.
+
+  We claim this subnet is universal.
+  Suppose $S$ is any subset of $X$ such that $\set{x_{A, \alpha}}$ is frequently in $S$.
+  Then for any $(A, \alpha) \in P_{0}$, there exists $(B, \beta) \geq (A, \alpha)$ in $P_{0}$ with $x_{\beta} = x_{B, \beta} \in S$.
+  Then $B \subseteq A$, $\beta \geq \alpha$, and $x_{\beta} \in B$.
+  Thus $x_{\beta} \in S \cap B \subseteq S \cap A$.
+  This means that $\set{x_\alpha}$ is frequently in $S \cap A$ for any $A \in \textbf{C}_{0}$.
+  But $S$ and $S \cap A$, for $A \in \textbf{C}_{0}$, can be added to $\textbf{C}_{0}$ and these conditions still hold.
+  So by maximality, $S \in \textbf{C}_{0}$.
+
+  If $\set{x_{A, \alpha}}$ was also frequently in $X \setminus S$, then $X \setminus S \in \textbf{C}_{0}$ be a similar argument.
+  Thus $S \cap (X \setminus S) = \emptyset \in \textbf{C}_{0}$.
+  This contradicts the first condition.
+  Thus $\set{X_{A, \alpha}}$ is not frequently in $X \setminus S$ and so it is indeed eventually in $S$.
+
+  Overall we have that if $\set{x_{(A, \alpha)}}$ is frequently in $S$, it is eventually in $S$.
+  Thus $\set{x_{A, \alpha}}$ is a universal subset.
+\end{pf}
+
+Note that here we have used the Axiom of Choice in the form of the \quest{maximality principle}.
+This past theorem is in fact equal to the Axiom of Choice.
+
+\begin{prop}
+  Subnets of universal nets are universal.
+\end{prop}
+\begin{pf}
+  \quest{Immediate Proof}
+\end{pf}
+
+\clearpage
+
+\section{Compactness}
+
+\begin{defn}[Covering, Open Covering, Subcover]
+  A \emph{covering} of a topological space $X$ is a collection of sets whose union is $X$.
+  An \emph{open covering} is a covering where each set is open.
+  A \emph{subcover} is a subset of a cover which is still a cover.
+\end{defn}
+
+\begin{defn}[Compact, Heine-Borel Property]
+  A topological space $X$ is said to be \emph{compact} or have the \emph{Heine-Borel property} if every open covering of $X$ has a finite subcover.
+\end{defn}
+
+\begin{defn}[Finite Intersection Property]
+  A collection of sets has the \emph{finite intersection property} if the intersection of any finite subcollection is empty.
+\end{defn}
+
+The following theorem is just a translation of compactness in terms of open sets to an equivalent statement of about the closed complements of those sets.
+
+\begin{thrm}\label{thrm: compact_iff_nonempty_intersection}
+  A topological space $X$ is compact if and only if for every collection of closed subsets of $X$ which has the finite intersection property, the intersection of the whole collection is nonempty.
+\end{thrm}
+\begin{pf}
+  \quest{Trivial Proof}
+\end{pf}
+
+\begin{thrm}
+  If $X$ is a Hausdorff space, then any compact subset of $X$ is closed.
+\end{thrm}
+\begin{pf}
+  Let $A \subseteq X$ be compact and suppose that $x \in X \setminus A$.
+  For $a \in A$ let $a \in U_{a}$ and $x \in V_{a}$ be disjoint open sets.
+  Now $A = \bigcup_{a \in A} (U_{a} \cap A)$ and so we have a cover.
+  Thus by compactness of $A$, we have $a_{1}, \ldots, a_{n} \in A$ such that $A \subseteq u_{a_{1}} \cup \cdots \cup U_{a_{n}} = U$.
+  But then $x \in V_{a_{1}} \cap \cdots \cap V_{a_{n}} = V$ which is open, and $U \cap V = \emptyset$.
+  Thus $x \in V \subseteq X \setminus U \subseteq X \setminus A$ and $V$ is open.
+  Since this holds for any $x \in X \setminus A$, we have that $X \setminus A$ is open and thus $A$ is closed.
+\end{pf}
+
+\begin{thrm}
+  If $X$ is compact and $f\colon X \to Y$ is continuous, then $f(X)$ is compact.
+\end{thrm}
+\begin{thrm}
+  We may as well replace $Y$ by $f(X)$ and so assume that $f$ is onto.
+  For any open cover of $f(X)$, look at inverse images of the sets and apply compactness.
+\end{thrm}
+
+\begin{thrm}\label{thrm: closed_subset_of_compact_is_compact}
+  If $X$ is compact and $A \subseteq X$ is closed, then $A$ is compact.
+\end{thrm}
+\begin{pf}
+  Cover $A$ with open sets in $X$, add the open set $X \setminus A$, and then apply compactness of $X$.
+\end{pf}
+
+\begin{thrm}
+  Suppose that $X$ is compact, $Y$ is Hausdorff, $f\colon X \to Y$ is a continuous bijection, then $f$ is a homeomorphism.
+\end{thrm}
+\begin{pf}
+  We need to show that $f^{-1}$ is continuous.
+  This is equivalent to showing that $f$ maps closed sets to closed sets.
+  But if $A \subseteq X$ is closed, then $A$ is compact by \Cref{thrm: closed_subset_of_compact_is_compact}.
+  Thus $f(A)$ is compact and $f(A)$ must be closed since $A$ is Hausdorff.
+\end{pf}
+
+\clearpage
+
+\begin{ex}[Closed Intervals are compact in $\R$]
+  We have that $[0, 1]$ is compact in $\R$.
+\end{ex}
+\begin{pf}
+  Let $\textbf{U}$ be an open covering of $[0, 1]$.
+  Let $S = \set{s \in [0, 1] | [0, s] \text{ is covered by a finite subcollection of } \textbf{U}}$.
+  Then Let $b = \sup(S)$.
+  Note that $S$ takes the form $[0, b]$ or $[0, b)$.
+  Suppose that $S$ takes for form $[0, b)$.
+  Consider a set $U \in \textbf{U}$ containing $b$.
+  $U$ must contain the interval $[a, b]$ for some $a < b$.
+  But we can throw this in with the interval $[0, a]$ and obtain $[0, b]$.
+  So $S$ must take the form $[0, b]$.
+  Now suppose that $b < 1$.
+  Then \quest{a similar argument} yields that there exists $c > b$ such that there is a finite cover of $[0, c]$ which contradicts the definition of $b$.
+  Thus $b = 1$ and we have a finite cover of $[0, 1]$.
+\end{pf}
+
+Overall we have that closed intervals $[a, b]$ and their closed subsets are compact.
+Also note that these closed subsets must be bounded.
+So in $\R$ we have that a subset is compact if and only if it is closed and bounded.
+This does not hold in arbitrary metric spaces.
+
+\begin{thrm}
+  A real-valued map on a compact space takes a maximum.
+\end{thrm}
+\begin{pf}
+  If $f\colon X \to \R$ is a real-valued map on a compact space, then $f(X)$ is compact.
+  Since $f(X)$ is compact, it is closed and bounded.
+  This means that $\sup(f(X))$ exists, is finite, and belongs to $f(X)$.
+\end{pf}
+
+\begin{thrm}
+  Compact Hausdorff spaces are normal
+\end{thrm}
+\begin{pf}
+  Suppose that $X$ is a compact Hausdorff space.
+  First we show that $X$ is regular.
+  Let $C$ be a closed subset of $X$ and let $x \not in C$.
+  $X$ is Hausdorff so for any $y \in C$ there exists open disjoint $U_{y}$, $V_{y}$ such that $x \in U_{y}$ and $y \in V_{y}$.
+  $C$ is closed and so it is compact by \Cref{thrm: closed_subset_of_compact_is_compact}.
+  $V_{y}$ is an open cover of $C$ and so there exist $y_{1}, \ldots, y_{n}$ such that $C \subseteq V \defeq V_{y_{1}} \cup \cdots \cup V_{y_{n}}$.
+  Let $U \defeq U_{y_{1}} \cap \cdots \cap U_{y_{n}}$.
+  Then we have that $x \in U$, $C \subseteq V$, and $U, V$ disjoint and open.
+  Thus $X$ is regular.
+
+  Now repeat this same proof letting a closed set $F$ play the role of $x$ and the other closed set $G$ playing the role of $C$.
+  Thus $X$ is normal.
+\end{pf}
+
+\begin{defn}[Proper Maps]
+  A map $f\colon X \to Y$ is \emph{proper} if $f^{-1}(C)$ is compact for each compact $C \subseteq Y$.
+\end{defn}
+
+\clearpage
+
+\begin{thrm}
+  If $f\colon X \to Y$ is closed and $f^{-1}(y)$ is compact for each $y \in Y$, then $f$ is proper.
+\end{thrm}
+\begin{pf}
+  Let $C \subseteq Y$ be compact and let $\set{U_{\alpha} | \alpha \in A}$ be an indexed collection of open sets whose union contains $f^{-1}(C)$.
+  For any $y \in C$, there exists a finite subset of $A_{y} \subseteq A$ such that $f^{-1}(y) = \bigcup_{\alpha \in A_{y}} U_{\alpha}$.
+  Now let
+  \begin{align*}
+    W_{y} &= \bigcup_{\alpha \in A_{y}} U_{\alpha}, \\
+    V_{y} &= Y \setminus f(X \setminus W_{y}).
+  \end{align*}
+  These are both open sets.
+  $f^{-1}(V_{y}) \subseteq W_{y}$ and $y \in V_{y}$.
+  Since $C$ is compact and covered by $V_{y}$, there exists $y_{1}, \ldots, y_{n}$ such that $C \subseteq V_{y_{1}} \cup \cdots \cup V_{y_{n}}$.
+  Thus
+  \begin{align*}
+    f^{-1}(C) &\subseteq f^{-1}(V_{y_{1}}) \cup \cdots \cup f^{-1}(V_{y_{n}}) \\
+              &\subseteq W_{y_{1}} \cup \cdots \cup W_{y_{n}} \\
+              &= \bigcup_{\substack{\alpha \in A_{y_{i}}, 1 \leq i \leq n}} U_{\alpha}
+  \end{align*}
+  which is a finite open subcover of $f^{-1}(C)$.
+\end{pf}
+
+\begin{thrm}
+  For a topological space $X$, the following are equivalent:
+  \begin{enumerate}
+  \item $X$ is compact.
+  \item Every collection of closed subsets of $X$ with the finite intersection property has non-empty intersection.
+  \item Every universal net in $X$ converges.
+  \item Every net in $X$ has a convergent subset.
+  \end{enumerate}
+\end{thrm}
+\begin{pf}
+  We have already seen the equivalent of $1.$ and $2.$ and now we show the rest.
+  \begin{enumerate}
+  \item[$1. \iff 2.$] See \Cref{thrm: compact_iff_nonempty_intersection}.
+  \item[$1. \implies 3.$] Suppose that $\set{x_{\alpha}}$ is a universal net that does not converge.
+        Given $x \in X$, there is an open neighborhood of $U_{x}$ such that $\set{x_{\alpha}}$ is not eventually in  $U_{x}$ and so the net is eventually in $X \setminus U_{x}$.
+        So there exists $\beta_{x}$ such that for all $\alpha \geq \beta_{x}$ we have that $x_{\alpha} \notin U_{x}$.
+        Now cover $X$ by some finite cover $U_{x_{1}} \cup \cdots U_{x_{n}}$.
+        Let $\alpha \geq \beta_{x_{i}}$ for all $i$, then $x_{\alpha} \notin U_{x_{i}}$ for any $i$.
+        Thus $x_{\alpha} \notin X$ which is a contradiction.
+  \item[$3. \implies 4.$] This is clear by \Cref{thrm: net_has_universal_subnet}.
+  \item[$4. \implies 2.$] Let $\textbf{F} = \set{C}$ be a collection of closed sets with the finite intersection property.
+    Without loss of generality, we can assume that \textbf{F} is closed under finite intersection.
+    Order \textbf{F} by $C \geq C'$ if and only if $C \subseteq C'$, making \textbf{F} a directed set.
+    Let $\set{x_{C}}_{C \in \textbf{F}}$ be a net.
+  \end{enumerate}
+\end{pf}
+
+
+\clearpage
+\nocite{book:Bredon}
+\printbibliography
+\end{document}
