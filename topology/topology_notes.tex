@@ -123,6 +123,8 @@ However it turns out that for $\R^{n}$, choice between these 3 metrics is irrele
 
 \clearpage
 
+\subsection*{Exercises}
+
 \begin{exercise}[\tcite{book:Bredon} 1.1.1]
   Consider the set $X$ of all continuous real valued functions on $[0, 1]$.
   Show that
@@ -179,7 +181,6 @@ However it turns out that for $\R^{n}$, choice between these 3 metrics is irrele
   Suppose that $\dist(x, y) < \e$.
   Then we have that $\abs{d(x), d(y)} \leq \dist(x, y) < \e$.
 \end{pf}
-
 
 \clearpage
 
@@ -288,9 +289,31 @@ So is the collection of $\e$-balls for $\e = 1, \frac{1}{2}, \frac{1}{3}, \ldots
   A topological space is \emph{second countable} if its topology has a countable basis.
 \end{defn}
 
-Every metric space is first countable but some are not second countable.
-Consider the space if any uncountable set with metric $\dist(x, y) = 1$ if $x \neq y$ and $0$ otherwise (which yields the discrete topology).
-Euclidian spaces are second countable since the $\e$-balls, with $\e$ rational, about points with rational coordinates, is a countable basis.
+\begin{ex}[Metric Spaces are First Countable but some are not Second Countable]
+  Let $x \in  X$ a metric space.
+  Then the set of open balls around $x$ with rational radius forms a countable neighborhood basis.
+
+  Consider the space if any uncountable set with metric $\dist(x, y) = 1$ if $x \neq y$ and $0$ otherwise (which yields the discrete topology).
+  Euclidian spaces are second countable since the $\e$-balls, with $\e$ rational, about points with rational coordinates, is a countable basis.
+\end{ex}
+
+\clearpage
+
+\begin{prop}
+  A topological space $X$ is second countable if and only if every basis for $X$ has a countable subbasis.
+\end{prop}
+\begin{pf}
+  Suppose $X$ is second countable.
+  Let $B = \set{B_{\alpha}}_{\alpha \in A}$ be a basis for $X$ and $C = \set{C_{i}}_{i \in \N}$ be a countable basis for $X$.
+  It suffices to show that each $C_{i}$ can be expressed as a countable union of some subset of the $B_{\alpha}$'s.
+  Let $C_{k}$ be a member of the countable basis.
+  $B$ is a basis so $C_{k} = \bigcup_{\alpha \in I \subseteq A}$ for some $I$.
+  For each $x \in C_{k}$, let $B_{i_{x}}$ be a member of the basis such that $i_{x} \in I$ and $x \in B_{i_{x}}$.
+  But then $C$ is also a basis, so we can find $C_{i_{x}}$ such that $x \in C_{i_{x}} \subseteq B_{i_{x}}$.
+  We can see that $\set{B_{i_{x}} | x \in C_{k}}$ is our desired countable subset.
+  Clearly for $x \in C_{k}$ we have that there is some $i_{x}$ such that $x \in B_{i_{x}}$ so $C_{k} \subseteq \bigcup_{x \in C_{k}} B_{i_{x}}$.
+  We also see that we only need countably many $i_{x}$ since each of the $x \in C_{i}$ are in some $C_{i_{x}}$ and there are only countably many $C_{i_{x}}$.
+\end{pf}
 
 \begin{defn}[Uniform Convergence of Functions]
   A sequence $f_{1}, f_{2}, \ldots$ of functions from a topological space $X$ to a metric space $Y$ is said to \emph{converge uniformly} to a function $f\colon X \to Y$ if, for all $\e > 0$, there is a number $n$ such that for all $i > n$, $\dist(f_{i}(x), f(x)) < \e$ for all $x \in X$.
@@ -330,6 +353,8 @@ For example, the topology described in the prior example is the smallest topolog
 Thus there is no way to argue that a topology is ``large'' or ``small'' without knowing the defining condition.
 
 \clearpage
+
+\subsection{Exercises}
 
 \begin{exercise}[\tcite{book:Bredon} 1.2.1]
   Show that in a topological space $X$:
@@ -699,6 +724,8 @@ However, we do not need this notation very often.
 
 \clearpage
 
+\subsection*{Exercises}
+
 \begin{exercise}[\tcite{book:Bredon} 1.3.2]
   For $A \subseteq X$, we have that $X = \inte(A) \sqcup \partial(A) \sqcup X \setminus \overline{A}$.
 \end{exercise}
@@ -1032,6 +1059,8 @@ We now prove some immediate properties of arcwise connectivity relating it to th
 
 \clearpage
 
+\subsection*{Exercises}
+
 \begin{exercise}[\tcite{book:Bredon} 1.4.1]
   If $A$ is a connected subset of a topological space $X$ and $A \subseteq B \subseteq \overline{A}$ then $B$ is connected.
 \end{exercise}
@@ -1144,6 +1173,8 @@ We now prove some immediate properties of arcwise connectivity relating it to th
 
 \clearpage
 
+\subsection*{Exercises}
+
 \begin{exercise}[\tcite{book:Bredon} 1.5.2]
   A finite $T_{1}$-space is discrete.
 \end{exercise}
@@ -1199,9 +1230,6 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   We have that $C_{1} \subseteq U_{1}$ and $C_{2} \subseteq U_{2}$ and $U_{1}, U_{2}$ are open and disjoint.
   Thus $X$ is normal.
 \end{pf}
-
-
-
 
 \clearpage
 
@@ -1399,6 +1427,8 @@ This past theorem is in fact equal to the Axiom of Choice.
 
 \clearpage
 
+\subsection*{Exercises}
+
 \begin{exercise}[\tcite{book:Bredon} 1.6.1]
   A sequence is universal if and only if it is eventually constant.
 \end{exercise}
@@ -1516,7 +1546,7 @@ This does not hold in arbitrary metric spaces.
 \begin{pf}
   Suppose that $X$ is a compact Hausdorff space.
   First we show that $X$ is regular.
-  Let $C$ be a closed subset of $X$ and let $x \not in C$.
+  Let $C$ be a closed subset of $X$ and let $x \notin C$.
   $X$ is Hausdorff so for any $y \in C$ there exists open disjoint $U_{y}$, $V_{y}$ such that $x \in U_{y}$ and $y \in V_{y}$.
   $C$ is closed and so it is compact by \Cref{thrm: closed_subset_of_compact_is_compact}.
   $V_{y}$ is an open cover of $C$ and so there exist $y_{1}, \ldots, y_{n}$ such that $C \subseteq V \defeq V_{y_{1}} \cup \cdots \cup V_{y_{n}}$.
@@ -1534,7 +1564,7 @@ This does not hold in arbitrary metric spaces.
 
 \clearpage
 
-\begin{thrm}
+\begin{thrm}\label{thrm: closed_single_point_preimage_compact}
   If $f\colon X \to Y$ is closed and $f^{-1}(y)$ is compact for each $y \in Y$, then $f$ is proper.
 \end{thrm}
 \begin{pf}
@@ -1569,22 +1599,31 @@ This does not hold in arbitrary metric spaces.
 \begin{pf}
   We have already seen the equivalence of $1.$ and $2.$ and now we show the rest.
   \begin{enumerate}
-  \item[$1. \iff 2.$] See \Cref{thrm: compact_iff_nonempty_intersection}.
-  \item[$1. \implies 3.$] Suppose that $\set{x_{\alpha}}$ is a universal net that does not converge.
+  \item[] $1. \iff 2.$ See \Cref{thrm: compact_iff_nonempty_intersection}.
+  \item[] $1. \implies 3.$ Suppose that $\set{x_{\alpha}}$ is a universal net that does not converge.
         Given $x \in X$, there is an open neighborhood of $U_{x}$ such that $\set{x_{\alpha}}$ is not eventually in  $U_{x}$ and so the net is eventually in $X \setminus U_{x}$.
         So there exists $\beta_{x}$ such that for all $\alpha \geq \beta_{x}$ we have that $x_{\alpha} \notin U_{x}$.
         Now cover $X$ by some finite cover $U_{x_{1}} \cup \cdots U_{x_{n}}$.
         Let $\alpha \geq \beta_{x_{i}}$ for all $i$, then $x_{\alpha} \notin U_{x_{i}}$ for any $i$.
         Thus $x_{\alpha} \notin X$ which is a contradiction.
-  \item[$3. \implies 4.$] This is clear by \Cref{thrm: net_has_universal_subnet}.
-  \item[$4. \implies 2.$] Let $\textbf{F} = \set{C}$ be a collection of closed sets with the finite intersection property.
-    Without loss of generality, we can assume that \textbf{F} is closed under finite intersection.
-    Order \textbf{F} by $C \geq C'$ if and only if $C \subseteq C'$, making \textbf{F} a directed set.
-    Let $\set{x_{C}}_{C \in \textbf{F}}$ be a net.
+  \item[] $3. \implies 4.$ This is clear by \Cref{thrm: net_has_universal_subnet}.
+  \item[] $4. \implies 2.$ Let $\textbf{F} = \set{C}$ be a collection of closed sets with the finite intersection property.
+        Without loss of generality, we can assume that \textbf{F} is closed under finite intersection.
+        Order \textbf{F} by $C \geq C'$ if and only if $C \subseteq C'$, making \textbf{F} a directed set.
+        Let $\set{x_{C}}_{C \in \textbf{F}}$ be a net.
+        By assumption. there is a convergent subnet given by a final map $f\colon D \to \textbf{F}$.
+        Thus for $\alpha \in D$, $f(\alpha) \in \textbf{F}$ and $x_{f(\alpha)} \in f(\alpha)$.
+        Suppose that $x_{f(\alpha)}$ converges to $x$.
+        Let $C \in \textbf{F}$.
+        Then there is $\beta \in D$ such that for all $\alpha \geq \beta$ we have $f(\alpha) \subseteq C$.
+        Thus $x_{f(\alpha)} \in f(\alpha) \subseteq C$.
+        Since $C$ is closed, it contains its limit points and $x \in C$ meaning that $x \in \bigcap_{C \in \textbf{F}} C$ and the total intersection is nonempty.
   \end{enumerate}
 \end{pf}
 
 \clearpage
+
+\subsection*{Exercises}
 
 \begin{exercise}[\tcite{book:Bredon} 1.7.1]
   Show that if $X$ is compact, then every net in $X$ has a convergent subnet without using universal nets.
@@ -1608,6 +1647,47 @@ This does not hold in arbitrary metric spaces.
   By construction, there exists some $\alpha$ such that $x_{\alpha} \in U$ since each of the $\overline{E_{\alpha}}$ are closed sets.
   So consider $(\alpha, U) \in B$.
   Then for all $(\beta, U_{\beta}) \geq (\alpha, U)$ we have that $h(\beta, U_{\beta}) \geq \alpha$ and thus $x_{\beta} \in U_{\beta} \subseteq U$, a convergent subnet.
+\end{pf}
+
+\begin{exercise}[\tcite{book:Bredon} 1.7.2]
+  Let $X$ be a compact space and $\set{C_{\alpha} | \alpha \in A}$ a collection of closed sets which is also closed with respect to finite intersection.
+  Let $C \defeq \bigcap C_{\alpha}$ and suppose that $C \subseteq U$ for some $U$ open.
+  Then for some $\alpha$, we have that $C_{\alpha} \subseteq U$.
+\end{exercise}
+\begin{pf}
+  Note that $V \defeq X \setminus U$ and $V \cap C_{\alpha}$ are both closed and thus compact.
+  Also note that
+  \[
+    \bigcap_{\alpha \in A} V \cap C_{\alpha} = (X \setminus U) \cap \bigcap_{\alpha \in A} C_{\alpha} = (X \setminus U) \cap C = \emptyset.
+  \]
+  Let $F_{\alpha} \defeq X \setminus (V \cap C_{\alpha})$ which is open.
+  Fix some $\beta \in A$.
+  We have that $\bigcup_{\alpha \in A} F_{\alpha}$ is an open cover for $V \cap C_{\beta}$.
+  This is because if $x \in V \cap C_{\beta}$, then since $\bigcap_{\alpha \in A} V \cap C_{\alpha} = \emptyset$ there is some $\alpha$ such that $x \notin V \cap C_{\alpha}$ meaning that $x \in F_{\alpha}$.
+  But $V \cap C_{\beta}$ is compact, so there is some finite subcover $A' \subseteq A$ such that
+  \[
+    \bigcup_{\alpha \in A'} F_{\alpha} = \bigcup_{\alpha \in A'} X \setminus (V \cap C_{\alpha}) \containseq V \cap C_{\beta}.
+  \]
+  This implies that
+  \[
+    (V \cap C_{\beta}) \cap \pqty{\bigcap_{\alpha \in A'} V \cap C_{\alpha}} = V \cap \pqty{C_{\beta \cap \bigcap_{\alpha \in A'} C_{\alpha}}} = \emptyset.
+  \]
+  Thus we have found a finite intersection of closed sets from the collection, which itself is a member of the collection, disjoint from $X \setminus U$ meaning that is contained in $U$ as desired.
+\end{pf}
+
+\begin{exercise}[\tcite{book:Bredon} 1.7.3]
+  Show that the hypothesis in \Cref{thrm: closed_single_point_preimage_compact} that $f$ is closed is necessary.
+\end{exercise}
+\begin{pf}
+  Recall that subsets of $\R$ are compact if and only if they are closed and bounded.
+  Note that $(0, 1]$ is bounded but not closed.
+  This is because $\R \setminus (0, 1]$ is open, and in particular there is no open ball around $0$ completely contained in $R \setminus (0, 1]$.
+
+  Now consider the inclusion $f\colon (0, 1] \into [0, 1]$.
+  This satisfies the hypothesis that $f^{-1}(y)$ is compact for all $y \in [0, 1]$.
+  Clearly $f^{-1}(0) = \emptyset$ is compact.
+  We also have for $y > 0$ that because $[y, 1]$ is compact and $\set{y}$ is closed, $f^{-1}(y) = \set{y}$ is compact.
+  However $f$ is not proper since $[0, 1]$ is compact but $f^{-1}([0, 1]) = (0, 1]$ is not compact.
 \end{pf}
 
 \clearpage
