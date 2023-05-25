@@ -1567,7 +1567,7 @@ This does not hold in arbitrary metric spaces.
   \end{enumerate}
 \end{thrm}
 \begin{pf}
-  We have already seen the equivalent of $1.$ and $2.$ and now we show the rest.
+  We have already seen the equivalence of $1.$ and $2.$ and now we show the rest.
   \begin{enumerate}
   \item[$1. \iff 2.$] See \Cref{thrm: compact_iff_nonempty_intersection}.
   \item[$1. \implies 3.$] Suppose that $\set{x_{\alpha}}$ is a universal net that does not converge.
@@ -1584,6 +1584,31 @@ This does not hold in arbitrary metric spaces.
   \end{enumerate}
 \end{pf}
 
+\clearpage
+
+\begin{exercise}[\tcite{book:Bredon} 1.7.1]
+  Show that if $X$ is compact, then every net in $X$ has a convergent subnet without using universal nets.
+\end{exercise}
+\begin{pf}
+  Recall that for any collection of closed subsets of $X$ with the finite intersection property, the intersection of the whole collection has nonempty intersection.
+  Let $\set{x_{\alpha}}_{\alpha \in A}$ be a net in $X$ and for each $\alpha$ let $E_{\alpha} \defeq \set{x_{\beta} | \beta \geq \alpha}$.
+  Then note that the collection $\set{\overline{E_{\alpha}}}$ has the finite intersection property.
+  Consider a finite intersection $\bigcap_{\alpha \in I} \overline{E_{\alpha}}$.
+  Let $\alpha^{*} \geq \alpha$ for all $\alpha \in I$, which exists since $A$ is a directed set.
+  Then $\alpha^{*} \in \overline{E_{\alpha}}$ for all $\alpha \in I$ and so in particular the finite intersection is non-empty.
+  Thus we have that the intersection the whole collection $\bigcap_{\alpha \in A} \overline{E_{\alpha}}$ is non-empty containing some element $x \in X$.
+
+  Consider the set $B = \set{\alpha, U_{\alpha} | \alpha \in A,~ U_{\alpha} \text{ is a neighborhood of } x_{\alpha}}$.
+  This can be made directed by $(\alpha, U_{\alpha}) \geq (\beta, U_{\beta})$ if and only if $\alpha \geq \beta$ and $U_{\alpha} \subseteq U_{\beta}$.
+  Consider the map $h\colon B \to A$ such that $h(\alpha, U_{\alpha}) \to \alpha$.
+  This is clearly final.
+
+  This subnet $\set{x_{(\alpha, U_{\alpha})}}$ converges to $x$.
+  Let $U$ be a neighborhood of $x$.
+  By construction, there exists some $\alpha$ such that $x_{\alpha} \in U$ since each of the $\overline{E_{\alpha}}$ are closed sets.
+  So consider $(\alpha, U) \in B$.
+  Then for all $(\beta, U_{\beta}) \geq (\alpha, U)$ we have that $h(\beta, U_{\beta}) \geq \alpha$ and thus $x_{\beta} \in U_{\beta} \subseteq U$, a convergent subnet.
+\end{pf}
 
 \clearpage
 \printbibliography
