@@ -447,6 +447,16 @@
 % You get confused often
 \newcommand\quest[1]{ {\boldmath \color{BrickRed} $\langle \langle$ \textbf{#1} $\rangle \rangle$} }
 
+% From https://twitter.com/sarielhp/status/1659661458739806213
+\DeclareCiteCommand{\tcite}%
+ {\usebibmacro{prenote}}%
+ {\usebibmacro{citeindex}%
+    \usebibmacro{cite}}%
+ {\multicitedelim}%
+ {\usebibmacro{postnote}%
+}
+
+
 % Thicc sum and prod from @mniip#9046 on Discord
 % FIXME: These don't work (yet) with non-cm fonts
 \makeatletter
