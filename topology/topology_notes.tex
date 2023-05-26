@@ -1,4 +1,4 @@
-\documentclass[letterpaper]{article}
+\documentclass[letterpaper, 11pt]{article}
 
 \usepackage{style}  % If you feel like procrastinating, mess with this file
 \usepackage{algo}   % Thank you Jeff, very cool!
@@ -93,8 +93,6 @@ This can also all be rephrased in terms of closed sets, rather than open sets.
 \end{ex}
 
 However it turns out that for $\R^{n}$, choice between these 3 metrics is irrelevant.
-
-\clearpage
 
 \begin{prop}[Equivalence of Open Sets]
   Suppose $\dist_{1}$ and $\dist_{2}$ are two metrics on the same set $X$ such that for any $x \in X$ and $\e > 0$, there exists $\delta > 0$ such that
@@ -226,6 +224,8 @@ Neighborhood bases let us define continuity at a single point.
 
 This is the same as saying $f^{-1}(N)$ is a neighborhood of $x$.
 
+\clearpage
+
 \begin{prop}
   A function $f\colon X \to Y$ between topological spaces is continuous if and only if it is continuous at each point $x \in X$.
 \end{prop}
@@ -239,8 +239,6 @@ This is the same as saying $f^{-1}(N)$ is a neighborhood of $x$.
   Thus there exists open $V_{x} \subseteq f^{-1}(U)$ with $x \in V_{x}$.
   Thus $f^{-1}(U)$ is the union of open sets $V_{x}$ ranging over $x \in f^{-1}(U)$ and $f^{-1}(U)$ is open which yields that $f$ is continuous.
 \end{pf}
-
-\clearpage
 
 \begin{defn}[Homeomorphic Functions]
   A function $f\colon X \to Y$ between topological spaces is called a \emph{homeomorphism} if $f^{-1}\colon Y \to X$ exists and both $f$ and $f^{-1}$ are continuous.
@@ -262,6 +260,8 @@ The empty set is the union of an empty collection and $X$ is the intersection of
 Thus to specify a topology, a subbasis suffices.
 In a metric space, the collection of all $\e$-balls, for all $\e > 0$, forms a basis.
 So is the collection of $\e$-balls for $\e = 1, \frac{1}{2}, \frac{1}{3}, \ldots$.
+
+\clearpage
 
 \begin{ex}[Examples of Topologies]
   We now give examples of topological spaces:
@@ -296,8 +296,6 @@ So is the collection of $\e$-balls for $\e = 1, \frac{1}{2}, \frac{1}{3}, \ldots
   Consider the space if any uncountable set with metric $\dist(x, y) = 1$ if $x \neq y$ and $0$ otherwise (which yields the discrete topology).
   Euclidian spaces are second countable since the $\e$-balls, with $\e$ rational, about points with rational coordinates, is a countable basis.
 \end{ex}
-
-\clearpage
 
 \begin{prop}
   A topological space $X$ is second countable if and only if every basis for $X$ has a countable subbasis.
@@ -517,8 +515,6 @@ We give more precise definitions of the interior and closure of a set.
   \quest{Immediate from \Cref{prop: defn_of_int_and_cl}}.
 \end{pf}
 
-\clearpage
-
 \begin{prop}[\tcite{book:Bredon} 1.3.1.c]
   Let $X$ be a topological space and $A \subseteq X$.
   Then $X \setminus \inte(A) = \overline{X \setminus A}$ and $X \setminus \overline{A} = \inte(X \setminus A)$.
@@ -555,6 +551,8 @@ We give more precise definitions of the interior and closure of a set.
   Then for all open $U$ with $x \in U$, $U \cap A$ or $U \cap B$  is nonempty.
   Thus $U \cap (A \cup B) \neq \emptyset$ and $x \in \overline{A \cup B}$.
 \end{pf}
+
+\clearpage
 
 \begin{prop}[\tcite{book:Bredon} 1.3.1.e]
   Let $X$ be a topological space and $\set{A_{\alpha}}$ an indexed collection of subsets of $X$.
@@ -665,14 +663,14 @@ However, we do not need this notation very often.
   If $Y$ is closed, then $\overline{A} \subseteq Y$ and so $\overline{A}^{X} \cap Y = \overline{A}^{X}$.
 \end{pf}
 
-\clearpage
-
 \begin{prop}
   If $Y \subseteq X$ then the set of intersection of $Y$ with a basis of $X$ is a basis of the relative topology of $X$.
 \end{prop}
 \begin{pf}
   \quest{High lvl: Take open $\subseteq Y$. This is equal to $Y \cap \text{ open } \subseteq X$. Use basis of $X$, distribute intersection}.
 \end{pf}
+
+\clearpage
 
 \begin{prop}
   If $X, Y, Z$ are topological spaces and $Z$ is a subspace of $Y$, and $Y$ is a subspace of $X$, then $Z$ is a subspace of $X$.
@@ -801,8 +799,6 @@ However, we do not need this notation very often.
 \begin{defn}[Zariski Space]
   A \emph{Zariski} space is a topological space such that every descending chain $F_{1} \containsneq F_{2} \containsneq F_{3} \containsneq \cdots$ of closed sets is eventually constant.
 \end{defn}
-
-\clearpage
 
 \begin{exercise}[\tcite{book:Bredon} 1.3.8]
   Let $X = A \cup B$ where $A, B$ are closed.
@@ -1007,8 +1003,6 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   Thus this space is arcwise connected.
 \end{ex}
 
-\clearpage
-
 \begin{ex}[Topologist's Sine Curve, A Space that is Connected but not Arcwise Connected]
   The following is due to~\cite{note:conrad_topologist_sine}.
   The \emph{Topologist's Sine Curve} is the subset of the real plane
@@ -1047,6 +1041,8 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   Thus $(x_{n}, y_{n})$ lies on the curve $\sin\pqty{\frac{1}{x}}$.
   Since this function is continuous we get that $(x, y)$ lies on the curve and thus $T$ is closed.
   Thus $\overline{S} \subseteq T$ and overall we have equality.
+
+\clearpage
 
   Note that since $S$ is connected, since it is arcwise connected, we have that $T$ is also connected by \Cref{lem: closure_of_connected_is_connected}. We now show that $T$ is not path-connected.
   Suppose that we have some path $\lambda$ connecting a point $\lambda(0) = p$ on the sine curve to $\lambda(1) = (0, 1)$.
@@ -1171,8 +1167,6 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   If $A \subseteq X$ is a subspace, just intersect a closed neighborhood basis in $X$ of some $a \in A$ with $A$ to obtain a closed neighborhood basis of $a$ in A.
 \end{pf}
 
-\clearpage
-
 \subsection*{Exercises}
 
 \begin{exercise}[\tcite{book:Bredon} 1.5.2]
@@ -1283,6 +1277,8 @@ We discuss a generalization of sequences called \emph{nets}.
   A similar argument yields that $\phi$ also converges to $y$.
 \end{pf}
 
+\clearpage
+
 \begin{prop}\label{prop: continuous_iff_net_converges}
   $f\colon X \to Y$ between topological spaces is continuous if and only if for any net $\phi$ converging to $x \in X$, the net $f \circ \phi$ in $Y$ converges to $f(x)$.
 \end{prop}
@@ -1303,8 +1299,6 @@ We discuss a generalization of sequences called \emph{nets}.
   Thus $\phi$ converges to $x$.
   However $(f \circ \phi)(A) \notin V$ for any $A$ and so $f \circ \phi$ is not eventually in $V$ and thus does not converge to $f(x)$.
 \end{pf}
-
-\clearpage
 
 Given a net $\phi\colon D \to X$, let $x_{\alpha} \defeq \phi(\alpha)$.
 It's common to notate this net as $\set{x_{\alpha}}_{\alpha \in D}$.
@@ -1334,6 +1328,8 @@ So the condition in \Cref{prop: continuous_iff_net_converges} can be stated as
   A \emph{subnet} of a net $\phi\colon D \to X$ is the composition of a final map $h\colon D' \to D$ to a net $\phi \circ h$.
 \end{defn}
 
+\clearpage
+
 \begin{prop}
   A net $\set{x_{\alpha}}$ is frequently in each neighborhood of a given point $x \in X$ if and only if it has a subnet which converges to $x$.
 \end{prop}
@@ -1361,7 +1357,7 @@ So the condition in \Cref{prop: continuous_iff_net_converges} can be stated as
   A net in a set $X$ is \emph{universal} if for any $A \subseteq X$, the net is either eventually in $A$ or $X \setminus A$.
 \end{defn}
 
-\begin{prop}
+\begin{prop}\label{prop: composition_with_universal_is_universal}
   The composition of a universal net in $X$ with a function $f\colon X \to Y$ is a universal net in $Y$.
 \end{prop}
 \begin{pf}
@@ -1468,7 +1464,7 @@ The following theorem is just a translation of compactness in terms of open sets
   \quest{Trivial Proof}
 \end{pf}
 
-\begin{thrm}
+\begin{thrm}\label{thrm: compact_subset_Hausdorff_closed}
   If $X$ is a Hausdorff space, then any compact subset of $X$ is closed.
 \end{thrm}
 \begin{pf}
@@ -1506,9 +1502,7 @@ The following theorem is just a translation of compactness in terms of open sets
   Thus $f(A)$ is compact and $f(A)$ must be closed since $A$ is Hausdorff.
 \end{pf}
 
-\clearpage
-
-\begin{ex}[Closed Intervals are compact in $\R$]
+\begin{ex}[Closed Intervals are compact in $\R$]\label{ex: 01_compact}
   We have that $[0, 1]$ is compact in $\R$.
 \end{ex}
 \begin{pf}
@@ -1582,12 +1576,12 @@ This does not hold in arbitrary metric spaces.
   \begin{align*}
     f^{-1}(C) &\subseteq f^{-1}(V_{y_{1}}) \cup \cdots \cup f^{-1}(V_{y_{n}}) \\
               &\subseteq W_{y_{1}} \cup \cdots \cup W_{y_{n}} \\
-              &= \bigcup_{\substack{\alpha \in A_{y_{i}}, 1 \leq i \leq n}} U_{\alpha}
+              &= \bigcup_{\substack{\alpha \in A_{y_{i}} \\ 1 \leq i \leq n}} U_{\alpha}
   \end{align*}
   which is a finite open subcover of $f^{-1}(C)$.
 \end{pf}
 
-\begin{thrm}
+\begin{thrm}\label{thrm: compact_iff_FIP_iff_universal_etc}
   For a topological space $X$, the following are equivalent:
   \begin{enumerate}
   \item $X$ is compact.
@@ -1607,6 +1601,9 @@ This does not hold in arbitrary metric spaces.
         Let $\alpha \geq \beta_{x_{i}}$ for all $i$, then $x_{\alpha} \notin U_{x_{i}}$ for any $i$.
         Thus $x_{\alpha} \notin X$ which is a contradiction.
   \item[] $3. \implies 4.$ This is clear by \Cref{thrm: net_has_universal_subnet}.
+
+\clearpage
+
   \item[] $4. \implies 2.$ Let $\textbf{F} = \set{C}$ be a collection of closed sets with the finite intersection property.
         Without loss of generality, we can assume that \textbf{F} is closed under finite intersection.
         Order \textbf{F} by $C \geq C'$ if and only if $C \subseteq C'$, making \textbf{F} a directed set.
@@ -1689,6 +1686,149 @@ This does not hold in arbitrary metric spaces.
   We also have for $y > 0$ that because $[y, 1]$ is compact and $\set{y}$ is closed, $f^{-1}(y) = \set{y}$ is compact.
   However $f$ is not proper since $[0, 1]$ is compact but $f^{-1}([0, 1]) = (0, 1]$ is not compact.
 \end{pf}
+
+\clearpage
+
+\section{Products}
+
+\begin{defn}[Product Topology, Tychonoff Topology]
+  Let $X$ and $Y$ be topological spaces.
+  Then the \emph{product topology} on $X \times Y$ is the topology with the subbasis $\set{U \times V | U, V \text{ open },~ U \subseteq X,~ V \subseteq Y}$.
+  Similarly, one can define a product topology on a finite product $X_{1} \times \cdots \times X_{n}$.
+
+  For an infinite product $\Bigtimes_{\alpha \in A} X_{\alpha}$, we define the product topology as the topology with basis
+  \[
+    \bigtimes_{\substack{\alpha \in A \\ U_{\alpha} \subseteq X_{\alpha} \text{ open }}} U_{\alpha}
+  \]
+  such that $U_{\alpha} = X_{\alpha}$ for all but a finite number of $\alpha$ (``almost all $\alpha$'').
+  This topology has subbasis $U_{alpha} \times \Bigtimes_{\beta \neq \alpha} X_{\beta}$ for $U_{\alpha}$ open in $X_{\alpha}$.
+  This is also known as the \emph{Tychonoff Topology}.
+\end{defn}
+
+\begin{prop}
+  The projections $\pi_{X}\colon X \times Y \to X$ and $\pi_{Y}\colon X \times Y \to Y$ are continuous and the product topology is the smallest topology for which this is true.
+  This also holds for infinite products.
+\end{prop}
+\begin{pf}
+  The subbasis described is exactly the subbasis needed for continuity to hold.
+\end{pf}
+
+\begin{prop}\label{prop: compact_proj_closed}
+  If $X$ is compact, then the projection $\pi_{Y}\colon X \times Y \to Y$ is closed.
+\end{prop}
+\begin{pf}
+  Let $C \subseteq X \times Y$ be closed.
+  We want to show that $Y \setminus \pi_{Y}(C)$ is open.
+  Let $y \notin \pi_{Y}(C)$, meaning that $(x, y) \notin C$ for all $x \in X$.
+  Then for any $x \in X$, we have open sets $U_{x} \subseteq X$ and $V_{x} \subseteq Y$ such that $x \in U_{x}, y \in V_{x}$ and $(U_{x} \times V_{x}) \cap C = \emptyset$.
+
+  Since $X$ is compact, we can find $x_{1}, ldots, x_{n} \in X$ such that $X = U_{x_{1}} \cup \cdots \cup U_{x_{n}}$.
+  Let $V = V_{x_{1}} \cap \cdots \cap V_{x_{n}}$.
+  Then we have
+  \[
+    (X \times V) \cap C = ( U_{x_{1}} \cup \cdots \cup U_{x_{n}} ) \times ( V_{x_{1}} \cap \cdots \cap V_{x_{n}} ) \cap C = \emptyset.
+  \]
+  Thus $y \in V \subseteq Y \setminus \pi_{Y}(C)$ where $V$ is open meaning that $\pi_{Y}(C)$ is closed.
+\end{pf}
+
+\begin{cor}\label{cor: compact_projection_proper}
+  If $X$ is compact, then the projection $\pi_{Y}\colon X \times Y \to Y$ is proper.
+\end{cor}
+\begin{pf}
+  Immediate from \Cref{thrm: closed_single_point_preimage_compact} and \Cref{prop: compact_proj_closed}.
+\end{pf}
+
+\begin{cor}\label{cor: prod_of_compact_is_compact}
+  If $X$ and $Y$ are both compact, then $X \times Y$ is compact.
+\end{cor}
+\begin{pf}
+  The projections are proper by \Cref{cor: compact_projection_proper} so we can recover finite subcovers.
+\end{pf}
+
+\begin{cor}[Tychonoff Theorem for Finite Products]\label{cor: tychonoff_finite}
+  If each of the $X_{i}$ are compact, then $X_{1} \times \cdots \times X_{n}$ is compact.
+\end{cor}
+\begin{pf}
+  Simple inductive argument from \Cref{cor: prod_of_compact_is_compact}.
+\end{pf}
+
+\begin{cor}
+  Let $I = [0, 1]$.
+  Then $I^{n} \subseteq \R^{n}$ is compact.
+\end{cor}
+\begin{pf}
+  Recall that $I$ is compact by \Cref{ex: 01_compact} and apply \Cref{cor: tychonoff_finite}.
+\end{pf}
+
+\begin{cor}
+  A subspace $X$ of $\R^{n}$ is compact if and only if it is closed and bounded.
+\end{cor}
+\begin{pf}
+  Suppose that $X$ is compact and thus closed since $\R^{n}$ is Hausdorff \Cref{thrm: compact_subset_Hausdorff_closed}.
+  Cover $X$ by the open balls of radius $k$ about the origin, $k = 1, 2, \ldots$.
+  Then $X$ has a finite subcover which implies $X$ is bounded.
+
+  Now suppose $X$ is closed and bounded,
+  Then it is contained in some ball of radius $k$ about the origin.
+  This ball is contained in $[-k, k]^{n} \subseteq \R^{n}$, which is compact by \Cref{cor: tychonoff_finite}.
+  Thus $X$ is a closed subset of a compact set which is known to be compact \Cref{thrm: closed_subset_of_compact_is_compact}.
+\end{pf}
+
+\begin{prop}\label{prop: net_of_product_converges}
+  A net in a product space $X = \Bigtimes_{\alpha} X_{\alpha}$ converges to a point $(\ldots, x_{\alpha}, \ldots)$ if and only if its composition with each projection $\pi_{\alpha}\colon X \to X_{\alpha}$ converges to $x_{\alpha}$.
+\end{prop}
+\begin{pf}
+  Let $h\colon D \to X$ be the net in question.
+  Then $\pi_{\alpha} \circ h\colon D \to X_{\alpha}$ is a net as well.
+  Suppose $h$ converges to $x = (\ldots, x_{\alpha}, \ldots)$.
+  Let $U_{\alpha}$ be a neighborhood of $x_{\alpha}$.
+  Then $U_{\alpha} \times \Bigtimes_{\beta \neq \alpha} X_{\beta}$ is a neighborhood of $x$.
+  Thus the net $h$ is eventually in this neighborhood.
+  But then $\pi_{\alpha} \circ h$ is eventually in $U_{\alpha}$ and thus $\pi_{\alpha} \circ h$ is a net converging to $x_{\alpha}$.
+
+  \quest{Converse is clear}
+\end{pf}
+
+\begin{thrm}[Tychonoff Theorem]\label{thrm: tychonoff}
+  The product of an arbitrary collection of compact spaces is compact.
+\end{thrm}
+\begin{pf}
+  Let $X = \Bigtimes_{\alpha} X_{\alpha}$ where each of the $X_{\alpha}$ are compact.
+  Let $f\colon D \to X$ be a universal net in $X$.
+  Then the composition $\pi_{\alpha} \circ h$ is also universal by \Cref{prop: composition_with_universal_is_universal}.
+  Thus the composition converges to some $x_{\alpha}$ by \Cref{thrm: compact_iff_FIP_iff_universal_etc}.
+  Thus means that the original net $f$ converges to a point $(\ldots, x_{\alpha}, \ldots)$ by \Cref{prop: net_of_product_converges}.
+  Thus since every universal net in $X$ converges, by \Cref{thrm: compact_iff_FIP_iff_universal_etc} $X$ is also compact.
+\end{pf}
+
+The ease of the proof of this result is entirely due to the use of universal nets.
+This usage depends on the Axiom of Choice.
+In fact, \Cref{thrm: tychonoff} is equivalent to the Axiom of Choice.
+However the finite case \Cref{cor: tychonoff_finite} does not depend on the Axiom of Choice.
+
+If $X$ is a space and $A$ is a set, the product of $A$ copies of $X$ is denoted by $X^{A}$.
+It can be though of as the space of functions $f\colon A \to X$.
+Using this, \Cref{prop: net_of_product_converges} can be restated as follows:
+\begin{prop}
+  A net $\set{f_{\alpha}}$ in $X^{A}$ converges to $f \in X^{A}$ if and only if for all $x \in X$ we have that $f_{\alpha}(x) \to f(x)$.
+  In particular we have that $\lim(f_{\alpha}(x)) = (\lim f_{\alpha})(x)$.
+\end{prop}
+
+When $A$ itself is also a topological space, we use $X^{A}$ to denote the set of all continuous functions $f\colon A \to X$.
+
+\clearpage
+
+\begin{defn}[Topological Sum, Disjoint Union]
+  If $X, Y$ are topological space, then their \emph{topological sum} or \emph{disjoint union} $X + Y$ is the set $(X \times \set{0}) \cup (Y \times \set{1})$ with the topology making $X \times \set{0}$ and $Y \times \set{1}$ clopen and their inclusions $X \to X + Y$ such that $x \mapsto (x, 0)$ and $Y \to X + Y$ such that $y \mapsto (y, 1)$ homeomorphisms to their image.
+
+  More generally, if $\set{X_{\alpha} | \alpha \in A}$ is an indexed family of spaces, then their \emph{topological sum} $\bigplus_{\alpha} X_{\alpha}$ is $\bigcup_{\alpha} X_{\alpha} \times \set{\alpha}$ given the topology making each $X_{\alpha} \times \set{\alpha}$ clopen and each inclusion $X_{\beta} \to \bigplus_{\alpha} X_{\alpha}$ such that $x \to (x, \beta)$ is a homeomorphism to its image $X_{\beta} \times \set{\beta}$.
+\end{defn}
+
+In ordinary usage, if $X$ and $Y$ are disjoint space, we can regard $X + Y$ as $X \cup Y$ with the topology making $X$ and $Y$ open subspaces.
+
+\clearpage
+
+\subsection*{Exercises}
 
 \clearpage
 \printbibliography

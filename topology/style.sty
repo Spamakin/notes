@@ -291,6 +291,22 @@
 \newcommand*\Bigcap{\bigcap\limits}
 \newcommand*\Bigvee{\bigvee\limits}
 \newcommand*\Bigwedge{\bigwedge\limits}
+\newcommand*\Bigtimes{\bigtimes\limits}
+
+\makeatletter
+\newcommand{\bigplus}{%
+  \DOTSB\mathop{\mathpalette\mattos@bigplus\relax}\slimits@
+}
+\newcommand\mattos@bigplus[2]{%
+  \vcenter{\hbox{%
+    \sbox\z@{$#1\sum$}%
+    \resizebox{!}{0.9\dimexpr\ht\z@+\dp\z@}{\raisebox{\depth}{$\m@th#1+$}}%
+  }}%
+  \vphantom{\sum}%
+}
+\makeatother
+\newcommand*\Bigplus{\bigplus\limits}
+
 \newcommand*\Int{\int\limits}
 \newcommand*\Lim{\lim\limits}
 \newcommand*\Max{\max\limits}
@@ -455,7 +471,6 @@
  {\multicitedelim}%
  {\usebibmacro{postnote}%
 }
-
 
 % Thicc sum and prod from @mniip#9046 on Discord
 % FIXME: These don't work (yet) with non-cm fonts
