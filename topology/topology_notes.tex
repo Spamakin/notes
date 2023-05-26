@@ -266,7 +266,7 @@ So is the collection of $\e$-balls for $\e = 1, \frac{1}{2}, \frac{1}{3}, \ldots
 \begin{ex}[Examples of Topologies]
   We now give examples of topological spaces:
   \begin{enumerate}
-  \item (Trivial Topology) Any set $X$ where the only open sets are $X$ and $\emptyset$.
+  \item (Trivial / Indiscrete Topology) Any set $X$ where the only open sets are $X$ and $\emptyset$.
   \item (Discrete Topology) Any set $X$ where every subset of $X$ is open.
   \item Any sets $X$ where the closed sets are finite sets and $X$ itself.
   \item $X = \N \cup \set{\N}$ with the open sets being all subsets of $\N$ together with complements of finite sets.
@@ -720,6 +720,28 @@ However, we do not need this notation very often.
   A subset $A$ is said to be \emph{nowhere dense} in $X$ if $\inte(\overline{A}) = \emptyset$.
 \end{defn}
 
+\begin{defn}[Separable Space]
+  A topological space is \emph{separable} if it has a countable dense set.
+\end{defn}
+
+\begin{ex}[Interior, Closure, and Density in Discrete Topology and Indiscrete Topology]
+  Let $X$ be the discrete topology and $A \subseteq X$.
+  We have that $\inte(A) = A$ since every singleton is open.
+  For $x \in A$ we have that $\set{x} \cap A \neq \emptyset$ but for $x \notin A$ we have that $\set{x} \cap \overline{A} \emptyset$ which implies that $\overline{A} = A$.
+  Thus $\partial(A) = \overline{A} \cap \overline{X \setminus A} = A \cap (X \setminus A) =
+  \emptyset$.
+  We can see that the only dense subset of $X$ is $X$ itself and the only nowhere dense subset is $\emptyset$.
+
+  Now let $X$ be the indiscrete topology and $A \neq X$.
+  Then we have that $A^{\circ} = \overline{A^{\circ}}^{\circ} = \emptyset$.
+  Now suppose $A \neq \emptyset$.
+  Then we have $\overline{A} = \overline{\inte{\overline{A}}} = X$.
+  If we have that $A \neq X$ and $A \neq \emptyset$, then we have $\partial(A) = \overline{A} \cap \overline{X \setminus A} = X \cap X = X$ and $\partial \partial(A) = \partial(X) = \emptyset$.
+  Every non-empty subset of $X$ is dense and so in particular, singletons are dense meaning that $X$ is separable.
+  In fact, by \Cref{exercise: countable_iff_countable_dense} we have that $X$ is thus second countable.
+
+\end{ex}
+
 \clearpage
 
 \subsection*{Exercises}
@@ -746,7 +768,7 @@ However, we do not need this notation very often.
   Thus $x \in \partial A$ and overall $X = \inte(A) \sqcup \partial(A) \sqcup X \setminus \overline{A}$.
 \end{pf}
 
-\begin{exercise}[\tcite{book:Bredon} 1.3.3]
+\begin{exercise}[\tcite{book:Bredon} 1.3.3]\label{exercise: countable_iff_countable_dense}
   Show that a metric space $X$ is second countable if and only if it has a countable dense set.
 \end{exercise}
 \begin{pf}
@@ -773,9 +795,6 @@ However, we do not need this notation very often.
 \end{pf}
 
 
-\begin{defn}[Separable Space]
-  A topological space is \emph{separable} if it has a countable dense set.
-\end{defn}
 
 \begin{exercise}[\tcite{book:Bredon} 1.3.4]
   The union of two nowhere dense sets is nowhere dense.
@@ -1831,5 +1850,7 @@ In ordinary usage, if $X$ and $Y$ are disjoint space, we can regard $X + Y$ as $
 \subsection*{Exercises}
 
 \clearpage
+
+\nocite{book:Steen_Seebach}
 \printbibliography
 \end{document}
