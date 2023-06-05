@@ -52,7 +52,10 @@ We wish to generalize this notion.
 \end{defn}
 
 \begin{defn}[$\e$-ball]
-  For a point $x$ in some metric space $X$, the \emph{$\e$-ball about x} is $B_{\e}(x) \defeq \set{y \in X | \dist(x, y) < \e}$.
+  For a point $x$ in some metric space $X$, the \emph{$\e$-ball about x} is
+  \[
+    B_{\e}(x) \defeq \set{y \in X | \dist(x, y) < \e}.
+  \]
 \end{defn}
 
 It is not hard to rephrase the definition of continuity in terms of $\e$-balls.
@@ -83,6 +86,8 @@ We can actually even rephrase continuity in terms of open sets.
 \end{pf}
 
 This can also all be rephrased in terms of closed sets, rather than open sets.
+
+\clearpage
 
 \begin{ex}[Other Metrics on $\R$]
   We can also equip other metrics on $\R^{n}$.
@@ -368,7 +373,7 @@ An analogous result holds for elements of a subbasis with a very similar, and th
 \end{defn}
 
 \begin{ex}[Largest and Smallest Topology for a Condition]
-  If $f\colon X \to Y$ is a function and $X$ is a topological space, then there is a largest topology on $Y$ making $f$ continuous by having open sets $\set{V \subseteq Y | f^{-1}(V) \text{ is open in } X}$.
+  If $f\colon X \to Y$ is a function and $X$ is a topological space, then there is a largest topology on $Y$ making $f$ continuous having open sets $\set{V \subseteq Y | f^{-1}(V) \text{ is open in } X}$.
   The smallest such topology is the trivial topology.
 \end{ex}
 
@@ -1049,7 +1054,6 @@ We now prove some immediate properties of arcwise connectivity relating it to th
 \end{ex}
 
 \begin{ex}[Topologist's Sine Curve, A Space that is Connected but not Arcwise Connected]
-  The following is due to~\cite{note:conrad_topologist_sine}.
   The \emph{Topologist's Sine Curve} is the subset of the real plane
   \[
     S = \Set{\pqty{x, \sin\pqty{\frac{1}{x}}} | 0 < x \leq 1 } \subseteq \R^{2}.
@@ -1875,7 +1879,7 @@ In ordinary usage, if $X$ and $Y$ are disjoint space, we can regard $X + Y$ as $
 
 \subsection*{Exercises}
 
-\begin{exercise}[\tcite{book:Bredon} 1.8.3]
+\begin{exercise}[\tcite{book:Bredon} 1.8.3]\label{exercise: Bredon 1.8.3}
   Let $\set{Y_{\alpha}}$ be a collection of spaces and $Y = \Bigtimes_{\alpha} Y_{\alpha}$.
   Prove that the function $f\colon X \to Y$ is continuous if and only if each composition $\pi_{\alpha} \circ f$ is continuous.
 \end{exercise}
@@ -1942,6 +1946,204 @@ In ordinary usage, if $X$ and $Y$ are disjoint space, we can regard $X + Y$ as $
 
 \clearpage
 
+\section{Metric Spaces Again}
+
+In this section we will learn about two new concepts surrounding metric spaces.
+The first will be the concept of \emph{completeness} which is a condition on sequence convergence.
+The second will be about when a topological space can be equipped with a metric yielding the same open sets.
+
+\begin{defn}[Cauchy Sequence]
+  A \emph{Cauchy Sequence} in a metric space $X$ is a sequence $\set{x_{i}}_{i \in \N}$ such that for all $\e > 0$ there exists $N > 0$ such that if $n, m > N$ we have that $\dist(x_{n}, x_{m}) < \e$.
+\end{defn}
+
+\begin{defn}[Completeness]
+  A metric space $X$ is \emph{complete} if every Cauchy sequence in $X$ converges in $X$.
+\end{defn}
+
+\begin{defn}[Totally Bounded]
+  A metric space $X$ is \emph{totally bounded} if, for each $\e > 0$, $X$ can be covered by a finite number of $\e$ balls.
+\end{defn}
+
+Before we continue, we state an equivalent criterion for compactness in metric spaces, although it can be generalized to general topological spaces using nets.
+
+\begin{defn}[Sequential Compactness]
+  A metric space $X$ is \emph{sequentially compact} if every sequence in $X$ has a convergent subsequence.
+\end{defn}
+
+\begin{prop}
+  A metric space $X$ is compact if and only if it is sequentially compact.
+\end{prop}
+\begin{pf}
+  Suppose that $X$ is compact and that $x \in X$ is not the limit of a subsequence of $\set{x_{n}}$.
+  Then there is an open neighborhood $U_{x}$ of $x$ containing $x_{n}$ for a finite number of $n$.
+  But we can find a finite number of these $U_{x}$ that cover $X$.
+  Their union would cover $X$ but only contain a finite number of the $x_{n}$ which is impossible.
+
+  Now suppose $X$ is sequentially compact.
+  First we show that $X$ is totally bounded and complete.
+  Suppose that $X$ is not totally bounded.
+  Then there exists $\e > 0$ such that no finite collection of $\e$-balls covers $X$.
+  Let $x_{1} \in X$ and note that $B_{\e}(x_{1}) \subsetneq X$.
+  Thus there exists $x_{2} \in X \setminus B_{\e}(x_{1})$ and similarly there exists $x_{e} \in X \setminus (B_{\e}(x_{1}) \cup B_{\e}(x_{2}))$.
+  We can continue to iterate this construction to find a sequence of points $\set{x_{n}}_{n \in N}$.
+  Then we note that for $i \neq j$ we have $\dist(x_{i}, x_{j}) > \e$ and thus we have a sequence with no convergent subsequence.
+  Thus sequential compactness of $X$ implies that the set $X$ is totally bounded.
+  For completeness, note that by sequential compactness any Cauchy sequence in $X$ has a convergent subsequence with limit $x \in X$.
+  However using a triangle inequality argument, we can show that the whole Cauchy sequence converges to $x \in X$.
+  Thus sequential compactness of $X$ implies $X$ is totally bounded and complete.
+
+\clearpage
+
+  Now suppose that $X$ is totally bounded and complete.
+  Let $\set{U_{i}}_{i \in I}$ be an open cover for $X$ and for the sake of contradiction suppose it has no finite subcover.
+  Then for each $N \geq 1$ we have that $X$ is covered by finitely many open balls $B_{1 / N}(x)$ for some finite set of $\set{x_{N_{i}}}$.
+  We have that the $\set{U_{i}}$ has no finite subcover but finitely many open balls $B_{1 / N}(x)$ for $x \in \set{x_{N_{i}}}$ do cover $X$.
+  Thus there exists some $x_{0} \in \set{x_{0_{i}}}$ such that $B_{1}(x_{0})$ is not covered by any finite subcollection of the $\set{U_{i}}$.
+  If no such $x_{0}$ exists, we could find a finite subcover which would be a contradiction.
+  Now we can cover $B_{1}(x_{0})$ by balls of radius $\frac{1}{2}$ such that their centers are of distance less than $1 + \frac{1}{2}$ from $x_{0}$.
+  Similarly, some $x_{1}$ exists such that $B_{1/2}(x_{1})$ is not covered by any finite subcollection of the $\set{U_{i}}$.
+  This continues on and on and we get a sequence $\set{x_{i}}_{i \in \N}$ which is Cauchy and by completeness converges to some point $x \in X$.
+  We have that for some $i$ that $x \in U_{i}$.
+  However we must also have by convergence of the sequence that there exists $n > 0$ such that $B_{2^{-n}}(x) \subseteq U_{i}$ which is a contradiction.
+  Thus $X$ must be compact.
+\end{pf}
+
+We have actually proven in metric spaces an equivalence of 3 conditions.
+
+\begin{cor}
+  In a metric space $X$ the following are equivalent:
+  \begin{enumerate}
+  \item $X$ is compact;
+  \item Every sequence in $X$ has a convergent subsequence; and
+  \item $X$ is totally bounded and complete.
+  \end{enumerate}
+\end{cor}
+
+\begin{defn}[Metrizable]
+  A topological space $X$ is called \emph{metrizable} if it can be equipped with a metric such that the epsilon balls defined by that metric form a basis of $X$.
+\end{defn}
+
+\begin{defn}[Completely Regular, $T_{3 \frac{1}{2}}$, Tychonoff Space]\label{defn: completely_regular}
+  A Hausdorff space $X$ is \emph{completely regular} or $T_{3 \frac{1}{2}}$ if, for each point $x$ and closed set $C \subset X$ with $x \notin C$, there is a map $f\colon X \to [0, 1]$ such that $f(x) = 0$ and $f(C) = \set{1}$.
+\end{defn}
+
+We can follow such a function with a map $[0, 1] \to [0, 1]$ which is $0$ on $\bqty{0, \frac{1}{2}}$ and stretches $\bqty{\frac{1}{2}, 1}$ onto $[0, 1]$.
+This means the function $f$ in \Cref{defn: completely_regular} can be taken such that $f$ is $0$ on a neighborhood of $x$.
+In fact, we can take $f^{-1}\pqty{\left[ 0, \frac{1}{2} \right)}$ and $f^{-1}\pqty{\left( \frac{1}{2}, 1 \right]}$ as disjoint open neighborhoods of of $x$ and $C$ respectively.
+
+\begin{prop}\label{prop: bounded_metric_leq_1}
+  Suppose $X$ is a metric space. Define:
+  \[
+  \dist'(x, y) = \begin{cases}
+                   1           & \text{if } \dist(x, y) > 1, \\
+                   \dist(x, y) & \text{if } \dist(x, y) \leq 1.
+                 \end{cases}
+  \]
+  Then $\dist$ and $\dist'$ have the same topology on $X$.
+\end{prop}
+\begin{pf}
+  The basis for the topology on $X$ only depends on the open $\e$-balls for small $\e$ and so we immediately have the same basis.
+\end{pf}
+
+\begin{prop}\label{prop: bounded_metrics_prod_top}
+  Let $\set{X_{i}}_{i \in \N}$ be collection of metric spaces with metrics bounded by $1$ (\Cref{prop: bounded_metric_leq_1}).
+  Define a metric on $\bigtimes_{i \in \N} X_{i}$ by $\dist(x, y) = \Sum_{i \in \N} = \frac{\dist(x_{i}, y_{i})}{2^{i}}$.
+  Then this metric gives rise to the product topology.
+\end{prop}
+\begin{pf}
+  Let $X$ denote the product set with the product topology and $X'$ denote the same set with the metric topology.
+  To see that $X \to X'$ is continuous, by \Cref{exercise: Bredon 1.8.3} we just need to show that it's composition to each $X_{i}$ is continuous.
+  However, all this projection does is decrease distance and multiply the distance by $2^{i}$ which clearly implies continuity.
+  For the reverse, it suffice to show that for any point $x \in X$ the $\e$-ball around $x$ contains a neighborhood of $x$ in $X$.
+  We have that
+  \[
+    B_{\e}(x) = \Set{y \in X' | \sum_{i} \frac{\dist(x_{i}, y_{i})}{2^{i}} < \e}.
+  \]
+  Take $n$ such that $2^{-n} < \frac{\e}{4}$ and let $y_{i} \in X_{i}$ be such that $\dist(x_{i}, y_{i}) < \frac{\e}{2}$ for $i = 1, \ldots, n - 1$ and $\dist(x_{i}, y_{i})$ is arbitrary for $i \geq n$.
+  Then we have that
+  \begin{align*}
+    \dist(x, y) &= \sum_{i = 1}^{n - 1} \frac{\dist(x_{i}, y_{i})}{2^{i}} + \sum_{i = n}^{\infty} \frac{\dist(x_{i}, y_{i})}{2^{i}} \\
+                &< \sum_{i = 1}^{n - 1} \frac{\e}{2^{i + 1}} + \frac{\e}{4} \sum_{i = 0}^{\infty} \frac{1}{2^{i}} \\
+                &< \frac{\e}{2} + \frac{\e}{2} = \e.
+  \end{align*}
+  Thus we have that
+  \[
+    x \in B_{\e/2}(x_{1}) \times \cdots \times B_{\e/2}(x_{n - 1}) \times X_{n} \times \cdot \subseteq B_{\e}(x)
+  \]
+  and note that the middle term is a basis element of the product topology as desired.
+\end{pf}
+
+\begin{lem}\label{lem: Hausdorff_and_comp_reg-ish_embedding}
+  Suppose that $X$ is Hausdorff and that $f_{i}\colon X \to [0, 1]$ with $i = 1, 2, \ldots$ such that for any $x \in X$ and closed $C \subseteq X$ with $x \notin C$, there is an index $i$ such that $f_{i}(x) = 0$ and $f_{i}(C) = \set{1}$.
+  Then define $f\colon X \to \Bigtimes_{i = 1, 2, \ldots} [0, 1]$ by $f(x) = (f_{1}(x), f_{2}(x), \ldots)$.
+  Then $f$ is an embedding, \ie, a homeomorphism onto its image.
+\end{lem}
+\begin{pf}
+  We have that $f$ is continuous by \Cref{exercise: Bredon 1.8.3}.
+  We also have that $f$ is an injection but not a surjection because if $x$ and $y$ are distinct points, just take $C = \set{y}$ and apply the statement.
+  Then note to show that $f^{-1}$ is continuous it suffices to show that $f$ is closed because $f^{-1}$ is continuous if and only if for all closed $C \subseteq X$ we have that $\pqty{f^{-1}}^{-1}(C) = f(C)$ is closed.
+  Let $C \subseteq X$ be closed and suppose we have some sequence $\set{c_{i}} \subseteq C$ such that $f_{c_{i}} \to f(x)$.
+  Then we just need to show the limit point $x$ is in $C$.
+  If $x$ is not in $C$ then there exists an index $i$ such that $f_{i}(x) = 0$ but $f_{i}(C) = \set{1}$.
+  This means that $1 = f_{i}(c_{n}) \to f_{i}(x) = 0$ which is impossible.
+  Thus $x \in C$ and $f^{-1}$ is continuous and we have that $f$ is a homeomorphism onto its image.
+\end{pf}
+
+\clearpage
+
+\begin{lem}\label{lem: second_count_comp_reg_family_F}
+  Suppose that $X$ is second countable and is completely regular and let \textbf{S} be a countable basis for the open sets.
+  For each pair of $U, V \in \textbf{S}$ with $\overline{U} \subseteq V$, take some $f\colon X \to [0, 1]$ which is $0$ on $U$ and $1$ on $X \setminus V$, provided such a function exists.
+  Call \textbf{F} this (possibly empty) collection of maps.
+  Note that \textbf{F} is also countable.
+  Then for each $x \in X$ and each closed $C \subseteq X$ such that $x \notin C$, there is an $f \in \textbf{F}$ such that $f = 0$ on a neighborhood of $x$ and $f = 1$ on $C$.
+\end{lem}
+\begin{pf}
+  Let $x$ and $C$ be as stated in the lemma.
+  Since $C$ is closed, we have by definition of basis some $V \in \textbf{S}$ such that $x \in V \subseteq X \setminus C$.
+  By $X$ being completely regular, we have some $g\colon X \to [0, 1]$ such that $g(x) = 0$ and $1$ on $X \setminus V$.
+  Without loss of generality, as stated before, we can take $g = 0$ on some neighborhood of $x$.
+  This neighborhood contains some $U \in \textbf{S}$ such that $\overline{U} \subseteq V$ \quest{why}, $f(U) = \set{0}$ and $f(X \setminus V) = \set{1}$.
+  Thus by assumption, this $g$ can be replaced by some $f \in \textbf{F}$ satisfying the same properties as $g$ and satisfying the final requirements of the lemma.
+\end{pf}
+
+\begin{thrm}[Urysohn Metrization Theorem]
+  If a space $X$ is second countable and completely regular, then it is metrizable.
+\end{thrm}
+\begin{pf}
+  Construct a countable family of functions \textbf{F} satisfying \Cref{lem: second_count_comp_reg_family_F}.
+  Then apply \Cref{lem: Hausdorff_and_comp_reg-ish_embedding} to get an embedding of $X$ into a countable product of unit intervals $[0, 1]$.
+  Then by \Cref{prop: bounded_metrics_prod_top}, this countable product of intervals is metrizable.
+  Thus $X$ is metrizable by the embedding.
+\end{pf}
+
+\begin{defn}[Diameter in A Metric Space]
+  Let $X$ be a metric space and $A \subseteq X$. Then the \emph{diameter of $A$}, denoted $\diam(A)$, is $\sup\set{\dist(p, q) | p, q \in A}$.
+\end{defn}
+
+\begin{lem}[Lebesgue Lemma]\label{lem: lebesgue_lemma}
+  Let $X$ be a compact metric space and let $\set{U_{\alpha}}$ be an open covering of $X$.
+  Then there is $\delta > 0$ such that for all $A \subseteq X$ such that $\diam(A) < \delta$, there exists $\alpha$ such that $A \subseteq U_{\alpha}$.
+\end{lem}
+\begin{pf}
+  For each $x \in X$, there exists some $\e(x) > 0$ such that $B_{2\e(x)}(x) \subseteq U_{\alpha}$ for some $\alpha$.
+  Then $X$ is covered by a finite number of the balls $B_{\e(x)}$ for say $x = x_{1}, \ldots, x_{n}$.
+  Let $\delta = \min_{1 \leq i \leq n} \e(x_{i})$.
+  Suppose that $\diam(A) < \delta$ and pick some $a_{0} \in A$.
+  There is some index $1 \leq i \leq n$ such that $\dist(a_{0}, x_{i}) < \e(x_{i})$.
+  If $a \in A$ then we have that $\dist(a, a_{0}) < \delta \leq \e(x_{i})$.
+  We have that $\dist(a, x_{i}) \leq \dist(a, a_{0}) + \dist(a_{0}, x_{i}) < \e(x_{i}) + \e(x_{i}) = 2\e(x_{i})$.
+  Thus $A \subseteq B_{2\e(x_{i})}(x_{i}) \subseteq U_{\alpha}$ for some $\alpha$.
+\end{pf}
+
+\begin{defn}[Lebesgue Number]
+  The $\delta$ in \Cref{lem: lebesgue_lemma} is called a \emph{Lebesgue Number}.
+\end{defn}
+
+
+\clearpage
 \nocite{book:Steen_Seebach}
+\nocite{note:conrad_topologist_sine}
+\nocite{note:compactness_review}
 \printbibliography
 \end{document}
