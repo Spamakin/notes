@@ -29,6 +29,9 @@
 \begin{document}
 \maketitle
 
+\listoftheorems[ignoreall, onlynamed={thrm,prop,lem,cor}, title={List of Named Results}]
+\clearpage
+
 \listoftheorems[ignoreall, show={defn}, title={List of Definitions}]
 \clearpage
 
@@ -67,7 +70,7 @@ It is not hard to rephrase the definition of continuity in terms of $\e$-balls.
 
 We can actually even rephrase continuity in terms of open sets.
 
-\begin{prop}[Continuity in terms of Open Sets]
+\begin{prop}
   A function $f\colon X \to Y$ between metric spaces is continuous if and only if $f^{-1}(U)$ is open for every open set $U \subseteq Y$.
 \end{prop}
 
@@ -99,7 +102,7 @@ This can also all be rephrased in terms of closed sets, rather than open sets.
 
 However it turns out that for $\R^{n}$, choice between these 3 metrics is irrelevant.
 
-\begin{prop}[Equivalence of Open Sets]
+\begin{prop}
   Suppose $\dist_{1}$ and $\dist_{2}$ are two metrics on the same set $X$ such that for any $x \in X$ and $\e > 0$, there exists $\delta > 0$ such that
   \[
     \dist_{1}(x, y) < \delta \implies \dist_{2}(x, y) < \e
@@ -115,7 +118,7 @@ However it turns out that for $\R^{n}$, choice between these 3 metrics is irrele
   \quest{TODO: PROOF}
 \end{pf}
 
-\begin{cor}[Equivalence of Open Sets in $\R^{n}$]
+\begin{cor}
   The following metrics define the same open sets in $\R^{n}$:
   \begin{align*}
     \dist(x, y) &= \pqty{\sum_{i = 1}^{n} (x_{i} - y_{i})^{2}}^{1/2} \\
@@ -526,7 +529,7 @@ We have a series of basic consequences of this definition of subspace.
 
 We give more precise definitions of the interior and closure of a set.
 
-\begin{prop}[\tcite{book:Bredon} 1.3.1.a]\label{prop: defn_of_int_and_cl}
+\begin{prop}\label{prop: defn_of_int_and_cl}
   Let $X$ be a topological space and $A \subseteq X$.
   Then we have that
   \begin{align*}
@@ -538,7 +541,7 @@ We give more precise definitions of the interior and closure of a set.
   \quest{Immediate from defn.}
 \end{pf}
 
-\begin{prop}[\tcite{book:Bredon} 1.3.1.b]
+\begin{prop}
   Let $X$ be a topological space and $A \subseteq X$.
   Then $A$ is open if and only if $\inte(A) = A$ and $A$ is closed if and only if $\overline{A} = A$.
 \end{prop}
@@ -546,7 +549,7 @@ We give more precise definitions of the interior and closure of a set.
   \quest{Immediate from \Cref{prop: defn_of_int_and_cl}}.
 \end{pf}
 
-\begin{prop}[\tcite{book:Bredon} 1.3.1.c]
+\begin{prop}
   Let $X$ be a topological space and $A \subseteq X$.
   Then $X \setminus \inte(A) = \overline{X \setminus A}$ and $X \setminus \overline{A} = \inte(X \setminus A)$.
 \end{prop}
@@ -564,7 +567,7 @@ We give more precise definitions of the interior and closure of a set.
   \quest{TODO: Reverse Inclusion}
 \end{pf}
 
-\begin{prop}[\tcite{book:Bredon} 1.3.1.d]
+\begin{prop}
   Let $X$ be a topological space and $A, B \subseteq X$.
   Then $\inte(A \cap B) = \inte(A) \cap \inte(B)$ and $\overline{A \cup B} = \overline{A} \cup \overline{B}$.
 \end{prop}
@@ -585,7 +588,7 @@ We give more precise definitions of the interior and closure of a set.
 
 \clearpage
 
-\begin{prop}[\tcite{book:Bredon} 1.3.1.e]
+\begin{prop}
   Let $X$ be a topological space and $\set{A_{\alpha}}$ an indexed collection of subsets of $X$.
   \begin{enumerate}
   \item $\Bigcap_{\alpha} \inte(A_{\alpha}) \containseq \inte\pqty{\Bigcap_{\alpha} A_{\alpha}} = \inte\pqty{\Bigcap_{\alpha} \inte(A_{\alpha})}$.
@@ -665,7 +668,7 @@ We give more precise definitions of the interior and closure of a set.
   However $\overline{A_{1}} \cap \overline{A_{2}} = \bqty{0, \frac{1}{2}} \cap \bqty{\frac{1}{2}, 1} = \set{\frac{1}{2}}$.
 \end{ex}
 
-\begin{prop}[\tcite{book:Bredon} 1.3.1.f]
+\begin{prop}
   Let $X$ be a topological space and $A, B$ subsets of $X$.
   If $A \subset B$, then we have that $\overline{A} \subseteq \overline{B}$ and $\inte(A) \subseteq \inte(B)$.
 \end{prop}
@@ -999,7 +1002,7 @@ There is another closely related notion of connectedness which can be easier to 
 
 We now prove some immediate properties of arcwise connectivity relating it to the other definition of connectivity we have seen.
 
-\begin{prop}[\tcite{book:Bredon} 1.4.5.a]
+\begin{prop}
   An arcwise connected space is connected.
 \end{prop}
 \begin{pf}
@@ -1009,7 +1012,7 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   This implies $[0, 1]$ is not connected which is a contradiction of the fact that $[0, 1]$ is connected (\Cref{exercise:unit_interval_connected}).
 \end{pf}
 
-\begin{prop}[\tcite{book:Bredon} 1.4.5.b]\label{prop: arc_eq_rel}
+\begin{prop}\label{prop: arc_eq_rel}
   The relation ``$p \sim q$ if and only if there exists a map $\lambda\colon [0, 1] \to X$ with $\lambda(0) = p$ and $\lambda(1) = q$'' over a space $X$ is an equivalence relation.
 \end{prop}
 \begin{pf}
@@ -1020,14 +1023,14 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   The equivalence classes of \Cref{prop: arc_eq_rel} are called \emph{arc components} and they are the maximally arcwise connected subsets of a space $X$.
 \end{defn}
 
-\begin{prop}[\tcite{book:Bredon} 1.4.5.c]
+\begin{prop}
   An arc component of a space is contained in some component.
 \end{prop}
 \begin{pf}
   Arc components are connected and so an arc component must be contained in some component.
 \end{pf}
 
-\begin{prop}[\tcite{book:Bredon} 1.4.5.d]
+\begin{prop}
   Arc components of locally arcwise connected space $X$ are clopen and coincide with the components.
 \end{prop}
 \begin{pf}

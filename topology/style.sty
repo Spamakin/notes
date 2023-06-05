@@ -170,7 +170,6 @@
 \declaretheorem[style=theorem, numberlike=defn, name=Corollary]{cor}
 \declaretheorem[style=theorem, numberwithin=section, name=Exercise]{exercise}
 
-% TODO: Find a good way to typeset proofs without a QED
 \declaretheoremstyle[
     spaceabove=\topsep,
     spacebelow=12pt,
@@ -182,6 +181,31 @@
     qed=\qedsymbol,
 ]{solution}
 \declaretheorem[style=solution, name=Proof, numbered=no]{pf}
+
+% Formatting to improve list of theorems environment
+% TODO: Do this for named theorems
+\makeatletter
+\def\ll@defn{%
+  \protect\numberline{\csname the\thmt@envname\endcsname}%
+  \ifx\@empty\thmt@shortoptarg
+    \thmt@thmname
+  \else
+    \thmt@shortoptarg
+  \fi}
+\def\l@thmt@defn{}
+\makeatother
+
+\makeatletter
+\def\ll@ex{%
+  \protect\numberline{\csname the\thmt@envname\endcsname}%
+  \ifx\@empty\thmt@shortoptarg
+    \thmt@thmname
+  \else
+    \thmt@shortoptarg
+  \fi}
+\def\l@thmt@ex{}
+\makeatother
+
 
 % -------------------------------------------------------------------------
 %  Common abbreviations and words with accents
