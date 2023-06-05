@@ -1,4 +1,4 @@
-\documentclass[letterpaper, 11pt]{article}
+\documentclass[letterpaper, 11pt, titlepage]{article}
 
 \usepackage{style}  % If you feel like procrastinating, mess with this file
 \usepackage{algo}   % Thank you Jeff, very cool!
@@ -23,14 +23,16 @@
 % Disable check for different counts of parents/brackets/braces
 %     chktex-file 17
 
-\title{Topology Notes and Exercises}
-\author{Anakin Dey}
+\regtotcounter{figure}
+
+\title{\vspace{-100pt}\includegraphics[width=0.75\textwidth]{figs/title.png} \\ {\Huge Topology Notes and Exercises} \\ {\small With $\total{figure}$ Figures}}
+\nocite{title_pic}
+\author{\Large Anakin Dey}
+\DTMsavenow{now}
+\date{\small Last Edited on \today\ at \DTMfetchhour{now}:\DTMfetchminute{now}}
 
 \begin{document}
 \maketitle
-
-\listoftheorems[ignoreall, onlynamed={thrm,prop,lem,cor}, title={List of Named Results}]
-\clearpage
 
 \listoftheorems[ignoreall, show={defn}, title={List of Definitions}]
 \clearpage

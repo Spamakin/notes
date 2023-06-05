@@ -74,6 +74,7 @@
 % ---- Item stuff ----
 \usepackage{enumitem}
 \usepackage{listofitems}
+\usepackage{totcount}
 
 % ---- Standing on the shoulders of giants ----
 \usepackage[backend=biber, style=alphabetic]{biblatex}
@@ -86,26 +87,6 @@
 
 \setstretch{1.4}                                    % More line spacing
 \pdfstringdefDisableCommands{\let\boldmath\relax}   % allow \boldmath in section titles
-
-% ---- TITLE ----
-% TODO: Easy support for multiple authors
-\makeatletter
-\renewcommand\maketitle{
-\DTMsavenow{now}
-\date{Last Edited on \today\ at \DTMfetchhour{now}:\DTMfetchminute{now}}
-  \begin{framed}
-    \begin{center}
-      { \renewcommand{\arraystretch}{1.3}
-        \addtolength{\parskip}{-1.5em}
-          \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r}
-            \LARGE \@title  & \LARGE \@author   \\[-10pt]
-            \@date          &                   \\[-10pt]
-          \end{tabular*}
-        \addtolength{\parskip}{1.5em}}
-    \end{center}
-  \end{framed}
-}
-\makeatother
 
 % Customize hyperlink appearance
 \hypersetup{
@@ -183,7 +164,8 @@
 \declaretheorem[style=solution, name=Proof, numbered=no]{pf}
 
 % Formatting to improve list of theorems environment
-% TODO: Do this for named theorems
+% TODO: Do this for named theorems?
+%       Increase spacing between number and name
 \makeatletter
 \def\ll@defn{%
   \protect\numberline{\csname the\thmt@envname\endcsname}%
