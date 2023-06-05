@@ -249,19 +249,41 @@ Topological spaces are homeomorphic then if there is a bijection between them as
 These sets can then essentially be regarded as the same sets.
 
 Describing topological spaces can be described in a more simple manner than listing all the open sets using the concept of a basis.
-\begin{defn}[Basis]
-  Let $X$ be a topological space and $\textbf{B}$ a collection of subsets of $X$.
-  We say that $\textbf{B}$ is a \emph{basis} for the topology of $X$ if the open sets of $X$ are precisely the unions of members of $\textbf{B}$.
-  A collection $\textbf{S}$ of subsets of $X$ is called a subbasis for the topology of $X$ if the set $\textbf{B}$ of finite intersections of members of $\textbf{S}$ forms a basis of $X$.
+\begin{defn}[Basis / Analytic Basis]
+  Let $X$ be a topological space and \textbf{B} a collection of subsets of $X$.
+  We say that \textbf{B} is a \emph{basis} for the topology of $X$ if the open sets of $X$ are precisely the unions of members of \textbf{B}.
+  A collection \textbf{S} of subsets of $X$ is called a subbasis for the topology of $X$ if the set \textbf{B} of finite intersections of members of \textbf{S} forms a basis of $X$.
+
+  Some sources call this an \emph{analytic basis}.
 \end{defn}
 
-\emph{Any} collection $\textbf{S}$ of subsets of any set $X$ is a subbasis for some topology on $X$, namely the topology where the open sets are arbitrary unions of finite intersections of members of $\textbf{S}$.
+\emph{Any} collection \textbf{S} of subsets of any set $X$ is a subbasis for some topology on $X$, namely the topology where the open sets are arbitrary unions of finite intersections of members of \textbf{S}.
 The empty set is the union of an empty collection and $X$ is the intersection of an empty collection.
 Thus to specify a topology, a subbasis suffices.
 In a metric space, the collection of all $\e$-balls, for all $\e > 0$, forms a basis.
 So is the collection of $\e$-balls for $\e = 1, \frac{1}{2}, \frac{1}{3}, \ldots$.
 
 \clearpage
+
+We can actually phrase continuity in terms of bases.
+\begin{thrm}\label{thrm: continuity_for_bases}
+  Let $X, Y$ be topological spaces and $f\colon X \to Y$ be a function.
+  Let \textbf{B} be a basis for $Y$.
+  Then $f$ is continuous if and only if for all $B \in \textbf{B}$ we have that $f^{-1}(B)$ is open in $X$.
+\end{thrm}
+\begin{pf}
+  The forward direction is immediate since basis members are open by definition.
+  Let $U \subseteq Y$ be open.
+  Then for some $\textbf{A} \subseteq \textbf{B}$ we have that $U = \bigcup_{B \in \textbf{A}} B$.
+  Then we have that
+  \begin{align*}
+    f^{-1}(U) &= f^{-1}\pqty{\bigcup_{B \in \textbf{A}} B} \\
+              &= \bigcup_{B \in \textbf{A}} f^{-1}(B)
+  \end{align*}
+  and since each $f^{-1}(B)$ is open, $f^{-1}(U)$ is open and $f$ is continuous.
+\end{pf}
+
+An analogous result holds for elements of a subbasis with a very similar, and thus omitted, proof.
 
 \begin{ex}[Examples of Topologies]
   We now give examples of topological spaces:
@@ -289,8 +311,10 @@ So is the collection of $\e$-balls for $\e = 1, \frac{1}{2}, \frac{1}{3}, \ldots
   A topological space is \emph{second countable} if its topology has a countable basis.
 \end{defn}
 
+\clearpage
+
 \begin{ex}[Metric Spaces are First Countable but some are not Second Countable]
-  Let $x \in  X$ a metric space.
+  Let $x \in X$ where $X$ is a metric space.
   Then the set of open balls around $x$ with rational radius forms a countable neighborhood basis.
 
   Consider the space if any uncountable set with metric $\dist(x, y) = 1$ if $x \neq y$ and $0$ otherwise (which yields the discrete topology).
@@ -335,6 +359,8 @@ So is the collection of $\e$-balls for $\e = 1, \frac{1}{2}, \frac{1}{3}, \ldots
   A function $f\colon X \to Y$ between topological spaces is said to be \emph{open} if $f(U)$ is open in $Y$ for all open $U \subseteq X$.
   It is said to be \emph{closed} if $f(C)$ is closed in $Y$ for all closed $C \subseteq X$.
 \end{defn}
+
+\clearpage
 
 \begin{defn}[Smallest and Largest Topologies]
   If $X$ is a set and some condition is given on subsets of $X$, which may or may not hold for any particular subset, then if there is a topology $T$ whose open sets satisfy the condition, and such that, for any topology $T'$ whose open sets satisfy the condition, then the $T$-open sets are also $T'$-open (i.e. $T \subseteq T'$), then $T$ is called the \emph{smallest} (or \emph{weakest} or \emph{coarsest}) topology satisfying the condition.
@@ -1163,7 +1189,7 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   However, there is no open set containing $y$ but not $x$ so the space is not $T_{1}$.
 \end{ex}
 
-\begin{prop}
+\begin{prop}\label{prop: regular_iff_closed_neighborhood_basis}
   A Hausdorff space $X$ is regular if and only if the closed neighborhoods of any point form a neighborhood basis of the point.
 \end{prop}
 \begin{pf}
@@ -1848,6 +1874,71 @@ In ordinary usage, if $X$ and $Y$ are disjoint space, we can regard $X + Y$ as $
 \clearpage
 
 \subsection*{Exercises}
+
+\begin{exercise}[\tcite{book:Bredon} 1.8.3]
+  Let $\set{Y_{\alpha}}$ be a collection of spaces and $Y = \Bigtimes_{\alpha} Y_{\alpha}$.
+  Prove that the function $f\colon X \to Y$ is continuous if and only if each composition $\pi_{\alpha} \circ f$ is continuous.
+\end{exercise}
+\begin{pf}
+  Suppose that $f$ is continuous.
+  We know the composition of two continuous functions is continuous, so $\pi_{\alpha} \circ f$ is continuous for all $\alpha$.
+
+  Now suppose that each composition $\pi_{\alpha} \circ f$ is continuous.
+  It suffices by \Cref{thrm: continuity_for_bases} to show that for each element $S$ of some subbasis \textbf{S} of $Y$, $f^{-1}(B)$ is open.
+  We use the standard subbasis for the infinite product which is $U_{\alpha} \times \bigtimes_{\beta \neq \alpha} X_{\beta}$.
+  We have that for any $U_{\alpha}$ that $\pqty{\pi_{\alpha} \circ f}^{-1}(U_{\alpha})$ is open by assumption.
+  Thus preimages of basis elements are open and $f$ is continuous.
+\end{pf}
+
+\begin{exercise}[\tcite{book:Bredon} 1.8.4]
+  An arbitrary product of Hausdorff spaces is Hausdorff and an arbitrary product of regular spaces is regular.
+\end{exercise}
+\begin{pf}
+  Let $H = \Bigtimes_{\alpha} H_{\alpha}$ be a product of Hausdorff spaces.
+  Let $x \neq y \in H$.
+  Since $x \neq y$ there exists $\beta$ such that $x_{\beta} \neq y_{\beta} \in H_{\beta}$.
+  Then since $H_{\beta}$ is Hausdorff let $U_{\beta}$ and $V_{\beta}$ be disjoint open sets such that $x_{\beta} \in U_{\beta}$ and $y_{\beta} \in V_{\beta}$.
+  For $\alpha \neq \beta$ let $U_{\alpha} = V_{\alpha} = H_{\alpha}$.
+  Let $U = \bigtimes_{\alpha} U_{\alpha}$ and $V = \bigtimes_{\alpha} V_{\alpha}$.
+  We have constructed disjoint open sets $U$ and $V$ such that $x \in U$, $y \in V$ proving that $H$ is Hausdorff.
+
+  Now let $R = \Bigtimes_{\alpha} R_{\alpha}$ be a product of regular space.
+  By \Cref{prop: regular_iff_closed_neighborhood_basis}, it suffices to show that for each point $x$ in $R$, the closed neighborhoods of $x$ form a neighborhood basis of $x$.
+  Let $x \in R$ and let $V$ be a neighborhood of $x$.
+  Then each $V_{\alpha}$ is a neighborhood of $x_{\alpha}$ in $R_{\alpha}$ and by \Cref{prop: regular_iff_closed_neighborhood_basis} we can find $C_{\alpha}$ closed such that $x \in C_{\alpha} \subseteq R_{\alpha}$.
+  Thus $C = \bigtimes_{\alpha} C_{\alpha}$ is a closed set such that $x \in C \subseteq V$ and closed neighborhoods of $x$ form a closed neighborhood basis of $x$.
+  This proves that $R$ is regular.
+\end{pf}
+
+\begin{exercise}[\tcite{book:Bredon} 1.8.5]
+  If $X$ is a topological space, the \emph{diagonal} of $X \times X$ is the subspace $\Delta = \set{\pqty{x, x} | x \in X}$.
+  Show that $X$ is Hausdorff if and only if $\Delta$ is closed in $X \times X$.
+\end{exercise}
+\begin{pf}
+  Suppose that $X$ is Hausdorff and let $(x, y) \in (X \times X) \setminus \Delta$.
+  Then we have that there exist disjoint open sets $U_{x}, U_{y}$ such that $x \in U_{x}$ and $y \in U_{y}$.
+  We have that $U_{x} \times U_{y}$ is open in $X \times X$ and contains $(x, y)$ and is contained in $(X \times X) \setminus \Delta$.
+  Thus $(X \times X) \setminus \Delta$ is open meaning that $\Delta$ is closed.
+
+  Now suppose that $\Delta$ is closed, so $(X \times X) \setminus \Delta$ is open.
+  Let $x \neq y \in X$.
+  Then $(x, y) \in (X \times X) \setminus \Delta$ meaning that there exists a basis element $U_{x} \times U_{y} \subseteq (X \times X) \setminus \Delta$ containing $(x, y)$.
+  This implies that $U_{x} \cap U_{y} = \emptyset$.
+  Thus we have found disjoint open sets $U_{x}, U_{y}$ contained in $X$ such that $x \in U_{x}$ and $y \in U_{y}$ meaning that $X$ is Hausdorff.
+\end{pf}
+
+\clearpage
+
+\begin{exercise}[\tcite{book:Bredon} 1.8.6]
+  Let $f, g\colon X \to Y$ be two maps.
+  If $Y$ is Hausdorff then show that the subspace $A = \set{x \in X \mid f(x) = g(x)}$ is closed in $X$.
+\end{exercise}
+\begin{pf}
+  Since $f$ and $g$ are continuous, we have that $h(x) = (f(x), g(x)) \subseteq Y \times Y$ is also continuous.
+  Let $\Delta \subseteq Y \times Y$ be as defined in the previous problem.
+  Then note that $A = h^{-1}(\Delta)$.
+  Since $Y$ is Hausdorff, we have that $\Delta$ is closed which means by continuity of $h$ that $A$ is closed.
+\end{pf}
 
 \clearpage
 
