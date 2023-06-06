@@ -1755,7 +1755,7 @@ This does not hold in arbitrary metric spaces.
     \bigtimes_{\substack{\alpha \in A \\ U_{\alpha} \subseteq X_{\alpha} \text{ open }}} U_{\alpha}
   \]
   such that $U_{\alpha} = X_{\alpha}$ for all but a finite number of $\alpha$ (``almost all $\alpha$'').
-  This topology has subbasis $U_{alpha} \times \Bigtimes_{\beta \neq \alpha} X_{\beta}$ for $U_{\alpha}$ open in $X_{\alpha}$.
+  This topology has subbasis $U_{\alpha} \times \Bigtimes_{\beta \neq \alpha} X_{\beta}$ for $U_{\alpha}$ open in $X_{\alpha}$.
   This is also known as the \emph{Tychonoff Topology}.
 \end{defn}
 
@@ -1765,6 +1765,15 @@ This does not hold in arbitrary metric spaces.
 \end{prop}
 \begin{pf}
   The subbasis described is exactly the subbasis needed for continuity to hold.
+\end{pf}
+
+\begin{prop}
+  The projection map $\pi_{\beta}\colon \Bigtimes_{\alpha} X_{\alpha} \to X_{\beta}$ is an open map.
+\end{prop}
+\begin{pf}
+  It suffices to show for basis elements of $\Bigtimes_{\alpha} X_{\alpha}$.
+  Let $\Bigtimes_{\alpha} U_{\alpha}$ be a basis element of the product topology.
+  Then $\pi_{\beta}\pqty{\Bigtimes_{\alpha} U_{\alpha}} = U_{\beta}$ is open in $X_{\beta}$ which shows that $\pi_{\beta}$ is an open maps.
 \end{pf}
 
 \begin{prop}\label{prop: compact_proj_closed}
@@ -1869,6 +1878,56 @@ Using this, \Cref{prop: net_of_product_converges} can be restated as follows:
 \end{prop}
 
 When $A$ itself is also a topological space, we use $X^{A}$ to denote the set of all continuous functions $f\colon A \to X$.
+
+\begin{prop}
+  Let $X = \Bigtimes_{\alpha} X_{\alpha}$ be a product of topological spaces.
+  If $X$ is normal, then each of the $X_{\alpha}$ are normal.
+
+\end{prop}
+\begin{pf}
+  To see this, let $F_{\beta}, G_{\beta}$ be disjoint closed sets in $X_{\beta}$.
+  Then since $\pi_{\beta}$ is continuous, we have that $\pi_{\beta}^{-1}(F_{\beta})$ and $\pi_{\beta}^{-1}(G_{\beta})$ closed.
+  Thus by the normality of $X$, there exist disjoint open sets $U, V \subseteq X$ such that $\pi_{\beta}^{-1}(F_{\beta}) \subseteq U$ and $\pi_{\beta}^{-1}(G_{\beta}) \subseteq V$.
+  Then since $\pi_{\beta}$ is open, we have that $\pi_{\beta}(U)$ and $\pi_{\beta}(V)$ are disjoint and open and contain $F_{\beta}$ and $G_{\beta}$ respectively.
+  Thus $X_{\alpha}$ is normal.
+\end{pf}
+
+\begin{ex}[Sorgenfrey's Half-Open Square Topology, Product of Normal may not be Normal]\
+
+  Let $S$ denote the real line $\R$ with the half-open topology with half-open intervals $[a, b)$ as basis elements.
+  We claim that $S$ is normal.
+  % TODO: redo with tikz?
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.25\textwidth]{figs/Sorgengrey_Half_Open.png}
+    \caption{$S(p, \e)$}
+    \label{fig:sorgenfrey_half_open}
+  \end{figure}
+  Let $F, G$ be disjoint closed sets in $S$.
+  For each $x \in F$, choose some $x'$ such that $[x, x') \cap G$ is disjoint.
+  Let $U = \bigcup_{x \in F}[x, x')$.
+  We can find such $x'$ because $G$ is closed and $F$ is disjoint from $G$ and so there exists an open set around $x$ such that it is disjoint from $G$ and we can choose $x'$ from that set.
+  Similarly, for each $y \in G$, choose some $y'$ such that $[y, y') \cap F$ is disjoint and let $V = \bigcup_{y \in G}[y, y')$.
+  We have that $F \subseteq U$ and $G \subseteq V$.
+  We also have that $U$ and $V$ are disjoint.
+  To see this, it suffices to show that for all $x \in F$, $y \in G$ that $[x, x')$ and $[y, y')$ are disjoint.
+  Let $x \in F$ and $y \in G$ and without loss of generality suppose $x < y$.
+  Note that $x'$ was chosen such that $[x, x') \cap G = \emptyset$ and so in particular we have that $[x, x') \cap [y, y') = \emptyset$.
+  Thus $x' \leq y$ which shows that $U$ and $V$ are disjoint and $S$ is normal.
+
+  Let $X = S^{2}$ with the half-open square topology.
+  Let $S(p, \e)$ denote the basis element the half-open square with sidelengths $\e$ and $p \in X$ as the lower left corner as in \Cref{fig:sorgenfrey_half_open}.
+  Define $L = \set{(x, -x) | x \in \R}$.
+  We have that $K = \set{(x, -x) | x \text{ is irrational }}$ is closed in $X$.
+  This is because for any $(x, y) \in X \setminus K$, we have that $S((x, y), \e)$ is disjoint from $K$ for some $\e$ based on if it is above or below the line.
+  If $(x, y)$ lies on the line, then since the square $S((x, y), \e)$ opens up and to the right, it is also disjoint from $K$.
+  Similarly, $L \setminus K$ is closed.
+
+  \clearpage
+
+  We now show that $X$ is not normal.
+  \quest{Something something Baire Category Theorem, I don't get it...}
+\end{ex}
 
 \clearpage
 
