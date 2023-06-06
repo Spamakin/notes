@@ -1234,7 +1234,7 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   This means arbitrary subsets of $X$ are open and we have the discrete topology.
 \end{pf}
 
-\begin{exercise}[\tcite{book:Bredon} 1.5.5]
+\begin{exercise}[\tcite{book:Bredon} 1.5.5]\label{exercise: Bredon 1.5.5}
   Subspaces of Hausdorff Spaces are Hausdorff.
 \end{exercise}
 \begin{pf}
@@ -2145,6 +2145,27 @@ In fact, we can take $f^{-1}\pqty{\left[ 0, \frac{1}{2} \right)}$ and $f^{-1}\pq
   The $\delta$ in \Cref{lem: lebesgue_lemma} is called a \emph{Lebesgue Number}.
 \end{defn}
 
+\clearpage
+
+\subsection*{Exercises}
+
+\begin{exercise}[\tcite{book:Bredon} 1.9.2]
+  A subspace of a completely regular space is completely regular
+\end{exercise}
+\begin{pf}
+  Let $X$ be a completely regular space and $S \subseteq X$ a subspace.
+  Note that by \Cref{exercise: Bredon 1.5.5} we have that $S$ is Hausdorff.
+  Let $x \in S$ and $C \subseteq S$ be closed such that $x \notin C$.
+  Since $C$ is closed in $S$, we have that $C = S \cap D$ for some $D$ closed in $X$.
+  Also note that we must have that $x \notin D$ since $C = S \cap D$ and $x \notin C$ but $x \in S$.
+  Thus by the fact that $X$ is completely regular, we have that there exists some map $f\colon X \to [0, 1]$ such that $f(x) = 0$ and $f(D) = \set{1}$.
+  We can restrict $f$ to $S$ and get a map $f\mid_{S}\colon X \to [0, 1]$ such that $f\mid_{S}(0) = x$ and $f\mid_{S}(C) = f\mid_{S}(D \cap S) = f(D) = \set{1}$ as desired.
+  Thus $S$ is completely regular.
+\end{pf}
+
+\clearpage
+
+\section{Existence of Real Valued Functions}
 
 \clearpage
 \nocite{book:Steen_Seebach}
