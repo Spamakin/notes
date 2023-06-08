@@ -778,6 +778,8 @@ However, we do not need this notation very often.
 
 \end{ex}
 
+\quest{TODO:\@ Baire Category stuff}
+
 \clearpage
 
 \subsection*{Exercises}
@@ -1245,7 +1247,7 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   Thus $Y$ is Hausdorff.
 \end{pf}
 
-\begin{exercise}[\tcite{book:Bredon} 1.5.6]
+\begin{exercise}[\tcite{book:Bredon} 1.5.6]\label{exercise: bredon_1.5.6}
   A Hausdorff space $X$ is normal if and only if for all open sets $U$ and closed sets $C \subseteq U$ there is an open set $V$ with $C \subseteq V \subseteq \overline{V} \subseteq U$.
 \end{exercise}
 \begin{pf}
@@ -2171,7 +2173,7 @@ In fact, we can take $f^{-1}\pqty{\left[ 0, \frac{1}{2} \right)}$ and $f^{-1}\pq
   Thus by assumption, this $g$ can be replaced by some $f \in \textbf{F}$ satisfying the same properties as $g$ and satisfying the final requirements of the lemma.
 \end{pf}
 
-\begin{thrm}[Urysohn Metrization Theorem]
+\begin{thrm}[Urysohn Metrization Theorem]\label{thrm: urysohn_metrization}
   If a space $X$ is second countable and completely regular, then it is metrizable.
 \end{thrm}
 \begin{pf}
@@ -2225,6 +2227,145 @@ In fact, we can take $f^{-1}\pqty{\left[ 0, \frac{1}{2} \right)}$ and $f^{-1}\pq
 \clearpage
 
 \section{Existence of Real Valued Functions}
+
+In \Cref{thrm: urysohn_metrization} we relied on the fact that some set of continuous real-valued functions of sufficiently large size existed.
+We now address purely topological assumptions that guarantee such functions.
+
+\begin{lem}\label{lem: dyadic_lem_for_urysohn}
+  Suppose that on a topological space $X$ we are given, for each dyadic rational number $r = \frac{m}{2^n}$ where $0 \leq m \leq 2^{m}$, an open set $U_{r}$ such that $r < s \implies \overline{U_{r}} \subseteq U_{s}$.
+  Then the function
+  \begin{align*}
+    f\colon X &\to \R \\
+      x &\mapsto
+          \begin{cases}
+            \inf\set{r | x \in U_{r}} & x \in U_{1} \\
+            1                         & x \notin U_{1}
+          \end{cases}
+  \end{align*}
+  is continuous.
+\end{lem}
+\begin{pf}
+  Note that for $r$ dyadic we have
+  \begin{align*}
+    f(x) <    r \implies    x \in U_{r}, && \text{ hence } &&  &f(x) \geq r \impliedby x \notin U_{r}, \\
+    f(x) \leq r \impliedby  x \in U_{r}, && \text{ hence } &&  &f(x) > r \implies      x \notin U_{r} \implies x \in X \setminus U_{r}.
+  \end{align*}
+  Thus for $\alpha$ real we have
+  \[
+    f^{-1}(-\infty, \alpha) = \set{x | f(x) < \alpha} = \bigcup_{r < \alpha} U_{r}
+  \]
+  which is open, and for $\beta$ real we have
+  \[
+    f^{-1}(\beta, \infty) = \set{x | f(x) > \beta} = \bigcup_{r > \beta} X \setminus U_{r} = \bigcup_{s > \beta} X \setminus \overline{U_{s}}
+  \]
+  which is also open.
+  These half open intervals form a subbasis for $\R$ and thus $f$ is continuous.
+\end{pf}
+
+\begin{lem}[Urysohn's Lemma]\label{lem: urysohn_lemma}
+  If $X$ is normal and $F \subseteq U$ where $F$ is closed and $U$ is open, then there is a map $f\colon X \to [0, 1]$ which is $0$ on $F$ and $1$ on $X \setminus U$.
+\end{lem}
+\begin{pf}
+  Let $U_{1} = U$ and use normality of $X$ to find $U_{0}$ such that $F \subseteq U_{0} \subseteq \overline{U_{0}} \subseteq U_{1}$.
+  We can do this by \Cref{exercise: bredon_1.5.6}.
+  We can iterate this to find $U_{1/2}$ such that $\overline{U_{0}} \subseteq U_{1/2} \subseteq \overline{U_{1/2}} \subseteq U_{1}$.
+  We also find $U_{1/4}$ such that $\overline{U_{0}} \subseteq U_{1/4} \subseteq \overline{U_{1/4}} \subseteq U_{1/2}$ and $U_{3/4}$ such that $\overline{U_{1/2}} \subseteq U_{3/4} \subseteq \overline{U_{3/4}} \subseteq U_{1}$.
+  Iterate this construction repeatedly and apply \Cref{lem: dyadic_lem_for_urysohn}.
+\end{pf}
+
+\begin{cor}
+  Normality implies Complete Regularity. $\qed$
+\end{cor}
+
+\clearpage
+
+\begin{thrm}[Tietze Extension Theorem]
+  Let $X$ be normal and $F \subseteq X$ closed and let $f\colon F \to \R$ be continuous.
+  Then there is a map $g\colon X \to \R$ such that $g(x) = f(x)$ for all $x \in F$.
+  Moreover, it can be arranged that
+  \[
+    \sup_{x \in F} f(x) = \sup_{x \in X} g(x) \text{ and } \inf_{x \in F} f(x) = \inf_{x \in X} g(x).
+  \]
+\end{thrm}
+\begin{pf}
+  First we consider the case that $f$ is bounded.
+  Without loss of generality, suppose that $0 \leq f(x) \leq 1$ with infimum $0$ and supremum $1$.
+  By \Cref{lem: urysohn_lemma}, there exists a function $g_{1}\colon X \to \bqty{0, \frac{1}{3}}$ such that
+  \[
+    g_{1}(x) = \begin{cases}
+                 0           & \text{ if } x \in F \text{ and } f(x) \leq \frac{1}{3}, \\
+                 \frac{1}{3} & \text{ if } x \in F \text{ and } f(x) \geq \frac{2}{3}.
+               \end{cases}
+  \]
+  Let $f_{1} = f - g_{1}$.
+  Note that $0 \leq f_{1}(x) \leq \frac{2}{3}$ for all $x \in F$.
+  Then we can repeat this construction and find $g_{3}\colon X \to \bqty{0, \frac{1}{3} \cdot \frac{2}{3}}$ such that
+  \[
+    g_{2}(x) = \begin{cases}
+                 0           & \text{ if } x \in F \text{ and } f(x) \leq \frac{1}{3} \cdot \frac{2}{3}, \\
+                 \frac{1}{3} \cdot \frac{2}{3} & \text{ if } x \in F \text{ and } f(x) \geq \frac{2}{3} \cdot \frac{2}{3}.
+               \end{cases}
+  \]
+  Let $f_{2} = f_{1} = g_{2}$ and note that $0 \leq f_{2}(x) \leq \pqty{\frac{2}{3}}^{2}$ for all $x \in F$.
+  Inductively we can find $f_{n}$ with $0 \leq f_{n}(x) \leq \pqty{\frac{2}{3}}^{n}$ for $x \in F$.
+  Then find $g_{n + 1}\colon X \to \bqty{0, \pqty{\frac{1}{3}} \cdot \pqty{\frac{2}{3}}^{n}}$ such that
+  \[
+    g_{n + 1}(x) = \begin{cases}
+                 0           & \text{ if } x \in F \text{ and } f(x) \leq \frac{1}{3} \cdot \pqty{\frac{2}{3}}^{n}, \\
+                 \frac{1}{3} \cdot \pqty{\frac{2}{3}}^{n} & \text{ if } x \in F \text{ and } f(x) \geq \frac{2}{3} \cdot \pqty{\frac{2}{3}}^{n}.
+               \end{cases}
+  \]
+  Let $f_{n + 1} = f_{n} - g_{n + 1}$.
+
+  Now let $g(x) = \sum_{n = 1}^{\infty} g_{n}(x)$.
+  This converges uniformly since $0 \leq g_{n}(x) \leq \pqty{\frac{1}{3}} \cdot\pqty{\frac{2}{3}}^{n - 1}$ which then implies that $g$ is continuous.
+  For $x \in F$ we have that
+  \begin{align*}
+    f - g_{1}     &= f_{1}, \\
+    f_{1} - g_{2} &= f_{2}, \\
+                  &\vdots
+  \end{align*}
+  and by adding and cancelling we get
+  \[
+    f - (g_{1} + g_{2} + \cdots + g_{n}) = f_{n} \text{ and } 0 \leq f_{n} \leq \pqty{\frac{2}{3}}^{n}.
+  \]
+  Taking the limit yields that $g(x) = f(x)$ on $F$.
+  \quest{Clearly the bounds are also correct}.
+
+  \clearpage
+
+  We now consider the unbounded cases
+  \begin{align*}
+   \text{Case I: }   &f \text{ is unbounded in both directions}, \\
+   \text{Case II: }  &f \text{ is bounded below by } a, \\
+   \text{Case III: } &f \text{ is bounded above by } b.
+  \end{align*}
+
+  Let $h$ be a homeomorphism:
+  \begin{align*}
+    (-\infty, \infty) &\to (0, 1) &\text{ in Case I, }  \\
+    [a, \infty)       &\to [0, 1) &\text{ in Case II, } \\
+    (-\infty, b]      &\to (0, 1] &\text{ in Case III. }
+  \end{align*}
+  Then we have that $h \circ f$ is bounded by $0, 1$ and we can extend it to $g_{1}$.
+  If we can arrange that $g_{1}(x)$ is never $0$ (respectively $1$) if $h \circ f$ is never $0$ (respectively $1$) then $g = h^{-1} \circ g-1$ would be defined and would extend $f$.
+  Thus put
+  \begin{align*}
+    C &= \set{x | g_{1}(x) = 0 \text{ or 1 }} &\text{ in Case I, }  \\
+    C &= \set{x | g_{1}(x) = 1 } &\text{ in Case II, } \\
+    C &= \set{x | g_{1}(x) = 0 } &\text{ in Case III. }
+  \end{align*}
+  Then $C$ is closed and $C \cap F = \emptyset$.
+  So there exists a function $k\colon X \to [0, 1]$ such that $k = 0$ on $C$ and $k = 1$ on $F$.
+  Let $g_{2} = k \cdot g_{1} + (1 - k) \cdot \frac{1}{2}$.
+  Then $g_{2}$ is always betweep $g_{1}$ and $\frac{1}{2}$ with $g_{2} \neq g_{1}$ on $C$.
+  Also $g_{2} = g_{1} = h \circ f$ on $F$.
+  \quest{Thus $g = h^{-1} \circ g_{2}$ extends $f$ in the desired manner}.
+\end{pf}
+
+\clearpage
+
+\subsection*{Exercises}
 
 \clearpage
 \nocite{book:Steen_Seebach}
