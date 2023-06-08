@@ -34,6 +34,24 @@
 \begin{document}
 \maketitle
 
+\clearpage
+
+\section*{TODOs}
+
+\quest{Change the style of enumerates from ``1.'' to ``(1)''}
+
+\quest{Proper Exercise Header}
+
+\quest{Proper Chapter Header}
+
+\quest{Table of Contents}
+
+\quest{Named Theorem List}
+
+\quest{Many TODOs within proofs throughout}
+
+\clearpage
+
 \listoftheorems[ignoreall, show={defn}, title={List of Definitions}]
 \clearpage
 
@@ -117,7 +135,7 @@ However it turns out that for $\R^{n}$, choice between these 3 metrics is irrele
 \end{prop}
 
 \begin{pf}
-  \quest{TODO: PROOF}
+  \quest{TODO:\@ PROOF}
 \end{pf}
 
 \begin{cor}
@@ -245,7 +263,7 @@ This is the same as saying $f^{-1}(N)$ is a neighborhood of $x$.
   Thus $f^{-1}(N)$ is a neighborhood of $x$ in $X$ and $f\pqty{f^{-1}(N)} = N \subseteq N$ and $f$ is continuous at $x \in X$.
 
   Conversely now suppose that $f$ is continuous at each point in $X$ and let $U \subseteq Y$ be open.
-  Then for any $x \in f^{-1}(U),$ we have that $f^{-1}(U)$ is a neighborhood of $x$.
+  Then for any $x \in f^{-1}(U)$, we have that $f^{-1}(U)$ is a neighborhood of $x$.
   Thus there exists open $V_{x} \subseteq f^{-1}(U)$ with $x \in V_{x}$.
   Thus $f^{-1}(U)$ is the union of open sets $V_{x}$ ranging over $x \in f^{-1}(U)$ and $f^{-1}(U)$ is open which yields that $f$ is continuous.
 \end{pf}
@@ -458,7 +476,7 @@ Thus there is no way to argue that a topology is ``large'' or ``small'' without 
         Similarly there exists $M \in \textbf{N}(x)$ such that $M \subseteq V$.
         We have then there exists $P \in \textbf{N}(x)$ such that $P \subseteq N \cap M$.
         Thus $U \cap V$ is open.
-  \item \quest{TODO: Union}
+  \item \quest{TODO:\@ Union}
   \end{itemize}
 
   Suppose that $Y$ is some other topology such that for each $x \in S$. $\textbf{N}(x)$ is a neighborhood basis of $x$.
@@ -566,7 +584,7 @@ We give more precise definitions of the interior and closure of a set.
   Now let $x \in X \setminus \overline{A}$.
   Then by \Cref{prop: defn_of_int_and_cl} there exists an open set $U$ such that $x \in U$ and $U \cap A = \emptyset$.
   Thus $U \subseteq X \setminus A$ and $x \in \inte(X \setminus A)$.
-  \quest{TODO: Reverse Inclusion}
+  \quest{TODO:\@ Reverse Inclusion}
 \end{pf}
 
 \begin{prop}
@@ -1069,8 +1087,7 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{figs/Topologists_Sine_Curve}
-    \caption{The Topologist's Sine Curve}
-    \label{fig:topologists_sine_curve}
+    \caption{The Topologist's Sine Curve}\label{fig:topologists_sine_curve}
   \end{figure}
 
   Clearly $S$ is arcwise connected and thus connected.
@@ -1195,7 +1212,7 @@ We now prove some immediate properties of arcwise connectivity relating it to th
 \end{ex}
 
 \begin{ex}[A Space that is $T_0$ but not $T_1$]
-  The topology on $\set{x, y}$ with open sets $\emptyset, \set{x},$ and $\set{x, y}$ is $T_{0}$.
+  The topology on $\set{x, y}$ with open sets $\emptyset, \set{x}$, and $\set{x, y}$ is $T_{0}$.
   This is because $\set{x}$ is an open set containing $x$ but not $y$.
   However, there is no open set containing $y$ but not $x$ so the space is not $T_{1}$.
 \end{ex}
@@ -1647,24 +1664,24 @@ This does not hold in arbitrary metric spaces.
   \end{enumerate}
 \end{thrm}
 \begin{pf}
-  We have already seen the equivalence of $1.$ and $2.$ and now we show the rest.
+  We have already seen the equivalence of $1$ and $2$ and now we show the rest.
   \begin{enumerate}
-  \item[] $1. \iff 2.$ See \Cref{thrm: compact_iff_nonempty_intersection}.
-  \item[] $1. \implies 3.$ Suppose that $\set{x_{\alpha}}$ is a universal net that does not converge.
+  \item[] $1 \iff 2$ See \Cref{thrm: compact_iff_nonempty_intersection}.
+  \item[] $1 \implies 3$ Suppose that $\set{x_{\alpha}}$ is a universal net that does not converge.
         Given $x \in X$, there is an open neighborhood of $U_{x}$ such that $\set{x_{\alpha}}$ is not eventually in  $U_{x}$ and so the net is eventually in $X \setminus U_{x}$.
         So there exists $\beta_{x}$ such that for all $\alpha \geq \beta_{x}$ we have that $x_{\alpha} \notin U_{x}$.
         Now cover $X$ by some finite cover $U_{x_{1}} \cup \cdots U_{x_{n}}$.
         Let $\alpha \geq \beta_{x_{i}}$ for all $i$, then $x_{\alpha} \notin U_{x_{i}}$ for any $i$.
         Thus $x_{\alpha} \notin X$ which is a contradiction.
-  \item[] $3. \implies 4.$ This is clear by \Cref{thrm: net_has_universal_subnet}.
+  \item[] $3 \implies 4$ This is clear by \Cref{thrm: net_has_universal_subnet}.
 
 \clearpage
 
-  \item[] $4. \implies 2.$ Let $\textbf{F} = \set{C}$ be a collection of closed sets with the finite intersection property.
+  \item[] $4 \implies 2$ Let $\textbf{F} = \set{C}$ be a collection of closed sets with the finite intersection property.
         Without loss of generality, we can assume that \textbf{F} is closed under finite intersection.
         Order \textbf{F} by $C \geq C'$ if and only if $C \subseteq C'$, making \textbf{F} a directed set.
         Let $\set{x_{C}}_{C \in \textbf{F}}$ be a net.
-        By assumption. there is a convergent subnet given by a final map $f\colon D \to \textbf{F}$.
+        By assumption, there is a convergent subnet given by a final map $f\colon D \to \textbf{F}$.
         Thus for $\alpha \in D$, $f(\alpha) \in \textbf{F}$ and $x_{f(\alpha)} \in f(\alpha)$.
         Suppose that $x_{f(\alpha)}$ converges to $x$.
         Let $C \in \textbf{F}$.
@@ -1902,8 +1919,7 @@ When $A$ itself is also a topological space, we use $X^{A}$ to denote the set of
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.25\textwidth]{figs/Sorgengrey_Half_Open.png}
-    \caption{$S(p, \e)$}
-    \label{fig:sorgenfrey_half_open}
+    \caption{$S(p, \e)$}\label{fig:sorgenfrey_half_open}
   \end{figure}
   Let $F, G$ be disjoint closed sets in $S$.
   For each $x \in F$, choose some $x'$ such that $[x, x') \cap G$ is disjoint.
@@ -2290,13 +2306,14 @@ We now address purely topological assumptions that guarantee such functions.
 \begin{pf}
   First we consider the case that $f$ is bounded.
   Without loss of generality, suppose that $0 \leq f(x) \leq 1$ with infimum $0$ and supremum $1$.
-  By \Cref{lem: urysohn_lemma}, there exists a function $g_{1}\colon X \to \bqty{0, \frac{1}{3}}$ such that
+  By \Cref{lem: urysohn_lemma} and the fact that $[0, 1]$ is homeomorphic to $\bqty{0, \frac{1}{3}}$, there exists a function $g_{1}\colon X \to \bqty{0, \frac{1}{3}}$ such that
   \[
     g_{1}(x) = \begin{cases}
                  0           & \text{ if } x \in F \text{ and } f(x) \leq \frac{1}{3}, \\
                  \frac{1}{3} & \text{ if } x \in F \text{ and } f(x) \geq \frac{2}{3}.
                \end{cases}
   \]
+  This can be done by taking the closed set as $F \cap f^{-1}\pqty{\left(-\infty, \frac{1}{3}\right]}$ and the open set as $f^{-1}\pqty{\pqty{-\infty, \frac{2}{3}}}$.
   Let $f_{1} = f - g_{1}$.
   Note that $0 \leq f_{1}(x) \leq \frac{2}{3}$ for all $x \in F$.
   Then we can repeat this construction and find $g_{3}\colon X \to \bqty{0, \frac{1}{3} \cdot \frac{2}{3}}$ such that
@@ -2330,35 +2347,38 @@ We now address purely topological assumptions that guarantee such functions.
     f - (g_{1} + g_{2} + \cdots + g_{n}) = f_{n} \text{ and } 0 \leq f_{n} \leq \pqty{\frac{2}{3}}^{n}.
   \]
   Taking the limit yields that $g(x) = f(x)$ on $F$.
-  \quest{Clearly the bounds are also correct}.
-
-  \clearpage
+  Clearly the bounds are also correct.
+  The infimum of $f$ is $0$ and the infimum of each of the $g_{n}$ is also $0$.
+  The supremum of $f$ is $1$ and we have that
+  \[
+    \sup_{x \in X} g(x) = \sum_{n = 1}^{\infty} g_{n}(x) = \frac{1}{3} \sum_{n = 1}^{\infty} \pqty{\frac{2}{3}}^{n} = \frac{1}{3} * 3 = 1.
+  \]
 
   We now consider the unbounded cases
   \begin{align*}
-   \text{Case I: }   &f \text{ is unbounded in both directions}, \\
-   \text{Case II: }  &f \text{ is bounded below by } a, \\
-   \text{Case III: } &f \text{ is bounded above by } b.
+   \text{Case I:\@}   &f \text{ is unbounded in both directions}, \\
+   \text{Case II:\@}  &f \text{ is bounded below by } a, \\
+   \text{Case III:\@} &f \text{ is bounded above by } b.
   \end{align*}
 
   Let $h$ be a homeomorphism:
   \begin{align*}
     (-\infty, \infty) &\to (0, 1) &\text{ in Case I, }  \\
     [a, \infty)       &\to [0, 1) &\text{ in Case II, } \\
-    (-\infty, b]      &\to (0, 1] &\text{ in Case III. }
+    (-\infty, b]      &\to (0, 1] &\text{ in Case III.\@}
   \end{align*}
   Then we have that $h \circ f$ is bounded by $0, 1$ and we can extend it to $g_{1}$.
-  If we can arrange that $g_{1}(x)$ is never $0$ (respectively $1$) if $h \circ f$ is never $0$ (respectively $1$) then $g = h^{-1} \circ g-1$ would be defined and would extend $f$.
+  If we can arrange that $g_{1}(x)$ is never $0$ (respectively $1$) if $h \circ f$ is never $0$ (respectively $1$) then $g = h^{-1} \circ g_{1}$ would be defined and would extend $f$.
   Thus put
   \begin{align*}
     C &= \set{x | g_{1}(x) = 0 \text{ or 1 }} &\text{ in Case I, }  \\
     C &= \set{x | g_{1}(x) = 1 } &\text{ in Case II, } \\
-    C &= \set{x | g_{1}(x) = 0 } &\text{ in Case III. }
+    C &= \set{x | g_{1}(x) = 0 } &\text{ in Case III.\@}
   \end{align*}
   Then $C$ is closed and $C \cap F = \emptyset$.
   So there exists a function $k\colon X \to [0, 1]$ such that $k = 0$ on $C$ and $k = 1$ on $F$.
   Let $g_{2} = k \cdot g_{1} + (1 - k) \cdot \frac{1}{2}$.
-  Then $g_{2}$ is always betweep $g_{1}$ and $\frac{1}{2}$ with $g_{2} \neq g_{1}$ on $C$.
+  Then $g_{2}$ is always between $g_{1}$ and $\frac{1}{2}$ with $g_{2} \neq g_{1}$ on $C$.
   Also $g_{2} = g_{1} = h \circ f$ on $F$.
   \quest{Thus $g = h^{-1} \circ g_{2}$ extends $f$ in the desired manner}.
 \end{pf}
@@ -2366,6 +2386,14 @@ We now address purely topological assumptions that guarantee such functions.
 \clearpage
 
 \subsection*{Exercises}
+
+\begin{exercise}[\tcite{book:Bredon} 10.2]
+  If $F$ is a closed subspace of the normal space $X$ then any map $F \to \R^{n}$ can be extended to $X$.
+\end{exercise}
+\begin{pf}
+  Tietze Extension but on each projection.
+\end{pf}
+
 
 \clearpage
 \nocite{book:Steen_Seebach}
