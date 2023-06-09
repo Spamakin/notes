@@ -1550,13 +1550,13 @@ The following theorem is just a translation of compactness in terms of open sets
   Since this holds for any $x \in X \setminus A$, we have that $X \setminus A$ is open and thus $A$ is closed.
 \end{pf}
 
-\begin{thrm}
+\begin{thrm}\label{thrm: image_of_compact_is_compact}
   If $X$ is compact and $f\colon X \to Y$ is continuous, then $f(X)$ is compact.
 \end{thrm}
-\begin{thrm}
+\begin{pf}
   We may as well replace $Y$ by $f(X)$ and so assume that $f$ is onto.
   For any open cover of $f(X)$, look at inverse images of the sets and apply compactness.
-\end{thrm}
+\end{pf}
 
 \begin{thrm}\label{thrm: closed_subset_of_compact_is_compact}
   If $X$ is compact and $A \subseteq X$ is closed, then $A$ is compact.
@@ -1607,7 +1607,7 @@ This does not hold in arbitrary metric spaces.
   This means that $\sup(f(X))$ exists, is finite, and belongs to $f(X)$.
 \end{pf}
 
-\begin{thrm}
+\begin{thrm}\label{thrm: compact_haus_is_norm}
   Compact Hausdorff spaces are normal
 \end{thrm}
 \begin{pf}
@@ -1654,6 +1654,7 @@ This does not hold in arbitrary metric spaces.
   which is a finite open subcover of $f^{-1}(C)$.
 \end{pf}
 
+
 \begin{thrm}\label{thrm: compact_iff_FIP_iff_universal_etc}
   For a topological space $X$, the following are equivalent:
   \begin{enumerate}
@@ -1689,6 +1690,17 @@ This does not hold in arbitrary metric spaces.
         Thus $x_{f(\alpha)} \in f(\alpha) \subseteq C$.
         Since $C$ is closed, it contains its limit points and $x \in C$ meaning that $x \in \bigcap_{C \in \textbf{F}} C$ and the total intersection is nonempty.
   \end{enumerate}
+\end{pf}
+
+\begin{prop}\label{prop: closed_cap_compact_is_compact}
+  The intersection of a closed set and a compact set is compact.
+\end{prop}
+\begin{pf}
+  Let $L$ be closed and $K$ compact.
+  Suppose that $\set{x_{i}}$ is a net in $L \cap K$.
+  Since $K$ is compact, by \Cref{thrm: compact_iff_FIP_iff_universal_etc} there must be some subnet converging to $x \in K$.
+  But $L$ is closed, so it contains its limit points, and thus $x \in L$.
+  Since every net in $K \cap L$ has a convergent subnet, $K \cap L$ must be compact.
 \end{pf}
 
 \clearpage
@@ -2394,10 +2406,297 @@ We now address purely topological assumptions that guarantee such functions.
   Tietze Extension but on each projection.
 \end{pf}
 
+\clearpage
+
+\section{Locally Compact Spaces}
+
+Many spaces, such as Euclidean spaces are not compact themselves but contain ``enough'' compact subspaces that are important to the properties of the spaces.
+Locally Compact spaces are one such class of spaces.
+
+\begin{defn}[Locally Compact Space]
+  A topological space is \emph{locally compact} if every point has a compact neighborhood.
+\end{defn}
+
+\begin{prop}\label{prop: closed_subset_local_compact}
+  Closed subsets of locally compact spaces are locally compact.
+\end{prop}
+\begin{pf}
+  Let $X$ be locally compact and $F \subseteq X$ closed.
+  Let $x \in F$.
+  We have that $x \in X$ so it has a compact neighborhood $K$.
+  Clearly $K \cap F$ is also a neighborhood of $x$.
+  Let $\set{U_{\alpha}}$ be an open cover of $K \cap F$.
+  $F$ is closed so $X \setminus F$ is open.
+  We have that $\set{U_{\alpha}} \cup \set{X \setminus F}$ is an open cover for $K$ and thus has a finite subcover, set $\set{V_{\alpha}}$.
+  Without loss of generality, we can discard $X \setminus F$ from $\set{V_{\alpha}}$ if it is included and thus we are left with a finite subcover of $K \cap F$.
+  Thus $F$ is locally compact.
+\end{pf}
+
+However, the similar statement for open subsets is much more complicated.
+
+\begin{lem}\label{lem: separate_point_compact_Hausdorff}
+  Suppose that $X$ is Hausdorff, $K \subseteq X$ compact, and $p \in X \setminus K$.
+  Then there are disjoint open sets $U, W$ such that $p \in U$ and $K \subseteq W$.
+\end{lem}
+\begin{pf}
+  If $q \in K$, then by Hausdorffness we can find disjoint open sets $U_{q}$ and $V_{q}$ such that $p \in U_{q}$ and $q \in V_{q}$.
+  Since $K$ is compact, we can find $q_{1}, \ldots, q_{n}$ such that $K \subseteq V_{q_{1}} \cup \cdots \cup V_{q_{n}}$.
+  Then the sets
+  \[
+    U = U_{q_{1}} \cap \cdots \cap U_{q_{n}} \text{ and } W = V_{q_{1}} \cup \cdots \cup V_{q_{n}}
+  \]
+  satisfy the claim.
+\end{pf}
+
+\begin{lem}\label{lem: finite_subcollection_empty}
+  If $\set{K_{\alpha}}$ is some collection of compact subsets of a Hausdorff space $X$ and $\bigcap_{\alpha} K_{\alpha} = \emptyset$ then some finite subcollection of the $\set{K_{\alpha}}$ also has empty intersection.
+\end{lem}
+\begin{pf}
+  Let $V_{\alpha} = X \setminus K_{\alpha}$.
+  Let $K_{1} \in \set{K_{\alpha}}$.
+  Since no point of $K_{1}$ belongs to every $K_{\alpha}$, we have that $\set{V_{\alpha}}$ is an open cover of $K_{1}$.
+  Thus $K_{1} \subseteq V_{\alpha_{1}} \cup \cdots \cup V_{\alpha_{n}}$ which implies that $K_{1} \cap K_{\alpha_{1}} \cap \cdots \cap K_{\alpha_{n}} = \emptyset$.
+\end{pf}
+
+\begin{prop}\label{prop: open_between_compact_and_open}
+  If $X$ is a locally compact Hausdorff space and $K \subseteq U \subseteq X$ where $K$ is compact and $U$ is open, then there exists an open subset $V \subseteq X$ such that $K \subseteq V \subseteq \overline{V} \subseteq U$ and $\overline{V}$ is compact.
+\end{prop}
+\begin{pf}
+  Since every point in $K$ has a neighborhood with compact closure due to the fact that closed subsets of compact sets are compact, and since $K$ is covered by the union of finitely many of these neighborhoods, we have that $K$ lies in an open set $G$ with compact closure.
+  If $U = X$, then we are done by taking $V = G$.
+  Otherwise, $U \subsetneq X$.
+  Let $C = X \setminus U$.
+  By \Cref{lem: separate_point_compact_Hausdorff}, we can separate $K$ and $p \in C$ by an open set $W_{p}$ such that $K \subseteq W_{p}$ and $p \notin \overline{W_{p}}$.
+  Thus $\set{C \cap \overline{G} \cap \overline{W_{p}}}_{p \in C}$ is a collection of compact sets (by \Cref{prop: closed_cap_compact_is_compact}) with empty intersection.
+  By \Cref{lem: finite_subcollection_empty}, we can find $p_{1}, \ldots, p_{n} \in C$ such that
+  \[
+    C \cap \overline{G} \cap \overline{W_{p_{1}}} \cap \cdots \cap \overline{W_{p_{n}}} = \emptyset.
+  \]
+  Now let
+  \[
+    V = G \cap W_{p_{1}} \cap W_{p_{n}}.
+  \]
+  We have that $K \subseteq V$ since $K \subseteq G$ and $K \subseteq$ each of the $W_{p_{i}}$.
+  Then note that we have
+  \[
+    \overline{V} \subseteq \overline{G} \cap \overline{W_{p_{1}}} \cap \cdots \cap \overline{W_{p_{n}}}.
+  \]
+  since $C = X \setminus U$.
+  We also have that $\overline{V}$ is compact.
+  This is because $\overline{V}$ is contained in the intersection of a compact set $\overline{G}$ with a bunch of closed sets.
+  Since this intersection is compact, $\overline{V}$ is a closed subset of a compact set which itself is compact.
+\end{pf}
+
+\begin{prop}\label{prop: open_subset_local_compact}
+  Open subsets of locally compact Hausdorff spaces are locally compact.
+\end{prop}
+\begin{pf}
+  Suppose that $X$ is locally compact and $U \subseteq X$ is open.
+  Let $x \in U$.
+  We have that $\set{x}$ is clearly compact.
+  Then by \Cref{prop: open_between_compact_and_open} we can find open $V$ such that $\set{x} \subseteq V \subseteq \overline{V} \subseteq U$ with $\overline{V}$ compact.
+  Thus $x$ has a compact neighborhood $\overline{V} \subseteq U$.
+\end{pf}
+
+\begin{thrm}
+  If $X$ is a locally compact Hausdorff space then each neighborhood of a point $x \in X$ contains a compact neighborhood of $x$.
+  That is, the compact neighborhoods of $x$ form a neighborhood basis at $x$.
+  Moreover, $X$ is completely regular.
+\end{thrm}
+\begin{pf}
+  Let $C$ be a compact neighborhood of $x$ and $U$ an arbitrary neighborhood of $x$.
+  Let $V \subseteq C \cap U$ be open with $x \in V$.
+  Then $\overline{V} \subseteq C$ is compact Hausdorff and therefore regular (\Cref{thrm: compact_haus_is_norm}).
+  Thus there is a neighborhood $N \subseteq V$ of $x$ in $C$ which is closed in $\overline{V}$ and thus closed in $C$ since regular spaces have a closed neighborhood basis (\Cref{prop: regular_iff_closed_neighborhood_basis}).
+  Since $N$ is closed in $C$, it is compact by \Cref{thrm: closed_subset_of_compact_is_compact}.
+  Then since $N$ is a neighborhood of $x$ in $\overline{V}$ and $N = N \cap V$, $N$ is a neighborhood of $x$ in the open set $V$ and thus in $X$.
+\end{pf}
+
+\clearpage
+
+\begin{thrm}\label{thrm: one_point_compactification}
+  Let $X$ be a locally compact Hausdorff space.
+  Define $X^{+} \defeq X \cup \set{\infty}$ where $\infty$ is just some point not in $X$.
+  Define the open sets of $X^{+}$ to be open in $X$ or open in $X \setminus C$ where $C \subseteq X$ is compact.
+  This defines a topology on $X^{+}$ which makes $X^{+}$ into a compact Hausdorff space.
+  Moreover, this topology on $X^{+}$i s the only topology making $X^{+}$ a compact Hausdorff space with $X$ as a subspace.
+\end{thrm}
+\begin{pf}
+  The whole space $X^{+}$ and $\emptyset$ are clearly open.
+  Let $U = X^{+} \setminus C$ for $C \subseteq X$ compact.
+  Then for $V$ open we have $U \cap V = V \setminus C$ which is open in $X$ since compact subsets of Hausdorff spaces are closed (\Cref{thrm: compact_subset_Hausdorff_closed}).
+  The other cases of intersection of two open sets are trivial.
+
+  Let $\set{U_{\alpha}}$ be a collection of open sets and $U = \bigcup_{\alpha} U_{\alpha}$.
+  If all the $U_{\alpha}$ are open subsets of $X$ the result is immediate.
+  Suppose some $U_{\beta} = X^{+} \setminus C$ where $C \subseteq X$ is compact.
+  Then
+  \[
+    X^{+} \setminus U = \bigcap_{\alpha} X^{+} \setminus U_{\alpha} = C \cap \pqty{\bigcap_{\alpha \neq \beta} X \setminus U_{\alpha}}
+  \]
+  which is closed in $C$ and thus compact.
+  Therefore $X^{+} \setminus U$ is closed and $U$ is open and we have a well defined topology.
+
+  Suppose that $\set{U_{\alpha}}$ is an open cover of $X^{+}$.
+  One of these sets, say $U_{\beta}$, contains $\infty$.
+  $X \setminus U_{\beta}$ is closed and thus compact and has a finite subcover.
+  Adding $U_{\beta}$ to this finite subcover yields a finite subcover of $X^{+}$.
+
+  To show that $X^{+}$ is Hausdorff we just need to separate $\infty$ from any $x \in X$.
+  Let $V$ be an open neighborhood of $x$ in $X$ such that $\overline{V} \subseteq X$ is compact.
+  Then $x \in V$ and $\infty \in X^{+} \setminus \overline{V}$ is the required separation.
+
+  For uniqueness, let $U \subseteq X^{+}$ be an open set in some such topology.
+  Then for $C = X^{+} \setminus U$ is closed and therefore compact.
+  If $C \subseteq X$ then $U$ is open in the topology described in the statement.
+  If $C \not\subseteq X$ then $U \subseteq X$ must be open in $X$ since $X$ is a subspace and again $U$ is open in the topology described in the open sets.
+  We now show that the open sets in the topology described in the statement are open in the given topology.
+  If $U$ is open in $X$, then $U = U' \cap X$ for some $U'$ open in $X^{+}$ since $X$ is a subspace.
+  But $X$ is open in $X^{+}$ since singletons are closed in Hausdorff spaces.
+  Thus $U = U' \cap X$ is open in $X^{+}$.
+  Next if $C$ is compact in $X$ then it must be compact in $X^{+}$ and thus $C$ is closed in $X^{+}$.
+  It follows that $X^{+} \setminus X$ is open in the given topology.
+\end{pf}
+
+\begin{defn}[One-Point Compactification]
+  The set $X^{+}$ in \Cref{thrm: one_point_compactification} is called the \emph{one-point compactification} of $X$.
+\end{defn}
+
+Note that if $X$ itself is compact, then $\infty$ is an isolated point (clopen) in $X^{+}$ and thus $X$ is clopen in $X^{+}$.
+
+\clearpage
+
+\begin{thrm}
+  Suppose that $X$ and $Y$ are locally compact Hausdorff spaces and that $f\colon X \to Y$ is continuous.
+  Then $f$ is proper if and only if $f$ extends to a continuous function $f^{+}\colon X^{+} \to Y^{+}$ with $f^{+}(\infty) = \infty$.
+\end{thrm}
+\begin{pf}
+  $f^{+}$ exists as a function so we just need to show continuity.
+  Suppose that $U \subseteq Y^{+}$ is open.
+  If $U \subseteq Y$ then the result is immediate.
+  Otherwise, $U = Y^{+} \setminus C$ with $C \subseteq Y$ compact.
+  Thus $\pqty{f^{+}}^{-1}(U) = X^{+} \setminus f^{-1}(C)$.
+  Since $f$ is proper, $f^{-1}(C)$ is compact and therefore closed.
+  The result follows.
+
+  Now suppose that we have $f^{+}$ as described.
+  Then we have that $\pqty{f^{+}}^{-1}(\infty) = \infty$ and thus $\pqty{f^{+}}^{-y}(Y) = X$.
+  If $C \subseteq Y$ is compact then it is closed and so $f^{-1}(C)$ is closed in $X^{+}$ and hence compact and contained in $X$.
+  Thus $f$ is proper.
+\end{pf}
+
+\begin{prop}
+  If $f\colon X \to Y$ is a proper map between locally compact Hausdorff spaces, then $f$ is closed.
+\end{prop}
+\begin{pf}
+  We have an extension $f^{+}\colon X^{+} \to Y^{+}$.
+  If $F \subseteq X$ is closed in $X$ then $F \cup \set{\infty}$ is closed in $X^{+}$ and hence compact.
+  Thus$ f^{+}(F \cup \set{\infty})$ is compact by \Cref{thrm: image_of_compact_is_compact} and hence closed by \Cref{thrm: compact_subset_Hausdorff_closed}.
+  But then $f(F) = f^{+}(F \cup \set{\infty}) \cap Y$ is closed in $Y$.
+\end{pf}
+
+\begin{defn}[Locally Closed Space]
+  A subspace $A$ of a topological space is said to be \emph{locally closed} if each point $a \in A$ has an open neighborhood $U_{a}$ such that $U_{a} \cap A$ is closed in $U_{a}$.
+\end{defn}
+
+\begin{prop}\label{prop: subspace_locally_closed_iff}
+  A subspace $A \subseteq X$ is locally closed if and only if it has the form $A = C \cap U$ where $U$ is open in $X$ and $C$ is closed in $X$.
+\end{prop}
+\begin{pf}
+  Let $U = \bigcup_{a \in A} U_{a}$ which is open and $C = \overline{A}$ which is closed.
+  Then we have that
+  \[
+    C \cap U = \overline{A} \cap \bigcup_{a \in A} U_{a} = \bigcup_{a} \overline{A} \cap U_{a} = A \cap U = A.
+  \]
+\end{pf}
+
+\begin{thrm}
+  For a Hausdorff space $X$, the following are equivalent:
+  \begin{enumerate}
+  \item $X$ is locally compact;
+  \item $X$ is a locally closed subspace of a compact Hausdorff space; and
+  \item $X$ is a locally closed subspace of a locally compact Hausdorff space.
+  \end{enumerate}
+\end{thrm}
+\begin{pf}
+  If $X$ is locally compact, then it is an open subspace of its one-point compactification $X^{+}$ which is a compact Hausdorff space by \Cref{thrm: one_point_compactification}.
+  Clearly $X = X^{+} \cap X$ and so by \Cref{prop: subspace_locally_closed_iff} $X$ is a locally closed subspace.
+  Thus $1$ implies $2$.
+  Compact implies locally compact so $2$ implies $3$ immediately.
+  If $Y \containseq X$ is locally compact and $X = C \cap U$ for $C \subseteq Y$ closed and $U \subseteq Y$ open, then $C$ is locally compact by \Cref{prop: closed_subset_local_compact} and $X = C \cap U$ is open in $C$ and hence also locally compact.
+  Thus $3$ implies $1$.
+\end{pf}
+
+The prior result begs the question of when a topological space $X$ can be embedded into some compact, Hausdorff space $Y$ as a subspace.
+Since $Y$ is normal (\Cref{thrm: compact_haus_is_norm}), we have that $Y$ is completely regular.
+Since subspaces of completely regular sets are completely regular, we must have that $X$ is completely regular.
+
+\begin{defn}[Stone-\Cech\ compactification]
+  Let $X$ be a completely regular space and \textbf{F} the set of all maps $f\colon X \to [0, 1]$.
+  Then let
+  \begin{align*}
+    \Phi\colon X &\to [0, 1]^{\textbf{F}} = \Bigtimes_{f \in \textbf{F}} [0, 1] \\
+            \Phi(x)(f) &= f(x).
+  \end{align*}
+  Here we are regarding an element of $[0, 1]^{\textbf{F}}$ as a function $\textbf{F} \to [0, 1]$.
+  The closure of $\Phi(X)$ is the \emph{Stone-\Cech\ compactification} of $X$ and is denoted $\beta(X)$.
+\end{defn}
+\begin{thrm}
+  If $X$ is a completely regular space, then $\beta(X)$ is compact Hausdorff and $\Phi(X) \to \beta(X)$ is an embedding.
+\end{thrm}
+\begin{pf}
+  The function $\Phi$ is one-to-one since if $\Phi(x) = \Phi(y)$ then $f(x) = f(y)$ for all $f\colon: X \to [0, 1]$ which by complete regularity implies that $x = y$.
+
+  To prove continuity, let $\set{x_{\alpha}}$ be a net in $X$ converging to $x$.
+  Then we have that
+  \[
+    \lim(\Phi(x_{\alpha})(f)) = \lim(f(x_{\alpha})) = f(x) = \Phi(x)(f)
+  \]
+  for all $f\colon X \to [0, 1]$.
+  This implies that $\lim(\Phi(x)) = \Phi(x)$ by \Cref{prop: net_of_product_converges}.
+  We get continuity thus by \Cref{prop: continuous_iff_net_converges}.
+
+  For continuity of the inverse, take some net $\set{x_{\alpha}}$ in $X$ such that $\Phi(x_{\alpha})$ converges to $\Phi(x)$.
+  Then for all $f\colon X \to [0, 1]$ we have
+  \[
+    \lim(f(x_{\alpha})) = \lim(\Phi(x_{\alpha})(f)) = \Phi(x)(f) = f(x).
+  \]
+  Suppose that $\set{x_{\alpha}}$ does not converge to $x$.
+  Then we have some neighborhood $U$ such that $x_{\alpha}$ is frequently in $X \setminus U$.
+  But some map $f\colon X \to [0, 1]$ must exist such that $f$ is $0$ at $x$ and $1$ on $X \setminus U$.
+  Thus $f(x_{\alpha})$ is frequently $1$ but $f(x) = 0$ which is a contradiction to the convergence of $f(x_{\alpha})$.
+\end{pf}
+
+\clearpage
+
+\begin{thrm}
+  If $X$ is completely regular and $f\colon X \to\ R$ is a bounded real valued map, then $f$ can be extended uniquely to a map $\beta(X) \to \R$.
+\end{thrm}
+\begin{pf}
+  Without loss of generality, suppose the image of $f$ is bounded between $0$ and $1$.
+  Recall that $[0, 1]^{\textbf{F}}$ is the set of all functions $\textbf{F} \to [0, 1]$.
+  Consider the function
+  \begin{align*}
+    \overline{f}\colon [0, 1]^{\textbf{F}} &\to \R \\
+                \mu &\mapsto \mu(f)
+  \end{align*}
+  Suppose that $\set{\mu_{\alpha}}$ is a net in $[0, 1]^{\textbf{F}}$ converging to $\mu$.
+  Then we have that
+  \[
+    \lim(\overline{f}(\mu_{\alpha})) = \lim(\mu_{\alpha}(f)) = \mu(f) = \overline{f}(\mu),
+  \]
+  which shows that $\overline{f}$ is continuous.
+  If $x \in X$ then we have that $\overline{f}(\Phi(x)) = \Phi(x)(f) = f(x)$ which shows that $\overline{f}$ does extend $f$.
+\end{pf}
+
+\clearpage
+
+\subsection*{Exercises}
 
 \clearpage
 \nocite{book:Steen_Seebach}
 \nocite{note:conrad_topologist_sine}
 \nocite{note:compactness_review}
+\nocite{book:rudin_RCA}
 \printbibliography
 \end{document}
