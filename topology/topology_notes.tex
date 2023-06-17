@@ -31,9 +31,15 @@
 \DTMsavenow{now}
 \date{\small Last Edited on \today\ at \DTMfetchhour{now}:\DTMfetchminute{now}}
 
+% Cover page number chicanery
+\newcommand{\CoverName}{Cover}
+
 \begin{document}
 \frontmatter
+\renewcommand{\thepage}{\CoverName}
 \maketitle
+
+\pagenumbering{roman}
 
 \section*{TODOs}
 
