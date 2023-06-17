@@ -2667,8 +2667,6 @@ Since subspaces of completely regular sets are completely regular, we must have 
   Thus $f(x_{\alpha})$ is frequently $1$ but $f(x) = 0$ which is a contradiction to the convergence of $f(x_{\alpha})$.
 \end{pf}
 
-\clearpage
-
 \begin{thrm}
   If $X$ is completely regular and $f\colon X \to\ R$ is a bounded real valued map, then $f$ can be extended uniquely to a map $\beta(X) \to \R$.
 \end{thrm}
@@ -2689,14 +2687,135 @@ Since subspaces of completely regular sets are completely regular, we must have 
   If $x \in X$ then we have that $\overline{f}(\Phi(x)) = \Phi(x)(f) = f(x)$ which shows that $\overline{f}$ does extend $f$.
 \end{pf}
 
+\begin{lem}
+  Let $A \subseteq X$ and $f\colon A \into Z$ be a map into a Hausdorff space $Z$.
+  Then there is at most one extension of $f$ into a map $\overline{f}\colon \overline{A} \to Z$.
+\end{lem}
+\begin{pf}
+  Suppose $\overline{f}, \overline{f}'\colon \overline{A} \to Z$ are two different such extensions of $f$.
+  Then choose $x$ such that $\overline{f}(x) \neq \overline{f}'(x)$.
+  Then by Hausdorffness of $Z$ there exists disjoint open neighborhoods $U$ and $U'$ such that $\overline{f}(x) \in U$ and $\overline{f}' \in U'$.
+  Choose a neighborhood $V$ of $x$ such that $\overline{f}(V) \subseteq U, \overline{f}'(V) \subseteq U'$.
+  By characterization of closure, $V$ intersects $A$ and this intersection contains some $y \in A \cap V$.
+  Thus $\overline{f}(y) \in U, \overline{f}'(y) \in U'$.
+  However by extension we have that $\overline{f}(y) = f(y) = \overline{f}'(y)$ contradicting disjointness of $U$ and $U'$.
+\end{pf}
+
+\clearpage
+
+\begin{prop}
+  Let $X$ be a completely regular space and $C$ a compact Hausdorff space.
+  The Stone-\Cech\ compactification $\beta(X)$ satisfies the following universal property.
+  If $f\colon X \to C$ is any compactification then there exists a unique map $g\colon\beta(X) \to C$ such that the following diagram commutes:
+  \begin{figure}[h]
+    \centering
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzIsMCwiXFxiZXRhKFgpIl0sWzIsMiwiQyJdLFswLDFdLFsxLDIsIlxcZXhpc3RzIX5nIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMiwiZiIsMl1d
+    \[
+      \begin{tikzcd}[every label/.append style={font=\normalsize}]
+        X && {\beta(X)} \\
+        \\
+        && C
+        \arrow[from=1-1, to=1-3]
+        \arrow["{\exists!~g}", dashed, from=1-3, to=3-3]
+        \arrow["f"', from=1-1, to=3-3]
+      \end{tikzcd}
+    \]
+    \caption{The universal property of the Stone\Cech\ Compatification}\label{fig:stone-cech-univ}
+  \end{figure}
+\end{prop}
+\begin{pf}
+  Note that compact spaces are immediately locally compact \quest{and locally compact spaces are completely regular} so $C$ is completely regular.
+  By \Cref{lem: Hausdorff_and_comp_reg-ish_embedding} we have that $C$ can be embedded into $[0, 1]^{J}$ for some $J$ so without loss of generality suppose that $C \subseteq [0, 1]^{J}$.
+  Then each component function $f_{\alpha}$ of $f$ is a bounded, continuous, real-valued function of $X$.
+  Thus $f_{\alpha}$ can be uniquely extended to a map $\overline{f_{\alpha}}\colon \beta(X) \to \R$.
+  Define $\overline{f}\colon \beta(X) \to \R^{J}$ by $\overline{f}(x) = (\overline{f_{\alpha}}(x))_{\alpha \in J}$.
+  Then $\overline{f}$ is continuous by product topology.
+  In fact, we now have that $\overline{f}$ maps $\beta(X)$ into $C \subseteq \R^{J}$.
+  Now let $x \in X$ and recall that $\Phi\colon X \to \beta(X)$ is the embedding of $X$ into its Stone-\Cech\ compactification.
+  We have that
+  \[
+    \overline{f}(\Phi(x)) = (\overline{f_{\alpha}}(\Phi(x)))_{\alpha \in J} = (f_{\alpha}(x))_{\alpha \in J} = f(x)
+  \]
+  which shows that the diagram \Cref{fig:stone-cech-univ} commutes.
+  Uniqueness is immediate by the prior lemma.
+\end{pf}
+
 \clearpage
 
 \subsection*{Exercises}
 
+\begin{exercise}[\tcite{book:Bredon} 1.11.1]
+  Show that the Stone-\Cech\ compactification $\beta(\cdot)$ is a functor on completely regular spaces by showing that a map $f\colon X \to Y$ induces a unique commutative diagram
+  \begin{figure}[h]
+    \centering
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJYIl0sWzIsMCwiWSJdLFsyLDIsIlxcYmV0YShZKSJdLFswLDIsIlxcYmV0YShYKSJdLFswLDEsImYiXSxbMSwyLCJpX1kiXSxbMywyLCJcXGJldGEoZikiLDJdLFswLDMsImlfWCIsMl1d
+    \[
+      \begin{tikzcd}[every label/.append style={font=\normalsize}]
+        X && Y \\
+        \\
+        {\beta(X)} && {\beta(Y)}
+        \arrow["f", from=1-1, to=1-3]
+        \arrow["{i_Y}", from=1-3, to=3-3]
+        \arrow["{\beta(f)}"', from=3-1, to=3-3]
+        \arrow["{i_X}"', from=1-1, to=3-1]
+      \end{tikzcd}
+    \]
+    \addtocounter{figure}{1}
+  \end{figure}
+  such that $\beta(f \circ g) = \beta(f) \circ \beta(g)$ and $\beta(1_{X}) = 1_{\beta(X)}$.
+\end{exercise}
+\begin{pf}
+  Suppose that $X, Y$ are completely regular spaces, $1_{X}\colon X \to \beta(X)$ and $1_{Y}\colon Y \to \beta(Y)$ their respective compactifications, and $f$ a map $X \to Y$.
+  \begin{figure}[h]
+    \centering
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzIsMCwiXFxiZXRhKFgpIl0sWzIsMiwiXFxiZXRhKFkpIl0sWzAsMSwiaV9YIl0sWzEsMiwiXFxleGlzdHMhflxcYmV0YShmKSIsMCx7ImNvbG91ciI6WzI0MCw2MCw2MF0sInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX0sWzI0MCw2MCw2MCwxXV0sWzAsMiwiaV95IFxcY2lyYyBmIiwyXV0=
+    \[
+      \begin{tikzcd}[every label/.append style={font=\normalsize}]
+        X && {\beta(X)} \\
+        \\
+        && {\beta(Y)}
+        \arrow["{i_X}", from=1-1, to=1-3]
+        \arrow["{\exists!~\beta(f)}", color={rgb,255:red,92;green,214;blue,214}, dashed, from=1-3, to=3-3]
+        \arrow["{i_y \circ f}"', from=1-1, to=3-3]
+      \end{tikzcd}
+    \]
+    \addtocounter{figure}{1}
+  \end{figure}
+
+  Since $\beta(Y)$ is compact Hausdorff, by the universal property of $\beta(X)$ we have that there exists a unique map $\beta(f)\colon \beta(X) \to \beta(Y)$ such that $\beta(f) \circ i_{X} = i_{Y} \circ f$.
+  Letting $Y = X$ and $f$ be $1_{X}$ and using the fact that $1_{\beta(X)}$ is a map $\beta(X) \to \beta(X)$ yields that $\beta(1_{X}) = 1_{\beta(X)}$.
+
+  Now let $Z$ be another completely regular space and $g$ a map $Y \to Z$.
+  \begin{figure}[h]
+    \centering
+    % https://q.uiver.app/#q=WzAsNixbMCwwLCJYIl0sWzIsMCwiWSJdLFs0LDAsIloiXSxbMCwyLCJcXGJldGEoWCkiXSxbMiwyLCJcXGJldGEoWSkiXSxbNCwyLCJcXGJldGEoWikiXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFswLDMsImlfWCIsMl0sWzEsNCwiaV9ZIiwyXSxbMiw1LCJpX1oiXSxbMyw0LCJcXGJldGEoZikiXSxbNCw1LCJcXGJldGEoZykiXSxbMyw1LCJcXGJldGEoZyBcXGNpcmMgZikiLDIseyJjdXJ2ZSI6Mn1dLFswLDIsImcgXFxjaXJjIGYiLDAseyJjdXJ2ZSI6LTJ9XV0=
+    \[
+      \begin{tikzcd}[every label/.append style={font=\normalsize}]
+    	  X && Y && Z \\
+    	  \\
+    	  {\beta(X)} && {\beta(Y)} && {\beta(Z)}
+    	  \arrow["f", from=1-1, to=1-3]
+    	  \arrow["g", from=1-3, to=1-5]
+    	  \arrow["{i_X}"', from=1-1, to=3-1]
+    	  \arrow["{i_Y}"', from=1-3, to=3-3]
+    	  \arrow["{i_Z}", from=1-5, to=3-5]
+    	  \arrow["{\beta(f)}", from=3-1, to=3-3]
+    	  \arrow["{\beta(g)}", from=3-3, to=3-5]
+    	  \arrow["{\beta(g \circ f)}"', curve={height=24pt}, from=3-1, to=3-5]
+    	  \arrow["{g \circ f}", curve={height=-24pt}, from=1-1, to=1-5]
+      \end{tikzcd}
+    \]
+    \addtocounter{figure}{1}
+  \end{figure}
+
+  Then by the uniqueness of the universal property, we must have that $\beta(g) \circ \beta(f) = \beta(g \circ f)$.
+\end{pf}
+
 \clearpage
-\nocite{book:Steen_Seebach}
 \nocite{note:conrad_topologist_sine}
 \nocite{note:compactness_review}
 \nocite{book:rudin_RCA}
+\nocite{book:Steen_Seebach}
+\nocite{book:Munkres}
 \printbibliography
 \end{document}
