@@ -1,4 +1,4 @@
-\documentclass[letterpaper, 11pt, titlepage]{article}
+\documentclass[letterpaper, 11pt, oneside]{book}
 
 \usepackage{style}  % If you feel like procrastinating, mess with this file
 \usepackage{algo}   % Thank you Jeff, very cool!
@@ -32,9 +32,8 @@
 \date{\small Last Edited on \today\ at \DTMfetchhour{now}:\DTMfetchminute{now}}
 
 \begin{document}
+\frontmatter
 \maketitle
-
-\clearpage
 
 \section*{TODOs}
 
@@ -50,15 +49,17 @@
 
 \quest{Many TODOs within proofs throughout}
 
+\tableofcontents
 \clearpage
+
 
 \listoftheorems[ignoreall, show={defn}, title={List of Definitions}]
-\clearpage
 
 \listoftheorems[ignoreall, show={ex}, title={List of Examples and Counterexamples}]
-\clearpage
 
-\section{Metric Spaces}
+\mainmatter
+
+\chapter{Metric Spaces}
 
 The most familiar example of a metric space is $\R^{n}$ with $\dist(x, y) = \pqty{\sum_{i = 1}^{n} (x_{i} - y_{i})^{2}}^{1/2}$.
 We also have a notion of continuity.
@@ -90,10 +91,11 @@ It is not hard to rephrase the definition of continuity in terms of $\e$-balls.
 
 We can actually even rephrase continuity in terms of open sets.
 
+\clearpage
+
 \begin{prop}
   A function $f\colon X \to Y$ between metric spaces is continuous if and only if $f^{-1}(U)$ is open for every open set $U \subseteq Y$.
 \end{prop}
-
 \begin{pf}
   Suppose $f\colon X \to Y$ is continuous.
   Let $U \subset Y$ be some open set and let $f(x) \in U$.
@@ -109,8 +111,6 @@ We can actually even rephrase continuity in terms of open sets.
 \end{pf}
 
 This can also all be rephrased in terms of closed sets, rather than open sets.
-
-\clearpage
 
 \begin{ex}[Other Metrics on $\R$]
   We can also equip other metrics on $\R^{n}$.
@@ -210,7 +210,7 @@ However it turns out that for $\R^{n}$, choice between these 3 metrics is irrele
 
 \clearpage
 
-\section{Topological Spaces}
+\chapter{Topological Spaces}
 
 We usually only care about continuity, not the actual metrics.
 Continuity can be formulated in terms of open sets.
@@ -251,8 +251,6 @@ Neighborhood bases let us define continuity at a single point.
 \end{defn}
 
 This is the same as saying $f^{-1}(N)$ is a neighborhood of $x$.
-
-\clearpage
 
 \begin{prop}
   A function $f\colon X \to Y$ between topological spaces is continuous if and only if it is continuous at each point $x \in X$.
@@ -406,7 +404,7 @@ Thus there is no way to argue that a topology is ``large'' or ``small'' without 
 
 \clearpage
 
-\subsection{Exercises}
+\subsection*{Exercises}
 
 \begin{exercise}[\tcite{book:Bredon} 1.2.1]
   Show that in a topological space $X$:
@@ -496,7 +494,7 @@ Thus there is no way to argue that a topology is ``large'' or ``small'' without 
 
 \clearpage
 
-\section{Subspaces}
+\chapter{Subspaces}
 
 \begin{defn}[Subspace]
   If $X$ is a topological space and $A \subseteq X$, then the \emph{relative topology} or \emph{subspace topology} on $A$ is the collection of intersections of $A$ with open sets of $X$.
@@ -796,8 +794,6 @@ However, we do not need this notation very often.
 
 \end{ex}
 
-\quest{TODO:\@ Baire Category stuff}
-
 \clearpage
 
 \subsection*{Exercises}
@@ -850,8 +846,6 @@ However, we do not need this notation very often.
   and $B$ is a countable basis for $X$.
 \end{pf}
 
-
-
 \begin{exercise}[\tcite{book:Bredon} 1.3.4]
   The union of two nowhere dense sets is nowhere dense.
 \end{exercise}
@@ -866,10 +860,13 @@ However, we do not need this notation very often.
   This is also impossible meaning that $U$ must be empty.
 \end{pf}
 
+\clearpage
+
 \begin{defn}[Irreducible Space]
   A topological space $X$ is said to be \emph{irreducible} if whenever $X = F \cup G$ with $F, G$ closed we have $X = F$ or $X = G$.
   A subspace is irreducible if it is irreducible in the subspace topology.
 \end{defn}
+\quest{Move this?}
 
 \begin{defn}[Zariski Space]
   A \emph{Zariski} space is a topological space such that every descending chain $F_{1} \containsneq F_{2} \containsneq F_{3} \containsneq \cdots$ of closed sets is eventually constant.
@@ -895,7 +892,7 @@ However, we do not need this notation very often.
 
 \clearpage
 
-\section{Connectivity and Components}
+\chapter{Connectivity and Components}
 
 Intuitively, a connected space is a space where you can move from one space to another with no jumps.
 Another intuition is that the space doesn't have two or more separated pieces.
@@ -997,6 +994,8 @@ Another intuition is that the space doesn't have two or more separated pieces.
   The equivalence classes of the relation stated in \Cref{prop: dvm_eq_rel} are called the \emph{quasi-components} of $X$.
 \end{defn}
 
+\clearpage
+
 \begin{prop}
   Quasi-components of a space $X$ are closed.
   Each connected set is contained in a quasi-component and in particular each component is contained in a quasi-component.
@@ -1052,6 +1051,8 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   Arc components are connected and so an arc component must be contained in some component.
 \end{pf}
 
+\clearpage
+
 \begin{prop}
   Arc components of locally arcwise connected space $X$ are clopen and coincide with the components.
 \end{prop}
@@ -1077,6 +1078,8 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   Thus we have that $\lambda^{-1}(p)$ is open and $\lambda^{-1}(q)$ is closed as desired and $\lambda$ is our desired path.
   Thus this space is arcwise connected.
 \end{ex}
+
+\clearpage
 
 \begin{ex}[Topologist's Sine Curve, A Space that is Connected but not Arcwise Connected]
   The \emph{Topologist's Sine Curve} is the subset of the real plane
@@ -1185,7 +1188,7 @@ We now prove some immediate properties of arcwise connectivity relating it to th
 
 \clearpage
 
-\section{Separation Axioms}
+\chapter{Separation Axioms}
 
 \begin{defn}[Separation Axioms, Hausdorff, Regular, Normal Spaces]
   The \emph{Separation Axioms}:
@@ -1217,6 +1220,8 @@ We now prove some immediate properties of arcwise connectivity relating it to th
   However, there is no open set containing $y$ but not $x$ so the space is not $T_{1}$.
 \end{ex}
 
+\clearpage
+
 \begin{prop}\label{prop: regular_iff_closed_neighborhood_basis}
   A Hausdorff space $X$ is regular if and only if the closed neighborhoods of any point form a neighborhood basis of the point.
 \end{prop}
@@ -1239,6 +1244,8 @@ We now prove some immediate properties of arcwise connectivity relating it to th
 \begin{pf}
   If $A \subseteq X$ is a subspace, just intersect a closed neighborhood basis in $X$ of some $a \in A$ with $A$ to obtain a closed neighborhood basis of $a$ in A.
 \end{pf}
+
+\clearpage
 
 \subsection*{Exercises}
 
@@ -1300,7 +1307,7 @@ We now prove some immediate properties of arcwise connectivity relating it to th
 
 \clearpage
 
-\section{Nets (Moore-Smith Convergence)}
+\chapter{Nets (Moore-Smith Convergence)}
 
 Many results in metric spaces are stated in terms of sequences.
 We discuss a generalization of sequences called \emph{nets}.
@@ -1327,6 +1334,8 @@ We discuss a generalization of sequences called \emph{nets}.
   A net $\phi\colon D \to X$ in a topological space $X$ is said to \emph{converge to $x \in X$} if for any neighborhood $U$ of $x$, $\phi$ is eventually in $U$.
 \end{defn}
 
+\clearpage
+
 \begin{prop}
   A topological space $X$ is Hausdorff if and only if any two limits of a convergent net are equal.
   Thus it makes sense to speak of the limit of a convergent net.
@@ -1344,13 +1353,11 @@ We discuss a generalization of sequences called \emph{nets}.
 
   We claim that this net converges to both $x$ and $y$.
   Let $W$ be any neighborhood of $x$.
-  Take any open set $V$ containint $y$ and an open set $U$ with $x \in U \subseteq W$.
+  Take any open set $V$ containing $y$ and an open set $U$ with $x \in U \subseteq W$.
   For any $(A, B) \geq (W, V)$ we have that $\phi(A, B) \in A \cap B \subseteq U \subseteq W$.
   Thus $\phi$ is eventually in $W$ and $\phi$ converges to $x$.
   A similar argument yields that $\phi$ also converges to $y$.
 \end{pf}
-
-\clearpage
 
 \begin{prop}\label{prop: continuous_iff_net_converges}
   $f\colon X \to Y$ between topological spaces is continuous if and only if for any net $\phi$ converging to $x \in X$, the net $f \circ \phi$ in $Y$ converges to $f(x)$.
@@ -1400,8 +1407,6 @@ So the condition in \Cref{prop: continuous_iff_net_converges} can be stated as
 \begin{defn}[Subnets]
   A \emph{subnet} of a net $\phi\colon D \to X$ is the composition of a final map $h\colon D' \to D$ to a net $\phi \circ h$.
 \end{defn}
-
-\clearpage
 
 \begin{prop}
   A net $\set{x_{\alpha}}$ is frequently in each neighborhood of a given point $x \in X$ if and only if it has a subnet which converges to $x$.
@@ -1512,7 +1517,7 @@ This past theorem is in fact equal to the Axiom of Choice.
 
 \clearpage
 
-\section{Compactness}
+\chapter{Compactness}
 
 \begin{defn}[Covering, Open Covering, Subcover]
   A \emph{covering} of a topological space $X$ is a collection of sets whose union is $X$.
@@ -1774,7 +1779,7 @@ This does not hold in arbitrary metric spaces.
 
 \clearpage
 
-\section{Products}
+\chapter{Products}
 
 \begin{defn}[Product Topology, Tychonoff Topology]
   Let $X$ and $Y$ be topological spaces.
@@ -1806,6 +1811,8 @@ This does not hold in arbitrary metric spaces.
   Let $\Bigtimes_{\alpha} U_{\alpha}$ be a basis element of the product topology.
   Then $\pi_{\beta}\pqty{\Bigtimes_{\alpha} U_{\alpha}} = U_{\beta}$ is open in $X_{\beta}$ which shows that $\pi_{\beta}$ is an open maps.
 \end{pf}
+
+\clearpage
 
 \begin{prop}\label{prop: compact_proj_closed}
   If $X$ is compact, then the projection $\pi_{Y}\colon X \times Y \to Y$ is closed.
@@ -1868,6 +1875,8 @@ This does not hold in arbitrary metric spaces.
   Thus $X$ is a closed subset of a compact set which is known to be compact \Cref{thrm: closed_subset_of_compact_is_compact}.
 \end{pf}
 
+\clearpage
+
 \begin{prop}\label{prop: net_of_product_converges}
   A net in a product space $X = \Bigtimes_{\alpha} X_{\alpha}$ converges to a point $(\ldots, x_{\alpha}, \ldots)$ if and only if its composition with each projection $\pi_{\alpha}\colon X \to X_{\alpha}$ converges to $x_{\alpha}$.
 \end{prop}
@@ -1923,6 +1932,8 @@ When $A$ itself is also a topological space, we use $X^{A}$ to denote the set of
   Thus $X_{\alpha}$ is normal.
 \end{pf}
 
+\clearpage
+
 \begin{ex}[Sorgenfrey's Half-Open Square Topology, Product of Normal may not be Normal]\
 
   Let $S$ denote the real line $\R$ with the half-open topology with half-open intervals $[a, b)$ as basis elements.
@@ -1953,10 +1964,8 @@ When $A$ itself is also a topological space, we use $X^{A}$ to denote the set of
   If $(x, y)$ lies on the line, then since the square $S((x, y), \e)$ opens up and to the right, it is also disjoint from $K$.
   Similarly, $L \setminus K$ is closed.
 
-  \clearpage
-
   We now show that $X$ is not normal.
-  \quest{Something something Baire Category Theorem, I don't get it...}
+  \quest{Something something Baire Category Theorem, move when covered later}
 \end{ex}
 
 \clearpage
@@ -2040,7 +2049,7 @@ In ordinary usage, if $X$ and $Y$ are disjoint space, we can regard $X + Y$ as $
 
 \clearpage
 
-\section{Metric Spaces Again}
+\chapter{Metric Spaces Again}
 
 In this section we will learn about two new concepts surrounding metric spaces.
 The first will be the concept of \emph{completeness} which is a condition on sequence convergence.
@@ -2064,6 +2073,8 @@ Before we continue, we state an equivalent criterion for compactness in metric s
   A metric space $X$ is \emph{sequentially compact} if every sequence in $X$ has a convergent subsequence.
 \end{defn}
 
+\clearpage
+
 \begin{prop}
   A metric space $X$ is compact if and only if it is sequentially compact.
 \end{prop}
@@ -2085,8 +2096,6 @@ Before we continue, we state an equivalent criterion for compactness in metric s
   For completeness, note that by sequential compactness any Cauchy sequence in $X$ has a convergent subsequence with limit $x \in X$.
   However using a triangle inequality argument, we can show that the whole Cauchy sequence converges to $x \in X$.
   Thus sequential compactness of $X$ implies $X$ is totally bounded and complete.
-
-\clearpage
 
   Now suppose that $X$ is totally bounded and complete.
   Let $\set{U_{i}}_{i \in I}$ be an open cover for $X$ and for the sake of contradiction suppose it has no finite subcover.
@@ -2116,6 +2125,8 @@ We have actually proven in metric spaces an equivalence of 3 conditions.
 \begin{defn}[Metrizable]
   A topological space $X$ is called \emph{metrizable} if it can be equipped with a metric such that the epsilon balls defined by that metric form a basis of $X$.
 \end{defn}
+
+\clearpage
 
 \begin{defn}[Completely Regular, $T_{3 \frac{1}{2}}$, Tychonoff Space]\label{defn: completely_regular}
   A Hausdorff space $X$ is \emph{completely regular} or $T_{3 \frac{1}{2}}$ if, for each point $x$ and closed set $C \subset X$ with $x \notin C$, there is a map $f\colon X \to [0, 1]$ such that $f(x) = 0$ and $f(C) = \set{1}$.
@@ -2153,6 +2164,9 @@ In fact, we can take $f^{-1}\pqty{\left[ 0, \frac{1}{2} \right)}$ and $f^{-1}\pq
   \[
     B_{\e}(x) = \Set{y \in X' | \sum_{i} \frac{\dist(x_{i}, y_{i})}{2^{i}} < \e}.
   \]
+
+  \clearpage
+
   Take $n$ such that $2^{-n} < \frac{\e}{4}$ and let $y_{i} \in X_{i}$ be such that $\dist(x_{i}, y_{i}) < \frac{\e}{2}$ for $i = 1, \ldots, n - 1$ and $\dist(x_{i}, y_{i})$ is arbitrary for $i \geq n$.
   Then we have that
   \begin{align*}
@@ -2182,8 +2196,6 @@ In fact, we can take $f^{-1}\pqty{\left[ 0, \frac{1}{2} \right)}$ and $f^{-1}\pq
   This means that $1 = f_{i}(c_{n}) \to f_{i}(x) = 0$ which is impossible.
   Thus $x \in C$ and $f^{-1}$ is continuous and we have that $f$ is a homeomorphism onto its image.
 \end{pf}
-
-\clearpage
 
 \begin{lem}\label{lem: second_count_comp_reg_family_F}
   Suppose that $X$ is second countable and is completely regular and let \textbf{S} be a countable basis for the open sets.
@@ -2254,7 +2266,7 @@ In fact, we can take $f^{-1}\pqty{\left[ 0, \frac{1}{2} \right)}$ and $f^{-1}\pq
 
 \clearpage
 
-\section{Existence of Real Valued Functions}
+\chapter{Existence of Real Valued Functions}
 
 In \Cref{thrm: urysohn_metrization} we relied on the fact that some set of continuous real-valued functions of sufficiently large size existed.
 We now address purely topological assumptions that guarantee such functions.
@@ -2305,8 +2317,6 @@ We now address purely topological assumptions that guarantee such functions.
   Normality implies Complete Regularity. $\qed$
 \end{cor}
 
-\clearpage
-
 \begin{thrm}[Tietze Extension Theorem]
   Let $X$ be normal and $F \subseteq X$ closed and let $f\colon F \to \R$ be continuous.
   Then there is a map $g\colon X \to \R$ such that $g(x) = f(x)$ for all $x \in F$.
@@ -2345,6 +2355,8 @@ We now address purely topological assumptions that guarantee such functions.
                \end{cases}
   \]
   Let $f_{n + 1} = f_{n} - g_{n + 1}$.
+
+  \clearpage
 
   Now let $g(x) = \sum_{n = 1}^{\infty} g_{n}(x)$.
   This converges uniformly since $0 \leq g_{n}(x) \leq \pqty{\frac{1}{3}} \cdot\pqty{\frac{2}{3}}^{n - 1}$ which then implies that $g$ is continuous.
@@ -2408,7 +2420,7 @@ We now address purely topological assumptions that guarantee such functions.
 
 \clearpage
 
-\section{Locally Compact Spaces}
+\chapter{Locally Compact Spaces}
 
 Many spaces, such as Euclidean spaces are not compact themselves but contain ``enough'' compact subspaces that are important to the properties of the spaces.
 Locally Compact spaces are one such class of spaces.
@@ -2447,6 +2459,8 @@ However, the similar statement for open subsets is much more complicated.
   \]
   satisfy the claim.
 \end{pf}
+
+\clearpage
 
 \begin{lem}\label{lem: finite_subcollection_empty}
   If $\set{K_{\alpha}}$ is some collection of compact subsets of a Hausdorff space $X$ and $\bigcap_{\alpha} K_{\alpha} = \emptyset$ then some finite subcollection of the $\set{K_{\alpha}}$ also has empty intersection.
@@ -2498,6 +2512,8 @@ However, the similar statement for open subsets is much more complicated.
   Thus $x$ has a compact neighborhood $\overline{V} \subseteq U$.
 \end{pf}
 
+\clearpage
+
 \begin{thrm}
   If $X$ is a locally compact Hausdorff space then each neighborhood of a point $x \in X$ contains a compact neighborhood of $x$.
   That is, the compact neighborhoods of $x$ form a neighborhood basis at $x$.
@@ -2511,8 +2527,6 @@ However, the similar statement for open subsets is much more complicated.
   Since $N$ is closed in $C$, it is compact by \Cref{thrm: closed_subset_of_compact_is_compact}.
   Then since $N$ is a neighborhood of $x$ in $\overline{V}$ and $N = N \cap V$, $N$ is a neighborhood of $x$ in the open set $V$ and thus in $X$.
 \end{pf}
-
-\clearpage
 
 \begin{thrm}\label{thrm: one_point_compactification}
   Let $X$ be a locally compact Hausdorff space.
@@ -2564,8 +2578,6 @@ However, the similar statement for open subsets is much more complicated.
 
 Note that if $X$ itself is compact, then $\infty$ is an isolated point (clopen) in $X^{+}$ and thus $X$ is clopen in $X^{+}$.
 
-\clearpage
-
 \begin{thrm}
   Suppose that $X$ and $Y$ are locally compact Hausdorff spaces and that $f\colon X \to Y$ is continuous.
   Then $f$ is proper if and only if $f$ extends to a continuous function $f^{+}\colon X^{+} \to Y^{+}$ with $f^{+}(\infty) = \infty$.
@@ -2610,6 +2622,8 @@ Note that if $X$ itself is compact, then $\infty$ is an isolated point (clopen) 
   \]
 \end{pf}
 
+\clearpage
+
 \begin{thrm}
   For a Hausdorff space $X$, the following are equivalent:
   \begin{enumerate}
@@ -2641,6 +2655,9 @@ Since subspaces of completely regular sets are completely regular, we must have 
   Here we are regarding an element of $[0, 1]^{\textbf{F}}$ as a function $\textbf{F} \to [0, 1]$.
   The closure of $\Phi(X)$ is the \emph{Stone-\Cech\ compactification} of $X$ and is denoted $\beta(X)$.
 \end{defn}
+
+\clearpage
+
 \begin{thrm}
   If $X$ is a completely regular space, then $\beta(X)$ is compact Hausdorff and $\Phi(X) \to \beta(X)$ is an embedding.
 \end{thrm}
@@ -2687,6 +2704,8 @@ Since subspaces of completely regular sets are completely regular, we must have 
   If $x \in X$ then we have that $\overline{f}(\Phi(x)) = \Phi(x)(f) = f(x)$ which shows that $\overline{f}$ does extend $f$.
 \end{pf}
 
+\clearpage
+
 \begin{lem}
   Let $A \subseteq X$ and $f\colon A \into Z$ be a map into a Hausdorff space $Z$.
   Then there is at most one extension of $f$ into a map $\overline{f}\colon \overline{A} \to Z$.
@@ -2700,8 +2719,6 @@ Since subspaces of completely regular sets are completely regular, we must have 
   Thus $\overline{f}(y) \in U, \overline{f}'(y) \in U'$.
   However by extension we have that $\overline{f}(y) = f(y) = \overline{f}'(y)$ contradicting disjointness of $U$ and $U'$.
 \end{pf}
-
-\clearpage
 
 \begin{prop}
   Let $X$ be a completely regular space and $C$ a compact Hausdorff space.

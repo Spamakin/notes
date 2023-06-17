@@ -100,6 +100,9 @@
 \DTMsetup{datesep=/}
 \DTMsetdatestyle{mdyy}
 
+% page layout
+\pagestyle{plain}
+
 % ---- SECTION FORMATTING ----
 % TODO: Fix numbered versions
 
@@ -143,13 +146,13 @@
     notefont=\bfseries,
 ]{theorem}
 
-\declaretheorem[style=theorem, numberwithin=section, name=Definition]{defn}
+\declaretheorem[style=theorem, numberwithin=chapter, name=Definition]{defn}
 \declaretheorem[style=theorem, numberlike=defn, name=Example]{ex}
 \declaretheorem[style=theorem, numberlike=defn, name=Theorem]{thrm}
 \declaretheorem[style=theorem, numberlike=defn, name=Proposition]{prop}
 \declaretheorem[style=theorem, numberlike=defn, name=Lemma]{lem}
 \declaretheorem[style=theorem, numberlike=defn, name=Corollary]{cor}
-\declaretheorem[style=theorem, numberwithin=section, name=Exercise]{exercise}
+\declaretheorem[style=theorem, numberwithin=chapter, name=Exercise]{exercise}
 
 \declaretheoremstyle[
     spaceabove=\topsep,
