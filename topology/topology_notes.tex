@@ -2319,7 +2319,7 @@ We now address purely topological assumptions that guarantee such functions.
   Iterate this construction repeatedly and apply \Cref{lem: dyadic_lem_for_urysohn}.
 \end{pf}
 
-\begin{cor}
+\begin{cor}\label{cor: normal_implies_comp_reg}
   Normality implies Complete Regularity. $\qed$
 \end{cor}
 
@@ -2833,6 +2833,202 @@ Since subspaces of completely regular sets are completely regular, we must have 
 
   Then by the uniqueness of the universal property, we must have that $\beta(g) \circ \beta(f) = \beta(g \circ f)$.
 \end{pf}
+
+\clearpage
+
+
+\chapter{Paracompact Spaces}
+
+\begin{defn}[Refinement]
+  If \textbf{U} and \textbf{V} are open coverings of a space then \textbf{U} is a \emph{refinement} of \textbf{V} if each element of \textbf{U} is a subset of some element of \textbf{V}.
+\end{defn}
+
+\begin{defn}[Locally Finite]
+  A collection \textbf{U} of open subsets of a space $X$ is said to be \emph{locally finite} if each point $x \in X$ has a neighborhood $N$ which meets, nontrivially, only a finite number of the members of \textbf{U}.
+\end{defn}
+
+\begin{defn}[Paracompactness]
+  A Hausdorff space $X$ is \emph{paracompact} if every open covering of $X$ has an open, locally finite refinement.
+\end{defn}
+
+\begin{prop}
+  A closed subspace of a paracompact space is paracompact.
+\end{prop}
+\begin{pf}
+  Let $A$ be a closed subspace of a paracompact space $X$.
+  Cover $A$ with sets open in $X$ and add $X \setminus A$.
+  This is an open covering of $X$ so can find a locally finite refinement of this open covering and intersect it with $A$.
+  This gives a locally finite refinement of the originally covering of $A$.
+  Indeed this is a refinement and it is open.
+  For $a \in A$, we have that $a$ has a neighborhood $N$ which meets nontrivially with only a finite number of the members of the locally finite refinement of $X$.
+  Thus $N$ must meet nontrivially with only a finite number of the members of the locally finite refinement of the covering of $A$.
+\end{pf}
+
+\clearpage
+
+\begin{thrm}\label{thrm: paracompact_is_normal}
+  A paracompact space is normal.
+\end{thrm}
+\begin{pf}
+  We will first show that a paracompact space $X$ is regular.
+  Suppose that $x \in X$ and $C \subseteq X$ is closed with $x \notin C$.
+  For each point $y \in C$ there are disjoint open sets $U_{y}, V_{y}$ such that $x \in U_{y}$ and $y \in V_{y}$.
+  Cover $X$ by $X \setminus C$ along with the $V_{y}$.
+  Then we can find a open locally finite refinement $\set{U_{\alpha}}$.
+  Let
+  \[
+    U = \bigcup_{\substack{\alpha \\ U_{\alpha} \subseteq \text{ some } V_{y}}} U_{\alpha}.
+  \]
+  Then we have that $C \subseteq U$.
+  Since this is a locally finite collection, \quest{its closure $\overline{U}$ is equal to the union of the closures of the same $U_{\alpha}$'s.}
+  However, $x$ is not in any of the $\overline{U_{\alpha}}$ and so $x \notin \overline{U}$.
+  Thus $U$ and $X \setminus \overline{U}$ separates $x$ and $C$.
+
+  The same argument with $C$ playing the role of $x$ and the other closed set playing the role of $C$ shows that $X$ is normal.
+\end{pf}
+
+Recall by \Cref{cor: normal_implies_comp_reg} that normal spaces are completely regular.
+Thus paracompact spaces just need second countability to be metrizable.
+It is known that metric spaces are paracompact, however the proof is beyond our scope for now.
+\quest{Find examples.}
+We can find paracompact spaces that are not metrizable, as well as paracompact spaces with subspaces that are not paracompact.
+
+Recall that normality implies that there are many real valued maps.
+\begin{defn}[Support]
+  If $f$ is a real valued map, then the \emph{support of $f$} is
+  \[
+    \supp(f) = \overline{\set{x | f(x) \neq 0}}.
+  \]
+\end{defn}
+
+\begin{defn}[Partition of Unity]
+  Let $\set{U_{\alpha}}_{\alpha \in A}$ be an open covering of a space $X$.
+  Then a \emph{partition of unity} subordinate to this covering is a collection of maps
+  \[
+    \set{f_{\beta}\colon X \to [0, 1]}_{\beta \in B}
+  \]
+  such that
+  \begin{enumerate}
+  \item There is a locally finite open refinement $\set{V_{\beta}}_{\beta \in B}$ such that $\supp(f_{\beta}) \subseteq V_{\beta}$ for each $\beta \in B$; and
+  \item $\Sum_{\beta \in B} f_{\beta}(x) = 1$ for each $x \in X$.
+  \end{enumerate}
+\end{defn}
+
+\clearpage
+
+\begin{thrm}
+  If $X$ is paracompact and \textbf{U} is an open covering of $X$ then there exists a partition of unity subordinate to \textbf{U}.
+\end{thrm}
+\begin{pf}
+  \quest{I do not understand this proof at all. Look at Lee ITM}
+  Without loss of generality, by paracompactness of $X$ we may assume that $\textbf{U} = \set{U_{\alpha}}_{\alpha \in A}$ is locally finite.
+  Consider a family of functions $F = \set{g_{\beta}\colon X \to [0, 1]}_{\beta \in A_{F}}$, where $A_{F} \subseteq A$, such that for $W_{\beta} \defeq \set{x | g_{\beta}(x) > 0}$ we have $\overline{W_{\beta}} \subseteq U_{\beta}$ and $\set{W_{\beta}}_{\beta \in A_{F}} \cup \set{U_{\alpha}}_{\alpha \in A \setminus A_{F}}$ covers $X$.
+  \quest{Why does such a family exist?}.
+  Let \textbf{F} be a collection of such families ordered by inclusion and is a maximal such collection \quest{what?}.
+  Let $G$ be the union of all the families in \textbf{F}.
+  We claim that $G$ is an element of \textbf{F}.
+  Note that we have that $G = \set{g_{\beta}}_{\beta \in A_{G}}$ and that $A_{G}$ is the union of all the families in \textbf{F}.
+  Suppose that $G \notin \textbf{F}$.
+  Then there is some $x \in X$ not in any of the $W_{\beta}$ for $\beta \in A_{G}$ or in any of the $U_{\alpha}$ for $\alpha \in A \setminus A_{G}$.
+  Let $\set{\alpha_{1}, \ldots, \alpha_{n}}$ be the finite, non-empty set such that $x \in U_{\alpha_{i}}$ for all $i$.
+  Then each $\alpha_{i}$ is in $A_{G}$.
+  Since \textbf{F} is simply ordered, there is some $F \in \textbf{F}$ such that $\alpha_{i} \in A_{F}$ for all $i$.
+  Then $x$ is in some $W_{\alpha_{i}}$ \quest{which is a contradiction}.
+  Thus, $G \in \textbf{F}$ as claimed.
+
+  We now show that $A_{G} = A$.
+  Suppose now and let $\alpha \in A \setminus A_{G}$.
+  Let
+  \[
+    D \defeq \bigcup_{\beta \in A_{G}} W_{\beta} \cup \bigcup_{\substack{\gamma \in A \setminus A_{G} \\ \gamma \neq \alpha}} U_{\gamma}.
+  \]
+  Then we have that $X = D \cup U_{\alpha}$ \quest{why}.
+  Let $C = X \setminus D$ which is closed and contained in $U_{\alpha}$.
+  Since $X$ is normal by \Cref{thrm: paracompact_is_normal}, there exists an open set $V$ such that $C \subseteq V \subseteq \overline{V} \subseteq U_{\alpha}$.
+  By \Cref{lem: urysohn_lemma}, there exists a map $g_{\alpha}\colon X \to [0, 1]$ which is $1$ on $C$ and $0$ outside of $V$.
+  But $W_{\alpha} \containseq C$ and so $X = D \cup W_{\alpha}$.
+  Thus $G \cup \set{g_{\alpha}}$ is a collection of maps satisfying the above conditions and properly containing $G$.
+  This contradicts the maximality of \textbf{F} and thus we must have that $A_{G} = A$.
+
+  Now we have a collection of maps $\set{g_{\alpha}}_{\alpha \in A}$ such that all the $W_{\alpha}$ cover $X$ and $\overline{W_{\alpha}} \subseteq U_{\alpha}$.
+  Define $g = \Sum_{\alpha} g_{\alpha}$.
+  This is well defined by \quest{local finiteness}.
+  Note that $g(x) > 0$ for all $x$.
+  Let $f_{\alpha} = g_{\alpha} / g$ which yields our \quest{desired partition of unity}.
+\end{pf}
+
+We have actually proven more than what was stated.
+If the original covering was already locally finite, then we did not need refinement.
+Also note that the $W_{\alpha}$ form a covering and $\overline{W_{\alpha}} \subseteq U_{\alpha}$.
+Thus we have:
+\begin{prop}
+  If $X$ is paracompact and $\set{U_{\alpha}}$ is a locally finite open covering of $X$ then there is an open covering $\set{V_{\alpha}}$ such that for each $\alpha$ we have $\overline{V_{\alpha}} \subseteq U_{\alpha}$. \qed
+\end{prop}
+
+The definition of paracompact is hard to verify.
+The following criterion will apply in most cases we care about.
+\begin{defn}[$\sigma$-compactness]
+  A space is \emph{$\sigma$-compact} if it is the union of countably many compact subspaces.
+\end{defn}
+
+\clearpage
+
+\begin{thrm}\label{thrm: paracompact_iff_union_sigma_compact}
+  A locally compact, Hausdorff space $X$ is paracompact if and only if it is the disjoint union of open $\sigma$-compact subsets.
+\end{thrm}
+\begin{pf}
+  $\implies\colon$ Using local compactness, we may cover $X$ by open sets $U_{\alpha}$ such that $\overline{U_{\alpha}}$ is compact.
+  Using paracompactness, we can replace this covering by one which is also locally finite.
+  We now inductively construct open sets whose closures are compact.
+  First let $V_{1} = U_{\beta}$ for some given $\beta$.
+  Now suppose $V_{n}$ has already been defined and consider all $U_{\alpha}$ which intersect $\overline{V_{n}}$.
+  By compactness of $\overline{V_{n}}$ and local finiteness there are finitely many such $U_{\alpha}$.
+  Let $V_{n + 1}$ be the union of these $U_{\alpha}$.
+  Then $\overline{V_{n + 1}}$ is the union of the closures of these $U_{\alpha}$ and thus compact.
+  Note that we have that $\overline{V_{n}} \subseteq V_{n + 1}$.
+  Let $V = \bigcup_{n > 0} V_{n}$.
+  Then $V$ is the union of countably many of these $U_{\alpha}$.
+  By local finiteness, $\overline{V}$ is the union of the closures of the $U_{\alpha}$'s but each of these closures is contained in some $\overline{V} \subseteq V_{n + 1} \subseteq V$.
+  Thus $\overline{V} = V$ is clopen by construction and is also $\sigma$-compact.
+  \quest{The rest of this proof is a Maximality Principle argument which is left to the reader}.
+
+  $\impliedby\colon$ Now suppose that $X$ is the disjoint union of open $\sigma$-compact spaces.
+  It is clear that the disjoint union of $\sigma$-compact spaces is $\sigma$-compact and so we may assume that $X$ itself is $\sigma$-compact so $X = C_{1} \cup C_{2} \cup \cdots$ where each of the $C_{i}$ are compact.
+  In order, alter each of the $C_{i}$ by adding to each of the $C_{j}$ that come after a finite union of compact sets, found by local compactness, whose interiors cover $C_{i}$.
+  Thus we have that $C_{i} \subseteq \inte(C_{i + 1})$ for all $i$.
+  Now define compact sets $A_{1} = C_{1}$ and $A_{i} = C_{i} \setminus \inte(C_{i - 1})$ for all $i > 1$.
+  We can think of the $C_{i}$ as concentric dists and $A_{i}$ the rings between them \quest{fig}.
+  Note that $A_{i}$ intersects nontrivially at most with $A_{i - 1}$ and $A_{i + 1}$.
+  Each of the $A_{i}$ are compact and thus normal (\Cref{thrm: compact_haus_is_norm}).
+  Thus we can enlarge each of the $A_{i}$ to find compact subsets $B_{i}$ such that $\inte(B_{i}) \containseq A_{i}$ and such that $B_{i}$ only nontrivially intersects $B_{i - 1}$ and $B_{i + 1}$.
+  Now, given an open covering of $X$, we consider the induced covering of each of the $A_{i}$.
+  We can \quest{select a finite refinement still covering $A_{i}$} and with none of the covering sets \quest{overflowing} from $B_{i}$.
+  These finite coverings provide an open locally finite refinement of the original covering showing that $X$ is paracompact.
+\end{pf}
+
+\begin{thrm}
+  If $X$ is locally compact, Hausdorff, and second countable then its one-point compactification $X^{+}$ is metrizable and $X$ is $\sigma$-compact and paracompact.
+\end{thrm}
+\begin{pf}
+  Let \textbf{B} be a countable basis for $X$ and $C \subseteq X$ compact.
+  We first show that $X^{+}$ is second countable by forming a countable basis for it.
+  If we have an open set in $X$, we are done.
+  We consider the other case.
+  If $x \in C$ then $x$ has a compact neighborhood $N$ and there is some $U_{x} \in \textbf{B}$ such that $x \in U_{x} \subseteq N$.
+  By compactness, $C$ is covered by a finite union $U_{x_{1}} \cup \cdots \cup U_{x_{n}}$.
+  Let $V = X \setminus \bigcup_{i = 1}^{n} \overline{U_{i}}$.
+  Then $V \cup \set{\infty}$ is a neighborhood of $\infty$ in $X^{+}$ contained in $X^{+} \setminus C$.
+  These $V$ are indexed by a finite number of elements of \textbf{B} and thus there are countably many such $V$.
+  Thus $X^{+}$ is second countable since $X$ is second countable by assumption.
+  Since $X^{+}$ is second countable and locally compact, it is $\sigma$-compact and thus paracompact by \Cref{thrm: paracompact_iff_union_sigma_compact} $X^{+}$.
+  Since $X^{+}$ is compact and Hausdorff, by \Cref{thrm: compact_haus_is_norm} it is normal.
+  By \Cref{cor: normal_implies_comp_reg}, we have that $X^{+}$ is completely regular since it is normal.
+  Then by the Urysohn Metrization Theorem (\Cref{thrm: urysohn_metrization}) since $X^{+}$ is completely regular and second countable, it is metrizable.
+\end{pf}
+
+\clearpage
+
+\subsection*{Exercises}
 
 \clearpage
 \nocite{note:conrad_topologist_sine}
