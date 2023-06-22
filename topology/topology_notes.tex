@@ -1859,7 +1859,7 @@ This does not hold in arbitrary metric spaces.
   Simple inductive argument from \Cref{cor: prod_of_compact_is_compact}.
 \end{pf}
 
-\begin{cor}
+\begin{cor}\label{cor: I^n_compact}
   Let $I = [0, 1]$.
   Then $I^{n} \subseteq \R^{n}$ is compact.
 \end{cor}
@@ -2916,54 +2916,40 @@ Recall that normality implies that there are many real valued maps.
 
 \clearpage
 
+\begin{lem}\label{lem: paracompact_refinement_closed_subset}
+  Suppose $X$ is a paracompact space.
+  If $\textbf{U} = \set{U_{\alpha}}_{\alpha \in A}$ is an open cover of $X$, then there exists a open locally finite refinement $\textbf{V} = \set{V_{\alpha}}_{\alpha \in A}$ such that $\overline{V_{\alpha}} \subseteq U_{\alpha}$ for all $\alpha \in A$.
+\end{lem}
+\begin{pf}
+  Recall by \Cref{exercise: bredon_1.5.6} that each $x \in X$ has a neighborhood $Y_{x}$ such that $\overline{Y_{x}} \subseteq U_{\alpha}$ for some $\alpha$.
+  The cover $\set{Y_{x}}_{x \in X}$ has an open locally finite refinement $\textbf{Z} = \set{Z_{\beta}}_{\beta \in B}$ by paracompactness of $X$.
+  Thus for each $\beta \in B$ there is some $x$ such that $Z_{\beta} \subseteq Y_{x}$ and thus there is some $\alpha$ such that $\overline{Z_{\beta}} \subseteq \overline{Y_{x}} \subseteq U_{\alpha}$.
+  This defines a function $a\colon B \to A$ by choosing some such $\alpha$ for each $\beta$ and setting $a(\beta) = \alpha$.
+  Then for each $\alpha \in A$, we have an open subset
+  \[
+    V_{\alpha} \defeq \bigcup_{\substack{\beta \in B \\ a(\beta) = \alpha}} Z_{\beta} \subseteq X.
+  \]
+  If no such $\beta$ exist then $V_{\alpha} = \emptyset$.
+  \quest{Since \textbf{Z} is locally finite, we have that}
+  \[
+    \overline{V_{\alpha}} \defeq \bigcup_{\substack{\beta \in B \\ a(\beta) = \alpha}} \overline{Z_{\beta}}.
+  \]
+  This is contained in $U_{\alpha}$ as required.
+\end{pf}
+
 \begin{thrm}
   If $X$ is paracompact and \textbf{U} is an open covering of $X$ then there exists a partition of unity subordinate to \textbf{U}.
 \end{thrm}
 \begin{pf}
-  \quest{I do not understand this proof at all. Look at Lee ITM}
-  Without loss of generality, by paracompactness of $X$ we may assume that $\textbf{U} = \set{U_{\alpha}}_{\alpha \in A}$ is locally finite.
-  Consider a family of functions $F = \set{g_{\beta}\colon X \to [0, 1]}_{\beta \in A_{F}}$, where $A_{F} \subseteq A$, such that for $W_{\beta} \defeq \set{x | g_{\beta}(x) > 0}$ we have $\overline{W_{\beta}} \subseteq U_{\beta}$ and $\set{W_{\beta}}_{\beta \in A_{F}} \cup \set{U_{\alpha}}_{\alpha \in A \setminus A_{F}}$ covers $X$.
-  \quest{Why does such a family exist?}.
-  Let \textbf{F} be a collection of such families ordered by inclusion and is a maximal such collection \quest{what?}.
-  Let $G$ be the union of all the families in \textbf{F}.
-  We claim that $G$ is an element of \textbf{F}.
-  Note that we have that $G = \set{g_{\beta}}_{\beta \in A_{G}}$ and that $A_{G}$ is the union of all the families in \textbf{F}.
-  Suppose that $G \notin \textbf{F}$.
-  Then there is some $x \in X$ not in any of the $W_{\beta}$ for $\beta \in A_{G}$ or in any of the $U_{\alpha}$ for $\alpha \in A \setminus A_{G}$.
-  Let $\set{\alpha_{1}, \ldots, \alpha_{n}}$ be the finite, non-empty set such that $x \in U_{\alpha_{i}}$ for all $i$.
-  Then each $\alpha_{i}$ is in $A_{G}$.
-  Since \textbf{F} is simply ordered, there is some $F \in \textbf{F}$ such that $\alpha_{i} \in A_{F}$ for all $i$.
-  Then $x$ is in some $W_{\alpha_{i}}$ \quest{which is a contradiction}.
-  Thus, $G \in \textbf{F}$ as claimed.
-
-  We now show that $A_{G} = A$.
-  Suppose now and let $\alpha \in A \setminus A_{G}$.
-  Let
-  \[
-    D \defeq \bigcup_{\beta \in A_{G}} W_{\beta} \cup \bigcup_{\substack{\gamma \in A \setminus A_{G} \\ \gamma \neq \alpha}} U_{\gamma}.
-  \]
-  Then we have that $X = D \cup U_{\alpha}$ \quest{why}.
-  Let $C = X \setminus D$ which is closed and contained in $U_{\alpha}$.
-  Since $X$ is normal by \Cref{thrm: paracompact_is_normal}, there exists an open set $V$ such that $C \subseteq V \subseteq \overline{V} \subseteq U_{\alpha}$.
-  By \Cref{lem: urysohn_lemma}, there exists a map $g_{\alpha}\colon X \to [0, 1]$ which is $1$ on $C$ and $0$ outside of $V$.
-  But $W_{\alpha} \containseq C$ and so $X = D \cup W_{\alpha}$.
-  Thus $G \cup \set{g_{\alpha}}$ is a collection of maps satisfying the above conditions and properly containing $G$.
-  This contradicts the maximality of \textbf{F} and thus we must have that $A_{G} = A$.
-
-  Now we have a collection of maps $\set{g_{\alpha}}_{\alpha \in A}$ such that all the $W_{\alpha}$ cover $X$ and $\overline{W_{\alpha}} \subseteq U_{\alpha}$.
-  Define $g = \Sum_{\alpha} g_{\alpha}$.
-  This is well defined by \quest{local finiteness}.
-  Note that $g(x) > 0$ for all $x$.
-  Let $f_{\alpha} = g_{\alpha} / g$ which yields our \quest{desired partition of unity}.
+  Let $\textbf{U} = \set{U_{\alpha}}_{\alpha \in A}$ be an open cover of $X$.
+  Apply \Cref{lem: paracompact_refinement_closed_subset} twice to get open locally finite covers $\textbf{V} = \set{V_{\alpha}}_{\alpha \in A}$ and $\textbf{W} = \set{W_{\alpha}}_{\alpha \in A}$ such that $\overline{W_{\alpha}} \subseteq V_{\alpha}$ and $\overline{V_{\alpha}} \subseteq U_{\alpha}$.
+  By \Cref{lem: urysohn_lemma} for each $\alpha \in A$ we can find maps $f_{\alpha}\colon X \to [0, 1]$ such that $f_{\alpha}$ is $1$ on $\overline{W_{\alpha}}$ and $\supp(f_{\alpha}) \subseteq V_{\alpha}$.
+  Let $f\colon X \to \R$ such that $f(p) = \Sum_{\alpha}f_{\alpha}(p)$.
+  Since $\supp(f_{\alpha}) \subseteq V_{\alpha}$ we must have that $\set{\supp(f_{\alpha})}_{\alpha \in A}$ is locally finite, and thus only finitely many terms of the sum are non-zero and $f$ is continuous.
+  $\set{W_{\alpha}}$ covers $X$ and so for each $p \in X$ we can find $\alpha$ such that $p \in W_{\alpha}$ and thus $f_{\alpha}(p) = 1$.
+  Let $g_{\alpha} = f_{\alpha} / f$.
+  We see that $\set{g_{\alpha}}_{\alpha \in A}$ is the desired partition of unity.
 \end{pf}
-
-We have actually proven more than what was stated.
-If the original covering was already locally finite, then we did not need refinement.
-Also note that the $W_{\alpha}$ form a covering and $\overline{W_{\alpha}} \subseteq U_{\alpha}$.
-Thus we have:
-\begin{prop}
-  If $X$ is paracompact and $\set{U_{\alpha}}$ is a locally finite open covering of $X$ then there is an open covering $\set{V_{\alpha}}$ such that for each $\alpha$ we have $\overline{V_{\alpha}} \subseteq U_{\alpha}$. \qed
-\end{prop}
 
 The definition of paracompact is hard to verify.
 The following criterion will apply in most cases we care about.
@@ -3030,11 +3016,24 @@ The following criterion will apply in most cases we care about.
 
 \subsection*{Exercises}
 
+\begin{exercise}[\tcite{book:Bredon} 1.12.1]
+  Without using \Cref{thrm: paracompact_iff_union_sigma_compact} or the fact that metric spaces are paracompact, show that any open subspace of euclidian space is $\sigma$-compact.
+  By \Cref{thrm: paracompact_iff_union_sigma_compact}, the space is also paracompact.
+\end{exercise}
+\begin{pf}
+  Let $X \subseteq \R^{n}$ be an open subspace.
+  Recall that $I^{n}$ is compact for $I = [0, 1]$ (\Cref{cor: I^n_compact}).
+  This is of course translation invariant and there are countably many such translations since $\Z^{n}$ is countable.
+  Every point in $X$ is contained in some translation $I^{n}$ and this forms a compact cover of $X$.
+  Intersect each translation with $X$ to yield that $X$ is the union of countably many compact subspaces.
+\end{pf}
+
 \clearpage
 \nocite{note:conrad_topologist_sine}
 \nocite{note:compactness_review}
-\nocite{book:rudin_RCA}
+\nocite{book:Rudin_RCA}
 \nocite{book:Steen_Seebach}
 \nocite{book:Munkres}
+\nocite{book:Lee_ITM}
 \printbibliography
 \end{document}
