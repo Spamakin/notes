@@ -1578,7 +1578,7 @@ The following theorem is just a translation of compactness in terms of open sets
   Cover $A$ with open sets in $X$, add the open set $X \setminus A$, and then apply compactness of $X$.
 \end{pf}
 
-\begin{thrm}
+\begin{thrm}\label{thrm: bij_comp_to_Haus_is_homeo}
   Suppose that $X$ is compact, $Y$ is Hausdorff, $f\colon X \to Y$ is a continuous bijection, then $f$ is a homeomorphism.
 \end{thrm}
 \begin{pf}
@@ -3028,6 +3028,208 @@ The following criterion will apply in most cases we care about.
   This is of course translation invariant and there are countably many such translations since $\Z^{n}$ is countable.
   Every point in $X$ is contained in some translation $I^{n}$ and this forms a compact cover of $X$.
   Intersect each translation with $X$ to yield that $X$ is the union of countably many compact subspaces.
+\end{pf}
+
+\clearpage
+
+\chapter{Quotient Spaces}
+
+Quotient spaces, or identification spaces, are a central idea in topology.
+It gives a foundation for the idea of ``pasting / gluing'' spaces together.
+It also lets us construct many new spaces out of existing ones.
+
+\begin{defn}[Quotient Topology, Topology Induced by a Function]
+  Let $X$ be a topological space, $Y$ a set, and $f\colon X \onto Y$ a surjective function.
+  Then the \emph{topology induced by $f$} or the \emph{quotient topology} is the topology where $V \subseteq Y$ is open if and only if $f^{-1}(V)$ is open in $X$.
+  This is the largest topology on $Y$ making $f$ continuous.
+\end{defn}
+
+\begin{defn}[Quotient Space]
+  Let $X$ be a topological space and $\sim$ an equivalence relation on $X$.
+  Let $Y = X / \sim$ be the equivalence classes and $\pi\colon X \to Y$ the canonical projection.
+  Then $Y$, with the topology induced by $\pi$, is a \emph{quotient space} of $X$.
+\end{defn}
+
+\begin{prop}
+  A quotient space of a quotient space is a quotient space. $\qed$
+\end{prop}
+
+\begin{defn}[Identification Map]
+  A map $f\colon X \to Y$ is called an \emph{identification map} if it is surjective and $Y$ has the quotient topology induced by $f$.
+\end{defn}
+
+\begin{prop}\label{prop: id_map_iff_all_g_cont}
+  A surjective function $f\colon X \to Y$ is an identification map if and only if for all functions $g\colon Y \to Z$, we have that $g \circ f$ is continuous if and only if $g$ is continuous.
+\end{prop}
+\begin{pf}
+  $\implies\colon$ Suppose that $f\colon X \to Y$ is an identification map and $g\colon Y \to Z$ some function between topological spaces.
+  Suppose that $g \circ f$ is continuous and let $V \subseteq Z$ be open.
+  Then we have that $f^{-1}\pqty{g^{-1}\pqty{V}}$ is open.
+  But by definition of quotient topology on $Y$, we have that $f^{-1}\pqty{g^{-1}\pqty{V}}$ is open if and only if $g^{-1}(V)$ is open.
+  Thus $g$ is continuous.
+  Obviously the composition of continuous functions is continuous.
+
+  $\impliedby\colon$ For the reverse direction, we consider the case  $Z = Y$ as sets with the identification topology on $Z$ and $g\colon Y \to Z$ the identity function $1_{Y}$.
+  Then $1_{Y} \circ f$ is continuous meaning that $1_{Y}$ is continuous by assumption.
+  But we also have that $1_{Y}^{-1}$ is continuous because $1_{Y}^{-1} \circ 1_{Y} \circ f = f$ is continuous.
+  Since $Z$ has the quotient topology, $g$ is a homeomorphism.
+  Thus, $Y = Z$ as spaces and $Y$ has the quotient topology making $f$ an identification map.
+\end{pf}
+
+\begin{ex}[Equivalent Descriptions of the Projective Plane]
+  \quest{A figure could go hard}
+  The projective place is defined as the sphere $\textbf{S}^{2}$ with antipodal points identified.
+  This means that we give $\textbf{S}^{2}$ the quotient topology with the relation that antipodal points are equivalent.
+  We can give a second description of the unit $\textbf{D}^{2}$ with antipodal points on the boundary identified.
+  Regard $D^{2}$ as homeomorphic to the upper hemisphere and consider the following diagram:
+
+  \quest{diagram}
+
+  The maps $f, g$ are the identifications, $i$ is inclusion, and $k$ is induced as \quest{the only function making the diagram commute}.
+  If $U \subseteq \textbf{S}^{2} / \sim$ is open, then $g^{-1}(U)$ is open and thus $(g \circ i)^{-1}(U)$ is open.
+  But this is equivalent to $(k \circ f)^{-1}(U)$ which means that $k^{-1}(U)$ is open by definition of quotient topology.
+  Thus $k$ is continuous.
+  We have that \quest{$k$ is injective and surjective}.
+  Moreover, $\textbf{D}^{2} / \sim$ is compact by \Cref{thrm: image_of_compact_is_compact} since $\textbf{D}^{2}$ is compact.
+  Also $\textbf{S}^{2} / \sim$ is \quest{easily seen to be Hausdorff}.
+  Thus by \Cref{thrm: bij_comp_to_Haus_is_homeo}, we have that $k$ is a homeomorphism.
+  Thus these two definitions of the projective plane are topologically equivalent.
+\end{ex}
+
+A special case of quotient spaces is the idea of ``collapsing'' a subspace:
+\begin{defn}[$X / A$]
+  If $X$ is a space and $A \subseteq X$, then $X / A$ is the quotient obtained by the equivalence relation whose classes are $A$ and singletons $\set{x}$ for $x \in X \setminus A$.
+\end{defn}
+
+\begin{prop}
+  If $X$ is regular and $A$ is closed, then $X / A$ is Hausdorff.
+  If $X$ is normal and $A$ is closed, then $X / A$ is normal.
+\end{prop}
+\begin{pf}
+  Denote the projection as $\pi\colon X \to X / A$.
+  Suppose that $X$ is regular and $A$ is closed.
+  Let $x, y \in X / A$ be distinct elements.
+  If one of $x$ or $y$ are equal to $A$, say $x$, then since $X$ is regular we can separate $\pi^{-1}(A) = A$ and $\pi^{-1}(y) = \set{y}$ by regularity of $X$.
+  If neither of $x$ or $y$ are equal to $A$, we can do something similar with $X$ being Hausdorff.
+
+  The proof for the second fact is similar.
+\end{pf}
+
+\begin{ex}[Disk as Quotient of Cylinder]
+  Consider the cylinder $S^{n} \times I$.
+  Let $f\colon S^{n} \times I \to D^{n + 1}$ by mapping $(x, t) \to tx$.
+  This maps $S^{n} \times \set{0}$ to the origin and thus $f$ factors through $S^{n} \times I / S^{n} \times \set{0}$ \quest{is there a first iso thrm for topology}.
+  The resulting map $g\colon S^{n} \times I / S^{n} \times \set{0} \to D^{n + 1}$ is \quest{clearly one-to-one and onto}.
+  Thus it is a homeomorphism by \Cref{thrm: bij_comp_to_Haus_is_homeo}.
+\end{ex}
+
+\begin{ex}[Sphere as Quotient of Disk]
+  Consider the $n$-dimensional disk $D^{n}$.
+  This is homeomorphic to the lower $n$-hemisphere of radius $2$ centered at $1$ on the ``vertical axis.''
+  \quest{pic plz}
+  We can map this onto the $n$-sphere $S^{n}$ of radius $1$ centered at the origin by projection towards this vertical axis.
+  This maps the boundary of the disk to the north pole of the sphere.
+  This function is distance decreasing and thus continuous \quest{thrm?}.
+  Consider the quotient space $D^{n} / S^{n - 1}$.
+  We can factor the projection of the disk to the sphere through this space.
+  By an argument \quest{similar to previous ex} one can show that the map $D^{n} / S^{n - 1} \to S^{n}$ is a homeomorphism.
+\end{ex}
+
+If we cannot use the argument from the previous two examples, we may be able to use the following criterion.
+
+\begin{defn}[Saturation]
+  If $A \subseteq X$ and if $\sim$ is an equivalence relation on $X$, then the \emph{saturation} of $A$ is $\set{x \in X | x \sim a \text{ for some } a \in A}$.
+  We call a set \emph{saturated} if it is equal to its own saturation.
+\end{defn}
+
+\begin{prop}
+  If $A \subseteq X$ and $\sim$ an equivalence relation of $X$ such that every equivalence class intersects $A$ nontrivially, then the induced map $k\colon A / \sim \to X / \sim$ is a homeomorphism if the saturation of every open (resp.\ closed) is open (resp.\ closed) in $X$.
+\end{prop}
+\begin{pf}
+  Let $f\colon A \to A / \sim$ and $g\colon X \to X / \sim$ be the canonical maps and $U$ open in $A / \sim$.
+  Note that $g^{-1}(V)$ is saturated for any $V$.
+  This is because the saturation of $g^{-1}(V)$ is the set of elements in $x \in X$ such that $x$ equivalent to some element in $g^{-1}(V)$ which by definition of $g$ yields the claim.
+  Then we have that $g^{-1}(k(U))$ is the saturation of $f^{-1}(U)$ by commutativity \quest{make diagram}.
+  By definition, we have that $g^{-1}(k(U))$ is open if and only if $k(U)$ is open in $X / \sim$.
+  Thus $k^{-1}$ is continuous.
+  We also have that $k$ is injective by disjointness of equivalence classes.
+  By the given assumption, $k$ is surjective.
+  Then $k$ is continuous.
+  We have that $f\colon A \to A / \sim$ is an identificaton map.
+  Thus $k$ is continuous if and only if $k \circ f$ is continuous.
+  However, $k \circ f = g \circ i$ which is clearly continuous.
+  Thus $k$ is continuous and overall $k$ is a homeomorphism.
+\end{pf}
+
+We can also consider quotients built by ``attachments.''
+
+\begin{defn}[$Y \cup_{f} X$]
+  Let $X, Y$ be spaces and $A \subseteq X$ be closed.
+  Let $f\colon A \to Y$ be a map.
+  We have a quotient space on the disjoint union $X + Y$ by the relation generated $a \sim f(a)$ for all $a \in A$.
+  In this relation, we have that $u \sim v$ if one of the following holds:
+  \begin{enumerate}
+  \item $u = v$;
+  \item $u, v \in A$ and $f(u) = f(v)$; or
+  $u \in A$ and $v = f(u) \in Y$.
+  \end{enumerate}
+  If $Y$ is a one-point space then this quotient space is just $X / A$ \quest{maybe make prop and verify}.
+  This quotient space is denoted by $Y \cup_{f} X$.
+\end{defn}
+
+\begin{prop}
+  The canonical map $Y \to Y \cup_{f} X$ is an embedding onto a closed subspace.
+  The canonical map $X \setminus A \to Y \cup_{f} X$ is an embedding onto an open subspace.
+\end{prop}
+\begin{pf}
+  \quest{TODO}
+\end{pf}
+
+\begin{defn}[Retraction]
+  If $A$ is a subspace of a space $X$, then a map $f\colon X \to A$ such that $f(a) = a$ for all $a \in A$ is called a \emph{retraction} and $A$ is a \emph{retract} of $X$.
+\end{defn}
+
+\begin{defn}[Mapping Cylinder]
+  If $f\colon X \to Y$ is a map then the \emph{mapping cylinder} of $f$ is the space $M_{f} = Y \cup_{f_{0}} X \times I$ where $f_{0}\colon X \to \set{0} \to Y$ is the map sending $(x, 0) \to f(x)$.
+  \quest{pic plz}
+\end{defn}
+
+Note that $X \simeq X \times \set{1}$ is embedded as a closed subset of $M_{f}$.
+We abuse notation and regard this as an inclusion.
+Also note that there is a factorization of $f$ by $X \subseteq M_{f} \xrightarrow{r} Y$ where $r$ is the retraction of $M_{f}$ onto $Y$ induced by the projection $X \times I \to X \times \set{0}$.
+
+\begin{defn}[Mapping Cone]
+  If $f\colon X \to Y$ is a mpa, then the \emph{mapping cone} of $f$ is the space $C_{f} = M_{f} / (X \times \set{1})$.
+\end{defn}
+
+We are often interested to know when a function taking a mapping cylinder to another space is continuous.
+The following is an easy criterion for this.
+
+\begin{prop}
+  A function $M_{f} \to Z$ is continuous if and only if the induced functions $X \times I \to Z$ and $Y \to Z$ are both continuous.
+\end{prop}
+\begin{pf}
+  \quest{TODO}
+\end{pf}
+
+\begin{prop}
+  If $f\colon X \to Y$ is an identification map and $K$ is a locally connected Hausdorff space, then $f \times 1\colon X \times K \to Y \times K$ is an identification map.
+\end{prop}
+\begin{pf}
+  let $g\colon Y \times K \to W$ and let $h = g \circ (f \times 1)$.
+  Then by \Cref{prop: id_map_iff_all_g_cont} we just have to show that $h$ continuous implies $g$ continuous.
+  Let $U \subseteq W$ be open and suppose that $g(y_{0}, k_{0}) \in U$.
+  Let $f(x_{0}) = y_{0}$.
+  Then $h(x_{0}, k_{0}) = g(y_{0}, k_{0}) \in U$.
+  Therefore there is a compact neighborhood $N$ of $k_{0}$ such that $h(\set{x_{0}} \times N) \subseteq U$.
+  Let $A = \set{y \in Y | g(\set{y} \times N) \subseteq U}$.
+  Then $y_{0} \in A$ and we just need to show that $A$ is open \quest{why}.
+  Since $f^{-1}$ is continuous we just need to show that $f^{-1}(A)$ is open.
+  We have that
+  \[
+    f^{-1}(A) = \set{x \in X | h(\set{x} \times N) = g(\set{f(x)} \times N) \subseteq U}
+  \]
+  and thus $X \setminus f^{-1}(A) = \pi_{X}\pqty{h^{-1}(W \setminus U) \cap (X \times N)}$ is closed by \Cref{prop: compact_proj_closed}.
 \end{pf}
 
 \clearpage
