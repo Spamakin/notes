@@ -3076,22 +3076,83 @@ It also lets us construct many new spaces out of existing ones.
   Thus, $Y = Z$ as spaces and $Y$ has the quotient topology making $f$ an identification map.
 \end{pf}
 
-\begin{ex}[Equivalent Descriptions of the Projective Plane]
-  \quest{A figure could go hard}
+\begin{prop}
+  Let $X$ be a topological space and $\sim$ an equivalence relation on $X$ and $\pi\colon X \to X / \sim$ the canonical projection.
+  Let $f\colon X \to Y$ be any map such that $x \sim y \implies f(x) = f(y)$ for all $x, y \in X$.
+  Then there exists a unique map $\overline{f}\colon X / \sim \to Y$ such that the following diagram commutes:
+  \begin{figure}[h]
+    \centering
+    % https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzIsMCwiWSJdLFswLDIsIlggLyBcXHNpbSJdLFswLDEsImYiXSxbMCwyLCJcXHBpIiwyXSxbMiwxLCJcXGV4aXN0cyF+XFxvdmVybGluZXtmfSIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+    \[
+      \begin{tikzcd}[every label/.append style={font=\normalsize}]
+        X && Y \\
+        \\
+        {X / \sim}
+        \arrow["f", from=1-1, to=1-3]
+        \arrow["\pi"', from=1-1, to=3-1]
+        \arrow["{\exists!~\overline{f}}"', dashed, from=3-1, to=1-3]
+      \end{tikzcd}
+    \]
+    \addtocounter{figure}{1}
+  \end{figure}
+\end{prop}
+\begin{pf}
+  For existence, let $[x] \in X / \sim$ and let $x' \in [x]$.
+  Then set $\overline{f}([x]) = f(x')$.
+  The assumption on $f$ yields that this function is well defined and we have that $\overline{f}(\pi(x)) = \overline{f}([x]) = f(x') = f(x)$ as desired.
+  For uniqueness, note that any function $\overline{f}$ must satisfy $f(x) = \overline{f}(\pi(x)) = \overline{f}([x])$ for all $x \in X$.
+  Thus we have uniqueness.
+
+  For continuity of $\overline{f}$, let $U$ be open in $Y$.
+  We know that $f$ is continuous and thus $f^{-1}(U) \subseteq X$ is open.
+  Then since $f(x) = f(x')$ for all $x \sim x'$ in $X$ we have that $f^{-1}(U) = \bigcup_{x \in f^{-1}(U)} [x]$, a union of equivalence classes.
+  Note that we have
+  \[
+    f^{-1}(U) = \bigcup_{x \in f^{-1}(U)} [x] = \bigcup_{[x] \in \overline{f}^{-1}(U)} [x]
+  \]
+  which shows that $\pqty{\overline{f}}^{-1}(U)$ is open in $X / \sim$.
+\end{pf}
+
+\clearpage
+
+\begin{ex}[Equivalent Descriptions of the Projective Plane]\
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figs/Projective_Plane_Sphere_Disk.png}
+    \caption{Representation of the Projective Plane as both $\textbf{S}^2$ and $\textbf{D}^{2}$}
+    \label{fig:proj_plane}
+    \nocite{proj_plane_pic}
+  \end{figure}
+
   The projective place is defined as the sphere $\textbf{S}^{2}$ with antipodal points identified.
   This means that we give $\textbf{S}^{2}$ the quotient topology with the relation that antipodal points are equivalent.
   We can give a second description of the unit $\textbf{D}^{2}$ with antipodal points on the boundary identified.
   Regard $D^{2}$ as homeomorphic to the upper hemisphere and consider the following diagram:
 
-  \quest{diagram}
+  \begin{figure}[h]
+    \centering
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXHRleHRiZntEfV4yIl0sWzIsMCwiXFx0ZXh0YmZ7U31eMiJdLFswLDIsIlxcdGV4dGJme0R9XjIvIFxcc2ltIl0sWzIsMiwiXFx0ZXh0YmZ7U31eMiAvIFxcc2ltIl0sWzAsMSwiaSJdLFsxLDMsImciXSxbMiwzLCJrIiwyXSxbMCwyLCJmIiwyXV0=
+    \[
+      \begin{tikzcd}[every label/.append style={font=\normalsize}]
+        {\textbf{D}^2} && {\textbf{S}^2} \\
+        \\
+        {\textbf{D}^2/ \sim} && {\textbf{S}^2 / \sim}
+        \arrow["i", from=1-1, to=1-3]
+        \arrow["g", from=1-3, to=3-3]
+        \arrow["k"', from=3-1, to=3-3]
+        \arrow["f"', from=1-1, to=3-1]
+      \end{tikzcd}
+    \]
+    \addtocounter{figure}{1}
+  \end{figure}
 
-  The maps $f, g$ are the identifications, $i$ is inclusion, and $k$ is induced as \quest{the only function making the diagram commute}.
+  The maps $f, g$ are the identifications, $i$ is inclusion, and $k$ is induced as the only function making the diagram commute by the universal property of the quotient.
   If $U \subseteq \textbf{S}^{2} / \sim$ is open, then $g^{-1}(U)$ is open and thus $(g \circ i)^{-1}(U)$ is open.
   But this is equivalent to $(k \circ f)^{-1}(U)$ which means that $k^{-1}(U)$ is open by definition of quotient topology.
   Thus $k$ is continuous.
-  We have that \quest{$k$ is injective and surjective}.
+  We have that $k([x]) = [i(x)]$ which is clearly surjective and injective.
   Moreover, $\textbf{D}^{2} / \sim$ is compact by \Cref{thrm: image_of_compact_is_compact} since $\textbf{D}^{2}$ is compact.
-  Also $\textbf{S}^{2} / \sim$ is \quest{easily seen to be Hausdorff}.
+  Also $\textbf{S}^{2} / \sim$ is \quest{easily seen to be Hausdorff (basically take small open disks on surface of $\textbf{S}^{2}$)}.
   Thus by \Cref{thrm: bij_comp_to_Haus_is_homeo}, we have that $k$ is a homeomorphism.
   Thus these two definitions of the projective plane are topologically equivalent.
 \end{ex}
@@ -3100,6 +3161,8 @@ A special case of quotient spaces is the idea of ``collapsing'' a subspace:
 \begin{defn}[$X / A$]
   If $X$ is a space and $A \subseteq X$, then $X / A$ is the quotient obtained by the equivalence relation whose classes are $A$ and singletons $\set{x}$ for $x \in X \setminus A$.
 \end{defn}
+
+\clearpage
 
 \begin{prop}
   If $X$ is regular and $A$ is closed, then $X / A$ is Hausdorff.
@@ -3115,24 +3178,39 @@ A special case of quotient spaces is the idea of ``collapsing'' a subspace:
   The proof for the second fact is similar.
 \end{pf}
 
-\begin{ex}[Disk as Quotient of Cylinder]
-  Consider the cylinder $S^{n} \times I$.
-  Let $f\colon S^{n} \times I \to D^{n + 1}$ by mapping $(x, t) \to tx$.
-  This maps $S^{n} \times \set{0}$ to the origin and thus $f$ factors through $S^{n} \times I / S^{n} \times \set{0}$ \quest{is there a first iso thrm for topology}.
-  The resulting map $g\colon S^{n} \times I / S^{n} \times \set{0} \to D^{n + 1}$ is \quest{clearly one-to-one and onto}.
+\begin{ex}[Disk as Quotient of Cylinder]\label{ex: disk_quotient_cylinder}\
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figs/Disk_Quotient_Cylinder.png}
+    \caption{$\textbf{D}^2$ as a Quotient of $\textbf{S}^1 \times I$}
+    \label{fig:disk_quotient_cylinder}
+  \end{figure}
+
+  Consider the cylinder $\textbf{S}^{n} \times I$.
+  Let $f\colon \textbf{S}^{n} \times I \to \textbf{D}^{n + 1}$ by mapping $(x, t) \to tx$.
+  This maps $S^{n} \times \set{0}$ to the origin and thus $f$ factors through $\textbf{S}^{n} \times I / \textbf{S}^{n} \times \set{0}$.
+  The resulting map $g\colon \textbf{S}^{n} \times I / \textbf{S}^{n} \times \set{0} \to \textbf{D}^{n + 1}$ is clearly one-to-one and onto (see \Cref{fig:disk_quotient_cylinder}).
   Thus it is a homeomorphism by \Cref{thrm: bij_comp_to_Haus_is_homeo}.
 \end{ex}
 
-\begin{ex}[Sphere as Quotient of Disk]
-  Consider the $n$-dimensional disk $D^{n}$.
+\clearpage
+
+\begin{ex}[Sphere as Quotient of Disk]\
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.33\textwidth]{figs/Sphere_Quotient_Disk.png}
+    \caption{$\textbf{S}^2$ as a Quotient of $\textbf{D}^2$}
+    \label{fig:sphere_quotient_disk}
+  \end{figure}
+
+  Consider the $n$-dimensional disk $\textbf{D}^{n}$.
   This is homeomorphic to the lower $n$-hemisphere of radius $2$ centered at $1$ on the ``vertical axis.''
-  \quest{pic plz}
   We can map this onto the $n$-sphere $S^{n}$ of radius $1$ centered at the origin by projection towards this vertical axis.
   This maps the boundary of the disk to the north pole of the sphere.
-  This function is distance decreasing and thus continuous \quest{thrm?}.
+  This function is distance decreasing and thus continuous.
   Consider the quotient space $D^{n} / S^{n - 1}$.
   We can factor the projection of the disk to the sphere through this space.
-  By an argument \quest{similar to previous ex} one can show that the map $D^{n} / S^{n - 1} \to S^{n}$ is a homeomorphism.
+  By an argument similar to \Cref{ex: disk_quotient_cylinder} one can show that the map $D^{n} / S^{n - 1} \to S^{n}$ is a homeomorphism.
 \end{ex}
 
 If we cannot use the argument from the previous two examples, we may be able to use the following criterion.
@@ -3155,11 +3233,13 @@ If we cannot use the argument from the previous two examples, we may be able to 
   We also have that $k$ is injective by disjointness of equivalence classes.
   By the given assumption, $k$ is surjective.
   Then $k$ is continuous.
-  We have that $f\colon A \to A / \sim$ is an identificaton map.
+  We have that $f\colon A \to A / \sim$ is an identification map.
   Thus $k$ is continuous if and only if $k \circ f$ is continuous.
   However, $k \circ f = g \circ i$ which is clearly continuous.
   Thus $k$ is continuous and overall $k$ is a homeomorphism.
 \end{pf}
+
+\clearpage
 
 We can also consider quotients built by ``attachments.''
 
@@ -3173,7 +3253,7 @@ We can also consider quotients built by ``attachments.''
   \item $u, v \in A$ and $f(u) = f(v)$; or
   $u \in A$ and $v = f(u) \in Y$.
   \end{enumerate}
-  If $Y$ is a one-point space then this quotient space is just $X / A$ \quest{maybe make prop and verify}.
+  If $Y$ is a one-point space then this quotient space is just $X / A$.
   This quotient space is denoted by $Y \cup_{f} X$.
 \end{defn}
 
