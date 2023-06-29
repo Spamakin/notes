@@ -3119,7 +3119,7 @@ It also lets us construct many new spaces out of existing ones.
   \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figs/Projective_Plane_Sphere_Disk.png}
-    \caption{Representation of the Projective Plane as both $\textbf{S}^2$ and $\textbf{D}^{2}$}
+    \caption{Representation of the Projective Plane as both $\textbf{S}^2$ and $\textbf{D}^{2}$ \cite{proj_plane_pic}}
     \label{fig:proj_plane}
     \nocite{proj_plane_pic}
   \end{figure}
@@ -3199,7 +3199,7 @@ A special case of quotient spaces is the idea of ``collapsing'' a subspace:
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.33\textwidth]{figs/Sphere_Quotient_Disk.png}
-    \caption{$\textbf{S}^2$ as a Quotient of $\textbf{D}^2$}
+    \caption{$\textbf{S}^2$ as a Quotient of $\textbf{D}^2$ \cite{book:Bredon}}
     \label{fig:sphere_quotient_disk}
   \end{figure}
 
@@ -3243,35 +3243,74 @@ If we cannot use the argument from the previous two examples, we may be able to 
 
 We can also consider quotients built by ``attachments.''
 
-\begin{defn}[$Y \cup_{f} X$]
-  Let $X, Y$ be spaces and $A \subseteq X$ be closed.
-  Let $f\colon A \to Y$ be a map.
+\begin{defn}[$X \cup_{f} Y$]
+  Let $X, Y$ be spaces and $A \subseteq Y$ be closed.
+  Let $f\colon A \to X$ be a map.
   We have a quotient space on the disjoint union $X + Y$ by the relation generated $a \sim f(a)$ for all $a \in A$.
   In this relation, we have that $u \sim v$ if one of the following holds:
   \begin{enumerate}
   \item $u = v$;
   \item $u, v \in A$ and $f(u) = f(v)$; or
-  $u \in A$ and $v = f(u) \in Y$.
+  \item $u \in A$ and $v = f(u) \in X$.
   \end{enumerate}
-  If $Y$ is a one-point space then this quotient space is just $X / A$.
-  This quotient space is denoted by $Y \cup_{f} X$.
+  If $X$ is a one-point space then this quotient space is just $Y / A$.
+  This quotient space $(X + Y) / \sim$ is denoted by $X \cup_{f} Y$.
 \end{defn}
 
-\begin{prop}
-  The canonical map $Y \to Y \cup_{f} X$ is an embedding onto a closed subspace.
-  The canonical map $X \setminus A \to Y \cup_{f} X$ is an embedding onto an open subspace.
+\begin{prop}\label{prop: attachment_mappings}
+  The canonical map $X \to X \cup_{f} Y$ is an embedding onto a closed subspace.
+  The canonical map $Y \setminus A \to X \cup_{f} Y$ is an embedding onto an open subspace.
 \end{prop}
 \begin{pf}
-  \quest{TODO}
+
+  \quest{TODO: Show that every map that is injective, continuous and either open or closed is an embedding}
+
+  Let $q\colon X + Y \to X \cup_{f} Y$ be the quotient map.
+  Then $q\mid_{X}\colon X \to X \cup_{f} Y$ is our desired canonical map.
+  We first show that $q\mid_{X}$ is a closed map, so let $B \subseteq X$ be closed.
+  Then we have that $q\mid_{X}(B) = q(B) \subseteq X \cup_{f} Y$ is closed if and only if $q^{-1}(q(B)) \subseteq X + Y$ is closed, since the quotient map is continuous.
+  However, this is true if and only if $q^{-1}(q(B)) \cap X$ and $q^{-1}(q(B)) \cap Y$ are both closed.
+  We have that
+  \[
+    q^{-1}(q(B)) \cap X = B, q^{-1}(q(B)) \cap Y = f^{-1}(B).
+  \]
+  The first equality is immediate.
+  So suppose that $y \in q^{-1}(q(B)) \cap Y$.
+  Note that $y \in q^{-1}(q(B))$ if and only for some $x \in q(B)$ we have that $y \sim x$.
+  By the equivalence relation, we must have that $y \in f^{-1}(B)$.
+  Now suppose that $y \in f^{-1}(B) \subseteq A \subseteq Y$.
+  Then $f(y) \in B$ and by the equivalence relation we again have $f(y) \in q^{-1}(q(B))$.
+  Since both $B$ and $f^{-1}(B)$ are closed by assumption that $B$ is closed and $f$ is a map, we have that $q\mid_{X}$ is a closed map.
+
+  We now must show that $q\mid_{X}$ is injective.
+  However, for any $u, v \in X$, since $A$ is disjoint from $X$ we just have that $q(u) = q(v) \implies q(u) \sim q(v)$ which holds if and only if $y = v$.
+  Thus $q\mid_{X}$ is injective and overall $q\mid_{X}$ is an embedding onto a closed subspace since $X$ is closed in $X + Y$.
+
+  Let $U \subseteq Y \setminus A$ be open.
+  Then $q\mid_Y(U) = q(U) \subseteq X \cup_f Y$ is open if and only if $q^{-1}(q(U))$ is open in $X \sqcup U$ which is true if and only if $q^{-1}(q(U)) \cap X$ and $q^{-1}(q(U)) \cap Y$ are both open.
+  Note that we immediately have that $q^{-1}(q(U)) \cap X$ is empty.
+  This is because for $y \in Y \setminus A$, we must have that $[y] \in X \cup_{f} Y = \set{y}$ as the only possibility.
+  Using this, we also immediately have that $q^{-1}(q(U)) \cap Y = U \cap Y = U$ which is open by assumption.
+  Thus $q$ is an open map.
+  We also have injectivity by similar logic and thus $q\mid_{Y}$ is an embedding on an open subspace since $Y \setminus A$ is open in $X + Y$.
 \end{pf}
+
+\clearpage
 
 \begin{defn}[Retraction]
   If $A$ is a subspace of a space $X$, then a map $f\colon X \to A$ such that $f(a) = a$ for all $a \in A$ is called a \emph{retraction} and $A$ is a \emph{retract} of $X$.
 \end{defn}
 
-\begin{defn}[Mapping Cylinder]
+\begin{defn}[Mapping Cylinder]\
+
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figs/Mapping_Cylinder.png}
+    \caption{The Mapping Cylinder \cite{book:Hatcher_AT}}
+    \label{fig:mapping_cylinder}
+  \end{figure}
+
   If $f\colon X \to Y$ is a map then the \emph{mapping cylinder} of $f$ is the space $M_{f} = Y \cup_{f_{0}} X \times I$ where $f_{0}\colon X \to \set{0} \to Y$ is the map sending $(x, 0) \to f(x)$.
-  \quest{pic plz}
 \end{defn}
 
 Note that $X \simeq X \times \set{1}$ is embedded as a closed subset of $M_{f}$.
@@ -3279,7 +3318,7 @@ We abuse notation and regard this as an inclusion.
 Also note that there is a factorization of $f$ by $X \subseteq M_{f} \xrightarrow{r} Y$ where $r$ is the retraction of $M_{f}$ onto $Y$ induced by the projection $X \times I \to X \times \set{0}$.
 
 \begin{defn}[Mapping Cone]
-  If $f\colon X \to Y$ is a mpa, then the \emph{mapping cone} of $f$ is the space $C_{f} = M_{f} / (X \times \set{1})$.
+  If $f\colon X \to Y$ is a map, then the \emph{mapping cone} of $f$ is the space $C_{f} = M_{f} / (X \times \set{1})$.
 \end{defn}
 
 We are often interested to know when a function taking a mapping cylinder to another space is continuous.
@@ -3289,7 +3328,7 @@ The following is an easy criterion for this.
   A function $M_{f} \to Z$ is continuous if and only if the induced functions $X \times I \to Z$ and $Y \to Z$ are both continuous.
 \end{prop}
 \begin{pf}
-  \quest{TODO}
+  \quest{TODO: Forward is immediate by \Cref{prop: attachment_mappings}? Reverse by universal property?}
 \end{pf}
 
 \begin{prop}
@@ -3319,5 +3358,6 @@ The following is an easy criterion for this.
 \nocite{book:Steen_Seebach}
 \nocite{book:Munkres}
 \nocite{book:Lee_ITM}
+\nocite{book:Hatcher_AT}
 \printbibliography
 \end{document}
