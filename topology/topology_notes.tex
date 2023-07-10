@@ -3371,7 +3371,50 @@ The following is an easy criterion for this.
 
 \chapter{Homotopy}
 
+\begin{defn}[Homotopy]
+  If $X$ and $Y$ are spaces, then a \emph{homotopy} of maps from $X$ to $Y$ is a map $F\colon X \times I \to Y$ where $I = [0, 1]$.
+  Two maps $f_{0}, f_{1}\colon X \to Y$ are \emph{homotopic} if there exists a homotopy $F\colon X \times I \to Y$ such that $F(x, 0) = f_{0}(x)$ and $F(x, 1) = f_{1}(x)$ for all $x \in X$.
+\end{defn}
 
+The relation ``$f$ is homotopic to $g$'' is an equivalence relation on the set of all maps $X \to Y$ as we will see later.
+This is denoted by $f \simeq g$.
+
+\begin{prop}
+  If we have maps $f, g\colon X \to Y$ and maps $h\colon X' \to X$ and $k\colon Y \to Y'$ then if $f \simeq g$ we must have that $f \circ h \simeq g \circ h$ and $k \circ f \simeq k \circ g$. $\qed$
+\end{prop}
+
+\begin{defn}[Homotopy Equivalence, Homotopy Inverse, Homotopy Type]
+  A map $f\colon X \to Y$ is said to be a \emph{homotopy equivalence} with \emph{homotopy inverse} $g$ if there exists a map $g\colon Y \to X$ such that $g \circ f \simeq 1_{X}$ and $f \circ g \simeq 1_{Y}$.
+  This relationship is denoted by $X \simeq Y$.
+  We also say that that $X$ and $Y$ have the same \emph{homotopy type}.
+\end{defn}
+
+This is an equivalence relation between spaces.
+If $h\colon Y \to Z$ is another homotopy equivalence with homotopy inverse $k\colon Z \to Y$ then we have
+\begin{align*}
+  (g \circ k) \circ (h \circ f) &= g \circ (k \circ h) \circ f = g \circ 1_{Y} \circ f = g \circ f = 1_{X}; \text{ and } \\
+  (h \circ f) \circ (g \circ k) &= h \circ (f \circ g) \circ k = h \circ 1_{Y} \circ k = g \circ k = 1_{Z}.
+\end{align*}
+
+\begin{defn}[Contractible]
+  A space is \emph{contractible} if it is homotopy equivalent to the one-point space.
+\end{defn}
+
+\clearpage
+
+\begin{prop}
+  A space $X$ is contractible if and only if the identity map $1_{X}$ is homotopic to a map $r\colon X \to X$ whose image is a single point.
+\end{prop}
+\begin{pf}
+  Suppose that $X$ is contractible, and so homotopy equivalenct to a one point space $\set{x_{0}}$.
+  This means there exists maps $f\colon X \to \set{x_{0}}$ and $g\colon \set{x_{0}} \to X$ such that $g \circ f \simeq 1_{X}$ and $f \circ g \simeq 1_{x_{0}}$.
+  But saying that $g \circ f \simeq 1_{X}$ is exactly what we need since $\im(g \circ f)$ is a single point.
+
+  Now suppose that $1_{X}$ is homotopic to a map $r\colon X \to X$ where $\im(r) = \set{x_{0}}$.
+  We have an inclusion map $i\colon \set{x_{0}} \to X$ and the only possible map $r\colon X \to Y$.
+  Then we have that $r \circ i = 1_{x_{0}}$ and equivalent maps are clearly homotopic.
+  We also have that $i \circ r \simeq 1_{X}$ by assumption since $i \circ r$ is a map $X \to X$ with image a single point.
+\end{pf}
 
 \clearpage
 \nocite{note:conrad_topologist_sine}
