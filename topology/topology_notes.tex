@@ -3306,7 +3306,7 @@ We can also consider quotients built by ``attachments.''
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{figs/Mapping_Cylinder.png}
-    \caption{The Mapping Cylinder \cite{book:Hatcher_AT}}
+    \caption{The Mapping Cylinder \cite{book:hatcher_AT}}
     \label{fig:mapping_cylinder}
   \end{figure}
 
@@ -3352,12 +3352,34 @@ The following is an easy criterion for this.
 \end{pf}
 
 \clearpage
+
+\subsection*{Exercises}
+\begin{exercise}[\tcite{book:Bredon} 1.13.1]
+  If $f\colon X \to A$ and $g\colon Y \to B$ are open identification maps, then $f \times g\colon X \times Y \to A \times B$ is also an open identification map.
+\end{exercise}
+\begin{pf}
+  It is immediate that $f\ times g$ is continuous and surjective.
+  Also since $f$ and $g$ are each open, then $f \times g$ must be open since the products of open sets in $X$ and $Y$ forms the basis of $A \times B$ by definition of product topology.
+  Let $V \subseteq Y$.
+  If $(f \times g)^{-1}(V)$ is open we have that $(f \times g)\pqty{(f \times g)^{-1}(V)} = V$ is open since $f \times g$ is open.
+  Now suppose that $V$ is open.
+  Then immediately we have that $(f \times g)^{-1}(V)$ is open.
+  Thus $f \times g$ is an identification map.
+\end{pf}
+
+\clearpage
+
+\chapter{Homotopy}
+
+
+
+\clearpage
 \nocite{note:conrad_topologist_sine}
 \nocite{note:compactness_review}
 \nocite{book:Rudin_RCA}
 \nocite{book:Steen_Seebach}
 \nocite{book:Munkres}
 \nocite{book:Lee_ITM}
-\nocite{book:Hatcher_AT}
+\nocite{book:hatcher_AT}
 \printbibliography
 \end{document}
