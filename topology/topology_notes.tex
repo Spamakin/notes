@@ -352,7 +352,7 @@ An analogous result holds for elements of a subbasis with a very similar, and th
   Then the set of open balls around $x$ with rational radius forms a countable neighborhood basis.
 
   Consider the space if any uncountable set with metric $\dist(x, y) = 1$ if $x \neq y$ and $0$ otherwise (which yields the discrete topology).
-  Euclidian spaces are second countable since the $\e$-balls, with $\e$ rational, about points with rational coordinates, is a countable basis.
+  Euclidean spaces are second countable since the $\e$-balls, with $\e$ rational, about points with rational coordinates, is a countable basis.
 \end{ex}
 
 \begin{prop}
@@ -3019,7 +3019,7 @@ The following criterion will apply in most cases we care about.
 \subsection*{Exercises}
 
 \begin{exercise}[\tcite{book:Bredon} 1.12.1]
-  Without using \Cref{thrm: paracompact_iff_union_sigma_compact} or the fact that metric spaces are paracompact, show that any open subspace of euclidian space is $\sigma$-compact.
+  Without using \Cref{thrm: paracompact_iff_union_sigma_compact} or the fact that metric spaces are paracompact, show that any open subspace of euclidean space is $\sigma$-compact.
   By \Cref{thrm: paracompact_iff_union_sigma_compact}, the space is also paracompact.
 \end{exercise}
 \begin{pf}
@@ -3119,8 +3119,7 @@ It also lets us construct many new spaces out of existing ones.
   \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figs/Projective_Plane_Sphere_Disk.png}
-    \caption{Representation of the Projective Plane as both $\textbf{S}^2$ and $\textbf{D}^{2}$ \cite{proj_plane_pic}}
-    \label{fig:proj_plane}
+    \caption{Representation of the Projective Plane as both $\textbf{S}^2$ and $\textbf{D}^{2}$~\cite{proj_plane_pic}}\label{fig:proj_plane}
     \nocite{proj_plane_pic}
   \end{figure}
 
@@ -3182,8 +3181,7 @@ A special case of quotient spaces is the idea of ``collapsing'' a subspace:
   \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figs/Disk_Quotient_Cylinder.png}
-    \caption{$\textbf{D}^2$ as a Quotient of $\textbf{S}^1 \times I$}
-    \label{fig:disk_quotient_cylinder}
+    \caption{$\textbf{D}^2$ as a Quotient of $\textbf{S}^1 \times I$}\label{fig:disk_quotient_cylinder}
   \end{figure}
 
   Consider the cylinder $\textbf{S}^{n} \times I$.
@@ -3199,8 +3197,7 @@ A special case of quotient spaces is the idea of ``collapsing'' a subspace:
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.33\textwidth]{figs/Sphere_Quotient_Disk.png}
-    \caption{$\textbf{S}^2$ as a Quotient of $\textbf{D}^2$ \cite{book:Bredon}}
-    \label{fig:sphere_quotient_disk}
+    \caption{$\textbf{S}^2$ as a Quotient of $\textbf{D}^2$~\cite{book:Bredon}}\label{fig:sphere_quotient_disk}
   \end{figure}
 
   Consider the $n$-dimensional disk $\textbf{D}^{n}$.
@@ -3263,7 +3260,7 @@ We can also consider quotients built by ``attachments.''
 \end{prop}
 \begin{pf}
 
-  \quest{TODO: Show that every map that is injective, continuous and either open or closed is an embedding}
+  \quest{TODO:\@ Show that every map that is injective, continuous and either open or closed is an embedding}
 
   Let $q\colon X + Y \to X \cup_{f} Y$ be the quotient map.
   Then $q\mid_{X}\colon X \to X \cup_{f} Y$ is our desired canonical map.
@@ -3301,23 +3298,22 @@ We can also consider quotients built by ``attachments.''
   If $A$ is a subspace of a space $X$, then a map $f\colon X \to A$ such that $f(a) = a$ for all $a \in A$ is called a \emph{retraction} and $A$ is a \emph{retract} of $X$.
 \end{defn}
 
-\begin{defn}[Mapping Cylinder]\
+\begin{defn}[Mapping Cylinder $M_{f}$]\
 
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\textwidth]{figs/Mapping_Cylinder.png}
-    \caption{The Mapping Cylinder \cite{book:hatcher_AT}}
-    \label{fig:mapping_cylinder}
+    \caption{The Mapping Cylinder~\cite{book:hatcher_AT}}\label{fig:mapping_cylinder}
   \end{figure}
 
-  If $f\colon X \to Y$ is a map then the \emph{mapping cylinder} of $f$ is the space $M_{f} = Y \cup_{f_{0}} X \times I$ where $f_{0}\colon X \to \set{0} \to Y$ is the map sending $(x, 0) \to f(x)$.
+  If $f\colon X \to Y$ is a map then the \emph{mapping cylinder} of $f$ is the space $M_{f} = Y \cup_{f_{0}} X \times I$ where $f_{0}\colon X \times \set{0} \to Y$ is the map sending $(x, 0) \to f(x)$.
 \end{defn}
 
 Note that $X \simeq X \times \set{1}$ is embedded as a closed subset of $M_{f}$.
 We abuse notation and regard this as an inclusion.
 Also note that there is a factorization of $f$ by $X \subseteq M_{f} \xrightarrow{r} Y$ where $r$ is the retraction of $M_{f}$ onto $Y$ induced by the projection $X \times I \to X \times \set{0}$.
 
-\begin{defn}[Mapping Cone]
+\begin{defn}[Mapping Cone $C_{f}$]
   If $f\colon X \to Y$ is a map, then the \emph{mapping cone} of $f$ is the space $C_{f} = M_{f} / (X \times \set{1})$.
 \end{defn}
 
@@ -3328,7 +3324,7 @@ The following is an easy criterion for this.
   A function $M_{f} \to Z$ is continuous if and only if the induced functions $X \times I \to Z$ and $Y \to Z$ are both continuous.
 \end{prop}
 \begin{pf}
-  \quest{TODO: Forward is immediate by \Cref{prop: attachment_mappings}? Reverse by universal property?}
+  \quest{TODO:\@ Forward is immediate by \Cref{prop: attachment_mappings}? Reverse by universal property?}
 \end{pf}
 
 \begin{prop}
@@ -3402,11 +3398,11 @@ If $h\colon Y \to Z$ is another homotopy equivalence with homotopy inverse $k\co
 
 \clearpage
 
-\begin{prop}
+\begin{prop}\label{prop: contractible_iff_single_point}
   A space $X$ is contractible if and only if the identity map $1_{X}$ is homotopic to a map $r\colon X \to X$ whose image is a single point.
 \end{prop}
 \begin{pf}
-  Suppose that $X$ is contractible, and so homotopy equivalenct to a one point space $\set{x_{0}}$.
+  Suppose that $X$ is contractible, and so homotopy equivalent to a one point space $\set{x_{0}}$.
   This means there exists maps $f\colon X \to \set{x_{0}}$ and $g\colon \set{x_{0}} \to X$ such that $g \circ f \simeq 1_{X}$ and $f \circ g \simeq 1_{x_{0}}$.
   But saying that $g \circ f \simeq 1_{X}$ is exactly what we need since $\im(g \circ f)$ is a single point.
 
@@ -3414,6 +3410,122 @@ If $h\colon Y \to Z$ is another homotopy equivalence with homotopy inverse $k\co
   We have an inclusion map $i\colon \set{x_{0}} \to X$ and the only possible map $r\colon X \to Y$.
   Then we have that $r \circ i = 1_{x_{0}}$ and equivalent maps are clearly homotopic.
   We also have that $i \circ r \simeq 1_{X}$ by assumption since $i \circ r$ is a map $X \to X$ with image a single point.
+\end{pf}
+
+\begin{ex}[Constant Map $\simeq 1_{X}$]
+  Let $X = \R^{n}$.
+  We have a homotopy $F\colon X \times I \to X$ given by $F(x, t) = tx$.
+  This is a homotopy between $F(x, 1) = 1_{X}$ and $F(x, 0)$ which is the constant map sending everything to $0$.
+  By \Cref{prop: contractable_iff_single_point} this means that $\R^{n}$ is contractible.
+  Note that for $t > 0$, $F(x, t)$ is surjective.
+  However, $F(x, 0)$ is not surjective.
+\end{ex}
+
+\begin{ex}[Unit Sphere $\simeq$ Punctured Euclidean Space]
+  Consider the unit sphere $S^{n - 1}$ in $\R^{n}$ and the punctured euclidean space $\R^{n} \setminus \set{0}$.
+  Let $i\colon S^{n - 1} \into \R^{n} \setminus \set{0}$ be the inclusion map and let $r\colon \R^{n} \setminus \set{0} \to S^{n - 1}$ be the projection $r(x) = \frac{x}{\norm{x}}$.
+  Then we have that
+  \[
+    r \circ i = 1_{S^{n - 1}} \text{ and } i \circ r \simeq 1_{\R^{n} \setminus \set{0}}.
+  \]
+  The latter homotopy is given by $F\colon \pqty{\R^{n} \setminus \set{0}} \times I \to \R^{n} \setminus \set{0}$ such that $F(x, t) = tx + (1 - t)\frac{x}{\norm{x}}$.
+  Thus $S^{n - 1} \simeq \R^{n} \setminus \set{0}$.
+\end{ex}
+
+These two examples suggest the following definition:
+
+\begin{defn}[(Strong) Deformation Retract]
+  A subspace $A \subseteq X$ is called a \emph{strong deformation retract} of $X$ if there is a homotopy $F\colon X \times I \to X$, called a \emph{deformation}, such that
+  \begin{enumerate}
+  \item $F(x, 0) = x$
+  \item $F(x, 1) \in A$
+  \item $F(a, t) = a$ for all $a \in A$ and $t \in I$.
+  \end{enumerate}
+  If we only require that $(3)$ holds for $t = 1$ then this is just known as a \emph{deformation retract}.
+  A deformation retract $A$ of a space $X$ is homotopically equivalent to $X$.
+\end{defn}
+
+\begin{ex}[Mapping Cylinder is Strong Deformation Retraction]
+  If $f\colon X \to Y$ is a map, then the canonical map $r\colon M_{f} \to Y$ is a strong deformation retraction.
+  This will be seen later.
+  Hence $M_{f} \simeq Y$.
+  Thus, we can use the mapping cylinder to replace ``up to homotopy'' the map $f$ by the inclusion $X \into M_{f}$.
+\end{ex}
+
+\clearpage
+
+\begin{defn}[Homotopy Relative to Subspace, Constant Homotopy]
+  If $A \subseteq X$, then a homotopy $F\colon X \times I \to Y$ is \emph{relative to $A$}, denoted as $\rel\ A$, if $F(a, t)$ is independent of $t$ for all $a \in A$.
+  A homotopy this is $\rel\ X$ is said to be a \emph{constant homotopy}.
+\end{defn}
+
+\begin{defn}[Concatenation]
+  If $F\colon X \times I \to Y$ and $G\colon X \times I \to Y$ are two homotopies such that $F(x, 1) = G(x, 0)$ for all $x \in X$, then we define a homotopy $F * G\colon X \times I \to Y$ called the \emph{concatenation of $F$ and $G$} by
+  \[
+    (F * G)(x, t) =
+    \begin{cases}
+      F(x, 2t)      & \text{ if } t \leq \frac{1}{2}, \\
+      G(x, 2t - 1)  & \text{ if } t \geq \frac{1}{2}.
+    \end{cases}
+  \]
+  Note that we do not have to combine these homotopies at $t = \frac{1}{2}$, this generalizes to any $t$.
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figs/concatenation.png}
+    \caption{Concatenation of Homotopies~\cite{book:Bredon}}\label{fig:concatenation}
+  \end{figure}
+\end{defn}
+
+\begin{lem}[Reparametrization Lemma]\label{lem: reparametrization}
+  Note that $\partial I = \set{0, 1}$.
+  Let $\phi_{1}$ and $\phi_{2}$ be two maps $(I, \partial I) \to (I, \partial I)$ which are equivalent on $\partial I$.
+  (Note the case where one of these maps is the identity.)
+  Let $F\colon X \times I \to Y$ be a homotopy and $G_{i}(x, t) = F(x, \phi_{i}(t))$ for $i \in \set{1, 2}$.
+  Then $G_{1} \simeq G_{2} \rel\ X \times \partial I$.
+\end{lem}
+\begin{pf}
+  Define $H\colon X \times I \times I \to Y$ by $H(x, t, 0) = F(x, s \cdot \phi_{2}(t) + (1 - s) \cdot \phi_{1}(t))$.
+  Then we have that
+  \begin{align*}
+    H(x, t, 0) &= F(x, \phi_{1}(t)) = G_{1}(x, t), \\
+    H(x, t, 1) &= F(x, \phi_{2}(t)) = G_{2}(x, t), \\
+    H(x, 0, s) &= F(x, \phi_{1}(0)) = G_{1}(x, 0), \\
+    H(x, 1, s) &= F(x, \phi_{2}(1)) = G_{2}(x, 1).
+  \end{align*}
+\end{pf}
+
+\clearpage
+
+\Cref{lem: reparametrization} has some easy and immediate consequences.
+Let $C$ denote a constant topology.
+This will depend on context.
+For example, $F * C$ is concatenation with the constant homotopy where $C(x, t) = F(x, 1)$ but $C * F$ is concatenation with the constant homotopy where $C(x, t) = F(x, 0)$.
+
+\begin{prop}
+  We have that $F * C \simeq F \rel\ X \times \partial I$ and $C * F \simeq F \rel\ X \times \partial I$.
+\end{prop}
+\begin{pf}
+  Let $\phi_{1}(t) = 2t$ for $t \leq \frac{1}{2}$ and $\phi_{1}(t) = 1$ for $t \geq \frac{1}{2}$ and letting $\phi_{2}(t) = t$.
+  Then the first case immediately follows by applying \Cref{lem: reparametrization}.
+  Similarly, the second case follows from letting $\phi_{1}(t) = 0$ for $t \leq \frac{1}{2}$ and $\phi_{1}(t) = 2t - 1$ for $t \geq \frac{1}{2}$ and $\phi_{2}(t) = t$.
+\end{pf}
+
+\begin{defn}[Inverse of a Homotopy]
+  If $F\colon X \times I \to Y$ is a homotopy, let $F^{-1}\colon X \times I \to Y$ be the homotopy running the reverse direction defined by $F^{-1}(x, t) = F(x, 1 - t)$.
+\end{defn}
+
+\begin{prop}
+  For a homotopy $F$ we have that $F * F^{-1} \simeq C \rel\ X \times \partial I$ where $C(x, t) = F(x, 0)$ for all $x \in X$ and $t \in I$.
+\end{prop}
+\begin{pf}
+  This follows from \Cref{lem: reparametrization} by letting $\phi_{1}(t) = 2t$ for $t \leq \frac{1}{2}$, $\phi_{1}(t) = 2 - 2t$ for $t \geq \frac{1}{2}$ and $\phi_{2}(t) = 0$ for all $t$.
+\end{pf}
+
+\begin{prop}
+  For any homotopies where concatenations $F * G$ and $G * H$ are defined, we have that $(F * G) * H \simeq F * (G * H) \rel\ X \times \partial I$.
+\end{prop}
+\begin{pf}
+  \quest{TODO:\@ Easy application of \Cref{lem: reparametrization}}.
 \end{pf}
 
 \clearpage
