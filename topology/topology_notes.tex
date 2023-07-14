@@ -3320,14 +3320,14 @@ Also note that there is a factorization of $f$ by $X \subseteq M_{f} \xrightarro
 We are often interested to know when a function taking a mapping cylinder to another space is continuous.
 The following is an easy criterion for this.
 
-\begin{prop}
+\begin{prop}\label{prop: mapping_continuity_criterion}
   A function $M_{f} \to Z$ is continuous if and only if the induced functions $X \times I \to Z$ and $Y \to Z$ are both continuous.
 \end{prop}
 \begin{pf}
   \quest{TODO:\@ Forward is immediate by \Cref{prop: attachment_mappings}? Reverse by universal property?}
 \end{pf}
 
-\begin{prop}
+\begin{prop}\label{prop: prod_of_id_and_local_compact}
   If $f\colon X \to Y$ is an identification map and $K$ is a locally connected Hausdorff space, then $f \times 1\colon X \times K \to Y \times K$ is an identification map.
 \end{prop}
 \begin{pf}
@@ -3525,8 +3525,113 @@ For example, $F * C$ is concatenation with the constant homotopy where $C(x, t) 
   For any homotopies where concatenations $F * G$ and $G * H$ are defined, we have that $(F * G) * H \simeq F * (G * H) \rel\ X \times \partial I$.
 \end{prop}
 \begin{pf}
-  \quest{TODO:\@ Easy application of \Cref{lem: reparametrization}}.
+  \quest{TODO:\@ Easy application of \Cref{lem: reparametrization}??}.
 \end{pf}
+If follows that homotopies between maps of pairs $(X, A) \to (Y, B)$ are an equivalence relation.
+The set of homotopy classes of these maps is denoted $[X, A ; Y, B]$ or simply $[X, Y]$ if $A = \emptyset$.
+
+\clearpage
+
+We now show that the homotopy type of a mapping cylinder or cone only depends on the homotopy class of the map.
+
+\begin{thrm}\label{thrm: homotopy_on_map_cyl_class_of_map}
+  If $f_{0} \simeq f_{1}\colon X \to Y$ then $M_{f_{0}} \simeq M_{f_{1}} \rel\ X + Y$ and $C_{f_{0}} \simeq C_{f_{1}} \rel Y + \emph{vertex}$.
+\end{thrm}
+\begin{pf}
+  The proof for the cone follows from the mapping cylinder.
+  Let $F\colon X \times I \to Y$ be the homotopy between $f_{0}$ and$ f_{1}$.
+  Let $h\colon M_{f_{0}} \to M_{f_{1}}$ be the map such that $h(y) = y$ for $y \in Y$ and we have that
+  \[
+    h(x, t) = \begin{cases}
+                F(x, 2t) & t \leq \frac{1}{2}, \\
+                F(x, 2t - 1) & t \geq \frac{1}{2}.
+              \end{cases}
+  \]
+  Note that $h\pqty{x, \frac{1}{2}} = F(x, 1) = f_{1}(x) = (x, 0)$ \quest{??}.
+  To prove continuity, we need that the compositions $Y \to M_{f_{1}}$ and $X \times I \to M_{f_{1}}$ are continuous by \Cref{prop: mapping_continuity_criterion}.
+  However, this is \quest{immediate}.
+
+  Let $k\colon M_{f_{1}} \to M_{f_{0}}$ be defined analogously.
+  Consider the composition $k \circ h\colon M_{f_{0}} \to M_{f_{0}}$.
+  This is clearly the identity on $Y$.
+  On the cylinder portion we have that this composition is equivalent to $F * \pqty{F^{-1} * E}$ where $E\colon X \times I \to M_{f_{0}}$ is induced by the identity on $X \times I \to X \times I$ (see \Cref{fig:mapping_cylinder_deformation}).
+  This is homotopic to the identity $\rel\ X \times \set{1} + Y$ \quest{??}.
+  Similar statements hold for $h \circ k$.
+  For continuity of the homotopy $M_{f_{0}} \times I \to M_{f_{0}}$ it suffices to see that $M_{f_{0}} \times I \approx M_{f_{0} \times I}$ because then we just need continuity of the composition
+  \[
+    (X \times I + Y) \times I \to M_{f_{0}} \times I \to M_{f_{0}}
+  \]
+  which is \quest{trivial}.
+  This is because on $Y \times I$ we have the constant homotopy and on $X \times I \times I$ we have that $F * \pqty{F^{-1} * E} \simeq E \rel\ X \times \partial I$.
+  That is, it suffices to show that $M_{f_{0}} \times I$ has the identification topology from the map $f_{0} \times I$.
+  This is a consequence of \Cref{prop: prod_of_id_and_local_compact}.
+
+  \quest{This is all gibberish}
+
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.5\textwidth]{figs/Mapping_Cylinder_Deformation.png}
+    \caption{Deformation of a Mapping Cylinder~\cite{book:Bredon}}\label{fig:mapping_cylinder_deformation}
+  \end{figure}
+\end{pf}
+
+\clearpage
+
+We conclude this section by studdying the effect of mapping cones when we change the target space via a homotopy equivalence.
+\begin{thrm}
+  Let $f\colon X \to Y$.
+  If $\phi\colon Y \to Y'$ is a map, then we have an induced map $F\colon M_{f} \to M_{\phi \circ f}$ induced from both $\phi$ on $Y$ and the identity on $X \times I$.
+  If $\phi$ is a homotopy equivalence, then so if $F\colon(M_{f}, X) \to (M_{\phi \circ f}, X)$ and hence so is $F\colon C_{f} \to C_{\phi \circ f}$.
+\end{thrm}
+\begin{pf}
+  Let $\psi\colon Y' \to Y$ be the homotopy inverse of $\phi$.
+  Let $G\colon M_{\phi \circ f} \to M_{\psi \circ \phi \circ f}$ be the map induced by $\psi$ on $Y'$ and the identity on $X \times I$.
+  We have that $G \circ F\colon M_{f} \to M_{\psi \circ \phi \circ f}$ is induced by $\psi \circ \phi\colon Y \to Y$ and the identity on $X \times I$.
+  Let $H\colon Y \times I \to I$ be a homotopy from $1$ to $\psi \circ \phi$; so we have that $H(y, 0) = y$ and $H(y, 1) = (\psi \circ \phi)(y)$.
+  By the proof of \Cref{thrm: homotopy_on_map_cyl_class_of_map} there is a homotopy equivalence $h\colon M_{f} \to M_{\psi \circ \phi \circ f} \rel\ X$ which is given by $h(y) = y$ on $Y$ and
+  \[
+    h(x, t) =
+    \begin{cases}
+      H(f(x), 2t) & t \leq \frac{1}{2}, \\
+      (x, 2t - 1) & t \geq \frac{1}{2}.
+    \end{cases}
+  \]
+  We have that $h \simeq G \circ F \rel\ X$.
+  We have that the homotopy $H$ can be extended to $M_{f} \times I \to M_{\psi \circ \phi \circ f}$ by setting
+  \[
+     H((x, s), t) =
+     \begin{cases}
+       H(f(x), 2s + t) & 2s + t \leq \frac{1}{2}, \\
+       (x, 2s + t - 1) & 2s + t \geq \frac{1}{2}.
+     \end{cases}
+   \]
+   Note that we have that $H((x, s), 0) = h(x, s)$, $H(y, 0) = y$, and $H((x, s), 1) = (\psi \circ \phi)(y)$.
+   Thus $H(\cdot, 0) = h$ and $H(\cdot, 1) = G \circ F$.
+
+   This means that $G \circ F$ is a homotopy equivalence, since $h$ is one.
+   A similar proof yields that $F' \circ G$ is a homotopy equivalence where $F'\colon M_{\psi \circ \phi \circ f} \to  M_{\phi \circ \psi \circ \phi \circ f}$ is defined in a manner similar to $F$.
+
+   If $k$ is a homotopy inverse of $G \circ F$ then $G\ circ F \circ k \simeq 1$.
+   If $k'$ is a homotopy inverse of $F' \circ G$ then $k' \circ F' \circ G \simeq 1$.
+   Thus $G$ has a homotopy right inverse $R = F \circ k$ and a homotopy left inverse $L = k' \circ F'$.
+   That is $L \circ G \simeq 1 \simeq G \circ R$.
+   Then
+   \[
+     R = 1 \circ R \simeq (L \circ G) \circ R = L \circ (G \circ R) \simeq L \circ 1 = L,
+   \]
+   and so $R \simeq L$ is a homotopy inverse of $G$.
+   Therefore, $G$ is a homotopy equivalence.
+   Since $G$ and $G \circ F$ are homotopy equivalences, so is $F$.
+   To make this explicit, if $l$ is a homotopy inverse of $G$ then we have
+   \[
+     F \circ k \circ G \simeq (l \circ G) \circ F \circ k \circ G = l \circ (G \circ F \circ k) \circ G \simeq l \circ G \simeq 1
+   \]
+   and so $k \circ G$ is a homotopy inverse of $F$, since $k \circ G \circ F \simeq 1$ by the definition of $k$.
+\end{pf}
+
+\clearpage
+
+\section*{Exercises}
 
 \clearpage
 \nocite{note:conrad_topologist_sine}
