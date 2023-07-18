@@ -614,6 +614,24 @@ We give more precise definitions of the interior and closure of a set.
 
 \clearpage
 
+\begin{prop}\label{prop: continuous_iff_im_closure_subset_closure_im}
+  A function between topological spaces $f\colon X \to Y$ is continuous if and only if for all $A \subseteq X$ we have that $f\pqty{\overline{A}} \subseteq \overline{f(A)}$.
+\end{prop}
+\begin{pf}
+  Suppose that $f$ is continuous and let $A \subseteq X$.
+  Note that $A \subseteq f^{-1}(f(A)) \subseteq f^{-1}\overline{f(A)}$ which is closed by continuity.
+  Thus $\overline{A} \subseteq f^{-1}\overline{f(A)}$.
+  This yields that $f\pqty{overline{A}} \subseteq \overline{f(A)}$.
+
+  Now for the converse, consider some closed set $C \subseteq Y$.
+  By assumption we have that
+  \[
+    f\pqty{\overline{f^{-1}(C)}} \subseteq \overline{f\pqty{f^{-1}(C)}} = \overline{C} = C.
+  \]
+  Thus $\overline{f^{-1}(C)} \subseteq f^{-1}(C)$.
+  Since we know that $f^{-1}(C) \subseteq \overline{f^{-1}(C)}$ we have equality and thus $f^{-1}(C)$ is closed as desired.
+\end{pf}
+
 \begin{prop}
   Let $X$ be a topological space and $\set{A_{\alpha}}$ an indexed collection of subsets of $X$.
   \begin{enumerate}
@@ -708,6 +726,8 @@ We give more precise definitions of the interior and closure of a set.
   Thus $x \in \inte(B)$.
 \end{pf}
 
+\clearpage
+
 We may specify the space in which a closure is taken with the notation $\overline{A}^{X}$.
 However, we do not need this notation very often.
 
@@ -729,8 +749,6 @@ However, we do not need this notation very often.
 \begin{pf}
   \quest{High lvl: Take open $\subseteq Y$. This is equal to $Y \cap \text{ open } \subseteq X$. Use basis of $X$, distribute intersection}.
 \end{pf}
-
-\clearpage
 
 \begin{prop}
   If $X, Y, Z$ are topological spaces and $Z$ is a subspace of $Y$, and $Y$ is a subspace of $X$, then $Z$ is a subspace of $X$.
@@ -3638,6 +3656,134 @@ We conclude this section by studdying the effect of mapping cones when we change
   Then their ``one-point union'' $\textbf{S}^{2} \lor \textbf{S}^{1}$ is the quotient space of $\textbf{S}^{2} + \textbf{S}^{1}$ with the equivalence relation identifying $x_{0}$ with $y_{0}$.
   Show that this space is homotopically equivalent to the space $\textbf{S}^{2} \cup A$ where $A$ is the line segment joining the north and south poles.
 \end{exercise}
+
+\clearpage
+
+\chapter{Topological Groups}
+
+\begin{defn}[Topological Group]
+  A \emph{topological group} is a Hausdorff topological space $G$ such that group multiplication $G \times G \to G$ and inversion $G \to G$ are both continuous.
+\end{defn}
+
+\begin{defn}[Subgroup]
+  A \emph{subgroup} $H$ of a topological group $G$ is a subspace which is also a subgroup in the algebraic sense.
+\end{defn}
+
+\begin{defn}[Homomorphism]
+  If $G$ and $G'$ are both topological groups, then a \emph{homomorphism} $f\colon G \to G'$ is a group homomorphism which is also continuous.
+\end{defn}
+
+\begin{defn}[Translation]
+  For a topological group $G$ and $g \in G$ define \emph{left translation by $g$} and \emph{right translation by $g$} respectively by the maps
+
+  \noindent\begin{minipage}{.5\linewidth}
+    \begin{align*}
+      L_{g}\colon G &\to G \\
+      h &\mapsto gh
+    \end{align*}
+  \end{minipage}%
+  \begin{minipage}{.5\linewidth}
+    \begin{align*}
+      R_{g}\colon G &\to G \\
+      h &\mapsto hg^{-1}
+    \end{align*}
+  \end{minipage}
+\end{defn}
+
+\begin{prop}
+  If a topological group $G$ we have that $L_{g} \circ L_{h} = L_{gh}$ and $R_{g} \circ R_{h} = R_{hg}$.
+  Moreover, both $L_{g}$ and $R_{g}$ are homeomorphisms as are congugation by $g$ mapping $h \mapsto ghg^{-1}$ and inversion $h \mapsto h^{-1}$.
+  $\hfill\qed$
+\end{prop}
+
+\begin{defn}[Symmetric]
+  A subset $A$ of a topological group is \emph{symmetric} if $A = A^{-1}$.
+\end{defn}
+
+\begin{prop}
+  In a topological group $G$ with identity $e$, the symmetric neighborhoods of $e$ form a neighborhood basis at $e$.
+\end{prop}
+\begin{pf}
+  Let $U$ be a neighborhood of $e^{-1}$.
+  We must have that $U^{-1}$ is also a neighborhood of $e$ since inversion is a homeomorphism.
+  Thus $U \cap U^{-1}$ is a neighborhood of $e$ and we see that $U \cap U^{-1}$ is symmetric.
+\end{pf}
+
+\clearpage
+
+\begin{prop}\label{prop: symmetric_VgV-1}
+  If $G$ is a topological group, $g \in G$, and $U$ is a neighborhood of $g$, then there is a symmetric neighborhood $V$ of $e$ such that $VgV^{-1} \subseteq U$.
+\end{prop}
+\begin{pf}
+  Consider $f_{g}\colon G \times G \to G$ mapping $(x, y) \mapsto xgy^{-1}$.
+  Since multiplication is continuous, $f_{g}$ is continuous.
+  Thus, there exists some open set $W$ of $G \times G$ containing $(e, e)$ such that $f(W) \subseteq U$.
+  By the product topology, $W = V_1 \times V_{2}$ for some open $V_{1}, V_{2} \subseteq G$ where $e \in V_{1}, V_{2}$.
+  Let $V = V_{1} \cap V_{1}^{-1} \cap V_{2} \cap V_{2}^{-1}$.
+  We have that $V$ is a neighborhood of $e$, $V$ is symmetric, and $VgV^{-1} \subseteq U$ because $VgV^{-1} = f\pqty{V, V} \subseteq f(W) \subseteq U$.
+\end{pf}
+
+\begin{prop}
+  If $G$ is a topological group with identity $e$, $U$ any neighborhood of $e$, and $n$ any positive integer, then there exists a symmetric neighborhood $V$ of $e$ such that $V^{n} \subseteq U$.
+\end{prop}
+\begin{pf}
+  \quest{Induction, can do later.}
+\end{pf}
+
+\begin{prop}
+  If $H$ is any subgroup of a topological group then $\overline{H}$ is also a subgroup of $G$.
+  If $H$ is a normal subgroup then so is $\overline{H}$.
+\end{prop}
+\begin{pf}
+  Recall by \Cref{prop: continuous_iff_im_closure_subset_closure_im} that a function is continuous if and only if the image of the closure is a subset of the closure of the image.
+  Continuity of inversion and multiplication implies that $\overline{H}^{-1} \subseteq \overline{H}$ and that $\overline{H} \overline{H} \subseteq \overline{H}$.
+  Thus $\overline{H}$ is a subgroup.
+  Suppose now that $\overline{H}$ is normal.
+  Let $g \in G$.
+  Then since conjugation is continuous we again have that $g\overline{H}g^{-1} \subseteq \overline{gHg^{-1}} = \overline{H}$.
+  We get the reverse inclusion by considering the same thing with $g^{-1}$.
+  Thus $\overline{H}$ is also normal.
+\end{pf}
+
+\begin{prop}\label{prop: quotient_hausdorff}
+  If $G$ is a topological group and $H$ is a closed subgroup then $G / H$, with the topology induced by the canonical map $\pi\colon G \to G / H$ of left cosets, is a Hausdorff space.
+  Moreover, $\pi$ is open and continuous.
+\end{prop}
+\begin{pf}
+  If $U \subseteq G$ is open then we have that
+  \[
+    \pi^{-1}(\pi(U)) = UH = \bigcup_{h \in H} Uh
+  \]
+  is the union of open sets in $G / H$.
+  Thus $\pi(U)$ is open.
+
+  Consider two points $g_{1}H, g_{2}H$ in $G / H$.
+  Since $g_{1}H \neq g_{2}H$ we have that $g_{1}^{-1}g_{2} \notin H$.
+  Since $G \setminus H$ is open and contains $g_{1}^{-1} g_{2}$, by \Cref{prop: symmetric_VgV-1} there is a symmetric open neighborhood $V$ of $e$ such that $V g_{1}^{-1} g_{2} V^{-1}$ is disjoint from $H$.
+  Since $V = V^{-1}$ we have that
+  \begin{align*}
+    \pqty{V g_{1}^{-1} g_{2} V^{-1}} \cap H = \emptyset &\implies g_{1}^{-1} g_{2} V \cap VH = \emptyset \\
+                                                        &\implies g_{2} V \cap g_{1} VH = \emptyset \\
+                                                        &\implies g_{2} V H \cap g_{1} V H = \emptyset.
+  \end{align*}
+  Thus $\pi\pqty{g_{i}} \in g_{i} VH$ which are disjoint open sets in $G / H$ and thus $H$ is Hausdorff.
+\end{pf}
+
+\begin{prop}
+  If $H$ is a closed normal subgroup of $G$ then $G / H$ equipped with the quotient topology is a topological group.
+\end{prop}
+\begin{pf}
+  $G / H$ is Hausdorff by \Cref{prop: quotient_hausdorff}.
+  We now show that the group operations on $G / H$ are continuous.
+  Consider the following diagram, where the horizontal arrows are group multiplication.
+  \quest{TODO:\@ diagram}
+  A corollary of the fact that $\pi$ is open is that $\pi \times \pi$ is an identification map.
+  Taking an open set in $G / H$, we want to show that it's inverse image in $G / H \times G / H$ is open.
+  However, this is equivalent to showing that it's inverse image in $G \times G$ is open.
+  But this is open since the maps along the right and top sides of the diagram are continuous.
+  Thus multiplication in $G / H$ is continuous.
+  A similar argument with a similar diagram yields that inversion in $G / H$ is open.
+\end{pf}
 
 \clearpage
 \nocite{note:conrad_topologist_sine}
