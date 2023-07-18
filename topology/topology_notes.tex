@@ -3785,6 +3785,101 @@ We conclude this section by studdying the effect of mapping cones when we change
   A similar argument with a similar diagram yields that inversion in $G / H$ is open.
 \end{pf}
 
+The most important topological groups are Lie groups which have a differentiable structure.
+
+\begin{ex}[Classical Lie Groups]
+  The set of $n \times n$ matrices $M_{n}$ with real entries is a euclidean space of dimension $n^{2}$.
+  The determinant function $\det\colon M_{n} \to \R$ is continuous.
+  This is because it is a polynomial in the matrix coefficients.
+  Thus the inverse of $\set{0}$ is closed.
+  It's complement, the set of nonsingular matrices, is thus open.
+  This is a multiplicative group known as the general linear group $\GL(n, \R)$.
+  Matrix multiplication is also a polynomial in the coefficients and thus is continuous.
+  Matrix inversion is a rational function by Cramer's rule, and thus is continuous.
+  Thus $\GL(n, \R)$ is a topological group.
+  Similarly, $\GL(n, \C)$ is a topological group.
+
+  The special linear group $\SL(n, \R)$ is the subgroup of $\GL(n, \R)$ consisting of matrices with determinant $1$.
+  We also can consider $\SL(n, \C)$.
+
+  The general linear group $\GL(n, \mathbb{H})$ over the quaternions is also a topological space.
+  We note that there is no determinant function, so the argument is not as clean.
+
+  The set $\text{O}(n)$ is the set of orthogonal real matrices and is a subgroup of $\GL(n, \R)$ and also is a closed subset since it is defined by \quest{continuous relations} ($A A^{T} = I$).
+  Since the coefficients of an orthogonal matrix are bounded by $1$, we have that $\text{O}(n)$ is a bounded closed subset of euclidean $n^{2}-$space and thus is compact since closed and bounded euclidean spaces are compact.
+  Similarly, the set $\text{U}(n)$ of unitary matrices ($A A^{*} = I$) forms a compact subgroup of $\GL(n, \C)$.
+
+  The quaternionic analouge of the orthogonal and unitary groups is the sympletic group $\Sp(n)$.
+  Its elements are quaternionic matricies $A$ such that $A A^{*} = I$ where $A^{*}$ is the quaternionic conjugate transpose of $A$.
+  Quaternionic conjugation means reversal of the three imaginary components.
+  This forms a compact subgroup of $\GL(n, \mathbb{H})$.
+\end{ex}
+
+Note that the map $\GL(n, \R) \times \R^{n} \to \R^{n}$ is given by polynomials in the coefficients of the matrix and the vector, and thus is continuous.
+
+\clearpage
+
+An orthogonal matrix $A \in \text{O}(n)$, as a transformation of euclidean $n$-space, preserves lengths of vectors.
+This makes it a map of the sphere $\textbf{S}^{n - 1}$ to itself.
+Regard $\text{O}(n - 1)$ as the subgroup of $\text{O}(n)$ fixing the last coordinate.
+Consider the $n$-dimensional point $(0, \ldots, 0, 1)$, which is fixed by $\text{O}(n - 1)$.
+Define a map $f$ taking a matrix in $O\text{O}(n)$ to where it moves the point $(0, \ldots, 0, 1)$ on the sphere $\textbf{S}^{n - 1}$:
+\begin{align*}
+  f\colon \text{O}(n) &\to \textbf{S}^{n - 1} \\
+             A &\mapsto A (0, \ldots, 0, 1)^{T}.
+\end{align*}
+If $B \in \text{O}(n - 1)$ then $f(AB) = f(A)$ meaning that $f$ factors through the coset space $\text{O}(n) / \text{O}(n - 1)$.
+It can be shown that the induced function $\text{O}(n) / \text{O}(n - 1) \to \textbf{S}^{n - 1}$ is injective, surjective, and continuous.
+Since this is a injective mapping of a compact space onto a Hausdorff space, it is a homeomorphism by \Cref{thrm: bij_comp_to_Haus_is_homeo}.
+We can abstract this.
+
+\begin{defn}[Group Action, Orbit, Isotropy / Stability, Transitive, Effective / Faithful]
+  If $G$ is a topological group and $X$ a space, then an \emph{action} $G \acts X$ is a map $G \times X \to X$ where the image of $(g, x)$ is $g \cdot x$.
+  The map is such that
+  \begin{enumerate}
+  \item $(gh) \cdot x = g \cdot (h \cdot x)$; and
+  \item $e \cdot x = x$.
+  \end{enumerate}
+  For a point $x \in X$ we have that $G \cdot x \defeq \set{g \cdot x | g \in G}$ is the \emph{orbit} of $x$.
+  The subgroup $G_{x} \defeq \set{g \in G | g \cdot x = x}$ is the \emph{stabilizer} or \emph{isotropy} group of $x$.
+  An action is \emph{transitive} if it only has one orbit, the whole space $X$.
+  The action is \emph{effective} if $g \cdot x = x$ for all $x$ implies that $g = e$.
+\end{defn}
+
+\begin{prop}
+  If $G$ is a compact topological group acting on a Hausdorff space $X$ and $G_{x}$ is the isotropy group at $x$, then the map $\phi\colon G / G_{x} \to G \cdot x$ given by $g G_{x} \mapsto g \cdot x$ is a homeomorphism.
+\end{prop}
+\begin{pf}
+  We immediately have that $\phi$ is surjective.
+  If $g_{1} \cdot x = g_{2} \cdot x$, then $g_{1}^{-1} g_{2} \in G_{x}$.
+  Thus $g_{1} G_{x} = g_{2} G_{x}$, meaning that $\phi$ is injective.
+  It is continuous by the definition of the quotient topology.
+  The result then follows by \Cref{thrm: bij_comp_to_Haus_is_homeo}.
+\end{pf}
+
+We also have that $\text{U}(n)$ acts on $\textbf{S}^{2n - 1}$ \quest{how?} and it is transitive because we can find a unitary matrix moving any vector from length $1$ to any other.
+The isotropy group at $(0, \ldots, 0, 1)$ is $\text{U}(n - 1)$ and we have that $\text{U}(n) / \text{U}(n - 1) \approx \textbf{S}^{n - 1}$.
+Similarly, $\Sp(n) / \Sp(n - 1) \approx \textbf{S}^{4n - 1}$.
+
+More generally, let $V_{n, k}$ denote the ``Stiefel Manifold'' of $k$-frames in $n$-space.
+A $k$-frame is an orthonormal set of $k$ vectors in $n$ space.
+We have that $\text{O}(n)$ will act transitively on $V_{n, k}$ with isotropy group $\text{O}(n - k)$ and so $\text{O}(n) / \text{O}(n - k) \approx V_{n, k}$.
+Analogous observations for unitary and symplectic cases can be made.
+
+We can also form special groups of other matrices:
+\begin{align*}
+  \SO(n) &= \set{A \in \text{O}(n) | \det(A) = 1} = \text{the special orthogonal group; and} \\
+  \SU(n) &= \set{A \in \text{U}(n) | \det(A) = 1} = \text{the special orthogonal group.}
+\end{align*}
+There is no analogue in the symplectic case.
+
+With some restriction, these groups can also act transitively on spheres and we get
+\begin{align*}
+  \SO(n) / \SO(n - 1) & \textbf{S}^{n - 1} & \text{for } n \geq 2; \text{ and } \\
+  \SU(n) / \SU(n - 1) & \textbf{S}^{2n - 1} & \text{for } n \geq 2.
+\end{align*}
+Similar results can be obtained for Stiefel manifolds.
+
 \clearpage
 \nocite{note:conrad_topologist_sine}
 \nocite{note:compactness_review}
