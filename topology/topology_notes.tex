@@ -955,7 +955,7 @@ Another intuition is that the space doesn't have two or more separated pieces.
   Then $d\colon X \to \set{0, 1}$ where $d(x) = 0$ if and only if $x \in U$ forms a nonconstant DVM.\@
 \end{pf}
 
-\begin{prop}
+\begin{prop}\label{prop: image_of_connected_is_connected}
   If $f\colon X \to Y$ is continuous and $X$ is connected, then $f(X)$ is connected.
 \end{prop}
 \begin{pf}
@@ -3327,7 +3327,7 @@ We can also consider quotients built by ``attachments.''
   If $f\colon X \to Y$ is a map then the \emph{mapping cylinder} of $f$ is the space $M_{f} = Y \cup_{f_{0}} X \times I$ where $f_{0}\colon X \times \set{0} \to Y$ is the map sending $(x, 0) \to f(x)$.
 \end{defn}
 
-Note that $X \simeq X \times \set{1}$ is embedded as a closed subset of $M_{f}$.
+Note that $X \approx X \times \set{1}$ is embedded as a closed subset of $M_{f}$.
 We abuse notation and regard this as an inclusion.
 Also note that there is a factorization of $f$ by $X \subseteq M_{f} \xrightarrow{r} Y$ where $r$ is the retraction of $M_{f}$ onto $Y$ induced by the projection $X \times I \to X \times \set{0}$.
 
@@ -3434,7 +3434,7 @@ If $h\colon Y \to Z$ is another homotopy equivalence with homotopy inverse $k\co
   Let $X = \R^{n}$.
   We have a homotopy $F\colon X \times I \to X$ given by $F(x, t) = tx$.
   This is a homotopy between $F(x, 1) = 1_{X}$ and $F(x, 0)$ which is the constant map sending everything to $0$.
-  By \Cref{prop: contractable_iff_single_point} this means that $\R^{n}$ is contractible.
+  By \Cref{prop: contractible_iff_single_point} this means that $\R^{n}$ is contractible.
   Note that for $t > 0$, $F(x, t)$ is surjective.
   However, $F(x, 0)$ is not surjective.
 \end{ex}
@@ -3789,6 +3789,7 @@ The most important topological groups are Lie groups which have a differentiable
 
 \begin{ex}[Classical Lie Groups]
   The set of $n \times n$ matrices $M_{n}$ with real entries is a euclidean space of dimension $n^{2}$.
+  We can view a matrix as an element of $\R^{n^{2}}$ and then use any norm since they all define the same open sets.
   The determinant function $\det\colon M_{n} \to \R$ is continuous.
   This is because it is a polynomial in the matrix coefficients.
   Thus the inverse of $\set{0}$ is closed.
@@ -3869,16 +3870,84 @@ Analogous observations for unitary and symplectic cases can be made.
 We can also form special groups of other matrices:
 \begin{align*}
   \SO(n) &= \set{A \in \text{O}(n) | \det(A) = 1} = \text{the special orthogonal group; and} \\
-  \SU(n) &= \set{A \in \text{U}(n) | \det(A) = 1} = \text{the special orthogonal group.}
+  \SU(n) &= \set{A \in \text{U}(n) | \det(A) = 1} = \text{the special unitary group.}
 \end{align*}
 There is no analogue in the symplectic case.
 
 With some restriction, these groups can also act transitively on spheres and we get
 \begin{align*}
-  \SO(n) / \SO(n - 1) & \textbf{S}^{n - 1} & \text{for } n \geq 2; \text{ and } \\
-  \SU(n) / \SU(n - 1) & \textbf{S}^{2n - 1} & \text{for } n \geq 2.
+  \SO(n) / \SO(n - 1) &\approx \textbf{S}^{n - 1} & \text{for } n \geq 2; \text{ and } \\
+  \SU(n) / \SU(n - 1) &\approx \textbf{S}^{2n - 1} & \text{for } n \geq 2.
 \end{align*}
 Similar results can be obtained for Stiefel manifolds.
+
+\clearpage
+
+\subsection*{Exercises}
+
+\begin{exercise}[\tcite{book:Bredon} 15.5]
+  If $G$ is a topological group and $H$ a closed subgroup, show that if $H$ and $G / H$ are both connected then so is $G$.
+\end{exercise}
+\begin{pf}
+  Suppose that $G = A \sqcup B$ where $A, B$ are nonempty open subsets of $G$.
+  Since $H$ is connected, its translations $L_{g}(H)$ are also connected by \Cref{prop: image_of_connected_is_connected}.
+  Since $A$ and $B$ are disjoint, each left coset must be completely contained in one or the other.
+  Thus, $A$ and $B$ are disjoint unions of left cosets of $H$.
+  Let $\pi\colon G \to G/H$ be the quotient map.
+  Then $\pi(A)$ and $\pi(B)$ are nonempty and disjoint.
+  But then since $\pi$ is open by \cref{prop: quotient_hausdorff}, $\pi(A)$ and $\pi(B)$ is a disconnection of $G / H$.
+  This is a contradiction.
+  Thus $G$ must be connected.
+\end{pf}
+
+\begin{exercise}[\tcite{book:Bredon} 15.7]
+  Show that $\SO(2) \approx \textbf{S}^{1}$, $\SU(2) \approx \textbf{S}^{3}$, and $\Sp(1) \approx \textbf{S}^{3}$ as spaces.
+\end{exercise}
+\begin{pf}
+  Suppose that $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \SO(2)$.
+  Then we must have that $a^{2} + c^{2} = 1 = b^{2} + d^{2}$.
+  Thus $a = \cos(\theta)$, $b = \sin(\theta)$, $c = \cos(\alpha)$, and $d = \sin(\alpha)$ for some $\theta, \alpha \in [0, 2\pi)$.
+  However, we also have that $ab + cd = 0$ by orthogonality and that $ad - bc = 1$.
+  Thus $\cos(\alpha - \theta) = 0$ and $\sin(\alpha - \theta) = 1$.
+  Using this we get that $\alpha = \theta + \frac{\pi}{2}$ which implies that $A = \begin{pmatrix} \cos(\theta) & \sin(\theta) \\ -\sin(\theta) & \cos(\theta) \end{pmatrix}$.
+  This corresponds to $e^{i \theta} \in \textbf{S}^{1}$.
+
+  \quest{TODO:\@ the other ones later}
+\end{pf}
+
+\begin{exercise}[\tcite{book:Bredon} 15.8]
+  Show that $\SO(n)$ is connected.
+\end{exercise}
+\begin{pf}
+  Note that $\SO(n) / \SO(n - 1) \approx \textbf{S}^{n - 1}$ for $n \geq 2$.
+  Also $\textbf{S}^{n}$ is connected for $n \geq 1$.
+  Clearly $\SO(1)$ is connected.
+  \quest{TODO:\@ Something something induction.}
+  It is clear that the identity is in $\SO(n)$.
+\end{pf}
+
+\begin{exercise}[\tcite{book:Bredon} 15.9]
+  Show that $\text{U}(n)$ and $\SU(n)$ are both connected and that $\text{U}(n)/\SU(n) \approx \textbf{S}^{1}$.
+\end{exercise}
+\begin{pf}
+  To show that $\text{U}(n)$ is connected, suffices to describe a path from the identity to any other matrix $A \in \text{U}(n)$.
+  Note that $A$ can be diagonalized by another unitary matrix $S$ meaning that $A = S \diag\pqty{e^{i \theta_{1}}, \ldots, e^{i \theta_{n}}} S^{-1}$.
+  Thus we can take our path to be the map $t \mapsto S \diag\pqty{e^{ti \theta_{1}}, \ldots, e^{ti \theta_{n}}} S^{-1}$.
+  This is a path from the identity to $A$.
+  Similar logic yields that $\SU(n)$ is also connected by making the right choice of diagonal matrix.
+
+  Note that $\text{U}(n)$ is compact and the quotient is continuous and thus $\text{U}(n) / \SU(n)$ is compact by \Cref{thrm: image_of_compact_is_compact}.
+  Then $\textbf{S}^{1}$ is Hausdorff.
+  Thus by \Cref{thrm: bij_comp_to_Haus_is_homeo} we have that $\text{U}(n)/\SU(n) \approx \textbf{S}^{1}$.
+\end{pf}
+
+
+\begin{exercise}[\tcite{book:Bredon} 15.12]
+  Show that $\GL(n, \mathbb{H})$ is open in $M_{n}(\mathbb{H})$.
+\end{exercise}
+\begin{pf}
+  \quest{TODO:\@ We can do it \href{https://math.stackexchange.com/questions/451402/quaternionic-general-linear-group-is-open}{this way} but I have no intuition for why you would come up with that}.
+\end{pf}
 
 \clearpage
 \nocite{note:conrad_topologist_sine}
