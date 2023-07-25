@@ -3950,6 +3950,54 @@ Similar results can be obtained for Stiefel manifolds.
 \end{pf}
 
 \clearpage
+
+\chapter{Convex Bodies}
+
+We often want to know whether certain objects are homeomorphic.
+A disk in euclidean space is homeomorphic to a cube, to a cylinder, and to a simplex, which is the analogue of a tetrahedron, as well as others.
+
+\begin{defn}[Convex Body]
+  A \emph{convex body} in $\R^{n}$ is a closed set $C \subseteq \R^{n}$ with the property that whenever $p, q \in C$ the whole line segment between $p$ and $q$ is contained in $C$.
+\end{defn}
+
+\begin{prop}\label{prop: convex_ray_intersect_boundary}
+  If $C \subseteq \R^{n}$ is a convex body and the origin $0 \in \inte(C)$ then any ray from the origin intersects $\partial C = C \setminus \inte(C)$ in at most one point.
+\end{prop}
+\begin{pf}
+  Suppose $R$ is a ray from the origin and $p, q \in R \cap C$, with neither $p$ or $q$ being the origin.
+  Suppose also that $q$ is further from the origin than $p$.
+  Since the origin is assumed to lie in $\inte(C)$ there is a ball $B$ centered at $0$ completely contained in $C$.
+  Consider the union of all line segments from points in $B$ to $q$, which forms the cone on $B$ subtended from $q$.
+  Clearly, $p$ is in the interior of the cone and thus is completely contained in $C$ since $C$ is convex.
+  Thus $p \in \inte(C)$.
+\end{pf}
+
+\begin{prop}\label{prop: homeo_boundry_to_sphere}
+  Let $C \subseteq \R^{n}$ be a compact convex body with $0 \in \inte(C)$.
+  Then the function $f\colon \partial C \to \textbf{S}^{n - 1}$ given by $x \mapsto \frac{x}{\norm{x}}$ is a homeomorphism.
+\end{prop}
+\begin{pf}
+  Since $f$ is the composition of the inclusion $\partial C \into \R^{n} \setminus \set{0}$ with the radial retraction $r\colon \R^{n} \setminus \set{0} \to \textbf{S}^{n - 1}$, it is continuous.
+  We have that \Cref{prop: convex_ray_intersect_boundary} implies that $f$ is injective, and clearly it is surjective.
+  Thus $f$ is a homeomorphism by \Cref{thrm: bij_comp_to_Haus_is_homeo}.
+\end{pf}
+
+\clearpage
+
+\begin{thrm}
+  A compact convex body $C$ in $\R^{n}$ with nonempty interior is homeomorphic to the closed $n$-ball and $\partial C \approx \textbf{S}^{n - 1}$.
+\end{thrm}
+\begin{pf}
+  By translation, assume that the origin is in the interior of $C$.
+  Let $\textbf{D}^{n}$ denote the unit disk in $\R^{n}$ and let $f$ be as in \Cref{prop: homeo_boundry_to_sphere}.
+  Then let $k\colon \textbf{D}^{n} \to C$ given by $x \mapsto \norm{x} f^{-1}\pqty{\frac{x}{\norm{x}}}$ for $x \neq 0$ and $0 \mapsto 0$.
+  We have that $k$ maps $\textbf{D}^{n}$ onto $C$ and is continuous everywhere except possibly at the origin.
+  However, $C$ is compact and so there is a bound $M$ for $\set{\norm{x} | x \in C}$.
+  Thus $\norm{k(x)} \leq M \cdot \norm{x}$ which implies continuity at the origin.
+  It is clear that $k$ is also injective and thus by \Cref{thrm: bij_comp_to_Haus_is_homeo} we have that $k$ is a homeomorphism.
+\end{pf}
+
+\clearpage
 \nocite{note:conrad_topologist_sine}
 \nocite{note:compactness_review}
 \nocite{book:Rudin_RCA}
