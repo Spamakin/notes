@@ -3998,6 +3998,160 @@ A disk in euclidean space is homeomorphic to a cube, to a cylinder, and to a sim
 \end{pf}
 
 \clearpage
+
+\chapter{Baire Category Theorem}
+
+We may be interested in a condition on points in a space that is satisfied by an open dense set.
+For example, if $p(\overline{x})$ is a function on $\R^{n}$ then the condition $p(x) \neq 0$ has this property.
+A special case of this is the determinant of matrices.
+If we consider sets satisfying two such conditions, then the set of points satisfying both is still open and dense.
+This holds for any finite number of conditions.
+A natural question is when this may hold for a countably infinite number of such conditions?
+We cannot expect that openness still holds, but it turns out that density survives for a wide class of spaces.
+
+\begin{thrm}[Baire Category Theorem]\label{thrm: baire_category}
+  Let $X$ be either a complete metric space or a locally compact Hausdorff space.
+  Then the union of countably many nowhere dense subsets of $X$ has empty interior.
+\end{thrm}
+\begin{pf}
+  Let $U$ be an open subset of $X$ and suppose for $i = 0, 1, \ldots$ that $A_{i} \subseteq X$ is nowhere dense.
+  Construct a sequence of open sets $V_{1}, V_{2}, \ldots$ such that $\overline{V_{i + 1}} \subseteq V_{i} \setminus \overline{A_{i}}$ where $V_{0} = U$.
+  In the complete metric case, this may be done by taking $V_{i + 1} = B_{\e}(x)$ for some $x \in V_{i} \setminus \overline{A_{i}}$ such that $B_{2\e}(x) \subseteq V_{i} \setminus \overline{A_{i}}$.
+  \quest{How do we do this for locally compact Hausdorff space?}
+
+  If $X$ is locally compact, then also construct the $V_{i}$ such that $\overline{V_{1}}$, and hence all of the $\overline{V_{i}}$, are compact.
+  Then each of the $\overline{V_{i}}$ satisfy the finite intersection property and $\emptyset \neq \bigcap_{i} \overline{V_{i}} \subseteq U \setminus \bigcup_{i} \overline{A_{i}}$.
+
+  If $X$ is a complete metric space, then construct the $V_{i}$ so that $\diam(V_{i}) < 2^{-i}$.
+  Then a sequence of points $x_{i} \in V_{i}$ is Cauchy.
+  Thus $x_{n} \in \overline{V_{i}}$ for all $n \geq i$ and so $x = \lim(x_{n}) \in \overline{V_{i}}$ for all $i$.
+  Thus $x \in \bigcap_{i} \overline{V_{i}} \subseteq U \setminus \bigcup_{i} \overline{A_{i}}$.
+
+  In both of these cases, we have that $U \not\subseteq \bigcup_{i} \overline{A_{i}}$.
+  Since $U$ was an arbitrary open set, we have that $\inte\pqty{\overline{A_{i}}} = \emptyset$.
+\end{pf}
+
+\begin{defn}[First and Second Category, Residual]
+  A subset $S$ of a space $X$ is said to be of the \emph{first category} if it is the countable union of nowhere dense subsets.
+  Otherwise, it is of the \emph{second category}.
+  A set of the second category is \emph{residual} if its complement is of the first category.
+\end{defn}
+
+\clearpage
+
+We can rephrase \Cref{thrm: baire_category} as follows: ``An open subset of a complete metric space or locally compact Hausdorff space is of the second category in itself.''
+The contrapositive of \Cref{thrm: baire_category} is also quite useful.
+
+\begin{cor}
+  Let $X$ be either a complete metric space or a locally compact Hausdorff space.
+  Then the intersection of any countable family of dense open sets in $X$ (\ie\ a residual set) is dense.
+\end{cor}
+
+\begin{cor}
+  If $\set{f_{n}}$ is a sequence of continuous functions $f_{n}\colon X \to Y$ from a complete metric space $X$ to a complete metric space $Y$ and if $f(x) = \lim f_{n}(x)$ exists for each $x$ then the set of points of continuity of $f$ is residual and hence dense.
+\end{cor}
+\begin{pf}
+  For positive integers $m, k$ let
+  \[
+    U_{m, k} = \bigcup_{n \geq m} \Set{x | \dist(f_{n}(x), f_{m}(x)) \geq \frac{1}{k}}
+  \]
+  which is open.
+  Since the set
+  \[
+    \bigcap_{m \geq 1} U_{m, k}
+  \]
+  consists of points where $f_{n}(x)$ does not converge, it is empty.
+  It follows that
+  \[
+    \bigcap_{m \geq 1} \overline{U_{m, k}} \subseteq \bigcup_{m \geq 1} \pqty{\overline{U_{m, k} \setminus U_{m, k}}}
+  \]
+  which is a countable union of nowhere dense sets.
+  Thus its complement
+  \[
+    C = \bigcap_{k \geq 1} \bigcup_{m \geq 1} \inte\pqty{x | \dist(f_{n}(x), f_{m}(x)) \leq \frac{1}{k}}
+  \]
+  is residual.
+  Suppose that $y \in C$.
+  Then for all $k \geq 1$, there exists $m \geq 1$ such that
+  \[
+    \exists~\delta > 0 \text{ s.t. } \dist(x, y) < \delta \implies \forall n \geq m,~ \dist(f_{n}(x), f_{m}(x)) \geq \frac{1}{k}.
+  \]
+  Hence, for such $k, m, \delta$ and $\dist(x, y) < \delta$, we have that $\dist(f(x), f_{m}(x)) \leq \frac{1}{k}$ and also that $\dist(f(y), f_{m}(y)) \leq \frac{1}{k}$.
+  By taking $\delta$ smaller as necessary, we can guarantee that $\dist(f_{m}(x), f_{m}(y)) \leq \frac{1}{k}$ by the continuity of $f_{m}$.
+  Thus, $\dist(f(x), f(y)) \leq \frac{3}{k}$ for these choices, which implies continuity of $f$ at $y$.
+\end{pf}
+
+\clearpage
+
+\begin{cor}
+  In the space $\R^{I}$ of continuous functions $I \to \R$ in the uniform metric, the set of functions which are nowhere differentiable is dense.
+  Indeed, it is residual in $\R^{I}$.
+\end{cor}
+\begin{pf}
+  For a positive integer $n$, define the set
+  \[
+    U_{n} = \Set{f \in \R^{I} | \forall~t \in I, \exists~ s \neq t \text{ such that } \abs{\frac{f(t) - f(s)}{t - s}} > n}.
+  \]
+  We claim that $U_{n}$ is open.
+  To see this, note that for a given $f \in U_{n}$ and $t \in I$, there exists $\e > 0$ and $s \neq t$ such that
+  \[
+    \abs{\frac{f(t) - f(s)}{t - s}} > n + \e.
+  \]
+  Then, for some such $s = s(t)$ and $\e = \e(t)$, there is an open neighborhood $V_{t}$ of $t$ such that $s(t) \notin \overline{V_{t}}$ and such that
+  \[
+    \abs{\frac{f(t') - f(s)}{t - s}} > n + \e
+  \]
+  for all $t' \in V_{t}$.
+  The $V_{t}$ cover $I$ so that some finite union $V_{t_{1}} \cup \cdots \cup V_{t_{k}} \containseq I$.
+  Let $\e = \min_{i} \e(t_{i})$ and $\delta =  \min_{i} \dist\pqty{s(t_{i}), \overline{V_{t_{i}}}}$.
+  Suppose that $\norm{f - g} < \frac{\e\delta}{2}$.
+  Then for any $t \in I$ we have that $t \in V_{t_{i}}$ for some $i$ and for $s - s(t)i$ we have that
+  \[
+    n + \e < \abs{\frac{f(t) - f(s)}{t - s}} \leq \abs{\frac{f(t) - g(t)}{t - s}} + \abs{\frac{g(t) - g(s)}{t - s}} + \abs{\frac{g(s) - f(s)}{t - s}}.
+  \]
+  Since $\abs{t - s} \geq \delta$, the first and third terms on the right hand side are at most $\frac{\e \delta}{2} \cdot \frac{1}{\delta} = \frac{\e}{2}$.
+  We also have that
+  \[
+    \abs{\frac{g(t) - g(s)}{t - s}} > n + \e - \e = n,
+  \]
+  and hence $g \in U_{n}$.
+  Therefore, each $U_{n}$ is open as claimed.
+
+  Next, we claim that each $U_{n}$ is dense.
+  Let $f \in \R^{I}$ and $\e > 0$ be given.
+  Let $m$ be such that $\frac{2}{m} < \e$.
+  By uniform continuity of $f$, there is some $k$ so large that
+  \[
+    \abs{x - y} \leq \frac{1}{k} \implies \abs{f(x) - f(y)} \leq \frac{1}{m}.
+  \]
+  Also, take $k$ so large that $k > nm$.
+  Let $a_{i} = \frac{i}{k}, b_{i} = a_{i} + \frac{1}{3k}, c_{i} = a_{i} + \frac{2}{3k}$, and $y_{i} = f(a_{i})$.
+  Consider the interval $[a_{i}, a_{i + 1}]$.
+  Define a function $g$ on this interval whose graph consists of the three line segments $(a_{i}, y_{i})$ to $(b_{i}, y_{i} - (1 / m))$ to $(c_{i}, y_{i} + (1 / m))$ to $(a_{i + 1}, y_{i + 1})$.
+  \quest{See figure}.
+  These fit together to define $g$ on all $I$.
+  By construction, $\norm{f - g} \leq \frac{2}{m} < \e$.
+  Let $t \in [a_{i}, a_{i + 1}]$.
+  if $g(t) > y_{i}$, then let $s = b_{i}$.
+  Otherwise, let $s = c_{i}$.
+  Then we have that
+  \[
+    \abs{\frac{g(t) - g(s)}{t - s}} \geq \frac{1 / m}{1 / k} = \frac{k}{m} > \frac{nm}{m} = n.
+  \]
+  Hence $g \in U_{n}$ and $\norm{f - g} < \e$ which proves that $U_{n}$ is dense.
+
+  Since $\R^{I}$ is a complete metric space \quest{why?} we conclude that $A = \bigcap_{n} U_{n}$ is residual.
+  We claim that any function $f \in A$ is nowhere differentiable.
+  Suppose otherwise that $f$ is differentiable at some $t \in I$.
+  Then $\abs{\frac{f(s) - f(t)}{s - t}}$ has a limit as $s \to t$ and so it is bounded for all $s \in I$, $s \neq t$.
+  If $n$ is larger than such a bound, then $f \notin U_{n}$ which is a contradiction.
+\end{pf}
+
+\clearpage
+
+\subsection*{Exercises}
+
+\clearpage
 \nocite{note:conrad_topologist_sine}
 \nocite{note:compactness_review}
 \nocite{book:Rudin_RCA}
