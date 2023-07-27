@@ -4152,6 +4152,201 @@ The contrapositive of \Cref{thrm: baire_category} is also quite useful.
 \subsection*{Exercises}
 
 \clearpage
+
+\chapter{The Inverse Function Theorem}
+
+We will discuss three equivalent theorems from real analysis: the inverse function theorem, the implicit function theorem, and the constant rank theorem.
+These discuss the local behavior of a $C^{\infty}$ map from $\R^{n} \to \R^{n}$.
+
+\begin{defn}[Locally Invertible / Local Diffeomorphism]
+  A $C^{\infty}$ map $f\colon U \to \R^{n}$ defined on an open $U \subseteq \R^{n}$ is \emph{locally invertible} or a \emph{local diffeomorphism} at a point $p \in U$ if $f$ has a $C^{\infty}$ inverse in some neighborhood of $p$.
+\end{defn}
+
+\begin{defn}[Jacobian]
+  Let $f\colon U \to \R^{n}$ be a $C^{\infty}$ map defined on an open $U \subseteq \R^{n}$.
+  The \emph{Jacobian matrix of $f$} is the matrix $Jf$ where $(Jf)_{i, j} = \frac{\partial f_{i}}{\partial x_{j}}$.
+  We call the determinant of $Jf$ the \emph{Jacobian determinant of $f$}.
+\end{defn}
+
+\begin{thrm}[Inverse Function Theorem]\label{thrm: inverse_func}
+  Let $f\colon U \to \R^{n}$ be a $C^{\infty}$ map defined on an open $U \subseteq \R^{n}$.
+  At any point $p \in U$, the map $f$ is invertible in some neighborhood of $p$ if and only if the Jacobian determinant of $f$ evaluated at $p$ is non-zero.
+\end{thrm}
+Note that although \Cref{thrm: inverse_func} reduces invertibility on an open set to evaluation at a point, the nonvanishing of the Jacobian determinant at a point is equivalent to the nonvanishing in a neighborhod since the Jacobian determinant is continuous.
+Since the linear map represented by the Jacobian matrix $Jf(p)$ is the best linear approximation to $f$ at $p$, we can surmise that $f$ is invertible in a neighborhood of $p$ if and only if $Jf(p)$ also is, \ie\ $\det(Jf(p)) \neq 0$.
+
+In an equation such as $f(x, y) = 0$, it is often impossible to explicitly solve for one of the variables in terms of the other.
+If we show the existence of some function $y = h(x)$, which may or may not be explicit, such that $f(x, h(x)) = 0$, then we say that $f(x, y) = 0$ can be solved \emph{implicitly} for $y$ in terms of $x$.
+The implicit function theorem provides a sufficient condition on a system of equations $f_{i}(x_{1}, \ldots, x_{n}) = 0$, $i = 1, \ldots, m$ on which locally a set of variables can be solved implicitly as $C^{\infty}$ functions of the other variables.
+
+\clearpage
+
+\begin{ex}[Solving for Variables on the Circle]
+  Consider the equation $f(x, y) = x^{2} + y^{2} - 1 = 0$ with solution set the unit circle centered at the origin.
+  We can see that at any point other than $(\pm 1, 0)$, $y$ is a function of $x$ with $y = \pm \sqrt{1 - x^{2}}$.
+  Both of these functions are $C^{\infty}$ as long as $x \neq \pm 1$.
+  At these points, there is no neighborhood where $y$ is a function of $x$.
+  In general, for a smooth curve $f(x, y) = 0$ in $\R^{2}$ we have that
+  \begin{align*}
+         & \text{ $y$ can be expressed as a function of $x$ in a neighborhood of a point $(a, b)$} \\
+    \iff & \text{ the tangent line to } f(x, y) = 0 \text{ at } (a, b) \text{ is not vertical } \\
+    \iff & \text{ the normal vector } \grad\ f \defeq \gen{f_{x}, f_{y}} \text{ to } f(x, y) = 0 \text{ at } (a, b) \text{ is not horizontal } \\
+    \iff & f_{y}(a, b) \neq 0.
+  \end{align*}
+  The implicit function theorem, \Cref{thrm: implicit_func}, generalizes this to higher dimensions.
+\end{ex}
+
+\begin{thrm}[Implicit Function Theorem]\label{thrm: implicit_func}
+  Let $U$ be an open subset of $\R^{n} \times \R^{m}$ and $f\colon U \to \R^{m}$ a $C^{\infty}$ map.
+  Write $(x, y) = (x_{1}, \ldots, x_{n}, y_{1}, \ldots, y_{m})$ for a point in $U$.
+  At a point $(a, b) \in U$ such that $f(a, b) = 0$ and the determinant $\det\bqty{\partial f_{i} / \partial y_{i}(a, b)}$ is nonzero, there exists a neighborhood $A \times B$ of $(a, b)$ in $U$ and a unique function $h\colon A \to B$ such that in $A \times B \subseteq U \subseteq \R^{n} \times \R^{m}$ we have that
+  \[
+    f(x, y) = 0 \iff y = h(x).
+  \]
+  Moreover, we have that $h$ is $C^{\infty}$.
+\end{thrm}
+\begin{pf}
+  To solve for $f(x, y) = 0$ using the inverse function theorem, we first consider an inverse problem.
+  For this, we need a map between two open sets of the same dimension.
+  Since $f(x, y)$ is a map from an open set $U$ in $\R^{n + m}$ to $\R^{m}$, we can easily extend it to a map $F\colon  U \to \R^{n + m}$ by adjoining $x$ to the first $n$ components so that we have
+  \[
+    F(x, y) = (u, v) = (x, f(x, y)).
+  \]
+
+  For here on, assume that $n = m = 1$.
+  Then we have Jacobian
+  \[
+    JF = \begin{matrix} 1 & 0 \\ \partial f / \partial x & \partial f / \partial y \end{matrix}.
+  \]
+  At the point $(a, b)$ we have that
+  \[
+    \det JF(a, b) = \frac{\partial f}{\partial y}(a, b) \neq 0.
+  \]
+  Since the Jacobian determinant at $(a, b)$ is nonzero, by the inverse function theorem (\Cref{thrm: inverse_func}) we have that there are neighborhoods $U_{1}$ of $(a, b)$ and $V_{1}$ of $F(a, b) = (a, 0)$ in $\R^{2}$ such that $F\colon U_{1} \to V_{1}$ is a diffeomorphism with $C^{\infty}$ inverse $F^{-1}$.
+  See Figure \quest{TODO}.
+  Since $F\colon U_{1} \to V_{1}$ is defined by $F(x, y) = (u, v) = (x, f(x, y))$ the inverse map $F^{-1}\colon V_{1} \to U_{1}$ must be of the form $F^{-1}(u, v) = (u, g(u, v))$ for some $C^{\infty}$ function $g\colon V_{1} \to \R$.
+
+  The compositions of $F$ and $F^{-1}$ yield
+  \begin{align*}
+    (x, y) &= \pqty{F^{-1} \circ F}(x, y) = F^{-1}(x, f(x, y)) = (x, g(x, f(x, y))); \text{ and } \\
+    (u, v) &= \pqty{F \circ F^{-1}}(u, v) = F(u, g(u, v)) = (u, f(u, g(u, v))).
+  \end{align*}
+  Hence we must have that $y = g(x, f(x, y))$ for all $(x, y) \in U_{1}$ and that $v = f(u, g(u, v))$ for all $(u, v) \in V_{1}$.
+  If $f(x, y) = 0$ then $y = g(x, 0)$.
+  This implies that we should define $h(x) = g(x, 0)$ for all $x \in \R$ where $(x, 0) \in V_{1}$.
+  The set of all such $x$ is homeomorphic to $V_{1} \cap \pqty{\R \times \set{0}}$ and is an open subset of $\R$.
+  Since $g$ is $C^{\infty}$ by the inverse function theorem, we must have that $h$ is also $C^{\infty}$.
+
+  This also proves that $h$ is unique.
+  We claim that for all $(x, y) \in U_{1}$ such that $(x, 0) \in V_{1}$ we must have that
+  \[
+    f(x, y) = 0 \iff y = h(x).
+  \]
+  Since $y = g(x, f(x, y))$ for all $(x, y) \in U_{1}$ we have that $y = g(x, f(x, y)) = g(x, 0) = h(x)$.
+  Conversely, if $y = h(x)$ take $v = f(u, g(u, v))$ and set $(u, v) = (x, 0)$.
+  Then we have that $0 = f(x, g(x, 0)) = f(x, h(x)) = f(x, y)$.
+
+  By this claim, in some neighborhood of $(a, b)$ in $U_{1}$ we have that the zero set of $f(x, y)$ is the graph of $h$.
+  We now need to find a product neighborhood of $(a, b)$ as in the statement.
+  Let $A_{1} \times V$ be some neighborhood of $(a, b)$ contained in $U_{1}$.
+  Let $A = h^{-1}(B) \cap A_{1}$.
+  Since $h$ is continuous, $A$ is open in the domain of $H$ and hence in $\R^{1}$.
+  Then $h(A) \subseteq B$ and we have
+  \[
+    A \times B \subseteq A_{1} \times B \subseteq U_{1}, \text{ and } A \times \set{0} \subseteq V_{1}.
+  \]
+  By the claim, for $(x, y) \in A \times B$ we have $f(x, y) = 0 \iff y = h(x)$.
+
+  Replacing the partial derivative $\frac{\partial f}{\partial y}$ with a Jacobian matrix $\bqty{\partial f_{i} / \partial y_{j}}$, we recover the general form the of theorem.
+  We also do not require that $y_{1}, \ldots, y_{m}$ be the last $m$ coordinates in $\R^{n + m}$.
+  They can be any set of $m$ coordinates.
+\end{pf}
+
+\clearpage
+
+\begin{thrm}
+  The implicit function theorem is equivalent to the inverse function theorem.
+\end{thrm}
+\begin{pf}
+  We saw in the proof of \Cref{thrm: implicit_func} that the inverse function theorem implies the implicit function theorem, at least for one typical case.
+
+  Suppose the implicit function theorem holds and let $f\colon U \to \R^{n}$ be a $\C^{\infty}$ function defined on an open subset $U$ of $\R^{n}$ such that at some point $p \in U$ the Jacobian determinant $\det\bqty{\partial f_{i} / \partial x_{j}(p)}$ is nonzero.
+  Finding a local inverse for $y = f(x)$ near $p$ amounts to solving
+  \[
+    g(x, y) = f(x) - y = 0
+  \]
+  for $x$ in terms of $y$ near $(p, f(p))$.
+  Note that $\frac{\partial g_{i}}{\partial x_{j}} = \frac{\partial f_{i}}{\partial x_{j}}$.
+  Hence we have that
+  \[
+    \det\bqty{\frac{\partial g_{i}}{\partial x_{j}} (p, f(p))} = \det\bqty{\frac{\partial f_{i}}{\partial x_{j}}(p, f(p))} \neq 0.
+  \]
+  Thus $y = f(h(y))$.
+  Since $y = f(x)$ we have that $x = h(y) = h(f(x))$.
+  Therefore, $f$ and $h$ are inverses defined near $p$ and $f(p)$ respectively.
+\end{pf}
+
+\begin{defn}[Rank of a $C^\infty$ Map]
+  For a given $C^{\infty}$ map $f\colon U \to \R^{n}$ defined on an open $U \subseteq \R^{n}$, the \emph{rank of $p \in U$} is the rank of the Jacobian matrix $\bqty{\partial f_{i} / \partial x_{j}(p)}$.
+\end{defn}
+
+\begin{thrm}[Constant Rank Theorem]\label{thrm: constant_rank}
+  If $f\colon \R^{n} \containseq U \to \R^{m}$ has constant rank $k$ in a neighborhood of a point $p \in U$, then after a suitable change of coordinates near $p \in U$ and $f(p) \in \R^{m}$, the map assumes the form
+  \[
+    \pqty{x_{1}, \ldots, x_{n}} \mapsto \pqty{x_{1}, \ldots, x_{k}, 0, \ldots, 0}.
+  \]
+  More precisely, there are diffeomorphisms $G$ from a neighborhood $p$ in $U$ sending $p$ to the origin and a $F$ of a neighborhood of $f(p)$ in $\R^{m}$ sending $f(p)$ to the origin such that
+  \[
+    \pqty{F \circ f \circ G^{-1}}\pqty{x_{1}, \ldots, x_{n}} = \pqty{x_{1}, \ldots, x_{k}, 0, \ldots, 0}.
+  \]
+\end{thrm}
+\begin{pf}
+  We consider the case where $n = m = 2$ and $k = 1$.
+  Suppose $f = (f_{1}, f_{2}\colon \R^{2} \containseq U \to \R^{2})$ has constant rank $1$ in a neighborhood $p \in U$.
+  By reordering the functions $f_{1}, f_{2}$ or the variables $x, y$ we may assume that $\frac{\partial f_{1}}{\partial x}(p) \neq 0$ by the fact that $f$ has rank $\geq 1$ at $p$.
+  Define $G\colon U \to \R^{2}$ by $G(x, y) = (u, v) = \pqty{f_{1}(x, y), y}$.
+  The Jacobian matrix of $G$ is
+  \[
+    JG = \begin{bmatrix} \partial f_{1} / \partial x & \partial f_{1} / \partial y \\ 0 & 1 \end{bmatrix}.
+  \]
+
+  \clearpage
+
+  Since $\det JG(p) = \partial f_{1} / \partial x (p) \neq 0$, by the inverse function theorem there are neighborhoods $U_{1}$ of $p \in \R^{2}$ and $V_{1}$ of $G(p) \in \R^{2}$ such that $G\colon U_{1} \to V_{1}$ is a diffeomorphism.
+  By making $U_{1}$ a sufficiently small neighborhood of $p$, we may assume that $f$ has constant rank $1$ on $U_{1}$.
+
+  On $V_{1}$ we have that
+  \[
+    (u, v) = \pqty{G \circ G^{-1}} = \pqty{f_{1} \circ G^{-1}, y \circ G^{-1}}(u, v).
+  \]
+  Thus $u = \pqty{f_{1} \circ G^{-1}}(u, v)$.
+  Thus we have that
+  \begin{align*}
+    \pqty{f \circ G^{-1}}(u, v) &= \pqty{f_{1} \circ G^{-1}, f_{2} \circ G^{-1}}(u, v) \\
+                                &= \pqty{u, f_{2} \circ G^{-1}(u, v)} \\
+                                &= (u, h(u, v))
+  \end{align*}
+  here $h \defeq f_{2} \circ G^{-1}$.
+
+  Since $G^{-1}\colon V_{1} \to U_{1}$ is a diffeomorphism and $f$ has constant rank $1$ on $U_{1}$, the composite $f \circ G_{1}$ has constant rank $1$ on $V_{1}$.
+  It's Jacobian matrix is
+  \[
+    J\pqty{f \circ G^{-1}} = \begin{bmatrix} 1 & 0 \\ \partial h / \partial u & \partial h / \partial v \end{bmatrix}.
+  \]
+  For this matrix to have constant rank $1$, $\partial h / \partial v$ must be $0$ on $V_{1}$ since $f$ has rank $\leq 1$ in a a neighborhood of $p$.
+  Thus $h$ is a function of $u$ alone and we have $\pqty{f \circ G^{-1}}(u, v) = (u, h(u))$.
+  Let $F\colon \R^{2} \to \R^{2}$ be the the change of coordinates $F(x, y) = (x, y - h(x))$.
+  Then we have as desired
+  \[
+    \pqty{F \circ f \circ G^{-1}}(u, v) = F(u, h(u)) = (u, h(u) - h(u)) = (u, 0).
+  \]
+\end{pf}
+
+If a $C^{\infty}$ map $f\colon \R^{n} \containseq U \to \R^{n}$ defined on an open subset $U$ of $\R^{n}$ has nonzero Jacobian determinant $\det(Jf(p))$ at a point $p \in U$, then by continuity it has nonzero Jacobian determinant in a neighborhood of $p$.
+Therefore, it has constant rank $n$ in a neighborhood of $p$.
+
+\clearpage
+\nocite{book:TuAITM}
 \nocite{note:conrad_topologist_sine}
 \nocite{note:compactness_review}
 \nocite{book:Rudin_RCA}
