@@ -51,12 +51,6 @@
 
 \quest{Proper Chapter Header}
 
-\quest{Table of Contents}
-
-\quest{Named Theorem List}
-
-\quest{Many TODOs within proofs throughout}
-
 \tableofcontents
 \clearpage
 
@@ -143,7 +137,11 @@ However it turns out that for $\R^{n}$, choice between these 3 metrics is irrele
 \end{prop}
 
 \begin{pf}
-  \quest{TODO:\@ PROOF}
+  It suffices to show that every $\dist_{1}$ open set is also $\dist_{2}$ open since for the other direction we have the opposite hypothesis.
+  Suppose $U$ is open with respect to $\dist_{1}$.
+  Then for each $x \in V $we have some $\e$ such that $B_{\e}(x) \subseteq V$.
+  By hypothesis, we can find $\delta$ such that $B_{\delta}(x) \subseteq V$ because we can find $\delta$ such that $\dist_{2}(x, y) < \delta \implies \dist_{1}(x, y) < \e$.
+  Thus $V$ is open with respect to $\dist_{2}$.
 \end{pf}
 
 \begin{cor}
@@ -425,9 +423,18 @@ Thus there is no way to argue that a topology is ``large'' or ``small'' without 
 \begin{pf}
   \begin{enumerate}
   \item[a.] Suppose that $C_{1}, C_{2}$ are closed in $X$.
-        Then we have that $X \setminus (C_{1} \cup \C_{2}) = (X \setminus C_{1}) \cup (X \setminus C_{2})$ which is the union of two open sets.
+        Then we have that $X \setminus (C_{1} \cup C_{2}) = (X \setminus C_{1}) \cup (X \setminus C_{2})$ which is the union of two open sets.
         Thus $C_{1} \cup C_{2}$ is closed.
-  \item[b.] \quest{Sim.}
+  \item[b.] Suppose $\set{C_{i}}_{i \in I}$ is some collection of closed sets in $X$.
+        Then $X \setminus C_{i}$ is open for each $i \in I$ and thus
+        \[
+          \bigcup_{i \in I} X \setminus C_{i} =  X \setminus \bigcap_{i \in I} C_{i}
+        \]
+        is open, which means that
+        \[
+          \bigcap_{i \in I} C_{i}
+        \]
+        is closed.
   \item[c.] We have that $X \setminus \emptyset = X$ which is open so $\emptyset$ is closed.
         Similarly we have that $X \setminus X = \emptyset$ which is open so $X$ is closed.
   \end{enumerate}
@@ -441,6 +448,8 @@ Thus there is no way to argue that a topology is ``large'' or ``small'' without 
   Note that $(x - 1, x] \cup [x, x + 1) = \set{x}$.
   Thus every singleton, and therefore every subset of $\R$, is open and we recover the discrete topology.
 \end{pf}
+
+\clearpage
 
 \begin{exercise}[\tcite{book:Bredon} 1.2.4]
   If $f\colon X \to Y$ is a function between topological space, and $f^{-1}(U)$ is open for each open $U$ in some subbasis for the topology of $Y$, show that $f$ is continuous.
@@ -482,7 +491,10 @@ Thus there is no way to argue that a topology is ``large'' or ``small'' without 
         Similarly there exists $M \in \textbf{N}(x)$ such that $M \subseteq V$.
         We have then there exists $P \in \textbf{N}(x)$ such that $P \subseteq N \cap M$.
         Thus $U \cap V$ is open.
-  \item \quest{TODO:\@ Union}
+  \item Consider some collection $\set{U_{i}}_{i \in I}$.
+        Then for all $x \in U_{i}$ there is $N_{i} \in \textbf{N}(x)$ such that $N_{i} \subseteq U_{i}$.
+        Then clearly for all $x \in \bigcup_{i \in I} U_{i}$, since $x$ must be in some $U_{i}$, we can find some such $N_{i} \subseteq U_{i} \subseteq \bigcup_{i \in I} U_{i}$.
+        Thus $\bigcup_{i \in I} U_{i}$ is also open.
   \end{itemize}
 
   Suppose that $Y$ is some other topology such that for each $x \in S$. $\textbf{N}(x)$ is a neighborhood basis of $x$.
