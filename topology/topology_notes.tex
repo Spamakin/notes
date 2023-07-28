@@ -571,12 +571,26 @@ We give more precise definitions of the interior and closure of a set.
   Let $X$ be a topological space and $A \subseteq X$.
   Then we have that
   \begin{align*}
-    \inte(A) &= \set{a \in A | \exists U \text{ open such that } a \in U \subseteq X} \\
+    \inte(A) &= \set{a \in A | \exists U \text{ open such that } a \in U \subseteq A} \\
     \overline{A} &= \set{x \in X | \forall U \text{ open such that } x \in U,~ U \cap A \neq \emptyset}
   \end{align*}
 \end{prop}
 \begin{pf}
-  \quest{Immediate from defn.}
+  Clearly $\set{a \in A | \exists U \text{ open such that } a \in U \subseteq A} \subseteq \inte(A)$.
+  Suppose that $x \in \inte(A)$.
+  Then $\inte(A)$ is open, a subset of $A$, and contains $x$.
+  Thus $x \in \set{a \in A | \exists U \text{ open such that } a \in U \subseteq A}$.
+
+  Suppose that $x \in \set{x \in X | \forall U \text{ open such that } x \in U,~ U \cap A \neq \emptyset}$ and let $C$ be a closed set containing $A$.
+  If $x \notin C$ then $X \setminus C$ is an open set which has empty intersection with $A$.
+  This is impossible.
+  Thus $x \in C$ which implies that $x \in \overline{A}$.
+  Now suppose that $x \in \overline{A}$.
+  Suppose that $U$ is an open set containing $x$.
+  If $U \cap A$ is empty, then $A \subseteq X \setminus U$ which is closed.
+  Thus $\overline{A} \subseteq X \setminus U$.
+  But $x \in \overline{A}$ which yields a contradiction.
+  Thus $U \cap A$ is nonempty.
 \end{pf}
 
 \begin{prop}
@@ -584,7 +598,10 @@ We give more precise definitions of the interior and closure of a set.
   Then $A$ is open if and only if $\inte(A) = A$ and $A$ is closed if and only if $\overline{A} = A$.
 \end{prop}
 \begin{pf}
-  \quest{Immediate from \Cref{prop: defn_of_int_and_cl}}.
+  Clearly $\inte(A) \subseteq A$ no matter what.
+  Then if $A$ is open, it is an open set contained in itself so $\inte(A) \containseq A$.
+  Similarly, $\overline{A} \containseq A$ always.
+  If $A$ is closed, then $\overline{A} \subseteq A$.
 \end{pf}
 
 \begin{prop}
@@ -602,8 +619,13 @@ We give more precise definitions of the interior and closure of a set.
   Now let $x \in X \setminus \overline{A}$.
   Then by \Cref{prop: defn_of_int_and_cl} there exists an open set $U$ such that $x \in U$ and $U \cap A = \emptyset$.
   Thus $U \subseteq X \setminus A$ and $x \in \inte(X \setminus A)$.
-  \quest{TODO:\@ Reverse Inclusion}
+  Suppose now that $x \in \inte(X \setminus A)$.
+  Then there is some open set $U$ containing $x$ such that $U \subseteq X \setminus A$.
+  Thus $U$ is an open set containing $x$ which has empty intersection with $A$.
+  Thus by \Cref{prop: defn_of_int_and_cl} $x \notin \overline{A}$.
 \end{pf}
+
+\clearpage
 
 \begin{prop}
   Let $X$ be a topological space and $A, B \subseteq X$.
@@ -623,8 +645,6 @@ We give more precise definitions of the interior and closure of a set.
   Then for all open $U$ with $x \in U$, $U \cap A$ or $U \cap B$  is nonempty.
   Thus $U \cap (A \cup B) \neq \emptyset$ and $x \in \overline{A \cup B}$.
 \end{pf}
-
-\clearpage
 
 \begin{prop}\label{prop: continuous_iff_im_closure_subset_closure_im}
   A function between topological spaces $f\colon X \to Y$ is continuous if and only if for all $A \subseteq X$ we have that $f\pqty{\overline{A}} \subseteq \overline{f(A)}$.
@@ -656,7 +676,6 @@ We give more precise definitions of the interior and closure of a set.
 \begin{pf}\
   \begin{enumerate}
   \item In the finite case, by induction, we have that $\Bigcap_{\alpha} \inte(A_{\alpha}) \subseteq \inte\pqty{\Bigcap_{\alpha} A_{\alpha}}$.
-        \quest{The proof does not invoke finiteness / infiniteness and so this holds in the general case.}
         We actually have equality in the case of finite intersection.
 
         Note that $\inte\pqty{\bigcap_{\alpha} A_{\alpha}}$ is open and $\inte\pqty{\bigcap_{\alpha} A_{\alpha}} \subseteq \bigcap_{\alpha} \inte(A_{\alpha})$ and so $\inte\pqty{\bigcap_{\alpha} A_{\alpha}} \subseteq \inte\pqty{\bigcap_{\alpha} \inte(A_{\alpha})}$.
@@ -724,6 +743,8 @@ We give more precise definitions of the interior and closure of a set.
   However $\overline{A_{1}} \cap \overline{A_{2}} = \bqty{0, \frac{1}{2}} \cap \bqty{\frac{1}{2}, 1} = \set{\frac{1}{2}}$.
 \end{ex}
 
+\clearpage
+
 \begin{prop}
   Let $X$ be a topological space and $A, B$ subsets of $X$.
   If $A \subset B$, then we have that $\overline{A} \subseteq \overline{B}$ and $\inte(A) \subseteq \inte(B)$.
@@ -737,8 +758,6 @@ We give more precise definitions of the interior and closure of a set.
   Then there exists open $U$ such that $x \in U \subseteq A \subseteq B$.
   Thus $x \in \inte(B)$.
 \end{pf}
-
-\clearpage
 
 We may specify the space in which a closure is taken with the notation $\overline{A}^{X}$.
 However, we do not need this notation very often.
@@ -756,10 +775,15 @@ However, we do not need this notation very often.
 \end{pf}
 
 \begin{prop}
-  If $Y \subseteq X$ then the set of intersection of $Y$ with a basis of $X$ is a basis of the relative topology of $X$.
+  If $Y \subseteq X$ then the set of intersections of $Y$ with a basis of $X$ is a basis of the relative topology of $X$.
 \end{prop}
 \begin{pf}
-  \quest{High lvl: Take open $\subseteq Y$. This is equal to $Y \cap \text{ open } \subseteq X$. Use basis of $X$, distribute intersection}.
+  By definition, intersections of $Y$ with elements of a basis of $X$ are open in $Y$.
+  Now suppose that $U$ is open in $Y$.
+  Then $U = V \cap Y$ for some $V$ open in $X$.
+  But $V$ is the union of basis members of $X$.
+  Thus $U$ is the union of the intersection of $Y$ with basis members of $X$.
+  Overall we must have that the set of intersections of $Y$ with a basis of $X$ is a basis of the relative topology of $X$.
 \end{pf}
 
 \begin{prop}
@@ -787,6 +811,8 @@ However, we do not need this notation very often.
   Let $x_{n}$ be a point in $A$ which is also in $B_{a / n}(x)$.
   Thus $x$ is a limit of a sequence of points in $A$.
 \end{pf}
+
+\clearpage
 
 \begin{prop}\label{prop: closed_dist_inf_0}
   Let $X$ be a metric space $d$.
@@ -904,7 +930,6 @@ However, we do not need this notation very often.
   A topological space $X$ is said to be \emph{irreducible} if whenever $X = F \cup G$ with $F, G$ closed we have $X = F$ or $X = G$.
   A subspace is irreducible if it is irreducible in the subspace topology.
 \end{defn}
-\quest{Move this?}
 
 \begin{defn}[Zariski Space]
   A \emph{Zariski} space is a topological space such that every descending chain $F_{1} \containsneq F_{2} \containsneq F_{3} \containsneq \cdots$ of closed sets is eventually constant.
