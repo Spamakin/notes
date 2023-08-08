@@ -1481,7 +1481,7 @@ So the condition in \Cref{prop: continuous_iff_net_converges} can be stated as
   Thus $(\tau, U \cap V) \in D'$ and $(\tau, U \cap V) \geq (\alpha, U), (\beta, V)$.
   So $D'$ is directed.
 
-  Map $D' \to D$ by $(\alpha, U) to \alpha$.
+  Map $D' \to D$ by $(\alpha, U) \to \alpha$.
   For any $\delta \in D$, $(\delta, X) \in D'$, and $(\alpha, X) \geq (\delta, X)$ implies that $\alpha \geq \delta$.
   So this map is final and $\set{x_{\alpha, U}}$ is a subset of $\set{x_{\alpha}}$.
 
@@ -1519,8 +1519,8 @@ So the condition in \Cref{prop: continuous_iff_net_converges} can be stated as
   \end{enumerate}
   Note that $\textbf{C} = \set{X}$ is such a collection.
   Other the family of all such collections by inclusion.
-  The union of any \quest{simply ordered set} of collections satisfying conditions is another such collection.
-  Thus by the \quest{maximality principle} there exists a maximal such collection $\textbf{C}_{0}$.
+  The union of any totally ordered set of collections satisfying conditions is another such collection.
+  Thus by the Maximality Principle there exists a maximal such collection $\textbf{C}_{0}$.
 
   Let $P_{0} = \set{(A, \alpha) \in \textbf{C}_{0} \times P | x_{\alpha} \in A}$ and order it by
   \[
@@ -1547,7 +1547,7 @@ So the condition in \Cref{prop: continuous_iff_net_converges} can be stated as
   Thus $\set{x_{A, \alpha}}$ is a universal subset.
 \end{pf}
 
-Note that here we have used the Axiom of Choice in the form of the \quest{maximality principle}.
+Note that here we have used the Axiom of Choice in the form of the Maximality Principle.
 This past theorem is in fact equal to the Axiom of Choice.
 
 \begin{prop}
@@ -1595,14 +1595,56 @@ This past theorem is in fact equal to the Axiom of Choice.
   A collection of sets has the \emph{finite intersection property} if the intersection of any finite subcollection is empty.
 \end{defn}
 
+\clearpage
+
 The following theorem is just a translation of compactness in terms of open sets to an equivalent statement of about the closed complements of those sets.
 
 \begin{thrm}\label{thrm: compact_iff_nonempty_intersection}
   A topological space $X$ is compact if and only if for every collection of closed subsets of $X$ which has the finite intersection property, the intersection of the whole collection is nonempty.
 \end{thrm}
 \begin{pf}
-  \quest{Trivial Proof}
+  Suppose $X$ is compact.
+  Let \textbf{C} be a collection of closed subsets of $X$ with the finite intersection property.
+  Suppose that the intersection of the whole collection is empty, that is
+  \[
+    \bigcap_{C \in \textbf{C}} C = \emptyset.
+  \]
+  Taking complements yields that
+  \[
+    \pqty{\bigcap_{C \in \textbf{C}} C}^{c} = \bigcup_{C \in \textbf{C}} C^{c} = X
+  \]
+  which is an open cover of $X$.
+  Thus there exists $C_{1}^{n}, \ldots, C_{n}^{c}$ such that
+  \[
+    \bigcup_{1 \leq i \leq n} C_{i}^{c} = X.
+  \]
+  Taking intersections again yields a finite subcollection of sets such that
+  \[
+    \bigcap_{1 \leq i \leq n} C_{i}^{c} = \emptyset
+  \]
+  contradicting the finite intersection property.
+
+  Now suppose that for any collection of closed subsets of $X$ which has the finite intersection property, the intersection of the whole set is nonempty.
+  Let \textbf{C} be a open cover for $X$.
+  Suppose that $X$ is not compact.
+  Then for all finite subcollections $\bigcup_{i \in I} C_{i}$ of \textbf{C} we have that
+  \[
+    \bigcup_{i \in J} C_{i} \neq X
+  \]
+  where taking complements yields that
+  \[
+    \pqty{\bigcup_{i \in J} C_{i}}^{c} = \bigcap_{i \in J} C_{i}^{c} \neq \emptyset.
+  \]
+  Thus $\Set{C^{c} | C \in \textbf{C}}$ has the finite intersection property.
+  This yields that
+  \[
+    \bigcap_{C \in \textbf{C}} C^{c} \neq \emptyset.
+  \]
+  Taking complements contradicts the fact that \textbf{C} is an open cover for $X$.
+  Thus $X$ must be compact.
 \end{pf}
+
+\clearpage
 
 \begin{thrm}\label{thrm: compact_subset_Hausdorff_closed}
   If $X$ is a Hausdorff space, then any compact subset of $X$ is closed.
@@ -1648,7 +1690,7 @@ The following theorem is just a translation of compactness in terms of open sets
 \begin{pf}
   Let $\textbf{U}$ be an open covering of $[0, 1]$.
   Let $S = \set{s \in [0, 1] | [0, s] \text{ is covered by a finite subcollection of } \textbf{U}}$.
-  Then Let $b = \sup(S)$.
+  Then let $b = \sup(S)$.
   Note that $S$ takes the form $[0, b]$ or $[0, b)$.
   Suppose that $S$ takes for form $[0, b)$.
   Consider a set $U \in \textbf{U}$ containing $b$.
@@ -1656,7 +1698,9 @@ The following theorem is just a translation of compactness in terms of open sets
   But we can throw this in with the interval $[0, a]$ and obtain $[0, b]$.
   So $S$ must take the form $[0, b]$.
   Now suppose that $b < 1$.
-  Then \quest{a similar argument} yields that there exists $c > b$ such that there is a finite cover of $[0, c]$ which contradicts the definition of $b$.
+  Then let $U \in \textbf{U}$ be some open set containing $b$.
+  It contains some element $c > b$ and by extension contains $[b, c]$.
+  We can combine this with the finite cover for $[0, b]$ and obtain a finite cover for $c$, contradicting the fact that $\sup(S) = b$.
   Thus $b = 1$ and we have a finite cover of $[0, 1]$.
 \end{pf}
 
@@ -1696,8 +1740,6 @@ This does not hold in arbitrary metric spaces.
   A map $f\colon X \to Y$ is \emph{proper} if $f^{-1}(C)$ is compact for each compact $C \subseteq Y$.
 \end{defn}
 
-\clearpage
-
 \begin{thrm}\label{thrm: closed_single_point_preimage_compact}
   If $f\colon X \to Y$ is closed and $f^{-1}(y)$ is compact for each $y \in Y$, then $f$ is proper.
 \end{thrm}
@@ -1721,6 +1763,7 @@ This does not hold in arbitrary metric spaces.
   which is a finite open subcover of $f^{-1}(C)$.
 \end{pf}
 
+\clearpage
 
 \begin{thrm}\label{thrm: compact_iff_FIP_iff_universal_etc}
   For a topological space $X$, the following are equivalent:
@@ -1734,18 +1777,16 @@ This does not hold in arbitrary metric spaces.
 \begin{pf}
   We have already seen the equivalence of $1$ and $2$ and now we show the rest.
   \begin{enumerate}
-  \item[] $1 \iff 2$ See \Cref{thrm: compact_iff_nonempty_intersection}.
-  \item[] $1 \implies 3$ Suppose that $\set{x_{\alpha}}$ is a universal net that does not converge.
+  \item[] $1 \iff 2\colon$ See \Cref{thrm: compact_iff_nonempty_intersection}.
+  \item[] $1 \implies 3\colon$ Suppose that $\set{x_{\alpha}}$ is a universal net that does not converge.
         Given $x \in X$, there is an open neighborhood of $U_{x}$ such that $\set{x_{\alpha}}$ is not eventually in  $U_{x}$ and so the net is eventually in $X \setminus U_{x}$.
         So there exists $\beta_{x}$ such that for all $\alpha \geq \beta_{x}$ we have that $x_{\alpha} \notin U_{x}$.
         Now cover $X$ by some finite cover $U_{x_{1}} \cup \cdots U_{x_{n}}$.
         Let $\alpha \geq \beta_{x_{i}}$ for all $i$, then $x_{\alpha} \notin U_{x_{i}}$ for any $i$.
         Thus $x_{\alpha} \notin X$ which is a contradiction.
-  \item[] $3 \implies 4$ This is clear by \Cref{thrm: net_has_universal_subnet}.
+  \item[] $3 \implies 4\colon$ This is clear by \Cref{thrm: net_has_universal_subnet}.
 
-\clearpage
-
-  \item[] $4 \implies 2$ Let $\textbf{F} = \set{C}$ be a collection of closed sets with the finite intersection property.
+  \item[] $4 \implies 2\colon$ Let $\textbf{F} = \set{C}$ be a collection of closed sets with the finite intersection property.
         Without loss of generality, we can assume that \textbf{F} is closed under finite intersection.
         Order \textbf{F} by $C \geq C'$ if and only if $C \subseteq C'$, making \textbf{F} a directed set.
         Let $\set{x_{C}}_{C \in \textbf{F}}$ be a net.
@@ -1950,8 +1991,7 @@ This does not hold in arbitrary metric spaces.
   Then $U_{\alpha} \times \Bigtimes_{\beta \neq \alpha} X_{\beta}$ is a neighborhood of $x$.
   Thus the net $h$ is eventually in this neighborhood.
   But then $\pi_{\alpha} \circ h$ is eventually in $U_{\alpha}$ and thus $\pi_{\alpha} \circ h$ is a net converging to $x_{\alpha}$.
-
-  \quest{Converse is clear}
+  The converse is clear,
 \end{pf}
 
 \begin{thrm}[Tychonoff Theorem]\label{thrm: tychonoff}
@@ -1996,39 +2036,6 @@ When $A$ itself is also a topological space, we use $X^{A}$ to denote the set of
 
 \clearpage
 
-\begin{ex}[Sorgenfrey's Half-Open Square Topology, Product of Normal may not be Normal]\
-
-  Let $S$ denote the real line $\R$ with the half-open topology with half-open intervals $[a, b)$ as basis elements.
-  We claim that $S$ is normal.
-  % TODO: redo with tikz?
-  \begin{figure}[h]
-    \centering
-    \includegraphics[width=0.25\textwidth]{figs/Sorgengrey_Half_Open.png}
-    \caption{$S(p, \e)$}\label{fig:sorgenfrey_half_open}
-  \end{figure}
-  Let $F, G$ be disjoint closed sets in $S$.
-  For each $x \in F$, choose some $x'$ such that $[x, x') \cap G$ is disjoint.
-  Let $U = \bigcup_{x \in F}[x, x')$.
-  We can find such $x'$ because $G$ is closed and $F$ is disjoint from $G$ and so there exists an open set around $x$ such that it is disjoint from $G$ and we can choose $x'$ from that set.
-  Similarly, for each $y \in G$, choose some $y'$ such that $[y, y') \cap F$ is disjoint and let $V = \bigcup_{y \in G}[y, y')$.
-  We have that $F \subseteq U$ and $G \subseteq V$.
-  We also have that $U$ and $V$ are disjoint.
-  To see this, it suffices to show that for all $x \in F$, $y \in G$ that $[x, x')$ and $[y, y')$ are disjoint.
-  Let $x \in F$ and $y \in G$ and without loss of generality suppose $x < y$.
-  Note that $x'$ was chosen such that $[x, x') \cap G = \emptyset$ and so in particular we have that $[x, x') \cap [y, y') = \emptyset$.
-  Thus $x' \leq y$ which shows that $U$ and $V$ are disjoint and $S$ is normal.
-
-  Let $X = S^{2}$ with the half-open square topology.
-  Let $S(p, \e)$ denote the basis element the half-open square with sidelengths $\e$ and $p \in X$ as the lower left corner as in \Cref{fig:sorgenfrey_half_open}.
-  Define $L = \set{(x, -x) | x \in \R}$.
-  We have that $K = \set{(x, -x) | x \text{ is irrational }}$ is closed in $X$.
-  This is because for any $(x, y) \in X \setminus K$, we have that $S((x, y), \e)$ is disjoint from $K$ for some $\e$ based on if it is above or below the line.
-  If $(x, y)$ lies on the line, then since the square $S((x, y), \e)$ opens up and to the right, it is also disjoint from $K$.
-  Similarly, $L \setminus K$ is closed.
-
-  We now show that $X$ is not normal.
-  \quest{Something something Baire Category Theorem, move when covered later}
-\end{ex}
 
 \clearpage
 
@@ -2198,6 +2205,18 @@ We can follow such a function with a map $[0, 1] \to [0, 1]$ which is $0$ on $\b
 This means the function $f$ in \Cref{defn: completely_regular} can be taken such that $f$ is $0$ on a neighborhood of $x$.
 In fact, we can take $f^{-1}\pqty{\left[ 0, \frac{1}{2} \right)}$ and $f^{-1}\pqty{\left( \frac{1}{2}, 1 \right]}$ as disjoint open neighborhoods of of $x$ and $C$ respectively.
 
+\begin{prop}\label{prop: comp_reg_is_reg}
+  Let $X$ be a completely regular space.
+  Then $X$ is also regular.
+\end{prop}
+\begin{pf}
+  Let $x \in X$ and $F \subseteq X$ be a closed set not containing $x$.
+  Then by hypothesis som $f\colon X \to [0, 1]$ exists such that $f(x) = 0$ and $f(C) = \set{1}$.
+  Recall that $[0, 1]$ is Hausdorff so there exists disjoint open sets $U$ and $V$ such that $0 \in U$ and $1 \in V$.
+  Then since $f$ is continuous, $f^{-1}(U)$ is open and contains $x$ and $f^{-1}(V)$ is open and contains $F$.
+  Furthermore, these sets are disjoint proving that $X$ is regular.
+\end{pf}
+
 \begin{prop}\label{prop: bounded_metric_leq_1}
   Suppose $X$ is a metric space. Define:
   \[
@@ -2271,7 +2290,7 @@ In fact, we can take $f^{-1}\pqty{\left[ 0, \frac{1}{2} \right)}$ and $f^{-1}\pq
   Since $C$ is closed, we have by definition of basis some $V \in \textbf{S}$ such that $x \in V \subseteq X \setminus C$.
   By $X$ being completely regular, we have some $g\colon X \to [0, 1]$ such that $g(x) = 0$ and $1$ on $X \setminus V$.
   Without loss of generality, as stated before, we can take $g = 0$ on some neighborhood of $x$.
-  This neighborhood contains some $U \in \textbf{S}$ such that $\overline{U} \subseteq V$ \quest{why}, $f(U) = \set{0}$ and $f(X \setminus V) = \set{1}$.
+  This neighborhood contains some $U \in \textbf{S}$ such that $\overline{U} \subseteq V$ by the continuity of $g$, $g(U) = \set{0}$ and $g(X \setminus V) = \set{1}$.
   Thus by assumption, this $g$ can be replaced by some $f \in \textbf{F}$ satisfying the same properties as $g$ and satisfying the final requirements of the lemma.
 \end{pf}
 
@@ -2440,33 +2459,25 @@ We now address purely topological assumptions that guarantee such functions.
     \sup_{x \in X} g(x) = \sum_{n = 1}^{\infty} g_{n}(x) = \frac{1}{3} \sum_{n = 1}^{\infty} \pqty{\frac{2}{3}}^{n} = \frac{1}{3} * 3 = 1.
   \]
 
-  We now consider the unbounded cases
-  \begin{align*}
-   \text{Case I:\@}   &f \text{ is unbounded in both directions}, \\
-   \text{Case II:\@}  &f \text{ is bounded below by } a, \\
-   \text{Case III:\@} &f \text{ is bounded above by } b.
-  \end{align*}
+  We now consider the unbounded case.
+  It is enough to show that for any continous $g\colon F \to (-1, 1)$ we can find some continuous $\overline{g}\colon X \to (-1, 1)$ such that $\overline{g}\mid_{F} = g$.
+  If we can do this, then given a function $f\colon F \to \R$ we let $g = h \circ f$ where $h\colon R \to (-1, 1)$ is an arbitrary homeomorphism.
+  Then take the extension as $h^{-1} \circ \overline{g}$.
 
-  Let $h$ be a homeomorphism:
-  \begin{align*}
-    (-\infty, \infty) &\to (0, 1) &\text{ in Case I, }  \\
-    [a, \infty)       &\to [0, 1) &\text{ in Case II, } \\
-    (-\infty, b]      &\to (0, 1] &\text{ in Case III.\@}
-  \end{align*}
-  Then we have that $h \circ f$ is bounded by $0, 1$ and we can extend it to $g_{1}$.
-  If we can arrange that $g_{1}(x)$ is never $0$ (respectively $1$) if $h \circ f$ is never $0$ (respectively $1$) then $g = h^{-1} \circ g_{1}$ would be defined and would extend $f$.
-  Thus put
-  \begin{align*}
-    C &= \set{x | g_{1}(x) = 0 \text{ or 1 }} &\text{ in Case I, }  \\
-    C &= \set{x | g_{1}(x) = 1 } &\text{ in Case II, } \\
-    C &= \set{x | g_{1}(x) = 0 } &\text{ in Case III.\@}
-  \end{align*}
-  Then $C$ is closed and $C \cap F = \emptyset$.
-  So there exists a function $k\colon X \to [0, 1]$ such that $k = 0$ on $C$ and $k = 1$ on $F$.
-  Let $g_{2} = k \cdot g_{1} + (1 - k) \cdot \frac{1}{2}$.
-  Then $g_{2}$ is always between $g_{1}$ and $\frac{1}{2}$ with $g_{2} \neq g_{1}$ on $C$.
-  Also $g_{2} = g_{1} = h \circ f$ on $F$.
-  \quest{Thus $g = h^{-1} \circ g_{2}$ extends $f$ in the desired manner}.
+  Let $g\colon F \to (-1, 1)$ be a continuous function.
+  Since this is bounded, we already know we can extend this to some $g_{1}\colon X \to [-1, 1]$ such that $g_{1}\mid_{F} = g$.
+  Let $B \defeq g_{1}^{-1}\pqty{\set{-1, 1}}$.
+  This is closed in $X$ and $B \cap F = \emptyset$.
+  By \Cref{lem: urysohn_lemma} there is a map $k\colon X \to [0, 1]$ which is $0$ on $B$ and $1$ on $F$.
+  Let $\overline{g} = k \cdot g_{1}$.
+  Then we have
+  \begin{enumerate}
+  \item If $g_{1}(x) \in (-1, 1)$ then $\overline{g}(x) \in (-1, 1)$; and
+  \item If $g_{1}(x) \in \set{-1, 1}$ then $x \in B$ so $\overline{g}(x) = 0 \cdot g(x) = 0$.
+  \end{enumerate}
+  Thus we have that $\overline{g}\colon X \to (-1, 1)$.
+  Also $\overline{g}$ is continuous since both $k$ and $g_{1}$ are.
+  Finally if $x \in F$ then we have that $\overline{g}(x) = 1 \cdot g(x) = g(x)$ as desired.
 \end{pf}
 
 \clearpage
@@ -2576,7 +2587,7 @@ However, the similar statement for open subsets is much more complicated.
 
 \clearpage
 
-\begin{thrm}
+\begin{thrm}\label{thrm: locally_comp_Haus_comp_reg}
   If $X$ is a locally compact Hausdorff space then each neighborhood of a point $x \in X$ contains a compact neighborhood of $x$.
   That is, the compact neighborhoods of $x$ form a neighborhood basis at $x$.
   Moreover, $X$ is completely regular.
@@ -2799,11 +2810,11 @@ Since subspaces of completely regular sets are completely regular, we must have 
         \arrow["f"', from=1-1, to=3-3]
       \end{tikzcd}
     \]
-    \caption{The universal property of the Stone\Cech\ Compatification}\label{fig:stone-cech-univ}
+    \caption{The universal property of the Stone \Cech\ Compatification}\label{fig:stone-cech-univ}
   \end{figure}
 \end{prop}
 \begin{pf}
-  Note that compact spaces are immediately locally compact \quest{and locally compact spaces are completely regular} so $C$ is completely regular.
+  Note that compact spaces are immediately locally compact and by \Cref{thrm: locally_comp_Haus_comp_reg} locally compact Hausdorff spaces are completely regular, so $C$ is completely regular.
   By \Cref{lem: Hausdorff_and_comp_reg-ish_embedding} we have that $C$ can be embedded into $[0, 1]^{J}$ for some $J$ so without loss of generality suppose that $C \subseteq [0, 1]^{J}$.
   Then each component function $f_{\alpha}$ of $f$ is a bounded, continuous, real-valued function of $X$.
   Thus $f_{\alpha}$ can be uniquely extended to a map $\overline{f_{\alpha}}\colon \beta(X) \to \R$.
@@ -2929,16 +2940,19 @@ Since subspaces of completely regular sets are completely regular, we must have 
   We will first show that a paracompact space $X$ is regular.
   Suppose that $x \in X$ and $C \subseteq X$ is closed with $x \notin C$.
   For each point $y \in C$ there are disjoint open sets $U_{y}, V_{y}$ such that $x \in U_{y}$ and $y \in V_{y}$.
-  Cover $X$ by $X \setminus C$ along with the $V_{y}$.
-  Then we can find a open locally finite refinement $\set{U_{\alpha}}$.
+  The set of all $V_{y}$ forms an open cover $\set{V_{y}}_{y \in C}$ of $C$ which together with $X \setminus C$ forms an open cover for $X$.
+  By paracompactness, there exists an open locally finite refinement $\set{V_{\alpha}}$.
+  Note that the union of all the $V_{\alpha}$ forms an open neighborhood of $C$.
+
+  By local finiteness there exists also an open neighborhood $W$ of $x$ such that $W$ intersects nontrivially with only finitely many of the $V_{\alpha}$.
+  Let $\set{V_{\alpha}}_{\alpha \in K}$ be this finite collection.
   Let
   \[
-    U = \bigcup_{\substack{\alpha \\ U_{\alpha} \subseteq \text{ some } V_{y}}} U_{\alpha}.
+    U = W \cap \bigcap_{\alpha \in K} U_{\alpha}
   \]
-  Then we have that $C \subseteq U$.
-  Since this is a locally finite collection, \quest{its closure $\overline{U}$ is equal to the union of the closures of the same $U_{\alpha}$'s.}
-  However, $x$ is not in any of the $\overline{U_{\alpha}}$ and so $x \notin \overline{U}$.
-  Thus $U$ and $X \setminus \overline{U}$ separates $x$ and $C$.
+  Where $V_{\alpha} \subseteq U_{\alpha}$.
+  Note that $U$ is an open neighborhood of $x$ and that $U$ is disjoint from the union of all the $V_{\alpha}$.
+  Thus $X$ is regular.
 
   The same argument with $C$ playing the role of $x$ and the other closed set playing the role of $C$ shows that $X$ is normal.
 \end{pf}
@@ -4183,6 +4197,39 @@ The contrapositive of \Cref{thrm: baire_category} is also quite useful.
   If $n$ is larger than such a bound, then $f \notin U_{n}$ which is a contradiction.
 \end{pf}
 
+\begin{ex}[Sorgenfrey's Half-Open Square Topology, Product of Normal may not be Normal]\
+
+  Let $S$ denote the real line $\R$ with the half-open topology with half-open intervals $[a, b)$ as basis elements.
+  We claim that $S$ is normal.
+  % TODO: redo with tikz?
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.25\textwidth]{figs/Sorgengrey_Half_Open.png}
+    \caption{$S(p, \e)$}\label{fig:sorgenfrey_half_open}
+  \end{figure}
+  Let $F, G$ be disjoint closed sets in $S$.
+  For each $x \in F$, choose some $x'$ such that $[x, x') \cap G$ is disjoint.
+  Let $U = \bigcup_{x \in F}[x, x')$.
+  We can find such $x'$ because $G$ is closed and $F$ is disjoint from $G$ and so there exists an open set around $x$ such that it is disjoint from $G$ and we can choose $x'$ from that set.
+  Similarly, for each $y \in G$, choose some $y'$ such that $[y, y') \cap F$ is disjoint and let $V = \bigcup_{y \in G}[y, y')$.
+  We have that $F \subseteq U$ and $G \subseteq V$.
+  We also have that $U$ and $V$ are disjoint.
+  To see this, it suffices to show that for all $x \in F$, $y \in G$ that $[x, x')$ and $[y, y')$ are disjoint.
+  Let $x \in F$ and $y \in G$ and without loss of generality suppose $x < y$.
+  Note that $x'$ was chosen such that $[x, x') \cap G = \emptyset$ and so in particular we have that $[x, x') \cap [y, y') = \emptyset$.
+  Thus $x' \leq y$ which shows that $U$ and $V$ are disjoint and $S$ is normal.
+
+  Let $X = S^{2}$ with the half-open square topology.
+  Let $S(p, \e)$ denote the basis element the half-open square with sidelengths $\e$ and $p \in X$ as the lower left corner as in \Cref{fig:sorgenfrey_half_open}.
+  Define $L = \set{(x, -x) | x \in \R}$.
+  We have that $K = \set{(x, -x) | x \text{ is irrational }}$ is closed in $X$.
+  This is because for any $(x, y) \in X \setminus K$, we have that $S((x, y), \e)$ is disjoint from $K$ for some $\e$ based on if it is above or below the line.
+  If $(x, y)$ lies on the line, then since the square $S((x, y), \e)$ opens up and to the right, it is also disjoint from $K$.
+  Similarly, $L \setminus K$ is closed.
+
+  We now show that $X$ is not normal.
+  \quest{Something something Baire Category Theorem, move when covered later}
+\end{ex}
 \clearpage
 
 \subsection*{Exercises}
