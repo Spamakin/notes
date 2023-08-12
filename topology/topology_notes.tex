@@ -2988,7 +2988,7 @@ Recall that normality implies that there are many real valued maps.
 
 \begin{lem}\label{lem: paracompact_refinement_closed_subset}
   Suppose $X$ is a paracompact space.
-  If $\textbf{U} = \set{U_{\alpha}}_{\alpha \in A}$ is an open cover of $X$, then there exists a open locally finite refinement $\textbf{V} = \set{V_{\alpha}}_{\alpha \in A}$ such that $\overline{V_{\alpha}} \subseteq U_{\alpha}$ for all $\alpha \in A$.
+  If $\textbf{U} = \set{U_{\alpha}}_{\alpha \in A}$ is an open cover of $X$, then there exists an open locally finite refinement $\textbf{V} = \set{V_{\alpha}}_{\alpha \in A}$ such that $\overline{V_{\alpha}} \subseteq U_{\alpha}$ for all $\alpha \in A$.
 \end{lem}
 \begin{pf}
   Recall by \Cref{exercise: bredon_1.5.6} that each $x \in X$ has a neighborhood $Y_{x}$ such that $\overline{Y_{x}} \subseteq U_{\alpha}$ for some $\alpha$.
@@ -3000,9 +3000,16 @@ Recall that normality implies that there are many real valued maps.
     V_{\alpha} \defeq \bigcup_{\substack{\beta \in B \\ a(\beta) = \alpha}} Z_{\beta} \subseteq X.
   \]
   If no such $\beta$ exist then $V_{\alpha} = \emptyset$.
-  \quest{Since \textbf{Z} is locally finite, we have that}
+  We already know that
   \[
-    \overline{V_{\alpha}} \defeq \bigcup_{\substack{\beta \in B \\ a(\beta) = \alpha}} \overline{Z_{\beta}}.
+    \overline{V_{\alpha}} \containseq \bigcup_{\substack{\beta \in B \\ a(\beta) = \alpha}} \overline{Z_{\beta}}.
+  \]
+  Now let $x \in \overline{V_{\alpha}}$.
+  Then for all open sets $U$ containing $x$, $x \cap V_{\alpha} \neq \emptyset$.
+  But then for some $\beta$ such that $a(\beta) = \alpha$ we have that $x \cap Z_{\beta} \neq \emptyset$.
+  Thus we have that
+  \[
+    \overline{V_{\alpha}} = \bigcup_{\substack{\beta \in B \\ a(\beta) = \alpha}} \overline{Z_{\beta}}.
   \]
   This is contained in $U_{\alpha}$ as required.
 \end{pf}
@@ -3035,25 +3042,28 @@ The following criterion will apply in most cases we care about.
 \begin{pf}
   $\implies\colon$ Using local compactness, we may cover $X$ by open sets $U_{\alpha}$ such that $\overline{U_{\alpha}}$ is compact.
   Using paracompactness, we can replace this covering by one which is also locally finite.
+  We now define a relation $\sim$ on $X$ using the open cover $U_{\alpha}$.
+  Let $x \sim y$ if and only if there exists finitely many $\Set{U_{\alpha_i}}_{1 \leq i \leq n}$ such that $x \in U_{\alpha_{1}}$, $y \in U_{\alpha_{n}}$ and for $k = 1, \ldots, n - 1$ we have that $U_{\alpha_{k}} \cap U_{\alpha_{k + 1}} \neq \emptyset$.
+  This is clearly an equivalence relation.
+  Every equivalence class is also open.
+  If $x$ is in some class, then all points in some $U_{\alpha}$ containing $x$ are also in the class.
+  Each class is also $\sigma$-compact.
   We now inductively construct open sets whose closures are compact.
-  First let $V_{1} = U_{\beta}$ for some given $\beta$.
-  Now suppose $V_{n}$ has already been defined and consider all $U_{\alpha}$ which intersect $\overline{V_{n}}$.
-  By compactness of $\overline{V_{n}}$ and local finiteness there are finitely many such $U_{\alpha}$.
-  Let $V_{n + 1}$ be the union of these $U_{\alpha}$.
-  Then $\overline{V_{n + 1}}$ is the union of the closures of these $U_{\alpha}$ and thus compact.
-  Note that we have that $\overline{V_{n}} \subseteq V_{n + 1}$.
-  Let $V = \bigcup_{n > 0} V_{n}$.
-  Then $V$ is the union of countably many of these $U_{\alpha}$.
-  By local finiteness, $\overline{V}$ is the union of the closures of the $U_{\alpha}$'s but each of these closures is contained in some $\overline{V} \subseteq V_{n + 1} \subseteq V$.
-  Thus $\overline{V} = V$ is clopen by construction and is also $\sigma$-compact.
-  \quest{The rest of this proof is a Maximality Principle argument which is left to the reader}.
+  Let $S(x)_{0}$ be some $U_{\alpha}$ containing $x$.
+  Note that $\overline{S(x)_{0}}$ is compact.
+  Suppose $S(x)_{n}$ has already been found such that $\overline{S(x)_{n}}$ is compact.
+  Then by compactness of $\overline{S(x)_{n}}$ and locally finiteness there are finitely many $U_{\alpha}$ which intersect $\overline{S(x)_{n}}$.
+  Let $S(x)_{n + 1}$ be the union of these $U_{\alpha}$.
+  Then $\overline{S(x)_{n + 1}}$ is the union of the closure of these $\overline{U_{\alpha}}$ which are all compact yielding that $\overline{S(x)_{n + 1}}$ is compact.
+  The union of all the $S(x)_{m}$ for all $m$ is the class containing $x$ and there are countably many such $S(x)_{m}$.
+  Thus each class is also $\sigma$-compact.
 
   $\impliedby\colon$ Now suppose that $X$ is the disjoint union of open $\sigma$-compact spaces.
   It is clear that the disjoint union of $\sigma$-compact spaces is $\sigma$-compact and so we may assume that $X$ itself is $\sigma$-compact so $X = C_{1} \cup C_{2} \cup \cdots$ where each of the $C_{i}$ are compact.
   In order, alter each of the $C_{i}$ by adding to each of the $C_{j}$ that come after a finite union of compact sets, found by local compactness, whose interiors cover $C_{i}$.
   Thus we have that $C_{i} \subseteq \inte(C_{i + 1})$ for all $i$.
   Now define compact sets $A_{1} = C_{1}$ and $A_{i} = C_{i} \setminus \inte(C_{i - 1})$ for all $i > 1$.
-  We can think of the $C_{i}$ as concentric dists and $A_{i}$ the rings between them \quest{fig}.
+  We can think of the $C_{i}$ as concentric disks and $A_{i}$ the rings between them \quest{fig}.
   Note that $A_{i}$ intersects nontrivially at most with $A_{i - 1}$ and $A_{i + 1}$.
   Each of the $A_{i}$ are compact and thus normal (\Cref{thrm: compact_haus_is_norm}).
   Thus we can enlarge each of the $A_{i}$ to find compact subsets $B_{i}$ such that $\inte(B_{i}) \containseq A_{i}$ and such that $B_{i}$ only nontrivially intersects $B_{i - 1}$ and $B_{i + 1}$.
@@ -3061,6 +3071,8 @@ The following criterion will apply in most cases we care about.
   We can \quest{select a finite refinement still covering $A_{i}$} and with none of the covering sets \quest{overflowing} from $B_{i}$.
   These finite coverings provide an open locally finite refinement of the original covering showing that $X$ is paracompact.
 \end{pf}
+
+\clearpage
 
 \begin{thrm}
   If $X$ is locally compact, Hausdorff, and second countable then its one-point compactification $X^{+}$ is metrizable and $X$ is $\sigma$-compact and paracompact.
