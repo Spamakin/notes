@@ -3887,7 +3887,22 @@ We conclude this section by studdying the effect of mapping cones when we change
   $G / H$ is Hausdorff by \Cref{prop: quotient_hausdorff}.
   We now show that the group operations on $G / H$ are continuous.
   Consider the following diagram, where the horizontal arrows are group multiplication.
-  \quest{TODO:\@ diagram}
+  \begin{figure}[h]
+    \centering
+    % https://q.uiver.app/#q=WzAsNCxbMCwwLCJHIFxcdGltZXMgRyJdLFsyLDAsIkciXSxbMCwyLCJHL0ggXFx0aW1lcyBHL0giXSxbMiwyLCJHL0giXSxbMCwxXSxbMCwyLCJcXHBpIFxcdGltZXMgXFxwaSIsMl0sWzIsM10sWzEsMywiXFxwaSJdXQ==
+    \[
+      \begin{tikzcd}[every label/.append style={font=\normalsize}]
+        {G \times G} && G \\
+        \\
+        {G/H \times G/H} && {G/H}
+        \arrow[from=1-1, to=1-3]
+        \arrow["{\pi \times \pi}"', from=1-1, to=3-1]
+        \arrow[from=3-1, to=3-3]
+        \arrow["\pi", from=1-3, to=3-3]
+      \end{tikzcd}
+    \]
+  \addtocounter{figure}{1}
+  \end{figure}
   A corollary of the fact that $\pi$ is open is that $\pi \times \pi$ is an identification map.
   Taking an open set in $G / H$, we want to show that it's inverse image in $G / H \times G / H$ is open.
   However, this is equivalent to showing that it's inverse image in $G \times G$ is open.
@@ -3919,12 +3934,16 @@ The most important topological groups are Lie groups which have a differentiable
   The general linear group $\GL(n, \mathbb{H})$ over the quaternions is also a topological space.
   We note that there is no determinant function, so the argument is not as clean.
 
-  The set $\text{O}(n)$ is the set of orthogonal real matrices and is a subgroup of $\GL(n, \R)$ and also is a closed subset since it is defined by \quest{continuous relations} ($A A^{T} = I$).
+  The set $\text{O}(n)$ is the set of orthogonal real matrices and is a subgroup of $\GL(n, \R)$ and also is a closed subset.
+  To see why, consider the map $F\colon \GL(n, \R) \to \GL(n, \R)$ mapping $A \mapsto A A^{t}$.
+  Then the preimage of the identity is precisesly the orthogonal matrices.
+  Since $\GL(n, \R)$ is a metric space, singletons are closed.
+  Thus $\text{O}(n)$ is closed.
   Since the coefficients of an orthogonal matrix are bounded by $1$, we have that $\text{O}(n)$ is a bounded closed subset of euclidean $n^{2}-$space and thus is compact since closed and bounded euclidean spaces are compact.
   Similarly, the set $\text{U}(n)$ of unitary matrices ($A A^{*} = I$) forms a compact subgroup of $\GL(n, \C)$.
 
-  The quaternionic analouge of the orthogonal and unitary groups is the sympletic group $\Sp(n)$.
-  Its elements are quaternionic matricies $A$ such that $A A^{*} = I$ where $A^{*}$ is the quaternionic conjugate transpose of $A$.
+  The quaternionic analogue of the orthogonal and unitary groups is the sympectic group $\Sp(n)$.
+  Its elements are quaternionic matrices $A$ such that $A A^{*} = I$ where $A^{*}$ is the quaternionic conjugate transpose of $A$.
   Quaternionic conjugation means reversal of the three imaginary components.
   This forms a compact subgroup of $\GL(n, \mathbb{H})$.
 \end{ex}
@@ -3943,7 +3962,6 @@ Define a map $f$ taking a matrix in $O\text{O}(n)$ to where it moves the point $
 If $B \in \text{O}(n - 1)$ then $f(AB) = f(A)$ meaning that $f$ factors through the coset space $\text{O}(n) / \text{O}(n - 1)$.
 It can be shown that the induced function $\text{O}(n) / \text{O}(n - 1) \to \textbf{S}^{n - 1}$ is injective, surjective, and continuous.
 Since this is a injective mapping of a compact space onto a Hausdorff space, it is a homeomorphism by \Cref{thrm: bij_comp_to_Haus_is_homeo}.
-We can abstract this.
 
 \begin{defn}[Group Action, Orbit, Isotropy / Stability, Transitive, Effective / Faithful]
   If $G$ is a topological group and $X$ a space, then an \emph{action} $G \acts X$ is a map $G \times X \to X$ where the image of $(g, x)$ is $g \cdot x$.
