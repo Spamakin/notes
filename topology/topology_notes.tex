@@ -393,6 +393,33 @@ An analogous result holds for elements of a subbasis with a very similar, and th
 
 \clearpage
 
+\begin{prop}\label{prop: homeo_is_open_and_closed_bij}
+  Let $f\colon X \to Y$ be a map between topological spaces.
+  The following are equivalent:
+  \begin{enumerate}
+  \item $f$ is a homeomorphism;
+  \item $f$ is a bijection and an open map;
+  \item $f$ is a bijection and a closed map.
+  \end{enumerate}
+\end{prop}
+\begin{pf}
+  It is clear that a homeomorphism is also a bijection.
+  Since $f^{-1}$ is continuous, it's preimage function maps open sets to open sets.
+  But the preimage of $f^{-1}$ is $f$ itself.
+  Thus $f$ is open.
+  The equivalence between the first and third point is similar.
+\end{pf}
+
+\begin{prop}
+  Every continuous injection $f\colon X \to Y$ between topological spaces which is either open or closed is an embedding.
+\end{prop}
+\begin{pf}
+  If $f$ is injective, then the map $X \to f(X)$ is a bijection.
+  Moreover, it is still continuous.
+  By \Cref{prop: homeo_is_open_and_closed_bij}, we have that $f$ is a homeomorphism onto its image.
+  Thus $f$ is an embedding.
+\end{pf}
+
 \begin{defn}[Smallest and Largest Topologies]
   If $X$ is a set and some condition is given on subsets of $X$, which may or may not hold for any particular subset, then if there is a topology $T$ whose open sets satisfy the condition, and such that, for any topology $T'$ whose open sets satisfy the condition, then the $T$-open sets are also $T'$-open (i.e. $T \subseteq T'$), then $T$ is called the \emph{smallest} (or \emph{weakest} or \emph{coarsest}) topology satisfying the condition.
   If, instead, for any topology $T'$ whose open sets satisfy the condition, any $T'$-open sets are also $T$-open (i.e. $T' \subseteq T$), then $T$ is called the \emph{largest} (or \emph{strongest} or \emph{finest}) topology satisfying the condition.
@@ -3063,12 +3090,12 @@ The following criterion will apply in most cases we care about.
   In order, alter each of the $C_{i}$ by adding to each of the $C_{j}$ that come after a finite union of compact sets, found by local compactness, whose interiors cover $C_{i}$.
   Thus we have that $C_{i} \subseteq \inte(C_{i + 1})$ for all $i$.
   Now define compact sets $A_{1} = C_{1}$ and $A_{i} = C_{i} \setminus \inte(C_{i - 1})$ for all $i > 1$.
-  We can think of the $C_{i}$ as concentric disks and $A_{i}$ the rings between them \quest{fig}.
+  We can think of the $C_{i}$ as concentric disks and $A_{i}$ the rings between them.
   Note that $A_{i}$ intersects nontrivially at most with $A_{i - 1}$ and $A_{i + 1}$.
-  Each of the $A_{i}$ are compact and thus normal (\Cref{thrm: compact_haus_is_norm}).
+  Each of the $A_{i}$ are compact and thus normal by \Cref{thrm: compact_haus_is_norm}.
   Thus we can enlarge each of the $A_{i}$ to find compact subsets $B_{i}$ such that $\inte(B_{i}) \containseq A_{i}$ and such that $B_{i}$ only nontrivially intersects $B_{i - 1}$ and $B_{i + 1}$.
   Now, given an open covering of $X$, we consider the induced covering of each of the $A_{i}$.
-  We can \quest{select a finite refinement still covering $A_{i}$} and with none of the covering sets \quest{overflowing} from $B_{i}$.
+  By the compactness of the $B_{i}$, we can select a finite refinement still covering $A_{i}$ and since $A_{i} \subseteq \inte(B_{i})$ these covering sets are fully contained in $B_{i}$.
   These finite coverings provide an open locally finite refinement of the original covering showing that $X$ is paracompact.
 \end{pf}
 
@@ -3231,7 +3258,8 @@ It also lets us construct many new spaces out of existing ones.
   Thus $k$ is continuous.
   We have that $k([x]) = [i(x)]$ which is clearly surjective and injective.
   Moreover, $\textbf{D}^{2} / \sim$ is compact by \Cref{thrm: image_of_compact_is_compact} since $\textbf{D}^{2}$ is compact.
-  Also $\textbf{S}^{2} / \sim$ is \quest{easily seen to be Hausdorff (basically take small open disks on surface of $\textbf{S}^{2}$)}.
+  Also $\textbf{S}^{2} / \sim$ is seen to be Hausdorff.
+  This can be seen by envisioning small enough disks on the surface of the sphere.
   Thus by \Cref{thrm: bij_comp_to_Haus_is_homeo}, we have that $k$ is a homeomorphism.
   Thus these two definitions of the projective plane are topologically equivalent.
 \end{ex}
@@ -3297,14 +3325,32 @@ If we cannot use the argument from the previous two examples, we may be able to 
   We call a set \emph{saturated} if it is equal to its own saturation.
 \end{defn}
 
+\clearpage
+
 \begin{prop}
   If $A \subseteq X$ and $\sim$ an equivalence relation of $X$ such that every equivalence class intersects $A$ nontrivially, then the induced map $k\colon A / \sim \to X / \sim$ is a homeomorphism if the saturation of every open (resp.\ closed) is open (resp.\ closed) in $X$.
 \end{prop}
 \begin{pf}
+  \begin{figure}[h]
+  \centering
+  % https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzIsMCwiQS9cXHNpbSJdLFsyLDIsIlgvXFxzaW0iXSxbMCwyLCJYIl0sWzAsMSwiZiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsMiwiayJdLFszLDIsImciLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDMsImkiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dXQ==
+  \[
+    \begin{tikzcd}[every label/.append style={font=\normalsize}]
+      A && {A/\sim} \\
+      \\
+      X && {X/\sim}
+      \arrow["f", hook, from=1-1, to=1-3]
+      \arrow["k", from=1-3, to=3-3]
+      \arrow["g"', hook, from=3-1, to=3-3]
+      \arrow["i"', hook, from=1-1, to=3-1]
+    \end{tikzcd}
+  \]
+  \addtocounter{figure}{1}
+  \end{figure}
   Let $f\colon A \to A / \sim$ and $g\colon X \to X / \sim$ be the canonical maps and $U$ open in $A / \sim$.
   Note that $g^{-1}(V)$ is saturated for any $V$.
   This is because the saturation of $g^{-1}(V)$ is the set of elements in $x \in X$ such that $x$ equivalent to some element in $g^{-1}(V)$ which by definition of $g$ yields the claim.
-  Then we have that $g^{-1}(k(U))$ is the saturation of $f^{-1}(U)$ by commutativity \quest{make diagram}.
+  Then we have that $g^{-1}(k(U))$ is the saturation of $f^{-1}(U)$ by commutativity.
   By definition, we have that $g^{-1}(k(U))$ is open if and only if $k(U)$ is open in $X / \sim$.
   Thus $k^{-1}$ is continuous.
   We also have that $k$ is injective by disjointness of equivalence classes.
@@ -3315,8 +3361,6 @@ If we cannot use the argument from the previous two examples, we may be able to 
   However, $k \circ f = g \circ i$ which is clearly continuous.
   Thus $k$ is continuous and overall $k$ is a homeomorphism.
 \end{pf}
-
-\clearpage
 
 We can also consider quotients built by ``attachments.''
 
@@ -3334,14 +3378,13 @@ We can also consider quotients built by ``attachments.''
   This quotient space $(X + Y) / \sim$ is denoted by $X \cup_{f} Y$.
 \end{defn}
 
+\clearpage
+
 \begin{prop}\label{prop: attachment_mappings}
   The canonical map $X \to X \cup_{f} Y$ is an embedding onto a closed subspace.
   The canonical map $Y \setminus A \to X \cup_{f} Y$ is an embedding onto an open subspace.
 \end{prop}
 \begin{pf}
-
-  \quest{TODO:\@ Show that every map that is injective, continuous and either open or closed is an embedding}
-
   Let $q\colon X + Y \to X \cup_{f} Y$ be the quotient map.
   Then $q\mid_{X}\colon X \to X \cup_{f} Y$ is our desired canonical map.
   We first show that $q\mid_{X}$ is a closed map, so let $B \subseteq X$ be closed.
@@ -3789,7 +3832,11 @@ We conclude this section by studdying the effect of mapping cones when we change
   If $G$ is a topological group with identity $e$, $U$ any neighborhood of $e$, and $n$ any positive integer, then there exists a symmetric neighborhood $V$ of $e$ such that $V^{n} \subseteq U$.
 \end{prop}
 \begin{pf}
-  \quest{Induction, can do later.}
+  Note that for any $V$ and positive integer $n$, $V^{n} \subseteq V^{n + 1}$.
+  So without loss of generality let $n$ be an even integer.
+  Then consider the map $(g_{1}, g_{2}, \ldots, g_{n - 1}, g_{n}) \mapsto g_{1} g_{2}^{-1} \cdots g_{n - 1} g_{n}^{-1}$.
+  Then there exists neighborhoods $V_{1}, \ldots, V_{n}$ of $e$ such that $V_{1} \times \cdots \times V_{n} \subseteq f^{-1}(U)$.
+  Let $V = V_{1} \cap \cdots \cap V_{n}$.
 \end{pf}
 
 \begin{prop}
@@ -3806,6 +3853,8 @@ We conclude this section by studdying the effect of mapping cones when we change
   We get the reverse inclusion by considering the same thing with $g^{-1}$.
   Thus $\overline{H}$ is also normal.
 \end{pf}
+
+\clearpage
 
 \begin{prop}\label{prop: quotient_hausdorff}
   If $G$ is a topological group and $H$ is a closed subgroup then $G / H$, with the topology induced by the canonical map $\pi\colon G \to G / H$ of left cosets, is a Hausdorff space.
@@ -3847,6 +3896,8 @@ We conclude this section by studdying the effect of mapping cones when we change
   A similar argument with a similar diagram yields that inversion in $G / H$ is open.
 \end{pf}
 
+\clearpage
+
 The most important topological groups are Lie groups which have a differentiable structure.
 
 \begin{ex}[Classical Lie Groups]
@@ -3879,8 +3930,6 @@ The most important topological groups are Lie groups which have a differentiable
 \end{ex}
 
 Note that the map $\GL(n, \R) \times \R^{n} \to \R^{n}$ is given by polynomials in the coefficients of the matrix and the vector, and thus is continuous.
-
-\clearpage
 
 An orthogonal matrix $A \in \text{O}(n)$, as a transformation of euclidean $n$-space, preserves lengths of vectors.
 This makes it a map of the sphere $\textbf{S}^{n - 1}$ to itself.
