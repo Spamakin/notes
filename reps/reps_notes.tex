@@ -50,6 +50,8 @@
 
 \quest{Proper Chapter Header}
 
+\quest{Remove indent at end of thmtool environments}
+
 \tableofcontents
 \clearpage
 
@@ -61,7 +63,7 @@
 \chapter*{Preface}
 
 This is a set of notes on group representation theory mainly based on J.P. Serre's text \emph{Linear Representations of Finite Groups}~\cite{book:SerreLinReps}.
-Occasionally, other sources may be used.
+Occasionally, other sources may be used, such as the set of notes by Charles Rezk created for Math 427~\cite{note:rezk_reps}.
 The goal of these notes is to eventually work towards algebraic combinatorics such as Fulton's text \emph{Young Tableaux}~\cite{book:FultonTableaux}, as much of algebraic combinatorics is motivated by questions stemming from representation theory.
 At the time of writing this, another goal is the applications of representation theory to computational complexity: see~\cite{misc:PanovaComputational} for a recent survey on this connection.
 
@@ -76,7 +78,7 @@ Similarly, we will restrict ourselves to finite groups.
 \begin{defn}[Linear Representation, Representation Space]
   Let $G$ be a group with identity $e$.
   A \emph{linear representation} of $G$ in $V$ is a homomorphism $\rho\colon G \to \GL(V)$.
-  We will frequently, and often interchangably, write $\rho_{s} \defeq \rho(s)$.
+  We will frequently, and often interchangeably, write $\rho_{s} \defeq \rho(s)$.
   Given $\rho$, we will say that $V$ is a \emph{representation space} or \emph{representation} of $G$.
 \end{defn}
 
@@ -118,16 +120,31 @@ We now give some examples of these things.
   Since elements $s$ of $G$ are of finite order, $\rho(s)$ must also be of finite order.
   Thus, for all $s \in G$, $\rho(s)$ is a root of unity.
   If we take $\rho(s) = 1$ for all $s \in G$, we obtain the \emph{unit} or \emph{trivial} representation of $G$.
+  This also means that $R_{s} = 1$ for all $s$.
 \end{ex}
 
 \begin{ex}[Regular Representation]
   Let $g$ be the order of $G$, and let $V$ be a vector space of dimension $g$ with a basis $(e_{t})_{t \in G}$.
-  For each $s \in G$, define $\rho_{s}$ as the linear map $\rho_{s}\colon V \to V$ sending $e_{t} \mapsto e_{st}$.
+  For each $s \in G$, define $\rho_{s}$ as the linear map $\rho_{s}\colon V \to V$ such that $\rho_{s}(e_{t}) = e_{st}$.
   This is a linear representation of $G$ called the \emph{regular} representation of $G$.
   Since for each $s \in G$, $e_{s} = \rho_{s}(e_{1})$ and thus the images of $e_{1}$ form a basis of $V$.
   Conversely, let $W$ be a representation of $G$ with a vector $w$ satisfying the collection of all $\rho_{s}(w)$, $s \in G$, forms a basis of $W$.
   Then $W$ is isomorphic to the regular representation of $G$ by the isomorphism $\tau(e_{s}) = \rho_{s}(w)$.
+
+  For example, let $G = \Z_{3}$ and $V = \C^{3}$ with $e_{0} = (1, 0, 0)$, $e_{1} = (0, 1, 0)$, and $e_{2} = (0, 0, 1)$.
+  Then for example, $\rho_{0}, \rho_{1}, \rho_{2}\colon \C^{3} \to \C^{3}$ are the linear maps such that
+  \begin{align*}
+    \rho_{0}(e_{0}) = e_{0 + 0} = e_{0} && \rho_{0}(e_{1}) = e_{0 + 1} = e_{1} && \rho_{0}(e_{2}) = e_{0 + 2} = e_{2} \\
+    \rho_{1}(e_{0}) = e_{1 + 0} = e_{1} && \rho_{1}(e_{1}) = e_{1 + 1} = e_{2} && \rho_{1}(e_{2}) = e_{1 + 2} = e_{0} \\
+    \rho_{2}(e_{0}) = e_{2 + 0} = e_{2} && \rho_{2}(e_{1}) = e_{2 + 1} = e_{0} && \rho_{2}(e_{2}) = e_{2 + 2} = e_{1} \\
+  \end{align*}
+  With this, the matrix representations of $\rho_{0}, \rho_{1}$ and $\rho_{2}$ is similarly straightforward:
+  \begin{align*}
+    R_{0} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} && R_{1} = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix} && R_{2} = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0 \end{pmatrix}
+  \end{align*}
 \end{ex}
+
+\clearpage
 
 \begin{ex}[Permutation Representation]
   We may generalize the regular representation to any group action $G \acts X$, $X$ a finite set.
@@ -135,6 +152,9 @@ We now give some examples of these things.
   Let $V$ be a vector space with dimension the size of $X$, and so a basis $(e_{x})_{x \in X}$.
   Define a representation $\rho$ of $G$ by defining $\rho_{s}$ as the linear map sending $e_{x} \mapsto e_{sx}$.
   This representation is known as the \emph{Permutation} representation of $G$ associated with $X$.
+  If we consider $X = [n]$ and $G = S_{n}$, then take $V = \C^{n}$ as our vector space and $e_{i}$ as the standard basis vector.
+  Then $\rho_{\sigma}(e_{j}) = e_{\sigma_{j}}$.
+  Thus for each $\sigma \in S_{n}$, we have that $R_{\sigma} = (r_{ij}(\sigma))$ where entry $r_{ij}(\sigma) = 1$ if $i = \sigma_{j}$ and $0$ otherwise.
 \end{ex}
 
 \printbibliography
