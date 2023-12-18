@@ -27,7 +27,6 @@
 \regtotcounter{figure}
 
 \title{\vspace{-100pt} \includegraphics[width=0.75\textwidth]{figs/water.png} \\ {\Huge Representation Theory Notes and Exercises} \\ {\small With $\total{figure}$ Figures}}
-\nocite{title_pic}
 \author{\Large Anakin Dey}
 \DTMsavenow{now}
 \date{\small Last Edited on \today\ at \DTMfetchhour{now}:\DTMfetchminute{now}}
@@ -310,9 +309,102 @@ Here, $\Sym^{2}(V)$ is the set of $z \in V \otimes V$ such that $\theta(z) = z$ 
 These have bases $(e_{i} \otimes e_{j} + e_{j} \otimes e_{i})_{i \leq j}$ and $(e_{i} \otimes e_{j} - e_{j} \otimes e_{i})_{i < j}$ respectively.
 As such, $\dim(\Sym^{2}(V)) = \frac{n(n + 1)}{2}$ and $\dim(\Alt^{2}(V)) = \frac{n(n - 1)}{2}$ where $n \defeq \dim(V)$.
 
-\begin{defn}[Symmetric Square, Alternating Square]
+\begin{defn}[Symmetric Square, Alternating Square]\label{defn:sym_alt_square}
   These subspaces $\Sym^{2}(V)$ and $\Alt^{2}(V)$ of $V \otimes V$ are respectively called the \emph{symmetric square} and \emph{alternative square} of the given representation.
 \end{defn}
+
+\chapter{Character Theory}
+
+\begin{defn}[Character]
+  Let $\rho\colon G \to \GL(V)$ be a linear representation of a finite group $G$ in $V$.
+  Then the \emph{character} $\chi_{\rho}$ of $\rho$ is the function
+  \[
+    \chi_{\rho}(s) \defeq \Tr(R_{s}) \equiv \Tr(\rho_{s}).
+  \]
+  for each $s \in G$.
+\end{defn}
+
+\begin{prop}
+  If $\chi$ is the character of a representation $\rho$ of degree $n$ then
+  \begin{enumerate}
+  \item $\chi(e) = 1$;
+  \item $\chi(s^{-1}) = \chi(s)^{*}$, the complex conjugate of $\chi(s)$,
+  \item $\chi(tst^{-1}) = \chi(s)$.
+  \end{enumerate}
+\end{prop}
+\begin{pf}
+  The first is immediate since $\rho_{1}$ is the identity matrix $I$ and $\Tr(I) = n$.
+  Then recall that we may choose our basis to be orthonormal, and as such $\rho_{s}$ is a unitary matrix.
+  Thus, each eigenvalue $\lambda_{1}, \ldots, \lambda_{n}$ has an absolute value equal to $1$.
+  Thus
+  \[
+    \chi(s)^{*} = \Tr(\rho_{s})^{*} = \sum \lambda_{i}^{*} = \sum \lambda_{i}^{-1} = \Tr(\rho_{s})^{-1} = \Tr(\rho_{s^{-1}}) = \chi(s^{-1}).
+  \]
+  This uses the fact that the conjugate of the sum is the sum of the conjugates as well as the fact that the eigenvalues of $R_{s}^{-1}$ are the inverses of the eigenvalues of $R_{s}$.
+  Finally, letting $u = ts$ and $v = t^{-1}$ allows us to write $\chi(tst^{-1}) = \chi(s)$ as $\chi(uv) = \chi(vu)$ which is immediate since for any complex matrices $A, B$ we have that $\Tr(AB) = \Tr(BA)$.
+\end{pf}
+
+\clearpage
+
+\begin{prop}
+  Let $\rho^{1}\colon G \to \GL(V_{1})$ and $\rho^{2}\colon G \to \GL(V_{2})$ be two linear representations with characters $\chi_{1}$ and $\chi_{2}$ respectively.
+  Then
+  \begin{enumerate}
+  \item The character $\chi$ of the direct sum representation $V_{1} \oplus V_{2}$ is $\chi_{1} + \chi_{2}$.
+  \item The character $\psi$ of the tensor product representation $V_{1} \otimes V_{2}$ is $\chi_{1} \cdot \chi_{2}$.
+  \end{enumerate}
+\end{prop}
+\begin{pf}
+  Let $R_{s}^{1}, R_{s}^{2}$ be the matrix forms of $\rho^{1}_{s}$ and $\rho_{s}^{2}$ respectively.
+  Then the matrix form $R_{s}$ of the representation of $V_{1} \oplus V_{2}$ is given by
+  \[
+    R_{s} = \begin{pmatrix} R_{s}^{1} & 0 \\  0& R_{s}^{2} \end{pmatrix}
+  \]
+  and thus $\Tr(R_{s}) = \Tr(R_{s}^{1}) + \Tr(R_{s}^{2})$.
+  Let $(e_{i_{1}})$ and $(e_{i_{2}})$ be bases for $V_{1}$ and $V_{2}$.
+  Then we have that
+  \[
+    \psi(s) = \sum_{i_{1} i_{2}} r_{i_{1}i_{1}}(s) \cdot r_{i_{2}i_{2}}(s) = \pqty{\sum_{i_{1}} r_{i_{1}i_{1}}(s)} \cdot \pqty{\sum_{i_{2}} r_{i_{2}i_{2}}(s)} = \chi_{1}(s) \cdot \chi_{2}(s).
+  \]
+\end{pf}
+
+\begin{prop}
+  Let $\rho\colon G \to \GL(V)$ be a linear representation of $G$ with character $\chi$.
+  Let $\chi_{\sigma}^{2}$ be the character of $\Sym^{2}(V)$ and $\chi_{\alpha}^{2}$ be the character of $\Alt^{2}(V)$ from \Cref{defn:sym_alt_square}.
+  Then
+  \begin{align*}
+    \chi_{\sigma}^{2}(s) &= \frac{1}{2}\pqty{\chi(s)^{2} + \chi(s^{2})} \\
+    \chi_{\alpha}^{2}(s) &= \frac{1}{2}\pqty{\chi(s)^{2} - \chi(s^{2})}
+  \end{align*}
+  which directly implies that $\chi_{\sigma}^{2} + \chi_{\alpha}^{2} = \chi$.
+\end{prop}
+
+\clearpage
+
+\begin{pf}
+  Let $s \in G$ and $(e_{i})$ a basis of $V$ consisting solely of eigenvectors for $\rho_{s}$.
+  Then $\rho_{s}(e_{i}) = \lambda_{i}e_{i}$ for some $\lambda_{i} \in \C$.
+  Thus
+  \begin{align*}
+    \chi(s) = \sum \lambda_{i} && \chi(s^{2}) = \sum \lambda_{i}^{2}.
+  \end{align*}
+  We also have that
+  \begin{align*}
+    (\rho_{s} \otimes \rho_{s})(e_{i} \otimes e_{j} + e_{j} \otimes e_{i}) &= \lambda_{i}\lambda_{j}(e_{i} \otimes e_{j} + e_{j} \otimes e_{i}) \\
+    (\rho_{s} \otimes \rho_{s})(e_{i} \otimes e_{j} - e_{j} \otimes e_{i}) &= \lambda_{i}\lambda_{j}(e_{i} \otimes e_{j} - e_{j} \otimes e_{i})
+  \end{align*}
+  which yields that
+  \begin{align*}
+    \chi_{\sigma}^{2}(s) &= \sum_{i \leq j} \lambda_{i} \lambda_{j} = \sum \lambda_{i}^{2} + \sum_{i < j} \lambda_{i} \lambda_{j} = \frac{1}{2}\pqty{\sum \lambda_{i}}^{2} + \frac{1}{2} \sum \lambda_{i}^{2}
+    \chi_{\alpha}^{2}(s) &= \sum_{i < j} \lambda_{i} \lambda_{j} = \frac{1}{2}\pqty{\sum \lambda_{i}}^{2} - \frac{1}{2} \sum \lambda_{i}^{2}.
+  \end{align*}
+  The proposition then directly follows.
+  Note that the equality $\chi_{\sigma}^{2} + \chi_{\alpha}^{2} = \chi^{2}$ directly reflects the fact that $V \otimes V = \Sym^{2}(V) \oplus \Alt^{2}(V)$.
+\end{pf}
+
+\clearpage
+
+\section*{Exercises}
 
 \printbibliography
 \end{document}
