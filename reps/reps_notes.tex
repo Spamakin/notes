@@ -145,7 +145,7 @@ We now give some examples of these things.
 
 \clearpage
 
-\begin{ex}[Permutation Representation]
+\begin{ex}[Permutation Representation]\label{ex:perm_rep}
   We may generalize the regular representation to any group action $G \acts X$, $X$ a finite set.
   Recall that for such an action, the map $x \mapsto sx$ for each $s \in G$ is a permutation $X \tofrom X$.
   Let $V$ be a vector space with dimension the size of $X$, and so a basis $(e_{x})_{x \in X}$.
@@ -153,7 +153,7 @@ We now give some examples of these things.
   This representation is known as the \emph{Permutation} representation of $G$ associated with $X$.
   If we consider $X = [n]$ and $G = S_{n}$, then take $V = \C^{n}$ as our vector space and $e_{i}$ as the standard basis vector.
   Then $\rho_{\sigma}(e_{j}) = e_{\sigma_{j}}$.
-  Thus for each $\sigma \in S_{n}$, we have that $R_{\sigma} = (r_{ij}(\sigma))$ where entry $r_{ij}(\sigma) = 1$ if $i = \sigma_{j}$ and $0$ otherwise.
+  Thus for each $\sigma \in S_{n}$, we have that $R_{\sigma} = (r_{ij}(\sigma))$ where entry $r_{ij}(\sigma) = 1$ if $i = \sigma(j)$ and $0$ otherwise.
 \end{ex}
 
 \begin{defn}[Stable/Invariant Subspaces, Subrepresentation]
@@ -368,7 +368,7 @@ As such, $\dim(\Sym^{2}(V)) = \frac{n(n + 1)}{2}$ and $\dim(\Alt^{2}(V)) = \frac
   \]
 \end{pf}
 
-\begin{prop}
+\begin{prop}\label{prop:sym_alt_characters}
   Let $\rho\colon G \to \GL(V)$ be a linear representation of $G$ with character $\chi$.
   Let $\chi_{\sigma}^{2}$ be the character of $\Sym^{2}(V)$ and $\chi_{\alpha}^{2}$ be the character of $\Alt^{2}(V)$ from \Cref{defn:sym_alt_square}.
   Then
@@ -378,8 +378,6 @@ As such, $\dim(\Sym^{2}(V)) = \frac{n(n + 1)}{2}$ and $\dim(\Alt^{2}(V)) = \frac
   \end{align*}
   which directly implies that $\chi_{\sigma}^{2} + \chi_{\alpha}^{2} = \chi$.
 \end{prop}
-
-\clearpage
 
 \begin{pf}
   Let $s \in G$ and $(e_{i})$ a basis of $V$ consisting solely of eigenvectors for $\rho_{s}$.
@@ -402,9 +400,138 @@ As such, $\dim(\Sym^{2}(V)) = \frac{n(n + 1)}{2}$ and $\dim(\Alt^{2}(V)) = \frac
   Note that the equality $\chi_{\sigma}^{2} + \chi_{\alpha}^{2} = \chi^{2}$ directly reflects the fact that $V \otimes V = \Sym^{2}(V) \oplus \Alt^{2}(V)$.
 \end{pf}
 
+\begin{prop}[Schur's Lemma]\label{prop:schurs_lemma}
+  Let $\rho^{1}\colon G \to \GL(V_{1})$ and $\rho^{2}\colon G \to \GL(V_{2})$ be two irreducible representations of $G$.
+  Let $f\colon V_{1} \to V_{2}$ be a linear map such that $f \circ \rho_{s}^{1} = \rho_{s}^{2} \circ f$ for all $s \in G$.
+  Then
+  \begin{enumerate}
+  \item If $\rho^{1}$ and $\rho^{2}$ are not isomorphic, then $f = 0$
+  \item If $V_{1} = V_{2}$ and $\rho^{1} = \rho^{2}$ then $f$ is a \emph{homothety}, a scalar multiple of the identity.
+  \end{enumerate}
+\end{prop}
+\begin{pf}
+  The case of $f = 0$ is trivial, so suppose that $f \neq 0$.
+  Let $W_{1} = \ker(f)$ and $W_{2} = \im(f)$.
+  Then for $x \in W_{1}$ we have that $f(\rho_{s}^{1}(x)) = \rho_{s}^{2}(f(x)) = 0$ which means that $\rho_{s}^{1}(x) \in W_{1}$.
+  Thus $W_{1}$ is stable under $G$ and irreducibility of $V_{1}$ combined with the assumption that $f \neq 0$ implies that $W_{1} = 0$.
+  Similarly, we have that for $f(x) \in W_{2}$, we have that $\rho_{s}^{2}(f(x)) = f(\rho_{s}^{1}(x)) \in W_{2}$, so $\rho_{s}^{2}(f(x)) \in W_{2}$.
+  Thus $W_{2}$ is also stable under $G$ meaning that by a similar argument, $W_{2} = V_{2}$.
+  Since $\ker(f) = 0$ and $\im(f) = V_{2}$, we must have that $f$ is an isomorphism $V_{1} \to V_{2}$.
+  This proves the first claim.
+
+  Now suppose that $V_{1} = V_{2}$, $\rho^{1} = \rho^{2}$, and that $\lambda$ is some eigenvalue of $f$.
+  Let $f' = f - \lambda$.
+  Since $\lambda$ is an eigenvalue, then $\ker(f') \neq 0$.
+  However, we also have that $f' \circ \rho_{s}^{1} = \rho_{s}^{2} \circ f'$.
+  The first part of this proof shows that this implies that $f' = 0$.
+  Thus, $f = \lambda$ and $f$ is a homothety.
+\end{pf}
+
+\begin{cor}\label{cor:schurs_lemma_cor_1}
+  Let $\rho^{1}\colon G \to \GL(V_{1})$ and $\rho^{2}\colon G \to \GL(V_{2})$ be two irreducible representations of $G$.
+  Let $h \colon V_{1} \to V_{2}$ and define $h^{0}$ such that
+  \[
+    h^{0} = \frac{1}{\abs{G}} \sum_{t \in G} (\rho_{t}^{2})^{-1} \circ h \circ \rho_{t}^{1}.
+  \]
+  Then
+  \begin{enumerate}
+  \item If $\rho^{1}$ and $\rho^{2}$ are not isomorphic, then $h^{0} = 0$
+  \item If $V_{1} = V_{2}$ and $\rho^{1} = \rho^{2}$, then $h^{0}$ is a homothety of ratio $\frac{1}{n} \Tr(h)$, with $n = \dim(V_{1})$.
+  \end{enumerate}
+\end{cor}
+\begin{pf}
+  First for $s \in G$ we have that
+  \begin{align*}
+    (\rho_{s}^{2})^{-1} \circ h^{0} \circ \rho_{s}^{1} &= \frac{1}{\abs{G}} \sum_{t \in G} (\rho_{s}^{2})^{-1} (\rho_{t}^{2})^{-1} \circ h \circ \rho_{t}^{1} \rho_{s}^{1}.
+                                                       &= \frac{1}{\abs{G}} \sum_{t \in G} (\rho_{ts}^{2})^{-1} \circ h \circ \rho_{ts}^{1} = h^{0}.
+  \end{align*}
+  Thus, \Cref{prop:schurs_lemma} applies to $h^{0}$ and in the first case $h^{0} = 0$ and in the second $h^{0}$ is a homothety of scalar $\lambda$.
+  Moreover we have that
+  \[
+    n \cdot \lambda = \Tr(\lambda) = \frac{1}{\abs{G}} \sum_{t \in G} \Tr\pqty{(\rho_{t}^{1})^{-1} \circ h \circ \rho_{t}^{1}} = \Tr(h).
+  \]
+  Thus, $\lambda = \frac{1}{n} \Tr(h)$.
+\end{pf}
+
+Consider \Cref{cor:schurs_lemma_cor_1} in matrix form where $\rho^{1}_{s} = (r_{i_{1}j_{1}}(s))$ and $\rho^{2}_{s} = (r_{i_{2}j_{2}}(s))$.
+Then our linear map $h$ is given by the matrix $(x_{i_{2}i_{1}})$ and similarly $h^{0}$ is given by the matrix $(x^{0}_{i_{2}i_{1}})$.
+Then by definition of $h^{0}$ we have that
+\[
+  x^{0}_{i_{2}i_{1}} = \frac{1}{\abs{G}} \sum_{t \in G, j_{1}, j_{2}} r_{i_{2}j_{2}}(t^{-1}) \cdot x_{j_{2}j_{1}} \cdot r_{j_{1}i_{1}}(t).
+\]
+In case $(1)$ of \Cref{cor:schurs_lemma_cor_1}, the right hand side must vanish and so all coefficients of $0$:
+\begin{cor}\label{cor:schurs_lemma_cor_2}
+  In case $(1)$ of \Cref{cor:schurs_lemma_cor_1} we have that
+  \[
+    \frac{1}{\abs{G}} \sum_{t \in G} r_{i_{2}j_{2}}(t^{-1}) \cdot r_{j_{1}i_{1}}(t) = 0
+  \]
+  for all $i_{1}, j_{1}, i_{2}, j_{2}$.
+\end{cor}
+
+We now consider case $(2)$ of \Cref{cor:schurs_lemma_cor_1} in the matrix form.
+We have that $h^{0} = \lambda$, with $\lambda = \frac{1}{n} \Tr(h)$, meaning that $x_{i_{2}i_{1}}^{0} = \lambda \delta_{i_{2}i_{1}}$.
+That is, $\lambda = \frac{1}{n} \sum \delta_{i_{2}i_{1}} \cdot x_{i_{2}i_{1}}$.
+This we have that
+\[
+  \frac{1}{\abs{G}} \sum_{t \in G, j_{1}, j_{2}} r_{i_{2}j_{2}}(t^{-1}) \cdot x_{j_{2}j_{1}} \cdot r_{j_{1}i_{1}}(t) = \frac{1}{n} \sum_{j_{1}, j_{2}} \delta_{i_{2}i_{1}} \cdot \delta_{j_{2}j_{1}} \cdot x_{j_{2}j_{1}}.
+\]
+Equating coefficients of the $x_{j_{2}j_{1}}$ yields the following corollary:
+\begin{cor}\label{cor:schurs_lemma_cor_3}
+  In case $(2)$ of \Cref{cor:schurs_lemma_cor_1} we have that
+  \[
+    \frac{1}{\abs{G}} \sum_{t \in G} r_{i_{2}j_{2}}(t^{-1}) \cdot r_{j_{1}i_{1}}(t) = \frac{1}{n} \delta_{i_{2}i_{1}} \cdot \delta_{j_{2}j_{1}}.
+  \]
+\end{cor}
+
+We may generalize these notions to further functions.
+Let $\phi, \psi$ be \quest{complex valued?} functions on $G$.
+Define
+\[
+  \inner{\phi | \psi} \defeq \frac{1}{\abs{G}} \sum_{t \in G} \phi(t^{-1}) \cdot \psi(t) = \frac{1}{\abs{G}} \sum_{t \in G} \phi(t) \cdot \psi(t^{-1}).
+\]
+Then $\inner{\phi | \psi} = \inner{\psi | \phi}$ and $\inner{\phi | \psi}$ is linear in $\phi$ and in $\psi$.
+Thus, \Cref{cor:schurs_lemma_cor_2} and \Cref{cor:schurs_lemma_cor_3} respectively become
+\begin{align*}
+  \inner{r_{i_{2}j_{2}}, r_{j_{1}i_{1}}} = 0 && \inner{r_{i_{2}j_{2}}, r_{j_{1}i_{1}}} = \frac{1}{n} \delta_{i_{2}i_{1}} \cdot \delta_{j_{2}j_{1}}.
+\end{align*}
+If the matrices $(r_{ij}(t))$ are unitary, realized by a suitable choice of basis, then $r_{ij}(t^{-1}) = r_{ji}(t)^{*}$ and \Cref{cor:schurs_lemma_cor_2} and \Cref{cor:schurs_lemma_cor_3} are just \emph{orthogonality relations}.
+
 \clearpage
 
 \section*{Exercises}
+
+\begin{exercise}[\tcite{book:SerreLinReps} 2.1]
+  Let $\chi, \chi'$ be the characters of two representations.
+  Prove the following formulas:
+  \begin{align*}
+    (\chi + \chi^{\prime})^{2}_{\sigma} &= \chi_{\sigma}^{2} + \chi_{\sigma}^{\prime 2} + \chi \chi^{\prime} \\
+    (\chi + \chi^{\prime})^{2}_{\alpha} &= \chi_{\alpha}^{2} + \chi_{\alpha}^{\prime 2} + \chi \chi^{\prime}
+  \end{align*}
+\end{exercise}
+\begin{pf}
+  Let $s \in G$.
+  Then by \Cref{prop:sym_alt_characters} we have that
+  \begin{align*}
+    (\chi + \chi^{\prime})^{2}_{\sigma}(s) &= \frac{1}{2}\pqty{(\chi + \chi^{\prime})^{2}(s) + (\chi + \chi^{\prime})(s^{2})} \\
+                                           &= \frac{1}{2}\pqty{\chi(s)^{2} + \chi'(s)^{2} + 2\chi(s)\chi'(s) + \chi(s^{2}) + \chi'(s^{2})} \\
+                                           &= \frac{1}{2}\pqty{\chi(s)^{2} + \chi(s^{2})} + \frac{1}{2}\pqty{\chi'(s) + \chi'(s^{2})} + \chi(s)\chi'(s) = \chi^{2}_{\sigma}(s) + \chi^{\prime 2}_{\sigma}(s) + \chi(s) \chi'(s).
+  \end{align*}
+  Since this holds for all $s \in G$, the formula holds in general.
+  The proof of the other formula is similar.
+\end{pf}
+
+\begin{exercise}[\tcite{book:SerreLinReps} 2.2]
+  Let $X$ be a finite set on which $G$ acts, and $\rho\colon G \to \GL(V)$ the corresponding permutation representation (\Cref{ex:perm_rep}), and $\chi_{X}$ the character of $\rho$.
+  Then show that for $s \in G$, $\chi_{X}(s)$ is equal to the number of elements fixed by $s$.
+\end{exercise}
+\begin{pf}
+  Suppose $X = [n]$ and so $s \in S_{n}$, meaning $G \leq S_{n}$.
+  We may assume this without loss of generality.
+  Note that $R_{s} = (r_{ij}(s))$ where $r_{ij}(s) = 1$ if $s(j) = i$ and $0$ otherwise.
+  We want to count the number of elements in $[n]$ fixed by $s$, \ie\ the number of $i$ such that $\sigma(i) = i$.
+  These correspond exactly to the entries in $R_{S}$ where $r_{ii}(s) = 1$.
+  Thus, the claim follows.
+\end{pf}
 
 \printbibliography
 \end{document}
