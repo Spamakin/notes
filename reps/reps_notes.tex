@@ -203,7 +203,7 @@ We now give some examples of these things.
   This, $W^{0}$ is stable under $G$.
 \end{pf}
 
-Suppose that $V$ had an innerproduct $\inner{x, y}$, and furthermore suppose this inner product was invariant under $G$ meaning that for all $s \in G$, $\inner{\rho_{s}(x), \rho_{s}(y)} = \inner{x, y}$.
+Suppose that $V$ had an inner product $\inner{x, y}$, and furthermore suppose this inner product was invariant under $G$ meaning that for all $s \in G$, $\inner{\rho_{s}(x), \rho_{s}(y)} = \inner{x, y}$.
 We may also reduce to this case by replacing $\inner{x, y}$ with $\sum_{t \in G}\inner{\rho_{t}(x), \rho_{t}(y)}$.
 With this, the orthogonal complement $W^{\bot}$ of $W$ in $V$ is a complement of $W$ stable under $G$.
 Note that the invariance of $\inner{x, y}$ means that if $(e_{i})$ is an orthonormal basis of $V$, then $R_{s}$ is a unitary matrix.
@@ -324,7 +324,7 @@ As such, $\dim(\Sym^{2}(V)) = \frac{n(n + 1)}{2}$ and $\dim(\Alt^{2}(V)) = \frac
   for each $s \in G$.
 \end{defn}
 
-\begin{prop}
+\begin{prop}\label{prop:character_basic_props}
   If $\chi$ is the character of a representation $\rho$ of degree $n$ then
   \begin{enumerate}
   \item $\chi(e) = 1$;
@@ -346,7 +346,7 @@ As such, $\dim(\Sym^{2}(V)) = \frac{n(n + 1)}{2}$ and $\dim(\Alt^{2}(V)) = \frac
 
 \clearpage
 
-\begin{prop}
+\begin{prop}\label{prop:direct_sum_tensor_characters}
   Let $\rho^{1}\colon G \to \GL(V_{1})$ and $\rho^{2}\colon G \to \GL(V_{2})$ be two linear representations with characters $\chi_{1}$ and $\chi_{2}$ respectively.
   Then
   \begin{enumerate}
@@ -487,14 +487,145 @@ We may generalize these notions to further functions.
 Let $\phi, \psi$ be \quest{complex valued?} functions on $G$.
 Define
 \[
-  \inner{\phi | \psi} \defeq \frac{1}{\abs{G}} \sum_{t \in G} \phi(t^{-1}) \cdot \psi(t) = \frac{1}{\abs{G}} \sum_{t \in G} \phi(t) \cdot \psi(t^{-1}).
+  \inner{\phi , \psi} \defeq \frac{1}{\abs{G}} \sum_{t \in G} \phi(t^{-1}) \cdot \psi(t) = \frac{1}{\abs{G}} \sum_{t \in G} \phi(t) \cdot \psi(t^{-1}).
 \]
-Then $\inner{\phi | \psi} = \inner{\psi | \phi}$ and $\inner{\phi | \psi}$ is linear in $\phi$ and in $\psi$.
+Then $\inner{\phi , \psi} = \inner{\psi , \phi}$ and $\inner{\phi , \psi}$ is linear in $\phi$ and in $\psi$.
 Thus, \Cref{cor:schurs_lemma_cor_2} and \Cref{cor:schurs_lemma_cor_3} respectively become
 \begin{align*}
   \inner{r_{i_{2}j_{2}}, r_{j_{1}i_{1}}} = 0 && \inner{r_{i_{2}j_{2}}, r_{j_{1}i_{1}}} = \frac{1}{n} \delta_{i_{2}i_{1}} \cdot \delta_{j_{2}j_{1}}.
 \end{align*}
 If the matrices $(r_{ij}(t))$ are unitary, realized by a suitable choice of basis, then $r_{ij}(t^{-1}) = r_{ji}(t)^{*}$ and \Cref{cor:schurs_lemma_cor_2} and \Cref{cor:schurs_lemma_cor_3} are just \emph{orthogonality relations}.
+
+\clearpage
+
+\begin{defn}[Scalar Product]
+  If $\phi, \psi$ are two complex valued functions on $G$, then let
+  \[
+    (\phi \mid \psi) \defeq \frac{1}{\abs{G}} \sum_{t \in G} \phi(t) \psi(t)^{*}.
+  \]
+  This is a \emph{scalar product}.
+  It is linear in $\phi$, semilinear in $\psi$, and $(\phi \mid \phi) > 0$ for all $\phi \neq 0$.
+\end{defn}
+
+Define $\check{\psi}(t) \defeq \psi(t^{-1})^{*}$.
+Then $(\phi \mid \psi) = \inner{\phi, \check{\psi}}$.
+In particular, suppose $\chi$ is a character so that by \Cref{prop:character_basic_props} we have that $\chi = \check{\chi}$ then for all complex valued functions $\phi$ on $G$ we have that $(\phi \mid \chi) = \inner{\phi, \chi}$.
+Thus, we may use the two interchangeably in the context of characters.
+
+\begin{thrm}\label{thrm:norm_orthogonal_characters}\
+  \begin{enumerate}
+  \item If $\chi$ is the character of an irreducible representation, we have that $(\chi \mid \chi) = 1$, \ie\ $\chi$ has ``norm 1.''
+  \item If $\chi$ and $\chi'$ are characters of two non-isomorphic irreducible representations, then $(\chi \mid \chi') = 0$, \ie\ $\chi$ and $\chi'$ are ``orthogonal.''
+  \end{enumerate}
+\end{thrm}
+\begin{pf}
+  Suppose $\rho$ is an irreducible representation with matrix form $\rho_{t} = (r_{ij}(t))$ and $\chi$ its character.
+  Then $\chi(t) = \sum r_{ii}(t)$ and so
+  \[
+    (\chi \mid \chi) = \inner{\chi, \chi} = \sum_{i, j} \inner{r_{ii}, r_{jj}} = \frac{\delta_{ij}}{n}
+  \]
+  where the last equality is by \Cref{cor:schurs_lemma_cor_3} and $n$ is the degree of $\rho$.
+  Thus
+  \[
+    (\chi \mid \chi) = \sum_{i, j} \frac{\delta_{ij}}{n} = \frac{n}{n} = 1.
+  \]
+  This proves the first claim.
+  Applying \Cref{cor:schurs_lemma_cor_2} yields the second claim
+\end{pf}
+
+\begin{thrm}\label{thrm:scalar_counts_num_iso}
+  Let $V$ be a linear representation of $G$ with character $\phi$ such that $V$ decomposes into a direct sum of irreducible representations $V = W_{1} \oplus \cdots \oplus W_{k}$.
+  Then if $W$ is an irreducible representation with character $\chi$, the number of $W_{i}$ isomorphic to $W$ is equal to the scalar product $(\phi \mid \chi) = \inner{\phi, \chi}$.
+\end{thrm}
+\begin{pf}
+  Let $\chi_{i}$ be the character of $W_{i}$.
+  Then by \Cref{prop:direct_sum_tensor_characters} we have that $\phi = \chi_{1} + \cdots + \chi_{k}$.
+  By linearity of $(\cdot \mid \cdot)$ in the first argument we have that $(\phi \mid \chi) = (\chi_{1} \mid \chi) + \cdots + (\chi_{k} \mid \chi)$.
+  The result follows by \Cref{thrm:norm_orthogonal_characters}.
+\end{pf}
+
+\begin{cor}
+  Let $V$ be a linear representation of $G$ with character $\phi$ such that $V$ decomposes into a direct sum of irreducible representations $V = W_{1} \oplus \cdots \oplus W_{k}$.
+  Then if $W$ is an irreducible representation with character $\chi$, the number of $W_{i}$ isomorphic to $W$ does not depend on the chosen decomposition.
+\end{cor}
+\begin{pf}
+  Note that $(\phi \mid \chi)$ does not depend on choice of decomposition.
+\end{pf}
+
+\clearpage
+
+\begin{cor}
+  Two representations are isomorphic if and only if they have the same character.
+\end{cor}
+\begin{pf}
+  The forward direction is obvious, and the reverse is true by the prior corollary.
+\end{pf}
+
+Thus, our study of representations is reduced to that of the study of characters.
+If $\chi_{1}, \ldots, \chi_{k}$ are the distinct irreducible characters of $G$ \quest{How do we know there are finitely many?} and if $W_{1}, \ldots, W_{k}$ their corresponding representation, then each representation $V$ of $G$ is isomorphic to a direct sum
+\begin{align*}
+  V = m_{1}W_{1} \oplus \cdots \oplus m_{h}W_{h} && m_{i} \neq 0.
+\end{align*}
+The character $\phi$ of $V$ is equal to $m_{1}\chi_{1} + \cdots + m_{h}\chi_{h}$ and we have that $m_{i} = (\phi \mid \chi_{i})$.
+This is especially useful when considering the tensor product $W_{i} \otimes W_{j}$ of two irreducible representations.
+It shows that the product $\chi_{i} \cdot \chi_{j}$ decomposes into a sum $\chi_{i} \chi_{j} = \sum m_{ij}^{k} \chi_{k}$, each integer $m_{ij}^{k} \geq 0$.
+The orthogonality relations among the $\chi_{i}$ imply that
+\[
+  (\phi \mid \phi) = \sum_{i = 1}^{h} m_{i}^{2}.
+\]
+We now obtain a useful irreducibility criterion:
+\begin{thrm}\label{thrm:irreducibility_criterion}
+  If $\phi$ is the character of a representation $V$, $(\phi \mid \phi)$ is a positive integer and $(\phi \mid \phi) = 1$ if and only if $V$ is irreducible.
+\end{thrm}
+\begin{pf}
+  We have that $\sum m_{i}^{2} = 1$ if and only if one of the $m_{i} = 1$ and all the others are equal to $0$.
+  This means that $V$ is isomorphic to one of the $W_{i}$.
+\end{pf}
+
+We now explore the decomposition of the regular representation $\rho\colon G \to \GL(R)$ of a group $G$ (\Cref{ex:regular_representation_Z3}).
+Suppose $\chi_{1}, \ldots, \chi_{h}$ are the irreducible characters of $G$ with degrees $n_{1}, \ldots, n_{k}$.
+Note that by \Cref{prop:character_basic_props}, $n_{i} = \chi_{i}(e)$.
+Recall that $R$ has basis $(e_{t})_{t \in G}$ where $\rho_{s}(e_{t}) = e_{st}$.
+This means that for $s \neq e$, the diagonal terms of the matrix for $\rho_{s}$ are all $0$, so $\Tr(\rho_{s}) = 0$.
+On the otherhand, we have that
+\[
+  \Tr(\rho_{e}) = \dim(R) = \abs{G}.
+\]
+\begin{prop}\label{prop:char_reg_rep}
+  The character $r_{G}$ of the regular representation is given by
+  \begin{align*}
+    r_{G}(e) = \abs{G} && r_{G}(s) = 0 \text{ if } s \neq e.
+  \end{align*}
+\end{prop}
+
+\clearpage
+
+\begin{cor}\label{cor:char_reg_rep_cor_1}
+  Every irreducible representation $W_{i}$ is contained in the regular representation with multiplicity equal to its degree $n_{i}$.
+\end{cor}
+\begin{pf}
+  By \Cref{thrm:scalar_counts_num_iso}, the number of times $W_{i}$ is contained in the regular representation is $\inner{r_{G}, \chi_{i}}$.
+  We have that
+  \[
+    \inner{r_{G}, \chi_{i}} = \frac{1}{\abs{G}} \sum_{s \in G} r_{G}(s^{-1}) \chi_{i}(s) = \frac{1}{\abs{G}} \cdot \abs{G} \chi_{i}(1) = \chi_{i}(1) = n_{i}.
+  \]
+\end{pf}
+
+\begin{cor}\label{cor:char_reg_rep_cor_2}
+  \begin{enumerate}
+  \item The degrees satisfy $\sum_{i = 1}^{h} n_{i}^{2} = \abs{G}$.
+  \item if $e \neq s \in G$, we have that $\sum_{i = 1}^{h} n_{i} \chi_{i}(s) = 0$.
+  \end{enumerate}
+\end{cor}
+\begin{pf}
+  By \Cref{cor:char_reg_rep_cor_1}, we have that $r_{G}(s) = \sum n_{i} \chi_{i}(s)$ for all $s \in G$ \quest{how?}.
+  The claim is thus immediate.
+\end{pf}
+
+The above result lets us determine the irreducible representations of a group $G$.
+Suppose we have constructed some mutually non-isomorphic irreducible representations of degrees $n_{i}, \ldots, n_{h}$.
+In order to check if we have found all such representations, it is necessary and sufficient to verify that $n_{1}^{2} + \cdots + n_{h}^{2} = \abs{G}$.
+Also, we shall later see that each of the $n_{i}$ divide the order of $g$.
 
 \clearpage
 
@@ -520,7 +651,7 @@ If the matrices $(r_{ij}(t))$ are unitary, realized by a suitable choice of basi
   The proof of the other formula is similar.
 \end{pf}
 
-\begin{exercise}[\tcite{book:SerreLinReps} 2.2]
+\begin{exercise}[\tcite{book:SerreLinReps} 2.2]\label{er:Serre_2_2}
   Let $X$ be a finite set on which $G$ acts, and $\rho\colon G \to \GL(V)$ the corresponding permutation representation (\Cref{ex:perm_rep}), and $\chi_{X}$ the character of $\rho$.
   Then show that for $s \in G$, $\chi_{X}(s)$ is equal to the number of elements fixed by $s$.
 \end{exercise}
@@ -531,6 +662,63 @@ If the matrices $(r_{ij}(t))$ are unitary, realized by a suitable choice of basi
   We want to count the number of elements in $[n]$ fixed by $s$, \ie\ the number of $i$ such that $\sigma(i) = i$.
   These correspond exactly to the entries in $R_{S}$ where $r_{ii}(s) = 1$.
   Thus, the claim follows.
+\end{pf}
+
+\begin{exercise}[\tcite{book:SerreLinReps} 2.6]
+  Let $G$ act on a finite set $X$, $\rho$ the corresponding permutation representation, and $\chi$ its character.
+  \begin{enumerate}
+  \item Let $c$ be the number of distinct orbits.
+        Show that $c$ is equal to the number of times $\rho$ contains the unit representation $1$.
+        Deduce that $(\chi \mid 1) = c$.
+        In particular if $G$ is transitive and thus $c = 1$, then $\rho = 1 \oplus \theta$ where $\theta$ does not contain the unit representation.
+        If $\psi$ is the character of $\theta$, then $\chi = 1 + \psi$ and $(\psi \mid 1) = 0$.
+  \item Let $G$ act on the product $X \times X$ in the natural way.
+        Show that the character of the corresponding permutation representation is equal to $\chi^{2}$.
+  \item Suppose that $G$ is transitive on $X$ and $\abs{X} \geq 2$.
+        We say $G$ is \emph{doubly transitive} if for all $x, y, x', y' \in X$ with $x \neq y$ and $x' \neq y$ there exists $s \in G$ such that $s(x, y) = (sx, sy) = (x', y')$.
+        Prove that the following are equivalent:
+        \clearpage
+        \begin{enumerate}
+        \item $G$ is doubly transitive.
+        \item The action of $G$ on $X \times X$ has two orbits, the diagonal and the complement.
+        \item $(\chi^{2} \mid 1) = 2$
+        \item The representation $\theta$ defined in the first part of this exercise is irreducible.
+        \end{enumerate}
+  \end{enumerate}
+\end{exercise}
+\begin{pf}
+  First suppose that $G \acts X$ is transitive.
+  Then by \Cref{er:Serre_2_2}, $s \in G$, $\chi(s) = 1$ and so by \quest{Exercise 2.5} we have that $(\chi \mid 1) = \frac{1}{\abs{G}} \sum \chi(s) = 1$.
+  Note that the unit representation is irreducible, and so by \Cref{thrm:scalar_counts_num_iso} we have that the number of times $\rho$ contains the unit representation is equal to $(\chi \mid 1) = 1$ as desired.
+  Now let $G \acts X$ be a general group action.
+  Let $V$ be the underlying vector space with basis $(e_{s})_{s \in G}$.
+  Then each orbit of $G \acts X$ induces a transitive subaction of $G$ on that orbit.
+  Each orbit corresponds uniquely to some set of basis vectors as the set of orbits partitions $X$, and thus partitions $(e_{s})_{s \in G}$.
+  Let $\psi_{i}$, $1 \leq i \leq c$ be the character associated to the permutation representation of the induced subaction of $G$ on the $i$-th orbit.
+  Then using the prior argument and the linearity of the scalar product we get that
+  \[
+    (\chi \mid 1) = (\psi_{1} \mid 1) + \cdots + (\psi_{c} \mid 1) = c.
+  \]
+  Following this, the rest of the claim is immediate.
+
+  Now suppose that $\phi$ is the character of the permutation representation of $G \acts X \times X$.
+  Then by \Cref{er:Serre_2_2}, $\phi(s)$ is equal to the number of elements fixed by $s$.
+  An element $(x, y) \in X \times X$ is fixed by $s \in G$ if and only if both $x$ and $y$ are fixed.
+  Thus if there are $\chi(s)$ elements of $X$ fixed by $s$, then $\chi^{2}(s)$ elements of $X \times X$ are fixed by $s$ and $\phi = \chi^{2}$.
+
+  To prove 3, we have that $(a) \iff (b)$ is immediate and $(b) \iff (c)$ follows from 1 and 2.
+  Now suppose $(c)$ holds and let $\psi$ be the character of $\theta$.
+  Then $1 + \psi = \theta$.
+  Since $(\chi \mid 1) = (1 \mid 1) = 1$ we must have that $(\psi \mid 1) = 0$.
+  Since $\chi^{2} = 1 + 2\psi + \psi^{2}$, we have that $(c)$ is equivalent to saying $(\psi^{2} \mid 1) = 1$.
+  Thus
+  \[
+    \frac{1}{\abs{G}} \sum_{s \in G} \psi(s)^{2} = 1.
+  \]
+  However, note that $\psi(s)$ is real valued, not just complex valued.
+  This is because $\chi$ is real valued, it counts fixed points, and clearly $1$ is real valued.
+  Thus $\psi^{*} = \psi(s)^{*}$ and so the above equality implies that $(\psi \mid \psi = 1)$.
+  By \Cref{thrm:irreducibility_criterion}, we have that this is true if and only if $\theta$ is irreducible, \ie\ $(c) \iff (d)$ holds.
 \end{pf}
 
 \printbibliography
