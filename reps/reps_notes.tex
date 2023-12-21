@@ -625,7 +625,166 @@ On the otherhand, we have that
 The above result lets us determine the irreducible representations of a group $G$.
 Suppose we have constructed some mutually non-isomorphic irreducible representations of degrees $n_{i}, \ldots, n_{h}$.
 In order to check if we have found all such representations, it is necessary and sufficient to verify that $n_{1}^{2} + \cdots + n_{h}^{2} = \abs{G}$.
-Also, we shall later see that each of the $n_{i}$ divide the order of $g$.
+Also, we shall later see that each of the $n_{i}$ divide the order of $G$.
+
+\begin{defn}[Class Function]
+  A function $f$ on a group $G$ is a \emph{class function} if for all $s, t \in G$, $f(tst^{-1}) = f(s)$.
+\end{defn}
+
+\begin{prop}\label{prop:rho_f_homothety}
+  Let $f$ be a class function on a group $G$ and $\rho\colon G \to \GL(V)$ a linear representation of $G$ with character $\chi$.
+  Define $\rho_{f}\colon V \to V$ by $\rho_{f} = \sum_{t \in G} f(t) \rho_{t}$.
+  If $V$ is irreducible of degree $n$, the $\rho_{f}$ is a homothety of ratio $\lambda$ where
+  \[
+    \lambda = \frac{1}{n} \sum_{t \in G} f(t) \chi(t) = \frac{\abs{G}}{n} (f \mid \chi^{*}).
+  \]
+\end{prop}
+\begin{pf}
+  We have that
+  \[
+    \rho_{s}^{-1} \rho_{f} \rho_{s} = \sum_{t \in G} f(t) \rho_{s}^{-1} \rho_{t} \rho_{s} = \sum_{t \in G} f(t) \rho_{s^{1} t s} = \sum_{t \in G} f(s^{-1}ts)\rho_{s^{-1}ts} = \rho_{f}.
+  \]
+  Thus, by \Cref{prop:schurs_lemma} we have that $\rho_{f}$ us a homothety $\lambda$.
+  The trace of $\lambda$ is $n \lambda$.
+  Thus, the trace of $\rho_{f}$ is $\sum_{t \in G} f(t) \Tr(\rho_{t}) = \sum_{t \in G} f(t) \chi(t)$.
+  Thus, $\lambda = \frac{1}{n} \sum_{t \in G} f(t) \chi(t) = \frac{\abs{G}}{n} (f \mid \chi^{*})$.
+\end{pf}
+
+Let $H$ be the space of class functions on $G$.
+
+\begin{thrm}\label{thrm:characters_basis_class_funcs}
+  The characters $\chi_{1}, \ldots, \chi_{h}$ of $G$ form an orthonormal basis of $H$.
+\end{thrm}
+\begin{pf}
+  Note that \Cref{thrm:norm_orthogonal_characters} says that the $\chi_{i}$ are all orthonormal to each other.
+  To show that they generate $H$, it is enough to show that the only element of $H$ orthogonal to $\chi_{i}^{*}$ is $0$.
+  Let $f$ be such an element.
+  For each representation $\rho$ of $G$, let $\rho_{f}$ be as in \Cref{prop:rho_f_homothety}.
+  Since $f$ is orthogonal to the $\chi_{i}^{*}$, \Cref{prop:rho_f_homothety} says that $\rho_{f}$ is $0$ as long as $\rho$ is irreducible.
+  From the \quest{direct sum decomposition}, we conclude that $\rho_{f}$ is always $0$.
+  Now consider the regular representation of $G$ and compute the image of the basis vector $e_{e}$ under $\rho_{f}$:
+  \[
+    0 = \rho_{f}(e_{e}) = \sum_{t \in G} f(t) \rho_{t}(e_{e}) = \sum_{t \in G} f(t)\rho_{t}.
+  \]
+  Thus, $f(t) = 0$ for each $t \in G$ and $f = 0$.
+\end{pf}
+
+\begin{thrm}\label{thrm:num_irred_cong_classes}
+  The number of irreducible representations of $G$, up to isomorphism, is the number of conjugacy classes of $G$.
+\end{thrm}
+\begin{pf}
+  Let $C_{1}, \ldots, C_{k}$ be the distinct conjugacy classes of $G$.
+  Then all class functions are constant on each class, their value determined by some $\lambda_{i}$ for each $C_{i}$.
+  These $\lambda_{i}$ may be chosen arbitrarily.
+  Thus, the dimension of the space $H$ of class functions is equal to $k$.
+  But we already know by \Cref{thrm:characters_basis_class_funcs} that the dimension of $H$ is $h$, the number of irreducible representations of $G$.
+\end{pf}
+
+\begin{prop}
+  Let $s \in G$ and $c(s)$ the number of elements in the conjugacy class of $s$.
+  \begin{enumerate}
+  \item We have $\sum_{i = 1}^{h} \chi_{i}(s)^{*} \chi_{i}(s) = \frac{\abs{G}}{c(s)}$.
+  \item For $t$ not conjugate to $s$, we have $\sum_{i = 1}^{h} \chi_{i}(s)^{*} \chi_{i}(t) = 0$.
+  \end{enumerate}
+\end{prop}
+\begin{pf}
+  Let $f_{s}$ be the class function equal to to $1$ on the class of $s$ and $0$ otherwise.
+  By \Cref{thrm:num_irred_cong_classes}, we have that
+  \begin{align*}
+    f_{s} = \sum_{i = 1}^{h} \lambda_{i} \chi_{i} && \lambda_{i} = (f_{s} \mid \chi_{i}) = \frac{c(s)}{\abs{G}} \chi_{i}(s)^{*}.
+  \end{align*}
+  We have then, for each $t \in G$, that
+  \[
+    f_{s}(t) = \frac{c(s)}{\abs{G}}\sum_{i = 1}^{h} \chi_{i}(s)^{*} \chi_{i}(t).
+  \]
+  If $t = s$, we get claim $1$ and for $t$ not conjugate to $s$ we get claim $2$.
+\end{pf}
+
+\clearpage
+
+\begin{ex}[Character Table of $S_{3}$]
+  Consider the group $S_{3}$.
+  There are three conjugacy classes: the identity $()$, the 3 transpositions, and the 2 cyclic permutations.
+  Let $t$ be one of the transpositions and $c$ one of the cyclic permutations.
+  Then $t^{2} = 1 = c^{3}$ and $tc = c^{2}t$.
+  There are just two characters of degree $1$: the unit character $\chi_{1}$ and the character $\chi_{2}$ giving the sign of the permutation \quest{why?}.
+  By \Cref{thrm:num_irred_cong_classes}, there exists one more irreducible character $\theta$.
+  If $n$ is the degree of $\theta$, then we must have that $1 + 1 + n^{2} = 6$, so $n = 2$.
+  By \Cref{prop:char_reg_rep}, we have that $\chi_{1} + \chi_{2} + 2\theta$ is the character of the regular representation.
+  Thus, we get the following \emph{character table}:
+
+  \quest{TODO: Center}
+  \begin{center}
+    \centering
+    \begin{table}[h]
+      \begin{tabular}{l|lll}
+        & 1 & $t$ & $c$ \\ \hline
+        $\chi_1$ & 1 & 1   & 1   \\
+        $\chi_2$ & 1 & -1  & 1   \\
+        $\theta$ & 2 & 0   & -1
+      \end{tabular}
+    \end{table}
+  \end{center}
+
+  We obtain an irreducible representation of $G$ with character $\theta$ by having $G$ permute the coordinates of elements of $\C^{3}$ satisfying $x + y + z = 0$.
+\end{ex}
+
+Let $\rho\colon G \to \GL(V)$ be a linear representation of $G$.
+Recall that the direct sum decomposition of $V$ into irreducible representation is not necessarily unique.
+Thus, we shall now define a ``coarser'' decomposition which has the advantage of being unique.
+
+\begin{defn}[Canonical Decomposition of a Representation]
+  Let $\chi_{1}, \ldots, \chi_{h}$ be the distinct characters of the irreducible representations of $W_{1}, \ldots, W_{h}$ of $G$ with degrees $n_{1}, \ldots, n_{h}$.
+  Let $V = U_{1} \oplus \cdots \oplus U_{m}$ be a decomposition of $V$ into a direct sum of irreducible representations.
+  For $i = 1, \ldots, h$, let $V_{i}$ be the direct sum of the $U_{i}$ which are isomorphic to $W_{i}$.
+  Then $V = V_{1} \oplus \cdots \oplus V_{h}$.
+  We have decomposed $V$ into a direct sum of irreducible representations and combined the ones which are isomorphic to each other.
+\end{defn}
+This decomposition satisfies some nice properties:
+
+\clearpage
+
+\begin{thrm}\label{thrm:canonical_decomp_properties}
+  \begin{enumerate}
+  \item The decomposition $V = V_{1} \oplus V_{h}$ does not depend on the initially chosen decomposition of $V$ into irreducibles.
+  \item The projection $p_{i}\colon V \to V_{i}$ is given by
+        \[
+          p_{i} = \frac{n_{i}}{\abs{G}} \sum_{t \in G} \chi_{i}^{*}(t) \rho_{t}.
+        \]
+  \end{enumerate}
+\end{thrm}
+\begin{pf}
+  We shall prove claim $2$ since claim $1$ follows as the $p_{i}$ determine the $V_{i}$.
+  Let $q_{i} = \frac{n_{i}}{\abs{G}} \sum_{t \in G} \chi_{i}(t)^{*} \rho_{t}$.
+  By \Cref{prop:rho_f_homothety}, we have that the restriction of $q_{i}$ to an irreducible representation $W$ with character $\chi$ and degree $n$ is a homothety of ratio $\frac{n_{i}}{n} (\chi_{i} | \chi)$.
+  Thus, $q_{i}$ is $0$ if $\chi_{i} \neq \chi$ and $1$ if $\chi = \chi_{i}$.
+  This yields that $q_{i}$ is the identity on an irreducible representation isomorphic to $W_{i}$, and $0$ on the others.
+  Thus, $q_{i}$ is the identity on $V_{i}$ and $0$ on $V_{j}$ for $j \neq i$.
+  Decomposing $x \in V$ into $x_{i} \in V_{i}$ such that $x = x_{1} + \cdots + x_{h}$ yields that
+  \[
+    q_{i}(x) = q_{i}(x_{1}) + \cdots + q_{i}(x_{h}) = x_{i}.
+  \]
+  Thus $q_{i} = p_{i}$.
+\end{pf}
+
+This allows us to decompose representations $V$ in two stages.
+First, we determine $V_{1} \oplus \cdots \oplus V_{h}$.
+This is done easily using the given formula for $p_{i}$ in \Cref{thrm:canonical_decomp_properties}.
+Finally, for each $V_{i}$ we may choose a decomposition of $V_{i}$ into a direct sum of irreducible representations, each isomorphic to $W_{i}$,
+This last decomposition may be done in any number of ways.
+
+\begin{ex}[Decomposition of $C_{2}$]
+  Let $G = C_{2} = \set{e, s}$ be the cyclic group of two elements generated by $s$.
+  Let $\rho\colon G \to \GL(V)$ be any representation of $C_{2}$.
+  Note that $C_{2}$ has two irreducible representations of degree $1$, $W^{+}$ and $W^{-}$ with respective characters $\rho^{+} = 1$ and $\rho_{s} = -1$.
+  The canonical decomposition of $V$ is $V = V^{+} \oplus V^{-}$, where $V^{+}$ consists of elements $x \in V$ which are symmetric and $V^{-}$ consists of elements which are antisymmetric.
+  In other words, $V^{+}$ consists of elements $x \in V$ where $\rho_{s}(x) = x$ and $V^{-}$ consists of elements $x \in V$ where $\rho_{s}(x) = -x$.
+  This, the projections are
+  \begin{align*}
+    p^{+}(x) = \frac{1}{2}(x + \rho_{s}(x)) && p^{-}(x) = \frac{1}{2}(x - \rho_{s}(x)).
+  \end{align*}
+  To decompose $V^{+}$ and $V^{-}$ into irreducible components means to decompose these subspaces into a direct sum of lines, which can be in arbitrarily many ways.
+\end{ex}
 
 \clearpage
 
