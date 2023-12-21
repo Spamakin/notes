@@ -650,6 +650,8 @@ Also, we shall later see that each of the $n_{i}$ divide the order of $G$.
   Thus, $\lambda = \frac{1}{n} \sum_{t \in G} f(t) \chi(t) = \frac{\abs{G}}{n} (f \mid \chi^{*})$.
 \end{pf}
 
+\clearpage
+
 Let $H$ be the space of class functions on $G$.
 
 \begin{thrm}\label{thrm:characters_basis_class_funcs}
@@ -707,7 +709,9 @@ Let $H$ be the space of class functions on $G$.
   There are three conjugacy classes: the identity $()$, the 3 transpositions, and the 2 cyclic permutations.
   Let $t$ be one of the transpositions and $c$ one of the cyclic permutations.
   Then $t^{2} = 1 = c^{3}$ and $tc = c^{2}t$.
-  There are just two characters of degree $1$: the unit character $\chi_{1}$ and the character $\chi_{2}$ giving the sign of the permutation \quest{why?}.
+  There are just two characters of degree $1$: the unit character $\chi_{1}$ and the character $\chi_{2}$ giving the sign of the permutation.
+  This is because $t^{2} = 1$ means that $\chi(t) = 1$ or $-1$.
+  Each choice then determines the character of $c$, which ends up corresponding to the unit character or the sign.
   By \Cref{thrm:num_irred_cong_classes}, there exists one more irreducible character $\theta$.
   If $n$ is the degree of $\theta$, then we must have that $1 + 1 + n^{2} = 6$, so $n = 2$.
   By \Cref{prop:char_reg_rep}, we have that $\chi_{1} + \chi_{2} + 2\theta$ is the character of the regular representation.
@@ -882,6 +886,72 @@ This last decomposition may be done in any number of ways.
   This is because $\chi$ is real valued, it counts fixed points, and clearly $1$ is real valued.
   Thus $\psi^{*} = \psi(s)^{*}$ and so the above equality implies that $(\psi \mid \psi = 1)$.
   By \Cref{thrm:irreducibility_criterion}, we have that this is true if and only if $\theta$ is irreducible, \ie\ $(c) \iff (d)$ holds.
+\end{pf}
+
+\clearpage
+
+\begin{exercise}
+  Let $\rho\colon G \to \GL(V)$ be any representation of a group $G$ with $V = V_{1} \oplus \cdots \oplus V_{h}$ the canonical decomposition, $W_{1}, \ldots, W_{h}$ all irreducible representations of $G$.
+  Let $H_{i}$ be the vector space of linear mappins $h\colon W_{i} \to V$ such that $\rho_{s} \circ h = h \circ \rho_{s}$ for all $s \in G$.
+  Each $h \in H_{i}$ maps $W_{i}$ into $V_{i}$.
+  \begin{enumerate}
+  \item Show that $\dim(H_{i})$ is equal to $\dim(V_{i}) / \dim(W_{i})$, the multiplicity of $W_{i}$ in $V_{i}$.
+  \item Let $G$ act on $H_{i} \otimes V_{i}$ through the tensor product of the trivial representation of $G$ on $H_{i}$ and the given representation on $W_{i}$.
+        Show that the linear map
+        \begin{align*}
+          F\colon H_{i} \otimes W_{i} &\to V_{i} \\
+          \sum h_{\alpha} \otimes w_{\alpha} &\mapsto \sum h_{\alpha}(w_{\alpha})
+        \end{align*}
+        is an isomorphism.
+  \item Let $(h_{1}, \ldots, h_{k})$ be a basis of $H_{i}$ and form the direct sum $W_{i} \oplus \cdots \oplus W_{i}$ of $k$ copies of $W_{i}$.
+        This basis defines an obvious mapping $h\colon W_{i} \oplus \cdots \oplus W_{i} \to V_{i}$.
+        Show that $h$ is an isomorphism of representations.
+        In particular, to decompose $V_{i}$ into a direct sum of representations isomorphic to $W_{i}$ amounts to choosing a basis for $H_{i}$.
+  \end{enumerate}
+\end{exercise}
+\begin{pf}
+  \begin{enumerate}
+  \item Let $h \in H_{i}$.
+        Then $h$ maps $W_{i}$ into say $k_{i}$ copies of $W_{i}$.
+        Each copy of $W_{i}$ comes with a projection function $V_{i} \to W_{i}$.
+        Composing $h$ with this projection function shows that $h$ is a linear combination of maps $W_{i} \to W_{i}$.
+        Thus, it suffices to consider the case of $V = W_{i}$.
+        But Schur's Lemma (\Cref{prop:schurs_lemma}) says that in this case $h$ is a scalar multiple of the identity, and thus onto.
+        Thus, $\dim(H_{i}) = 1 = \frac{\dim(V_{i})}{\dim(W_{i})}$.
+  \item By composing $F$ with one of the $k_{i}$ projection functions, we get that $F$ is a linear combination of maps $H_{i} \otimes W_{i} \to W_{i}$.
+        Thus, we may again reduce to the case that $V = W_{i}$.
+        In this case, by the proof of $1$ we get that $F$ is surjective.
+        Dimension counting yields that it is an isomorphism of vector spaces.
+
+        To see that $F$ is an isomorphism of representations, let $\rho'\colon G \to \GL(H_{i} \otimes W_{i})$ be the given tensor product representation.
+        We have that
+        \[
+          F(\rho'_{s}(h_{alpha} \otimes w_{\alpha})) = F(h_{\alpha} \otimes \rho_{s}(w_{\alpha})) = h_{\alpha}(\rho_{s}(w_{\alpha})) = \rho_{s}(h_{\alpha}(w_{\alpha})) = \rho_{s}(F(h_{\alpha} \otimes w_{\alpha})).
+        \]
+        Thus $F \circ \rho'_{s} = \rho_{s} \circ F$ for all generators, and thus on all of $H_{i} \otimes W_{i}$.
+        Thus $F$ is an isomorphism of representations.
+
+  \clearpage
+
+  \item Define the map
+        \begin{align*}
+          h\colon W_{i} \oplus \cdots \oplus W_{i} &\to V_{i} \\
+          (w_{1}, \ldots, w_{k}) &\mapsto h_{1}(w_{1}) + \cdots + h_{k}(w_{k}).
+        \end{align*}
+        Clearly $h$ is linear.
+        From $2$ we see that every element of $V_{i}$ is of the form $\sum w_{\alpha} h_{\alpha}$ and the $h_{i}$ form a basis.
+        Thus $h$ is surjective and dimension counting yields that $h$ is a linear isomorphism.
+        The proof that $h$ is an isomorphism of representations is similar.
+
+        Now suppose we are given an isomorphism of representations $h\colon W_{i} \oplus \cdots \oplus W_{i} \to V_{i}$.
+        Let $i_{j}\colon W_{i} \to W_{i} \oplus \cdots \oplus W_{i}$ be the inclusions of $W_{i}$ into the $j$-th component of $W_{i} \oplus \cdots \oplus W_{i}$.
+        Define $h_{j}\colon W_{i} \to V_{i} \defeq h \circ i_{j}$.
+        Since $h$ is an isomorphism of representations, we have that $h_{j}$ commutes with $\rho$ and so $h_{j} \in H_{i}$.
+        We claim that the $h_{j}$ form a basis of $H_{i}$.
+        Suppose the $h_{j}$ we linearly dependent.
+        Then this would contradict the face that $h$ is an isomorphism of vector spaces since we would be able to show that $\ker(h) \neq 0$.
+        Thus the $h_{j}$ form a basis of $H_{i}$ and every isomorphism of representations arises in the way described.
+  \end{enumerate}
 \end{pf}
 
 \printbibliography
