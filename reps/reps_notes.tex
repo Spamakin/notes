@@ -687,18 +687,22 @@ Also, we shall later see that each of the $n_{i}$ divide the order of $g$.
   \end{enumerate}
 \end{exercise}
 \begin{pf}
-  First suppose that $G \acts X$ is transitive.
-  Then by \Cref{er:Serre_2_2}, $s \in G$, $\chi(s) = 1$ and so by \quest{Exercise 2.5} we have that $(\chi \mid 1) = \frac{1}{\abs{G}} \sum \chi(s) = 1$.
-  Note that the unit representation is irreducible, and so by \Cref{thrm:scalar_counts_num_iso} we have that the number of times $\rho$ contains the unit representation is equal to $(\chi \mid 1) = 1$ as desired.
-  Now let $G \acts X$ be a general group action.
-  Let $V$ be the underlying vector space with basis $(e_{s})_{s \in G}$.
-  Then each orbit of $G \acts X$ induces a transitive subaction of $G$ on that orbit.
-  Each orbit corresponds uniquely to some set of basis vectors as the set of orbits partitions $X$, and thus partitions $(e_{s})_{s \in G}$.
-  Let $\psi_{i}$, $1 \leq i \leq c$ be the character associated to the permutation representation of the induced subaction of $G$ on the $i$-th orbit.
-  Then using the prior argument and the linearity of the scalar product we get that
+  We know that the number of times the unit representation is contained in $\chi$ is equal to $(\chi \mid 1)$ by \Cref{thrm:scalar_counts_num_iso}.
+  By \quest{Exercise 2.5} we have that $(\chi \mid 1) = \frac{1}{\abs{G}} \sum_{s \in G} \chi(s)$.
+  We prove that $\frac{1}{\abs{G}} \sum \chi(s) = c$ by double counting.
+  Consider the set $\set{(s, x) \in G \times X | s \cdot x = x}$.
+  Then we have that
   \[
-    (\chi \mid 1) = (\psi_{1} \mid 1) + \cdots + (\psi_{c} \mid 1) = c.
+    \sum_{x \in X} \abs{G_{x}} = \sum_{x \in X} \abs{\set{s \in G | s \cdot x = x}} = \abs{\set{(s, x) \in G \times X | s \cdot x = x}} = \sum_{s \in G} \abs{\set{x \in X | s \cdot x = x}} = \sum_{s \in G} \chi(s).
   \]
+  Let $O_{1}, \ldots, O_{c}$ be the distinct orbits.
+  By the Orbit-Stabilizer theorem, each $O_{i}$ is in bijection with $G / G_{x}$ for all $x \in O_{i}$.
+  Note that the orbits $O_{i}$ partition $X$.
+  Thus we have that
+  \[
+    \sum_{s \in G} \chi(s) = \sum_{i = 1}^{c} \sum_{x \in O_{i}} \abs{G_{x}} = \sum_{i = 1}^{c} \sum_{x \in O_{i}} \frac{\abs{G}}{\abs{O_{i}}} = c \cdot \abs{G}
+  \]
+  and $\frac{1}{\abs{G}} \sum_{s \in G} \chi_{s} = c$.
   Following this, the rest of the claim is immediate.
 
   Now suppose that $\phi$ is the character of the permutation representation of $G \acts X \times X$.
