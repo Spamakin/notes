@@ -790,6 +790,67 @@ This last decomposition may be done in any number of ways.
   To decompose $V^{+}$ and $V^{-}$ into irreducible components means to decompose these subspaces into a direct sum of lines, which can be in arbitrarily many ways.
 \end{ex}
 
+We now have the tools to explicitly compute the components $V_{i}$ of this canonical decomposition of $\rho\colon G \to \GL(V)$.
+Let $V = V_{1} \oplus \cdots \oplus V_{h}$ be this decomposition.
+The projection given in \Cref{thrm:canonical_decomp_properties} will allow us to do this.
+Let $W_{i}$ have matrix form $(r_{\alpha \beta}(s))$ with respect to a basis $(e_{1}, \ldots, e_{n})$.
+Then $\chi_{i}(s) = \sum_{\alpha} r_{\alpha \alpha}(s)$.
+For each $1 \leq \alpha, \beta \leq n$ define
+\[
+  p_{\alpha \beta} = \frac{n}{\abs{G}} \sum_{t \in G} r_{\beta \alpha}(t^{-1}) \rho_{t}.
+\]
+\begin{prop}
+  \begin{enumerate}\
+  \item The map $p_{\alpha \alpha}$ is a projection.
+        It is $0$ on $V_{j}$ for $j \neq i$ and its image $V_{i, \alpha}$ is contained in $V_{i}$ where $V_{i}$ is the direct sum of the $V_{i, \alpha}$, $1 \leq \alpha \leq n$.
+        We have that $p_{i} = \sum_{\alpha} p_{\alpha \alpha}$.
+  \item The linear map $p_{\alpha \beta}$ is $0$ on $V_{j}$ for $j \neq i$ as well as on $V_{i, \gamma}$ for $\gamma \neq \beta$.
+        It defines an isomorphism $V_{i, \beta} \to V_{i, \alpha}$.
+  \item Let $x_{1} \neq 0 \in V_{i, 1}$ and $x_{\alpha} \defeq p_{\alpha, 1}(x_{1}) \in V_{i \alpha}$.
+        Then the $x_{\alpha}$ are linearly independent and generate a subspace $W(x_{1})$ stable under $G$ and of dimension $n$.
+        For each $s \in G$, we have that
+        \[
+          \rho_{s}(x_{\alpha}) = \sum_{\beta} r_{\beta \alpha}(s) x_{\beta}.
+        \]
+        In particular, $W(x_{1})$ is isomorphic to $W_{i}$.
+  \item If $(x_{1}^{(1)}, \ldots, x_{1}^{(m)})$ is a basis of $V_{i, 1}$, then the representation $V_{i}$ is the direct sum of the subrepresentations $W(x_{1}^{(1)}), \ldots, W(x_{1}^{(m)})$.
+  \end{enumerate}
+  \begin{pf}
+    Observe that the definition of $p_{\alpha \beta}$ is defined in terms of arbitrary representations of $G$, and in particular in the irreducible representations $W_{j}$.
+    For $W_{i}$, we have that
+    \[
+      p_{\alpha \beta}(e_{\gamma}) = \frac{n}{\abs{G}} \sum_{t \in G} r_{\beta \alpha}(t^{-1}) \rho_{t}(e_{\gamma}) = \frac{n}{\abs{G}} \sum_{\delta} \sum_{t \in G} r_{\beta \alpha}(t^{-1})r_{\delta \gamma}(t)e_{\delta}.
+    \]
+    By \Cref{cor:schurs_lemma_cor_3} we have that
+    \[
+      p_{\alpha \beta}(e_{\gamma}) =
+      \begin{cases}
+        e_{\alpha} & \text{if } \gamma = \beta \\
+        0          & \text{otherwise.}
+      \end{cases}
+    \]
+    We get from this that $\sum_{\alpha} p_{\alpha \alpha} = \id_{W_{i}}$.
+    We also get the formulas
+    \begin{align*}
+      p_{\alpha \beta} \circ p_{\gamma \delta} &= \begin{cases} p_{\alpha \delta} & \text{if } \beta = \gamma \\ 0 & \text{otherwise} \end{cases} \\
+      \rho_{s} \circ p_{\alpha \gamma} &= \sum_{\beta} r_{\beta \alpha}(s) p_{\beta \gamma}.
+    \end{align*}
+    For $W_{j}$, $j \neq i$, we use \Cref{cor:schurs_lemma_cor_2} and the same argument to show that all the $p_{\alpha \beta}$ are $0$.
+
+    \clearpage
+
+    With this, we can now decompose $V$ into subrepresentations each isomorphic to $W_{j}$ and apply the above to these representations.
+    The first two assertions follow.
+    Moreover, these formulas are valid in $V$.
+    Assuming the hypothesis of claim $3$ holds, we have that
+    \[
+      \rho_{s}(x_{\alpha}) = \rho_{s} \circ p_{\alpha 1}(x_{1}) = \sum_{\beta} r_{\beta \alpha}(s) p_{\beta 1}(x_{1}) = \sum_{\beta} r_{\beta \alpha}(s) x_{\beta}.
+    \]
+    This proves claim $3$.
+    Finally, claim $4$ follows from the first $3$.
+  \end{pf}
+\end{prop}
+
 \clearpage
 
 \section*{Exercises}
@@ -890,7 +951,7 @@ This last decomposition may be done in any number of ways.
 
 \clearpage
 
-\begin{exercise}
+\begin{exercise}[\tcite{book:SerreLinReps} Exercise 2.8]\label{er:Serre_2_8}
   Let $\rho\colon G \to \GL(V)$ be any representation of a group $G$ with $V = V_{1} \oplus \cdots \oplus V_{h}$ the canonical decomposition, $W_{1}, \ldots, W_{h}$ all irreducible representations of $G$.
   Let $H_{i}$ be the vector space of linear mappins $h\colon W_{i} \to V$ such that $\rho_{s} \circ h = h \circ \rho_{s}$ for all $s \in G$.
   Each $h \in H_{i}$ maps $W_{i}$ into $V_{i}$.
@@ -952,6 +1013,20 @@ This last decomposition may be done in any number of ways.
         Then this would contradict the face that $h$ is an isomorphism of vector spaces since we would be able to show that $\ker(h) \neq 0$.
         Thus the $h_{j}$ form a basis of $H_{i}$ and every isomorphism of representations arises in the way described.
   \end{enumerate}
+\end{pf}
+
+\begin{exercise}[\tcite{book:SerreLinReps} Exercise 2.9]
+  Let $W_{i}$ be a representation of $G$ with matrix form $(r_{\alpha \beta}(s))$ with respect to a basis $(e_{1}, \ldots, e_{n})$.
+  Let $H_{i}$ be the space of linear maps $h\colon W_{i} \to V$ such that $h \circ \rho_{s} = \rho_{s} \circ h$.
+  Show that $h \mapsto h(e_{\alpha})$ is an isomorphism of $H_{i}$ onto $V_{i, \alpha}$.
+\end{exercise}
+\begin{pf}
+  Suppose that $h \mapsto 0$.
+  So $h(e_{\alpha}) = 0$.
+  By \Cref{er:Serre_2_8} $(2)$ we have that $h \otimes e_{\alpha} = 0$.
+  But $e_{\alpha} \neq 0$ so $h = 0$.
+  Then note that $\dim(V_{i}) = \dim(V_{i \alpha}) \cdot n = \dim(V_{i \alpha}) \cdot \dim(W_{i})$.
+  By \Cref{er:Serre_2_8} $(1)$ we have that $\dim(H_{i}) = \dim(V_{i \alpha})$ and so by a dimension argument, the map $h \mapsto h(e_{\alpha})$ is an isomorphism.
 \end{pf}
 
 \printbibliography
