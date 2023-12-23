@@ -577,7 +577,7 @@ Thus, we may use the two interchangeably in the context of characters.
   The result follows by \Cref{thrm:norm_orthogonal_characters}.
 \end{pf}
 
-\begin{cor}
+\begin{cor}\label{cor:scalar_counts_num_iso_cor_1}
   Let $V$ be a linear representation of $G$ with character $\phi$ such that $V$ decomposes into a direct sum of irreducible representations $V = W_{1} \oplus \cdots \oplus W_{k}$.
   Then if $W$ is an irreducible representation with character $\chi$, the number of $W_{i}$ isomorphic to $W$ does not depend on the chosen decomposition.
 \end{cor}
@@ -587,7 +587,7 @@ Thus, we may use the two interchangeably in the context of characters.
 
 \clearpage
 
-\begin{cor}
+\begin{cor}\label{cor:scalar_counts_num_iso_cor_2}
   Two representations are isomorphic if and only if they have the same character.
 \end{cor}
 \begin{pf}
@@ -923,6 +923,45 @@ For each $1 \leq \alpha, \beta \leq n$ define
   Thus, the claim follows.
 \end{pf}
 
+\begin{exercise}[\tcite{book:SerreLinReps} 2.3]
+  Let $\rho\colon G \to \GL(V)$ be a linear representation with character $\chi$.
+  Recall that $V^{*}$ is the dual vector space of $V$.
+  For $x \in V$, $x^{*} \in V^{*}$ let $\inner{x, x^{*}} = x^{*}(x)$.
+  Then there exists a unique linear representation $\rho^{*}\colon G \to \GL(V^{*})$ such that
+  \[
+    \inner{\rho_{s}(x), \rho_{s}^{*}(x^{*})} = \inner{x, x^{*}}
+  \]
+  for $s \in G$, $x \in V$, and $x^{*} \in V^{*}$.
+  Note that $\rho^{*}$ has character $\chi^{*}$, the conjugate of $\chi$.
+\end{exercise}
+\begin{pf}
+  Let $\rho_{s}^{*} = \pqty{\rho_{s}^{T}}^{-1}$.
+  Then
+  \[
+    \inner{\rho_{s}(x), \rho_{s}^{*}(x^{*})} = \inner{\rho_{s}(x), \pqty{\rho_{s}^{T}}^{-1}(x^{*})} = \pqty{x, \rho_{s}^{T}\pqty{\pqty{\rho_{s}^{T}}^{-1}(x^{*})}} = \inner{x, x^{*}}.
+  \]
+
+  \clearpage
+
+  Now suppose that $\rho'\colon G \to \GL(V^{*})$ was another representation satisfying the above property.
+  Then we would have that
+  \[
+    \inner{\rho_{s}(x), (\rho^{*} - \rho')(x^{*})} = \inner{\rho_{s}(x), \rho_{s}^{*}(x^{*})} - \inner{\rho_{s}(x), \rho'_{s}(x^{*})} = 0.
+  \]
+  Note that this holds for all $x \in V$ and $x^{*} \in V^{*}$.
+  Thus, we must have that $(\rho^{*} - \rho')(x^{*}) = 0$, and thus $\rho^{*} = \rho'$.
+\end{pf}
+
+\begin{exercise}[\tcite{book:SerreLinReps} 2.5]\label{er:Serre_2_5}
+  Let $\rho\colon G \to \GL(V)$ be a linear representation with character $\chi$.
+  Then the number of times $\rho$ contains the unit representation is equal to $(\chi \mid 1) = \frac{1}{\abs{G}} \sum_{s \in G} \chi(s)$.
+\end{exercise}
+\begin{pf}
+  The equality $(\chi \mid 1) = \frac{1}{\abs{G}} \sum_{s \in G} \chi(s)$ is immediate by definition of the scalar product $(\cdot \mid \cdot)$ and the fact that $1^{*} = 1$.
+  By \Cref{thrm:scalar_counts_num_iso}, $(\chi \mid 1)$ counts the number of times an irreducible representation with character $1$ appears in $V$.
+  By \Cref{cor:scalar_counts_num_iso_cor_2}, the only irreducible representation with character $1$ is the unit representation.
+\end{pf}
+
 \begin{exercise}[\tcite{book:SerreLinReps} 2.6]
   Let $G$ act on a finite set $X$, $\rho$ the corresponding permutation representation, and $\chi$ its character.
   \begin{enumerate}
@@ -936,7 +975,6 @@ For each $1 \leq \alpha, \beta \leq n$ define
   \item Suppose that $G$ is transitive on $X$ and $\abs{X} \geq 2$.
         We say $G$ is \emph{doubly transitive} if for all $x, y, x', y' \in X$ with $x \neq y$ and $x' \neq y$ there exists $s \in G$ such that $s(x, y) = (sx, sy) = (x', y')$.
         Prove that the following are equivalent:
-        \clearpage
         \begin{enumerate}
         \item $G$ is doubly transitive.
         \item The action of $G$ on $X \times X$ has two orbits, the diagonal and the complement.
@@ -945,9 +983,12 @@ For each $1 \leq \alpha, \beta \leq n$ define
         \end{enumerate}
   \end{enumerate}
 \end{exercise}
+
+\clearpage
+
 \begin{pf}
   We know that the number of times the unit representation is contained in $\chi$ is equal to $(\chi \mid 1)$ by \Cref{thrm:scalar_counts_num_iso}.
-  By \quest{Exercise 2.5} we have that $(\chi \mid 1) = \frac{1}{\abs{G}} \sum_{s \in G} \chi(s)$.
+  By \Cref{er:Serre_2_5}, we have that $(\chi \mid 1) = \frac{1}{\abs{G}} \sum_{s \in G} \chi(s)$.
   We prove that $\frac{1}{\abs{G}} \sum \chi(s) = c$ by double counting.
   Consider the set $\set{(s, x) \in G \times X | s \cdot x = x}$.
   Then we have that
