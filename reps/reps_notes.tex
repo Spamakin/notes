@@ -276,7 +276,7 @@ However, suppose that $\rho$ is the trivial representation (\Cref{ex:unit_trivia
 Then each component of the decomposition is a line and we can decompose a vector space into the direct sum of lines in a number of ways.
 However, we will see that the number of $W_{i}$ that are isomorphic to a given irreducible representation does not depend on the choice of decomposition.
 
-\begin{defn}[Tensor/Kronekcer Product of Representations]
+\begin{defn}[Tensor/Kronekcer Product of Representations]\label{defn:tensor_kronecker_product}
   Let $\rho^{1}\colon G \to \GL(V_{1})$ and $\rho^{2}\colon G \to \GL(V_{2})$ be two representations of a group $G$.
   We construct a representation $\rho\colon G \to \GL(V_{1} \otimes V_{2})$ such that
   \[
@@ -1147,6 +1147,192 @@ As always, all groups are assumed to be finite.
   This group has a cyclic subgroup $A$ of index $\frac{\abs{G}}{\abs{A}} = 2$.
   Thus, every irreducible representation of $G$ has degree $1$ or $2$.
 \end{ex}
+
+\begin{defn}[Representation of a Direct Product, Tensor Product of Representations]\label{defn:direct_product_reps}
+  Suppose that $\rho^{1}\colon G_{1} \to \GL(V_{1})$ and $\rho^{2}\colon G_{2} \to \GL(V_{2})$ are two representations.
+  Then we may define a representation for the direct product as follows:
+  \begin{align*}
+    \rho^{1} \otimes \rho^{2}\colon G_{1} \times G_{2} &\to \GL(V_{1} \otimes V_{2}) \\
+                                        (s_{1}, s_{2}) &\mapsto \rho^{1}_{s_{1}} \otimes \rho^{2}_{s_{2}}.
+  \end{align*}
+  We will also call $\rho^{1} \otimes \rho^{2}$ the \emph{tensor product} of the representations $\rho^{1}$ and $\rho^{2}$.
+  Similarly, if $\chi_{1}$ and $\chi_{2}$ are the characters of the representations $\rho^{1}$ and $\rho^{2}$, then $\chi(s_{1}, s_{2}) \defeq \chi_{1}(s_{1}) \cdot \chi_{2}(s_{2})$ is the character of $\rho^{1} \otimes \rho^{2}$.
+\end{defn}
+
+There may be complaints between the similarties in naming for the tensor products of representations in \Cref{defn:tensor_kronecker_product} and \Cref{defn:direct_product_reps}.
+The earlier definition took two representations $\rho^{1}\colon G \to \GL(V_{1})$ and $\rho^{2}\colon G \to \GL(V_{2})$ and created a new representation $\rho^{1} \otimes \rho^{2}\colon G \to \GL(V_{1} \otimes V_{2})$.
+However, notice that if you take $\rho^{1}\colon G \to \GL(V_{1})$ and $\rho^{2}\colon G \to \GL(V_{2})$ and apply \Cref{defn:direct_product_reps}, and then restrict this tensor product representation to the diagonal $\Delta_{G}$, you recover \Cref{defn:tensor_kronecker_product} as a special case of \Cref{defn:direct_product_reps}.
+
+\begin{thrm}\
+  \begin{enumerate}
+  \item If $\rho^{1}\colon G \to \GL(V_{1})$ and $\rho^{2}\colon G \to \GL(V_{2})$ are irreducible, then $\rho^{1} \otimes \rho^{2}$ is an irreducible representation of $G_{1} \times G_{2}$.
+  \item Every irreducible representation of $G_{1} \times G_{2}$ takes the form $\rho^{1} \otimes \rho^{2}$ for some irreducible representations $\rho^{1}\colon G \to \GL(V_{1})$ and $\rho^{2}\colon G \to \GL(V_{2})$.
+  \end{enumerate}
+\end{thrm}
+\begin{pf}
+  We use the notation from \Cref{defn:direct_product_reps}.
+  By \Cref{thrm:irreducibility_criterion}, we have that
+  \begin{align*}
+    \frac{1}{\abs{G_{1}}}\sum_{s_{1} \in G_{1}} \abs{\chi_{1}(s_{1})}^{2} = 1, && \frac{1}{\abs{G_{2}}}\sum_{s_{2} \in G_{2}} \abs{\chi_{2}(s_{2})}^{2} = 1.
+  \end{align*}
+  Thus, we have that
+  \[
+    \frac{1}{\abs{G_{1} \times G_{2}}}\sum_{(s_{1}, s_{2}) \in G_{1} \times G_{2}} \abs{\chi(s_{1}, s_{2})}^{2} = 1.
+  \]
+  Thus $\rho^{1} \otimes \rho^{2}$ is irreducible.
+
+  In order to prove the second claim, it suffices to show that each class function $f$ on $G_{1} \times G_{2}$, which must be orthogonal to the characters of the form $\chi_{1}(s_{1}) \chi_{2}(s_{2})$, is $0$.
+  So suppose that
+  \[
+      \sum_{s_{1}, s_{2}} f(s_{1}, s_{2}) \chi_{1}(s_{1})^{*} \chi_{2}(s_{2})^{*} = 0.
+  \]
+  Fix $\chi_{2}$ and define $g(s_{1}) = \sum_{s_{2}} f(s_{1}, s_{2}) \chi_{2}(s_{2})^{*}$.
+  Thus, for all $\chi_{1}$ we have that
+  \[
+    \sum_{s_{1}} g(s_{1}) \chi_{1}(s_{1})^{*} = 0.
+  \]
+  This implies that $g = 0$.
+  Swapping the roles of $\chi_{1}$ and $\chi_{2}$ also yields that $g = 0$.
+  Thus, we must have that $f = 0$.
+\end{pf}
+Thus, we have reduced the study of representations of $G_{1} \times G_{2}$ to representations of $G_{1}$ and $G_{2}$.
+
+Now let $\rho\colon G \to \GL(V)$ be a linear representation of $G$ and $H \leq G$ a subgroup.
+Let $W \leq V$ be a subspace stable under $H$, \ie\ a subrepresention of $\rho\mid_{H}$.
+Then let $\theta\colon H \to \GL(W)$ be the resulting representation.
+Consider $s \in G$ and the associated coset $sH$.
+Then the vector space $\rho_{s}(W)$ only depends on $sH$.
+If we consider $st$ for $t \in H$, then since $W$ is invarient under $H$ we have that
+\[
+  \rho_{st}(W) = \rho_{s}(\rho_{t}W) = \rho_{s}(W).
+\]
+Suppose $\sigma$ is any left coset of $H$.
+Then we may define a subspace $W_{\sigma}$ of $V$ to be $\rho_{s}W$ for any $s \in \sigma$ by what we just saw.
+Then we have that $\rho_{s}$ permutes the $W_{\sigma}$ amongst themselves.
+The sum $\sum_{\sigma \in G/H} W_{\sigma}$ is a subrepresentation of $V$.
+
+\begin{defn}[Induced Representation]
+  Using the notation above, we say a representation $\rho\colon G \to \GL(V)$ is \emph{induced} by the representation $\theta\colon H \to \GL(W)$ if $V$ is equal to the direct sum of the $W_{\sigma}$, \ie\ if $V = \bigoplus_{\sigma \in G/H} W_{\sigma}$.
+  This may be equivalently stated in two ways:
+  \begin{enumerate}
+  \item Each $x \in V$ can be written uniquely as $\sum_{\sigma \in G/H} x_{\sigma}$ with $x_{\sigma} \in W_{\sigma}$.
+  \item For a choice of representatives $R$ for $G/H$, the vector space $V$ is the direct sum of $\rho_{r}(W)$ for $r \in R$.
+  \end{enumerate}
+  We have that $\dim(V) = \sum_{r \in F} \dim(\rho_{r}(W)) = [G \colon H] \cdot \dim(W)$.
+\end{defn}
+
+\begin{ex}[Regular Representation is Induced by Any Subspace]
+  Let $V$ be the regular representation of a group $G$.
+  Then the space $V$ has a basis $(e_{t})_{t \in G}$ indexed by $G$ such that $\rho_{s}(e_{t}) = e_{st}$ for all $s, t \in G$.
+  Let $H$ be any subgroup of $G$ and $W$ the subspace generated by $(e_{t})_{t \in H}$.
+  Then $W$ is the regular representation of $H$ and it is clear that $V$ is induced by $W$.
+  This follows immediately since the cosets in $G / H$ partition the full basis $(e_{t})_{t \in G}$.
+\end{ex}
+
+\begin{ex}[Permutation Representation is Induced by Unit Representation]
+  Let $V$ be a vector space with a basis $(e_{\sigma})$ indexed by $\sigma \in G / H$.
+  Define a representation $\rho\colon G \to \GL(V)$ such that for $s \in G$ we have $\rho_{s}(e_{\sigma}) = e_{s\sigma}$.
+  This is the permutation representation of $G$ associated with $G / H$.
+  The vector $e_{H}$ corresponding to $H$ is invariant under $H$.
+  The representation of $H$ in the subspace $\C e_{H}$ is the unit representation of $H$.
+  It is clear that this unit representation induces $\rho$.
+\end{ex}
+
+\begin{ex}[Direct Sum of Induced Representations]
+  Suppose that $\rho^{1}$ and $\rho^{2}$ are representations induced by $\theta^{1}$ and $\theta^{2}$ respectively.
+  Then $\rho^{1} \oplus \rho^{2}$ is induced by $\theta^{1} \oplus \theta^{2}$.
+  \quest{Why?}
+\end{ex}
+
+\begin{ex}[Stable Subspaces of Induced Representations]\label{ex:stable_subspc_induced}
+  Suppose $\rho\colon H \to V$ is induced by $\theta\colon H \to W$.
+  Let $W_{1}$ be a stable subspace of $W$.
+  Then the subspace $V_{1} = \sum_{r \in R} \rho_{r}(W_{1})$, where $r$ is a choice of representatives for $G / H$, is a stable subspace of $V$.
+  We have that $V_{1}$ is induced by $W_{1}$.
+\end{ex}
+
+\begin{ex}[Tensor Product of Induced Representations]
+  If $\rho$ is induced $\theta$ and $\rho'$ is a representation of $G$, then $\rho \otimes \rho'$ is induced by $\theta \otimes \rho^{'}\mid_{H}$.
+  \quest{Why?}
+\end{ex}
+
+We now aim to prove that induced representations exist and are unique.
+
+\begin{lem}\label{lem:induced_reps_unique_lin}
+  Suppose that $\rho\colon G \to \GL(V)$ is induced by $\theta\colon H \to W$.
+  Let $\rho'\colon G \to \GL(V')$ be a representation of $G$ and $f\colon W \to V'$ a linear map such that $f(\theta_{t}(w)) = \rho'_{t}(f(w))$ for all $t \in H$, $w \in W$.
+  Then there exists a unique linear map $F\colon V \to V'$ which extends $f$ and satisfies $F \circ \rho_{s} = \rho'_{s} \circ F$ for all $s \in G$.
+\end{lem}
+\begin{pf}
+  Let $\sigma \in G / H$ and $s \in \sigma$.
+  Define $F$ to be $F \defeq \rho'_{s} \circ f \circ \rho_{s}^{-1}$.
+  Note that this does not depend on the choice of $s \in \sigma$.
+  If we take $st$ with $t \in H$ then on $W_{\sigma}$
+  \[
+    \rho'_{st} \circ f \circ \rho^{-1}_{st} = \rho'_{s} \circ \rho'_{t} \circ f \circ \rho^{-1}_{t} \circ \rho^{-1}_{s} = \rho'_{s} \circ \rho'_{t} \circ f \circ \theta^{-1}_{t} \circ \rho^{-1}_{s} = \rho'_{s} \circ f \circ \theta_{t} \circ \theta^{-1}_{t} \circ \rho^{-1}_{s} = \rho'_{s} \circ f \circ \rho^{-1}_{s}.
+  \]
+  Since $V$ is a direct sum of the $W_{\sigma}$, there exists a linear map $F\colon V \to V'$ extending the partial mappings on each of the $W_{\sigma}$.
+  It is easy to check that $\rho_{s} \circ F = F \circ \rho_{s}$.
+
+  For uniqueness, we have for any $F$ satisfying the above conditions that for $x \in W$
+  \[
+    F(x) = (F \circ \rho_{s} \circ \rho_{s}^{-1})(x) = (\rho'_{s} \circ F \circ \rho_{s})(x) = (\rho'_{s} \circ f \circ \rho_{s})(x).
+  \]
+  This holds because if $x \in \rho_{s}(W)$ then $\rho^{-1}_{s}(x) \in W$.
+  This computation determines $F$ on $\rho_{s}(W)$, and thus on $V$ since $V$ is the direct sum of these $\rho_{s}(W)$.
+\end{pf}
+
+\begin{thrm}
+  Let $G$ be a group and $H$ a subgroup of $G$.
+  Let $\theta\colon H \to \GL(W)$ be a linear representation.
+  Then there exists a representation $\rho\colon G \to \GL(V)$ of $G$ induced by $\theta$ which is unique up to isomorphism.
+\end{thrm}
+\begin{pf}
+  Without loss of generality, suppose that $\theta$ is irreducible.
+  Then $\theta$ is isomorphic to a subrepresentation of the regular representation of $H$ \quest{why?}.
+  This may be induced to the regular representation of $G$.
+  Applying \Cref{ex:stable_subspc_induced} yields that $\theta$ itself may be induced.
+
+  Now suppose that $\rho\colon G \to \GL(V)$ and $\rho'\colon G \to \GL(V')$ are two representations of $G$ induced by $\theta$.
+  Let $f\colon W \into V'$ be the injection and apply \Cref{lem:induced_reps_unique_lin}.
+  Then there exists a unique linear map $F\colon V \to V'$ which is the identity on $W$ and satisfies $F \circ \rho_{s} = \rho'_{s} \circ F$ for all $s \in G$.
+  Thus, the image of $F$ contains all $\rho'_{s}(W)$ and thus the image of $F$ is $V'$.
+  Since $V$ and $V'$ are the same dimension, $F$ is an isomorphism of representations.
+\end{pf}
+
+\begin{thrm}
+  Suppose that $\rho\colon G \to \GL(V)$ is induced bu $\theta\colon H \to \GL(W)$ with corresponding characters $\chi_{\rho}$ and $\chi_{\theta}$.
+  Let $R$ be a system of representatives for $G / H$.
+  Then for each $u \in G$ we have
+  \[
+    \chi_{\rho}(u) = \sum_{\substack{r \in R \\ r^{-1}ur \in H}} \chi_{\theta}(r^{-1} u r) = \frac{1}{\abs{H}} \sum_{\substack{s \in G \\ s^{-1}us \in H}} \chi_{\theta}(s^{-1} u s).
+  \]
+\end{thrm}
+\begin{pf}
+  We have that $V$ is the direct sum of $\rho_{r}(W)$ for $r \in R$.
+  Moreover, $\rho_{u}$ permutes the $\rho_{r}(W)$ in that if we write $ur$ in the form $r_{u} t$ for some $r_{u} \in R$ and $t \in H$ then $\rho_{u}(\rho_{r}(W)) = \rho_{r_{u}}(W)$.
+  Give $V$ a basis by taking the union of the bases of the $\rho_{r}(W)$.
+  Whenever $r_{u} \neq r$, the diagonal terms of $\rho_{u}$ are $0$.
+  Thus we have that
+  \[
+    \chi_{\rho}(u) = \sum_{r \in R_{u}} \Tr_{\rho_{r}(W)}(\rho_{u}\mid_{\rho_{r}(W)})
+  \]
+  where $R_{u}$ is the set of $r \in R$ such that $r_{u} = r$.
+  Note that $r \in R_{u}$ if and only if $ur = rt$ with $t \in H$, meaning that $t = r^{-1} u r$.
+
+  Now note that $\rho_{r}$ is an isomorphism from $W$ onto $\rho_{r}(W)$.
+  We also have that
+  \[
+    \rho_{r} \circ \theta_{t} = \rho_{u}\mid_{\rho_{r}(W)} \circ \rho_{r}
+  \]
+  where $t = r^{-1} u r \in H$.
+  Thus the trace of $\rho_{u}\mid_{\rho_{r}(W)}$ is equal to the trace of $\theta_{t}$ \quest{why?}.
+  Thus
+  \[
+    \chi_{\rho}(u) = \sum_{r \in R_{u}} \Tr_{\rho_{r}(W)}(\rho_{u}\mid_{\rho_{r}(W)}) = \sum_{r \in R_{u}} \chi_{\theta}(r^{-1} u r).
+  \]
+  The second formula is immediate via a counting argument.
+\end{pf}
 
 \clearpage
 
