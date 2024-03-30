@@ -1,0 +1,21 @@
+# Define a level of indentation as 2 spaces
+TabSize = 2
+
+# This is where you throw in warnings to disable
+CmdLine
+{
+    # Disable check for commands terminated with spaces
+    -n1
+    # Disable check for arguments not enclosed  in {}'s
+    -n3
+    # Disable check for mismatched parens/brackets/braces
+    -n9
+    # Disable check for different counts of parents/brackets/braces
+    -n17
+}
+
+# Exclude these environments from syntax checking
+VerbEnvir
+{
+    tikzcd
+}
