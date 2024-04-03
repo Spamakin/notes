@@ -168,5 +168,38 @@ Then, Cramer's rule yields that
 \end{align*}
 \end{pf}
 
+\section*{\Grobner\ Bases}
+
+\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.1]
+  Let $\prec$ be an monomial order and let $I$ be any ideal in $\C[x_{1}, \ldots, x_{n}]$.
+  A monomial $m$ is called \emph{minimally nonstandard} if $M$ is nonstandard and all proper divisors of $m$ are standard.
+  Show that the set of minimally nonstandard monomials is finite.
+\end{exercise}
+\begin{pf}
+  \quest{Have ugly inductive proof}
+\end{pf}
+
+\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.2]
+  Prove that the reduced \Grobner\ basis $\mathcal{G}_{\text{red}}$ of $I$ with respect to $\prec$ is unique (up to multiplicative constants from $\C$).
+  Given an algorithm which transforms an arbitrary \Grobner\ basis into $\mathcal{G}_{\text{red}}$.
+\end{exercise}
+\begin{pf}
+  This is~\cite[Chapter 2, \S 7, Theorem 5]{IVA}.
+\end{pf}
+
+\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.3]
+  Let $I \subseteq \C[x_{1}, \ldots, x_{n}]$ be an ideal, given by a finite set of generators.
+  Using \Grobner\ bases, describe an algorithm for computing the \emph{elimination ideals} $I \cap \C[x_{1}, \ldots, x_{i}]$ for $i = 1, \ldots, n - 1$, and prove its correctness.
+\end{exercise}
+\begin{pf}
+  This is~\cite[Chapter 3, \S 1, Theorem 2]{IVA}.
+\end{pf}
+
+\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.4]
+  Find a characterization of all monomial orders on the polynomial ring $\C[x_{1}, x_{2}]$.
+  Hint: each variable receives a certain ``weight'' which behaves additively under multiplication of variables.
+  Generalize your result to $n$ variables.
+\end{exercise}
+
 \printbibliography
 \end{document}
