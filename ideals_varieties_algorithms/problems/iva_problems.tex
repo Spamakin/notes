@@ -14,13 +14,13 @@
 \title{Ideals, Varieties, and Algorithms Problems}
 
 \begin{document}
-\header
+\maketitle
 
 \section*{Chapter 1}
 
-\subsection{\S 1.6}
+\subsection*{\S 1.6}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 We induct on the number of variables $n$. When $n = 1$, if $f \in \C[x]$ vanishes on all $\Z[x]$ then by the Fundamental Theorem of Algebra, $f = 0$. Now suppose that for all $k < n$ the claim holds. Let $f \in \C[x_{1}, \ldots, x_{n}]$ vanish on all of $\Z^{n}$. We may collect all the powers of $x_{n}$ and obtain that for some finite $N$
 \[
@@ -28,7 +28,7 @@ We induct on the number of variables $n$. When $n = 1$, if $f \in \C[x]$ vanishe
 \]
 Fix some $(a_{1}, \ldots, a_{n - 1}) \in \Z^{n - 1}$. Then $f(a_{1}, \ldots, a_{n - 1}, x_{n}) \in k[x_{n}]$ is the zero polynomial by the case of $n = 1$. Thus, each of the $g_{i}$ must vanish on all of $Z^{n - 1}$ which implies by the induction hypothesis each of the $g_{i}$ are the zero polynomial. Overall we have that $f$ is the zero polynomial in $\C[x_{1}, \ldots, x_{n}]$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 Fix $M$. We induct on the number of variables $n$. Let $f \in \C[x]$ be a polynomial of degree at most $M$ that vanishes on $\Z_{M + 1}^{n}$. Then since $f$ vanishes on $M + 1$ points but has degree less than or equal to $M$, by the Fundamental Theorem of Algebra we must have that $f$ is the zero polynomial. Now suppose that for all $k < n$, if $f \in \C[x_{1}, \ldots, x_{k}]$ is a polynomial whose variables are of degree at most $M$ vanishing on $\Z_{M + 1}^{k}$, then $f$ is the zero polynomial. Now suppose that $f \in \C[x_{1}, \ldots, x_{n}]$ is a polynomial whose variables are of degree at most $M$ vanishing on $\Z_{M + 1}^{n}$. We may collect all the powers of $x_{n}$ and obtain that
 \[
@@ -36,35 +36,56 @@ Fix $M$. We induct on the number of variables $n$. Let $f \in \C[x]$ be a polyno
 \]
 Fix some $(a_{1}, \ldots, a_{n - 1}) \in \Z_{M + 1}^{n - 1}$. Then $f(a_{1}, \ldots, a_{n - 1}, x_{n}) \in k[x_{n}]$ is the zero polynomial by the case of $n = 1$. Thus, each of the $g_{i}$ must vanish on all of $Z_{M + 1}^{n - 1}$ which implies by the induction hypothesis each of the $g_{i}$ are the zero polynomial. Overall we have that $f$ is the zero polynomial in $\C[x_{1}, \ldots, x_{n}]$.
 
-\subsection{\S 2.6}
+\subsection*{\S 2.6}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Let $(a_{1}, \ldots, a_{n}) \in k^{n}$. Then we have that the only set of polynomials that vanishes at this point exactly is $f_{1} := x_{1} - a_{1}, \ldots, f_{n} := x_{n} - a_{n}$. Thus $\textbf{V}(f_{1}, \ldots, f_{n}) = \set{(a_{1}, \ldots, a_{n})}$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 For a finite set of points in $k^{n}$, we can build a variety for each point akin to part \textbf{a}. By \textbf{Lemma 2} of \textbf{\S 2}, we can take a union on of these varieties and form a variety which is equal to this finite set of points.
 
-\subsection{\S 2.8}
+\subsection*{\S 2.8}
 
 Let $X = \set{(x, x) | x \in \R,~ x \neq 1}$. Let $f(x, y)$ be a polynomial in $\R[x, y]$ vanishing on $X$. Let $g(x) = f(x, x)$ be a polynomial in $\R[x]$. Then we have that since $g$ is a nonzero polynomial, it must have finitely many roots. However, $g$ vanishes at all $x \neq 1$ which implies that $g$ must be the zero polynomial. In particular we must have that $f$ vanishes at $(1, 1)$ which is a contradiction.
 
 \clearpage
 
-\subsection{\S 2.9}
+\subsection*{\S 2.9}
 
-Suppose $S = \Set{(x, y) \in \R^{2} | y > 0}$ was an affine variety. Then $S \cap V(x) = \Set{(0, y) \in \R^{2} | y > 0}$ would be an affine variety. Let $f = a_{n}(y)x^{n} + a_{n - 1}(y)x^{n - 1} + \cdots + a_{0}(y)$ be a polynomial in this variety. Since $f \in V(x) \cap S$, this polynomial must vanish at $x = 0$ for any $y > 0$. Thus since $\R$ is an infinite field, by Proposition 5 of \textbf{\S 1}, we must have that $a_{0}(y) = 0$. Therefore, every polynomial in $S \cap V(x)$ must a polynomial in $\R[y][x]$ with constant term $0$. Since every polynomial is of this form, then in fact the polynomial must vanish along the whole line $x = 0$, contradicting the fact that they vanish solely along the half line $\Set{(0, y) \in \R^{2} | y > 0}$. Thus $S$ cannot be an affine variety.
+Suppose $R = \Set{(x, y) \in \R^{2} | y > 0}$ was an affine variety.
+Then $R \cap V(x) = \Set{(0, y) \in \R^{2} | y > 0}$ is also an affine variety.
+Let $f = a_{n}(y)x^{n} + a_{n - 1}(y)x^{n - 1} + \cdots + a_{0}(y)$ be a polynomial in this variety.
+Since $f \in R \cap V(x)$, this polynomial must vanish at $x = 0$ for any $y > 0$.
+Since $\R$ is an infinite field, by Proposition 5 of \textbf{\S 1} we must have that $a_{0}(y) = 0$.
+Therefore, every polynomial in $R \cap V(x)$ must a polynomial in $\R[y][x]$ with constant term $0$.
+Since every polynomial is of this form, then in fact the polynomial must vanish along the whole line $x = 0$, contradicting the fact that they vanish solely along the half line $\Set{(0, y) \in \R^{2} | y > 0}$.
+Thus $R$ cannot be an affine variety.
 
-\subsection{\S 2.10}
+\subsection*{\S 2.10}
 
 Suppose $f$ vanishes on $\Z^{n}$. Let $M$ be the maximal degree of any variable in $f$. Then in particular we have that $f$ vanishes on $\Z_{M + 1}^{n}$ which by \textbf{\S 1.6b} means $f$ is the zero polynomial. Thus $\Z^{n}$ cannot be an affine variety.
 
-\subsection{\S 2.15}
+\subsection*{\S 2.11}
 
-\subsubsection{a.} We prove by induction on $n$ for the case of finite union (the case for union is the same). Let $k$ be a field. If $V_{1}$ and $V_{2}$ are an affine varities then by \textbf{Lemma 2} of \textbf{\S 2} we have that $V_{1} \cup V_{2}$ is an affine variety. Now suppose that for all $k < n$, $\Bigcup_{i = 1}^{k} V_{i}$ is an affine variety where each $V_{i}$ is an affine variety. Let $V_{i}, \ldots, V_{n}$ be a collection of affine varieties in $k^{n}$. We have that $\Bigcup_{i = 1}^{n} V_{i} = \pqty{\Bigcup_{i = 1}^{n - 1} V_{i}} \cup V_{n}$. By the induction hypothesis, $\Bigcup_{i = 1}^{n - 1} V_{i}$ is an affine variety. Using this and the case of $n = 2$, we have that overall $\Bigcup_{i = 1}^{n} V_{i}$ is an affine variety.
+\subsubsection*{a.}
 
-\subsubsection{b.}
+If $n$ is odd, then $(x, y) = (0, 1)$ and $(x, y) = (1, 0)$ are trivial solutions.
+If $n$ is even, then $(x, y) = (0, \pm 1)$ and $(x, y) = (\pm 1, 0)$ are trivial solutions.
+Clearly, these are the only trivial solutions.
+
+\subsubsection*{b.}
+
+\quest{Kind of obvious but annoying to write out.}
+
+\subsection*{\S 2.15}
+
+\subsubsection*{a.}
+
+We prove by induction on $n$ for the case of finite union (the case for union is the same). Let $k$ be a field. If $V_{1}$ and $V_{2}$ are an affine varities then by \textbf{Lemma 2} of \textbf{\S 2} we have that $V_{1} \cup V_{2}$ is an affine variety. Now suppose that for all $k < n$, $\Bigcup_{i = 1}^{k} V_{i}$ is an affine variety where each $V_{i}$ is an affine variety. Let $V_{i}, \ldots, V_{n}$ be a collection of affine varieties in $k^{n}$. We have that $\Bigcup_{i = 1}^{n} V_{i} = \pqty{\Bigcup_{i = 1}^{n - 1} V_{i}} \cup V_{n}$. By the induction hypothesis, $\Bigcup_{i = 1}^{n - 1} V_{i}$ is an affine variety. Using this and the case of $n = 2$, we have that overall $\Bigcup_{i = 1}^{n} V_{i}$ is an affine variety.
+
+\subsubsection*{b.}
 
 Consider the set $X = \set{(x, x) | x \in \R,~ x \neq 1}$. We know by \textbf{\S 2.8} that $X$ is not an affine variety. However for fixed $x \in \R$, we know by \textbf{\S 2.6 a} that singular points are affine varieties. Thus
 \[
@@ -72,12 +93,12 @@ Consider the set $X = \set{(x, x) | x \in \R,~ x \neq 1}$. We know by \textbf{\S
 \]
 is an infinite union of affine varieties that is not an affine variety itself.
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
 We know that $\set{(1, 1)}$ is an affine variety. The affine variety $\textbf{V}(x - y)$ is the set $\set{(x, x) | x \in \R}$. However, we have that $\textbf{V}(y - x) \setminus \set{(1, 1)}$ is not an affine variety.
 
 
-\subsubsection{d.}
+\subsubsection*{d.}
 
 Suppose $V = \textbf{V}(f_{1}, \ldots, f_{s})$ and $W = \textbf{V}(g_{1}, \ldots, g_{t})$. We claim that $V \times W$ as defined in the problem is equivalent to
 \[
@@ -90,104 +111,180 @@ Now suppose $(x_{1}, \ldots, x_{n}, y_{1}, \ldots, y_{m}) \in S$. Then $(x_{1}, 
 
 \clearpage
 
-\subsection{\S 4.2}
+\quest{Maybe I should do some exercises from \S 3.}
+
+\subsection*{\S 4.1}
+
+\subsubsection*{a.}
+
+Since $y = \frac{1}{x}$ we have that $x^{2} + y^{2} - 1 = x^{2} + \frac{1}{x^{2}} - 1$ which implies that $x^{4} - x^{2} + 1 = 0$.
+
+\subsubsection*{b.}
+
+Using the fact that $(xy - 1)(xy + 1) = x^{2}y^{2} - 1$, we have that
+\[
+  x^{2}(x^{2} + y^{2} - 1) + (-1)(xy + 1)(xy - 1) = x^{4} + x^{2}y^{2} - x^{2} - x^{2}y^{2} + 1 = x^{4} - x^{2} + 1 \in \ideal{x^{2} + y^{2} - 1, xy - 1}.
+\]
+
+\subsection*{\S 4.2}
 
 Suppose $f_{1}, \ldots, f_{s} \in I$. Then for any polynomial $h \in k[x_{1}, \ldots, x_{n}]$ we have $h \cdot f_{i} \in I$ for $1 \leq i \leq s$. Thus for any polynomial in $\gen{ f_{1}, \ldots, f_{s} }$, that polynomial is in $I$.
 
 Now suppose $\gen{ f_{1}, \ldots, f_{s} } \subseteq I$. Then clearly each $f_{i} \in I$.
+Thus, the two statements are equivalent.
 
-\subsection{\S 4.6}
+\subsection*{\S 4.4}
 
-\subsubsection{a.}
+This follows immediately from the fact that $V(f_{1}, \ldots, f_{s}) = V(\ideal{f_{1}, \ldots, f_{s}})$ but we haven't proven that at this stage.
+
+Suppose $\overline{a} = (a_{1}, \ldots, a_{n}) \in V(f_{1}, \ldots, f_{s})$.
+Then $f_{1}(\overline{a}) = \cdots = f_{s}(\overline{a}) = 0$.
+Since for all $i$, we have that $g_{i} \in \ideal{f_{1}, \ldots, f_{s}}$ we have that $g_{i}(\overline{x}) = h_{1}f_{1}(\overline{x}) + \cdots + h_{s}f_{s}(\overline{x})$ where $h_{i} \in k[\overline{x}]$.
+Thus $g_{i}(\overline{a}) = h_{1}f_{1}(\overline{a}) + \cdots + h_{n}f_{s}(\overline{a}) = 0$ and $\overline{a} \in V(g_{1}, \ldots, g_{t})$.
+The reverse inclusion is the exact same.
+
+\subsection*{\S 4.5}
+
+This is immediate from applying \textbf{Proposition 4} of \textbf{\S 4} to \textbf{Exercise 3} of \textbf{\S 4}.
+
+\subsection*{\S 4.6}
+
+\subsubsection*{a.}
 
 Suppose there was a finite basis of polynomials $\set{p_{1}, \ldots, p_{n}} \subseteq k[x]$. Let $d$ be the greatest degree of these polynomials. Then $x^{d + 1} \in k[x]$ but no linear combination of the $p_{i}$'s can ever equal $x^{d + 1}$ which contradicts the fact that our set is indeed a basis.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 By commutativity, we can write $0$ as $xy - xy = (x)y - (y)x$.
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
 Similarly if $\set{f_{1}, \ldots, f_{s}}$ is the basis for some ideal $I \subseteq k[x_{1}, \ldots, x_{n}]$ then we have that for $i \neq j$ that $0 = (f_{i}) f_{j} - (f_{j}) f_{i}$.
 
-\subsubsection{d.}
+\subsubsection*{d.}
 
 We have that $x^{2} + (x + y)y = x^{2} + xy + y^{2} = y^{2} + (x + y)x$.
 
-\subsubsection{e.}
+\subsubsection*{e.}
 
-Clearly we have that $x + x^{2} - x^{2} = x$ and so $\gen{x} \subseteq \langle x + x^{2}, x^{2} \rangle$. Similarly we get that $\langle x + x^{2}, x^{2} \rangle \subseteq \langle x \rangle$. Thus both $\Set{x}$ and $\Set{x^{2}, x + x^{2}}$ are minimal bases of the same ideal.
+It is not hard to see that $\ideal{x}$ and $\ideal{x + x^{2}, x^{2}}$ are both minimal bases.
+Clearly we have that $x + x^{2} - x^{2} = x$ and so $\gen{x} \subseteq \langle x + x^{2}, x^{2} \rangle$.
+Similarly we get that $\langle x + x^{2}, x^{2} \rangle \subseteq \langle x \rangle$.
+Thus, both $\Set{x}$ and $\Set{x^{2}, x + x^{2}}$ are minimal bases of the same ideal.
 
 This is different to linear algebra. Note that these bases have different cardinality. However, two bases of the same vector space in linear algebra must have the same cardinality.
 
-\subsection{\S 4.7}
+\subsection*{\S 4.7}
 
-If we have that $x^{n} = y^{n} = 0$, then we must have that $x = y = 0$. Thus we have that $\textbf{I}\pqty{\textbf{V}\pqty{x^{n}, y^{n}}} = \textbf{I}(\set{0, 0})$ which we know to be equal to $\langle x, y \rangle$.
+If we have that $x^{n} = y^{n} = 0$, then we must have that $x = y = 0$. Thus we have that $\mathbf{I}\pqty{\textbf{V}\pqty{x^{n}, y^{n}}} = \mathbf{I}(\set{0, 0})$ which we know to be equal to $\langle x, y \rangle$.
 
-\subsection{\S 4.8}
+\subsection*{\S 4.8}
 
-\subsubsection{a.}
-Suppose $f^{k} \in \textbf{I}(V)$ for some $f \in k[x_{1,}, \ldots, x_{n}]$ and some $k \in \N$. By cancellation, $f^{k}$ vanishing on $V$ implies that $f$ vanishes on $V$. Thus $f \in \textbf{I}(V)$. Clearly if $f \in \textbf{I}(V)$ then for all $k \in \N$ we have that $f^{k} \in \textbf{I}(V)$.
+\subsubsection*{a.}
+Suppose $f^{k} \in \mathbf{I}(V)$ for some $f \in k[x_{1,}, \ldots, x_{n}]$ and some $k \in \N$. By cancellation, $f^{k}$ vanishing on $V$ implies that $f$ vanishes on $V$. Thus $f \in \mathbf{I}(V)$. Clearly if $f \in \mathbf{I}(V)$ then for all $k \in \N$ we have that $f^{k} \in \mathbf{I}(V)$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 We have that $x^{2} \in \left\langle x^{2}, y^{2} \right\rangle$. However, note that $x \notin \langle x^{2}, y^{2} \rangle$. Thus $\langle x^{2}, y^{2} \rangle$ is not radical.
 
-\subsection{\S 4.15}
+\subsection*{\S 4.14}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
-Clearly $0 \in \textbf{I}(S)$ since $0$ vanishes on every point. Then suppose $f, g \in \textbf{I}(S)$ and $h \in k[x_{1},\ldots, x_{n}]$. Then for each $(a_{1}, \ldots, a_{n}) \in S$ we have that
+We have that $V = W$ if and only if $V \subseteq W$ and $W \subseteq V$.
+But this is equivalent to $I(V) \containseq I(W)$ and $I(W) \containseq I(V)$.
+Since this in turn is equivalent to $I(V) = I(W)$, we have that $V = W$ if and only if $I(V) = I(W)$.
+
+\subsubsection*{b.}
+
+Since $V \neq W$, we cannot have that $W \subseteq V$ meaning that $I(W) \containsneq I(V)$.
+Following the above argument, the claim is immediate.
+
+\subsection*{\S 4.15}
+
+\subsubsection*{a.}
+
+Clearly $0 \in \mathbf{I}(S)$ since $0$ vanishes on every point. Then suppose $f, g \in \mathbf{I}(S)$ and $h \in k[x_{1},\ldots, x_{n}]$. Then for each $(a_{1}, \ldots, a_{n}) \in S$ we have that
 \[
   (f + h \cdot g)(a_{1}, \ldots, a_{n}) = f(a_{1}, \ldots, a_{n}) + h(a_{1}, \ldots, a_{n}) \cdot g(a_{1}, \ldots, a_{n}) = 0 + 0 = 0.
 \]
-Thus, $\textbf{I}(S)$ is an ideal.
+Thus, $\mathbf{I}(S)$ is an ideal.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
-We know by \textbf{\S 2.8} that if some polynomial vanishes on $X$ then it must be the zero polynomial. Any polynomial multiplied by the zero polynomial is the zero polynomial. Thus $\textbf{I}(X) = \set{0}$.
+Clearly $\ideal{x - y} \subseteq \mathbf{I}(X)$.
+To show the converse, let $f(x, y) \in \mathbf{I}(X)$.
+In \textbf{Exercise 8} of \textbf{\S 2} we showed that $g(t) = f(t, t) \in \R[t]$ must be zero.
+\quest{This implies that} $x - y$ must divide $f(x, y)$ and so $\mathbf{I}(X) \subseteq \ideal{x - y}$.
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
-Suppose $f \in \C[x_{1}, \ldots, x_{n}]$ was in $\textbf{I}\pqty{\Z^{n}}$. Let $M$ be the maximal degree of any variable in $f$. Then in particular, $f$ vanishes on $\Z_{M + 1}^{n}$ and thus by \textbf{\S 1.6b} and we must have that $f$ is the zero polynomial. Thus $\textbf{I}\pqty{\Z^{n}} = \set{0}$.
+Suppose $f \in \C[x_{1}, \ldots, x_{n}]$ was in $\mathbf{I}\pqty{\Z^{n}}$. Let $M$ be the maximal degree of any variable in $f$. Then in particular, $f$ vanishes on $\Z_{M + 1}^{n}$ and thus by \textbf{\S 1.6b} and we must have that $f$ is the zero polynomial. Thus $\mathbf{I}\pqty{\Z^{n}} = \set{0}$.
 
-\subsection{\S 5.4}
+\subsection*{\S 4.16}
+
+\subsubsection*{a.}
+
+Clearly if $I = k[\overline{x}]$ then $1 \in I$.
+Now suppose that $1 \in I$.
+Clearly $I \subseteq k[\overline{x}]$.
+Then for all $f(\overline{x}) \in k[\overline{x}]$, $1 \cdot f(\overline{x}) = f(\overline{x}) \in I$ and so $k[\overline{x}] \subseteq I$.
+
+\subsubsection*{b.}
+
+If $\lambda \neq 0 \in I$, then $\frac{1}{\lambda} \cdot \lambda = 1 \in I$.
+Applying the previous exercise yields the claim.
+
+\subsubsection*{c.}
+
+We have that $(f + g)^{3} = f^{3} + 3f^{2}g + 3fg^{2} + g^{3} = (f + 3g)f^{2} + (g + 3f)g^{2}$ and so $(f + g)^{3} \in I$.
+
+\subsubsection*{d.}
+
+By the binomial theorem, we have that
+\[
+  (f + g)^{r + s - 1} = \sum_{i = 0}^{r + s - 1} \binom{r + s - 1}{i} f^{i} g^{r + s - 1 - i} = \sum_{i = 0}^{r - 1} \binom{r + s - 1}{i} f^{i} g^{r + s - 1 - i} + \sum_{i = r}^{r + s - 1} \binom{r + s - 1}{i} f^{i} g^{r + s - 1 - i}.
+\]
+We have that $g^{s}$ divides the first summation and $f^{r}$ divides the second summation.
+Thus $(f + g)^{r + s - 1} \in I$.
+
+\subsection*{\S 5.4}
 
 Given polynomial $f, g \in k[x]$, let $h = \gcd(f, g)$ and let $S = \Set{Af + Bg | A, B \in k[x]}$. This set is non-empty since it contains $f$ and $g$ itself. Since this set is non-empty, there exists some polynomial $m$ of minimal degree in $S$. We must have that $m$ divides every element of $S$. Suppose there were some $A, B \in k[x]$ such that $m \nmid Af + Bg$. Then by the Euclidian Algorithm we could find a polynomial $r = m - (Af + Bg)q$ for some $q \in k[x]$ which is of strictly smaller degree, contradicting the minimality of the degree of $m$. In particular now, we have that $m \mid f, g$ which implies $m \mid \gcd(a, b)$ and that $\gcd(f, g) \in S$. Thus $\gcd(f, g) = Af + Bg$ for some $A, B \in k[x]$.
 
 
-\subsection{\S 5.11}
+\subsection*{\S 5.11}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 If $\textbf{V}(f) = \emptyset$ then by the Fundamental Theorem of Algebra, we must have that $\deg(f) = 0$. Thus, $f$ is a nonzero constant since if it was zero, then we would have $\textbf{V}(f) = \C$. Now suppose $f$ is a nonzero constant. Then clearly $\textbf{V}(f) = \emptyset$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 Let $d = \gcd(f_{1}, \ldots, f_{s})$. We know that $\langle d \rangle = \langle f_{1}, \ldots, f_{s} \rangle$. Using this, the fact that if two sets of polynomials generate the same ideals, then their affine varieties are the same, and \textbf{a.} we get the claim.
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
 Using \textbf{b.}, we get that $\textbf{V}(f_{1}, \ldots, f_{s}) \neq \emptyset$ if and only if $\gcd(f_{1}, \ldots, f_{s})$ is a non-constant polynomial in $\C[x]$.
 
-\subsection{\S 5.12}
+\subsection*{\S 5.12}
 
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Let $f = c(x - a_{1})^{r_{1}} \cdots (x - a_{l})^{r_{l}}$. Suppose $a \in \mathbb{V}(f)$. Then we know that $f(a) = 0$ which implies that $a = a_{i}$ for some $1 \leq i \leq l$. Thus $a \in \set{a_{1}, \ldots, a_{l}}$. Now suppose $a \in \set{a_{1}, \ldots, a_{l}}$. Then clearly $f(a) = 0$ which implies that $a \in \textbf{V}(f)$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
-Let $f = c(x - a_{1})^{r_{1}} \cdots (x - a_{l})^{r_{l}}$. By \textbf{a.} we have that $\textbf{I}(\textbf{V}(f)) = \textbf{I}\pqty{\set{a_{1}, \ldots, a_{l}}}$. Take any polynomial $g$ in $\textbf{I}\pqty{\set{a_{1}, \ldots, a_{l}}}$. Since $g(a_{i}) = 0$ for all $1 \leq i \leq l$, we have that $f_{\red} | g$ and thus $g \in \langle f_{red} \rangle$. Now suppose we have some $g \cdot f_{\red} \in \langle f_{\red} \rangle$. Then note that since $f_{\red}(a_{i}) = 0$ for all $1 \leq i \leq l$, we must have that $\pqty{g \cdot f_{\red}}(a_{i}) = 0$ for all $1 \leq i \leq l$. Thus $g \cdot f_{\red} \in \textbf{I}\pqty{\set{a_{1}, \ldots, a_{l}}}$.
+Let $f = c(x - a_{1})^{r_{1}} \cdots (x - a_{l})^{r_{l}}$. By \textbf{a.} we have that $\mathbf{I}(\textbf{V}(f)) = \mathbf{I}\pqty{\set{a_{1}, \ldots, a_{l}}}$. Take any polynomial $g$ in $\mathbf{I}\pqty{\set{a_{1}, \ldots, a_{l}}}$. Since $g(a_{i}) = 0$ for all $1 \leq i \leq l$, we have that $f_{\red} | g$ and thus $g \in \langle f_{red} \rangle$. Now suppose we have some $g \cdot f_{\red} \in \langle f_{\red} \rangle$. Then note that since $f_{\red}(a_{i}) = 0$ for all $1 \leq i \leq l$, we must have that $\pqty{g \cdot f_{\red}}(a_{i}) = 0$ for all $1 \leq i \leq l$. Thus $g \cdot f_{\red} \in \mathbf{I}\pqty{\set{a_{1}, \ldots, a_{l}}}$.
 
-\subsection{\S 5.14}
+\subsection*{\S 5.14}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 We have that $f' = r(x - a)^{r - 1} h + (x - a)^{r} h' = (x - a)^{r-1} \pqty{rh + (x - a)h'}$. Note that $rh + (x - a)h'$ cannot vanish at $a$ since if it did, we would have that $rh(a) = 0$ and since $r$ is a nonzero constant we would contradict the fact that $h(a) \neq 0$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 We proceed by induction on $l$. If $l = 1$ then by part \textbf{a.} we know the claim holds. Suppose the claim holds for $f = c(x - a_{1})^{r_{1}} \cdots (x - a_{k})^{r_{k}}$ for all $1 \leq k < l$ with $a_{1}, \ldots, a_{k} \in \C$. Let $f = c(x - a_{1})^{r_{1}} \cdots (x - a_{l})^{r_{l}}$. Then we have that $f = g \cdot c (x - a_{l})^{r_{l}}$ where $g = (x - a_{1})^{r_{1}} \cdots (x - a_{l - 1})^{r_{l - 1}}$. By our inductive hypothesis, we have that $g' = (x - a_{1})^{r_{1} - 1} \cdots (x - a_{l - 1})^{r_{l - 1} - 1} H$ for some $H \in \C[x]$ which does not vanish at $\set{a_{1}, \ldots, a_{l -1}}$. Thus we have that
 \begin{align*}
@@ -197,20 +294,20 @@ We proceed by induction on $l$. If $l = 1$ then by part \textbf{a.} we know the 
 \end{align*}
 Consider the polynomial $H(x - a_{l})^{r_{l}} + c r_{l}(x - a_{1}) \cdots (x - a_{l - 1})^{r_{l - 1}}$. We know that $H$ does not vanish on $\set{a_{1}, \ldots, a_{l -1}}$ and thus the whole polynomial does not vanish on this set. We also have that the polynomial does not vanish on $a_{l}$ since each $a_{i}$ is distinct by assumption and both $c$ and $r_{l}$ are nonzero. Thus the claim holds.
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
 Let $f = c(x - a_{1})^{r_{1}} \cdots (x - a_{l})^{r_{l}}$ and thus by \textbf{b.} we have that $f' = (x - a_{1})^{r_{1} - 1} \cdots (x - a_{l})^{r_{l} - 1} H$ where $H$ is a polynomial in $\C[x]$ that does not vanish on $\set{a_{1}, \ldots, a_{l}}$. Clearly we have that $(x - a_{1})^{r_{1} - 1} \cdots (x - a_{l})^{r_{l} - 1}$ divides both $f$ and $f'$. Suppose $d$ divides $f$ and $f'$. Then we know that since $d \in \C[x]$ that $d$ factors completely. Thus, the fact that $d$ divides $f$ implies that the points where $d$ vanishes at is a subset of $\set{a_{1}, \ldots, a_{l}}$. Furthermore, since $d$ divides $f'$ we must have that the power of each factor $(x -a_{i})$ must be at most $r_{i} - 1$. Overall we must ave that $d$ divides $(x - a_{1})^{r_{1} - 1} \cdots (x - a_{l})^{r_{l} - 1}$ and that $\gcd(f, f') = (x - a_{1})^{r_{1} - 1} \cdots (x - a_{l})^{r_{l} - 1}$.
 
-\subsection{\S 5.15}
+\subsection*{\S 5.15}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Let $f = c(x - a_{1})^{r_{1}} \cdots (x - a_{l})^{r_{l}}$. Then we have that $f' = (x - a_{1})^{r_{1} - 1} \cdots (x - a_{l})^{r_{l} - 1} H$, where $H$ is a polynomial in $\C[x]$ that does not vanish on $\set{a_{1}, \ldots, a_{l}}$, and $f_{\red} = c (x - a_{1}) \cdots (x - a_{l})$. Then by \textbf{\S 5.14c.} we have that
 \[
   \frac{f}{\gcd(f, f')} = \frac{c(x - a_{1})^{r_{1}} \cdots (x - a_{l})^{r_{l}}}{(x - a_{1})^{r_{1} - 1} \cdots (x - a_{l})^{r_{l} - 1}} = c (x - a_{1}) \cdots (x - a_{l}) = f_{\red}.
 \]
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 Using the previous formula from \textbf{a.}, we may find using SageMath that the following is the square-free part of $f = x^{11} - x^{10} + 2x^{8} - 4x^{7} + 3x^{5} - 3x^{4} + x^{3} + 3x^{2} - x - 1$:
 \begin{equation*}
@@ -220,68 +317,76 @@ Using the previous formula from \textbf{a.}, we may find using SageMath that the
 \end{split}
 \end{equation*}
 
-\subsection{\S 5.16}
+\subsection*{\S 5.16}
 
-Suppose we are given a set of polynomial $f_{1}, \ldots, f_{s} \in \C[x]$. Let $d = \gcd(f_{1}, \ldots, f_{s})$. First we know that $\langle f_{1}, \ldots, f_{s} \rangle = \langle d \rangle$. Thus, by the fact that if two sets of polynomials generate the same ideals then their varieties are the same, we know that $\textbf{I}(\textbf{V}(f_{1}, \ldots, f_{s})) = \textbf{I}(\textbf{V}(d))$. We know by \textbf{\S 5.12b.} that $\textbf{I}(\textbf{V}(d)) = \langle d_{\red} \rangle$. Then from \textbf{\S 5.15a.} we know that $d_{\red} = \frac{d}{\gcd(d, d')}$. We can easily compute this quantity using the Euclidian Algorithm and the Division Algorithm. Thus overall we have that $\textbf{I}(\textbf{V}(f_{1}, \ldots, f_{s})) = \gen{\frac{d}{\gcd(d, d')}} = \gen{d_{\red}}$.
+Suppose we are given a set of polynomial $f_{1}, \ldots, f_{s} \in \C[x]$. Let $d = \gcd(f_{1}, \ldots, f_{s})$. First we know that $\langle f_{1}, \ldots, f_{s} \rangle = \langle d \rangle$. Thus, by the fact that if two sets of polynomials generate the same ideals then their varieties are the same, we know that $\mathbf{I}(\textbf{V}(f_{1}, \ldots, f_{s})) = \mathbf{I}(\textbf{V}(d))$. We know by \textbf{\S 5.12b.} that $\mathbf{I}(\textbf{V}(d)) = \langle d_{\red} \rangle$. Then from \textbf{\S 5.15a.} we know that $d_{\red} = \frac{d}{\gcd(d, d')}$. We can easily compute this quantity using the Euclidian Algorithm and the Division Algorithm. Thus overall we have that $\mathbf{I}(\textbf{V}(f_{1}, \ldots, f_{s})) = \gen{\frac{d}{\gcd(d, d')}} = \gen{d_{\red}}$.
 
-This implies that for polynomials in $\C[x]$, $\textbf{I}\pqty{\textbf{V}}(f_{1}, \ldots, f_{s}) = \gen{f_{1}, \ldots, f_{s}}$ if and only if $\gcd(f_{1}, \ldots, f_{s})$ is square-free.
+This implies that for polynomials in $\C[x]$, $\mathbf{I}\pqty{\textbf{V}}(f_{1}, \ldots, f_{s}) = \gen{f_{1}, \ldots, f_{s}}$ if and only if $\gcd(f_{1}, \ldots, f_{s})$ is square-free.
 
 \clearpage
 
 \section*{Chapter 2}
 
-\subsection{\S 2.7}
+\subsection*{\S 2.7}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
-Suppose that for some $\a \in \Z_{\geq 0}^{n}$ we had $\a < 0$. Then we know that the leftmost nonzero entry of $0 - \a$ exists and is positive, suppose it occurs at $0 - \a_{i}$. However if $-\a_{i} > 0$ then we must have that $\a_{i} < 0$ which is impossible. Thus all $\a \in \Z_{\geq 0}^{n} \geq 0$.
+Suppose that for some $\alpha \in \Z_{\geq 0}^{n}$ we had $\alpha < 0$. Then we know that the leftmost nonzero entry of $0 - \alpha$ exists and is positive, suppose it occurs at $0 - \alpha_{i}$. However if $-\alpha_{i} > 0$ then we must have that $\alpha_{i} < 0$ which is impossible. Thus all $\alpha \in \Z_{\geq 0}^{n} \geq 0$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
-Suppose $x^{\a} \mid x^{\b}$. Then for some $\gamma \in \Z_{\geq 0}^{n}$ we have that $x^{\b} = x^{\a} \cdot x^{\gamma}$. Thus by \textbf{a.}, we have that $\b = \a + \gamma \geq \a$ since $\gamma \geq 0$. The converse also holds by reversing the logic with $\gamma = \b - \a \geq 0$.
+Suppose $x^{\alpha} \mid x^{\beta}$.
+Then for some $\gamma \in \Z_{\geq 0}^{n}$ we have that $x^{\beta} = x^{\alpha} \cdot x^{\gamma}$.
+Thus, by \textbf{a.}, we have that $\beta = \alpha + \gamma \geq \alpha$ since $\gamma \geq 0$.
+The converse also holds by reversing the logic with $\gamma = \beta - \alpha \geq 0$.
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
-Suppose that $\a + \b$ was the minimum element of $\a + \Z_{\geq 0}^{n}$ for some $\b \neq 0$. Then in particular we have that $\b > 0$. But $\a = \a + 0 \in \a + \Z_{\geq 0}^{n}$. Thus we have that $\a + \b < \a + 0 \implies \b < 0$ which we know is impossible. Thus $\a$ must be the minimum element.
+Suppose that $\alpha + \beta$ was the minimum element of $\alpha + \Z_{\geq 0}^{n}$ for some $\beta \neq 0$. Then in particular we have that $\beta > 0$. But $\alpha = \alpha + 0 \in \alpha + \Z_{\geq 0}^{n}$. Thus we have that $\alpha + \beta < \alpha + 0 \implies \beta < 0$ which we know is impossible. Thus $\alpha$ must be the minimum element.
 
-\subsection{\S 2.10}
+\subsection*{\S 2.10}
 
 This is not necessarily true. Take lexographical order in $\Z_{\geq 0}^{2}$ for example. We know this is a monomial order. We have that for any $x \in \Z_{\geq 0}$ that $(3, 0) >_{\emph{lex}} (2, x)  >_{\emph{lex}} (1, 0)$. However there are infinitely many such $x$. Thus there are infinitely many elements between $(3, 0)$ and $(1, 0)$.
 
-This holds for graded lex order. As a rough heuristic we only show that for $\a \in \Z_{\geq 0}^{n}$ there are only finitely many elements $\b$ such that $\a >_{\emph{grlex}} \b >_{\emph{grlex}} 0$. We know that the integer equation $x_{1} + \cdots + x_{n} = \abs{\a}$ has a finite number of solutions in $\Z_{\geq 0}^{n}$. There are also finitely many integers between $\abs{\a}$ and $0$ and thus overall we must have that there are only finitely many elements between $\a$ and $0$.
+This holds for graded lex order. As a rough heuristic we only show that for $\alpha \in \Z_{\geq 0}^{n}$ there are only finitely many elements $\beta$ such that $\alpha >_{\emph{grlex}} \beta >_{\emph{grlex}} 0$. We know that the integer equation $x_{1} + \cdots + x_{n} = \abs{\alpha}$ has a finite number of solutions in $\Z_{\geq 0}^{n}$. There are also finitely many integers between $\abs{\alpha}$ and $0$ and thus overall we must have that there are only finitely many elements between $\alpha$ and $0$.
 
 
-\subsection{\S 2.11}
+\subsection*{\S 2.11}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
-Let $m = x^{\b}, f = \sum_{\a} a_{\a}x^{\a}$. Then $m \cdot f = \sum_{\a} a_{\a} x^{\a + \b}$. Suppose $d = \mdeg(f)$. Then since $d = \max\Set{\a \in \Z_{\geq 0}^{n} | a_{\a} \neq 0}$, we have $d + \b = \max\Set{\a \in \Z_{\geq 0}^{n} | a_{\a} \neq 0}$. Thus $\lm(m \cdot f) = x^{d + \b} = m \cdot \lm(f)$.
+Let $m = x^{\beta}, f = \sum_{\alpha} a_{\alpha}x^{\alpha}$.
+Then $m \cdot f = \sum_{\alpha} a_{\alpha} x^{\alpha + \beta}$.
+Suppose $d = \mdeg(f)$.
+Then since $d = \max\Set{\alpha \in \Z_{\geq 0}^{n} | a_{\alpha} \neq 0}$, we have $d + \beta = \max\Set{\alpha \in \Z_{\geq 0}^{n} | a_{\alpha} \neq 0}$.
+Thus $\lm(m \cdot f) = x^{d + \beta} = m \cdot \lm(f)$.
 
-Similarly we have that $\lc(m \cdot f) = a_{\mdeg(m \cdot f)} = a_{\mdeg(f)} = \lc(f)$. Thus we have that $\lt(m \cdot f) = \lc(m \cdot f) \lm(m \cdot f) = \lc(f) \cdot m \cdot \lm(f) = m \cdot \lt(f)$.
+Similarly we have that $\lc(m \cdot f) = a_{\mdeg(m \cdot f)} = a_{\mdeg(f)} = \lc(f)$.
+Thus we have that $\lt(m \cdot f) = \lc(m \cdot f) \lm(m \cdot f) = \lc(f) \cdot m \cdot \lm(f) = m \cdot \lt(f)$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 Since the definitions of $\lt, \lc$, and $\lm$ all depend on $\mdeg(f)$, we only aim to show that $\mdeg(f \cdot g) = \mdeg(f) + \mdeg(g)$. This is immediate from the definitions of $\mdeg$ and the fact that $\max\Set{a + b | a \in A, b \in B} = \max(A) + \max(B)$. \quest{It would be nice to formally type this for completeness but I've done this multiple times before.}
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
 The most we can hope for is that $\mdeg\pqty{\sum_{i = 1}^{s} f_{i} g_{i}} = \max\set{\mdeg\pqty{f_{i} g_{i}} | 1 \leq i \leq s}$. We may not have equality due to cancelling.
 
 \clearpage
 
-\subsection{\S 3.4}
+\subsection*{\S 3.4}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Clearly for any polynomial we have that $\mdeg(f) = \mdeg(\lt(f))$. If $q_{i} f_{i} \neq 0$ then we must have that neither $q_{i}$ nor $f_{i}$ are equal to $0$. Let $p$ be as in the proof of the multivariete division algorithm. We know that $q_{i} = \sfrac{\lt(p)}{\lt(f_{i})}$ for some value of $p$ as the algorithm goes on. Since $\mdeg(\lt(p)) \leq \mdeg(\lt(f))$ we have that $\mdeg(q_{i}) \leq \mdeg\pqty{\sfrac{\lt(f)}{\lt(f_{i})}} = \mdeg(\lt(f)) - \mdeg(f_{i})$. Thus we have that $\mdeg(q_{i}f_{i}) = \mdeg(q_{i}) + \mdeg(f_{i}) \leq \mdeg(\lt(f)) = \mdeg(f)$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 We have that $r$ does not divide into any of the $q_{i}f_{i}$ implying that $\mdeg(r) \leq \mdeg(q_{i} f_{i})$ which implies by \textbf{a.} that $\mdeg(f) \geq \mdeg(r)$.
 
-\subsection{\S 4.3}
+\subsection*{\S 4.3}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 The following image is the solution:
 
@@ -291,15 +396,15 @@ The following image is the solution:
   \caption{Shaded region represents possible $x^{n}y^{m} \in \gen{x^{6}, x^{2}y^{3}, xy^{6}}$}
 \end{figure}
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 The \emph{unshaded} region in the image represents possible remainders up to multiplication by a constant. \quest{This would be annoying to actually describe.}
 
 \clearpage
 
-\subsection{\S 4.4}
+\subsection*{\S 4.4}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 We have that $I = \gen{x^{3}y^{6}, x^{5}y^{4}, x^{6}}$. We have that the ``projection'' $J = \gen{x^{3}}$. Since $x^{3}y^{6} \in I$, we have that $m = 6$. Thus we find ``slices'' $J_{\ell}$ for $0 \leq \ell \leq m - 1 = 5$. We have that
 \begin{align*}
@@ -309,19 +414,19 @@ We have that $I = \gen{x^{3}y^{6}, x^{5}y^{4}, x^{6}}$. We have that the ``proje
 
 Thus $I = \gen{x^{6}, x^{6}y, x^{6}y^{2}, x^{6}y^{3}, x^{5}y^{4}, x^{5}y^{5}, x^{3}y^{6}}$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 We may take our basis from \textbf{a.} and do repeated trial division to make it minimal. Thus $I = \gen{x^{6}, x^{5}y^{4}, x^{3}y^{6}}$
 
-\subsection{\S 4.7}
+\subsection*{\S 4.7}
 
-Suppose Dickson's Lemma is true. Let $A$ be a nonempty subset of $\Z_{\geq 0}^{n}$. Consider the monomial ideal $I = \gen{x^{\a} | \a \in A}$. Then we know there exists a finite basis such that $I = \gen{x^{\a(1)}, \ldots, x^{\a(s)}}$ Let $\a \in A$. Then we know that some $x^{\a(i)}$ divides $x^{\a}$. Thus $x^{\a} = x^{\a(i)} x^{\gamma}$ for some $\gamma \in \Z_{\geq 0}^{n}$. Thus $\a = \a(i) + \gamma$ for some $\gamma \in \Z_{\geq 0}^{n}$.
+Suppose Dickson's Lemma is true. Let $A$ be a nonempty subset of $\Z_{\geq 0}^{n}$. Consider the monomial ideal $I = \gen{x^{\alpha} | \alpha \in A}$. Then we know there exists a finite basis such that $I = \gen{x^{\alpha(1)}, \ldots, x^{\alpha(s)}}$ Let $\alpha \in A$. Then we know that some $x^{\alpha(i)}$ divides $x^{\alpha}$. Thus $x^{\alpha} = x^{\alpha(i)} x^{\gamma}$ for some $\gamma \in \Z_{\geq 0}^{n}$. Thus $\alpha = \alpha(i) + \gamma$ for some $\gamma \in \Z_{\geq 0}^{n}$.
 
-Now suppose that for a nonempty subset $A \subseteq \Z_{\geq 0}^{n}$, we can find a finite set $\set{\a(1), \ldots, \a(s)} \subseteq A$ such that for any $a \in A$ we have that for some $1 \leq i \leq s$ and $\gamma \in \Z_{\geq 0}^{n}$ that $\a = \a(i) + \gamma$. Let $\gen{x^{\a} | \a \in A}$ be a monomial ideal and let $\set{\a(1), \ldots, \a(s)} \subseteq A$ be the set as described before for $A$. Then we claim that $I = \gen{\a(1), \ldots, \a(s)}$. Suppose $f \in I$. Then we know that every term of $f$ lies in $I$. Thus we only need to consider monomials $x^{\a} \in I$. We know that for some $1 \leq i \leq s$ and $\gamma \in \Z_{\geq 0}^{n}$ that $\a = \a(i) + \gamma$. This implies that some $x^{\a(i)}$ divides $x^{\a}$. Thus we have that $x^{\a} \in \gen{\a(1), \ldots, \a(s)}$. The other direction of containment is trivial due to the fact that $\gen{\a(1), \ldots, \a(s)} \subseteq A$. Thus we have found a finite basis for $I$, proving Dickson's Lemma.
+Now suppose that for a nonempty subset $A \subseteq \Z_{\geq 0}^{n}$, we can find a finite set $\set{\alpha(1), \ldots, \alpha(s)} \subseteq A$ such that for any $a \in A$ we have that for some $1 \leq i \leq s$ and $\gamma \in \Z_{\geq 0}^{n}$ that $\alpha = \alpha(i) + \gamma$. Let $\gen{x^{\alpha} | \alpha \in A}$ be a monomial ideal and let $\set{\alpha(1), \ldots, \alpha(s)} \subseteq A$ be the set as described before for $A$. Then we claim that $I = \gen{\alpha(1), \ldots, \alpha(s)}$. Suppose $f \in I$. Then we know that every term of $f$ lies in $I$. Thus we only need to consider monomials $x^{\alpha} \in I$. We know that for some $1 \leq i \leq s$ and $\gamma \in \Z_{\geq 0}^{n}$ that $\alpha = \alpha(i) + \gamma$. This implies that some $x^{\alpha(i)}$ divides $x^{\alpha}$. Thus we have that $x^{\alpha} \in \gen{\alpha(1), \ldots, \alpha(s)}$. The other direction of containment is trivial due to the fact that $\gen{\alpha(1), \ldots, \alpha(s)} \subseteq A$. Thus we have found a finite basis for $I$, proving Dickson's Lemma.
 
-\subsection{\S 5.3}
+\subsection*{\S 5.3}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Let $I = \gen{f_{1}, \ldots, f_{s}}$ be an ideal such that $\gen{\lt(f_{1}), \ldots, \lt(f_{s})} \subsetneq \gen{\lt(I)}$ Thus there is some $f \in I$ such that $\lt(f) \notin \gen{\lt(f_{1}), \ldots, \lt(f_{s})}$. After division by $F = \pqty{f_{1}, \ldots, f_{s}}$ we have that
 \[
@@ -329,27 +434,27 @@ Let $I = \gen{f_{1}, \ldots, f_{s}}$ be an ideal such that $\gen{\lt(f_{1}), \ld
 \]
 such that no term of $r$ is divisible by any of the $\lt(f_{i})$ by definition of remainder. Then by Lemma 2 of \textbf{\S 4} we must have that $\lt(r) \notin \gen{\lt(f_{1}), \ldots, \lt(f_{s})}$. Since $0 \in \gen{\lt(f_{1}), \ldots, \lt(f_{s})}$, $\lt(r) \neq 0$ and $r$ is non-zero. \quest{This feels circular}
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 \Grobner\ bases are the best for ideal membership since if we have some \Grobner\ basis $\set{g_{1}. \ldots g_{t}}$ then we can test $f \in I$ by checking if the remainder of $f$ after division by $\pqty{g_{1}, \ldots, g_{t}}$ is zero or not.
 
 \clearpage
 
-\subsection{\S 5.5}
+\subsection*{\S 5.5}
 
 Let $I \subseteq k\bqty{x_{1}, \ldots, x_{n}}$ be an ideal. Let $G = \set{g_{1}, \ldots, g_{t}}$ be a \Grobner\ basis for $I$. Thus we have that $\gen{\lt(I)} = \gen{\lt(g_{1}), \ldots, \lt(g_{t})}$. Since $\gen{\lt(I)}$ is a monomial ideal, Lemma 2 of \textbf{\S 4} tells us that some $\lt(g_{i})$ divides $\lt(f)$ for $f \in I$.
 
 Now suppose that we have some set $\set{g_{1}, \ldots, g_{t}}$ such that for every $f \in I$ we had that some $\lt(g_{i})$ divides $\lt(f)$. This satisfies the definition of a \Grobner\ basis.
 
-\subsection{\S 5.10}
+\subsection*{\S 5.10}
 
 Let $I \subseteq k[x_{1}, \ldots, x_{n}]$ be a principal ideal. Suppose $\set{g_{1}, \ldots, g_{t}}$ be a finite subset of of $I$ containing some $g_{i}$ such that $I = \gen{g_{i}}$. Clearly we have that $\gen{\lt(g_{1}), \ldots, \lt(g_{t})} \subseteq \gen{\lt(I)}$. Now suppose we have some $\lt(f) \in \gen{\lt(I)}$. Then we know by \textbf{\S 5.5} and the fact that $I = \gen{g_{i}}$ we have that $f = g_{i} h_{i}$ for some $h_{i} \in k[x_{1}, \ldots, x_{n}]$. Then in particular we have that $\lt(g_{i})$ divides $\lt(f)$ and thus $\lt(f) \in \gen{\lt(g_{1}), \ldots, \lt(g_{t})}$.
 
-\subsection{\S 5.11}
+\subsection*{\S 5.11}
 
 Clearly we have that $\gen{x_{1}, \ldots, x_{n}, f} \subseteq k[x_{1}, \ldots, x_{n}]$. Now let $g \in k[x_{1}, \ldots, x_{n}]$. Consider $g$ divided by $\pqty{x_{1}, \ldots, x_{n}}$. Then, without loss of generality by combining like terms, we have that $g = q_{1}x_{1} + \cdots + q_{n}x_{n} + r$ where none of the monomials of $r$ are divisible by any of the $x_{i}$. Thus $r$ must be a constant. If $r = 0$ then we have that $g \in \gen{x_{1}, \ldots, x_{n}} \subseteq \gen{x_{1}, \ldots, x_{n}, f}$. Otherwise suppose that $r \neq 0$. Then note that $f \notin \gen{x_{1}, \ldots, x_{n}}$ and thus, after division by $\pqty{x_{1}, \ldots, x_{n}}$, we have that $f = p_{1}x_{1} + \cdots + p_{n}x_{n} + s$ where $s$ is the remainder and importantly we have that $s \neq 0$. Thus $\gen{x_{1}, \ldots, x_{n}, f}$ contains every non-zero constant and we have that $r \in \gen{x_{1}, \ldots, x_{n}, f}$. Thus overall we have that $\gen{x_{1}, \ldots, x_{n}, f} = k[x_{1}, \ldots, x_{n}]$.
 
-\subsection{\S 5.12}
+\subsection*{\S 5.12}
 
 Suppose that every ascending chain of ideals in $k[x_{1}, \ldots, x_{n}]$ eventually stabilizes. Suppose that some ideal $I$ has no finite generating set. Then we may define a series of ascending ideals as follows. Let $I_{1} = \gen{g_{1}}$ for some $g_{1} \in I$. Then for $n \geq 2$ we define $I_{n} = \gen{g_{1}, \ldots, g_{n - 1}, g_{n}}$ where $g_{n} \notin \gen{g_{1}, \ldots, g_{n - 1}}$. We know such $g_{n}$ must exist since $I$ has no finite generating set. Then we get the following chain of ideals:
 \[
@@ -357,61 +462,61 @@ Suppose that every ascending chain of ideals in $k[x_{1}, \ldots, x_{n}]$ eventu
 \]
 However, the existence of this chain contradicts the ascending chain condition. Thus such an infinite chain cannot exist. Thus and infact we must have that for some $N \in \N$ that $I_{N} = I_{N + 1} = \cdots$. Thus we have a finite generating set $I = \gen{g_{1}, \ldots, g_{N}}$, proving the Hilbert Basis Theorem.
 
-\subsection{\S 5.13}
+\subsection*{\S 5.13}
 
-Since $V_{1} \containseq V_{2} \containseq V_{3} \containseq \cdots$, then we know that $\textbf{I}(V_{1}) \subseteq \textbf{I}(V_{2}) \subseteq \textbf{I}(V_{3}) \subseteq \cdots$. Thus by the Ascending Chain Condition we have that for some $N \in \N$ that $\textbf{I}(V_{N}) = \textbf{I}(V_{N + 1}) = \textbf{I}(V_{N + 2}) = \cdots$. Thus we have $V_{N} = V_{N + 1} = \cdots$.
+Since $V_{1} \containseq V_{2} \containseq V_{3} \containseq \cdots$, then we know that $\mathbf{I}(V_{1}) \subseteq \mathbf{I}(V_{2}) \subseteq \mathbf{I}(V_{3}) \subseteq \cdots$. Thus by the Ascending Chain Condition we have that for some $N \in \N$ that $\mathbf{I}(V_{N}) = \mathbf{I}(V_{N + 1}) = \mathbf{I}(V_{N + 2}) = \cdots$. Thus we have $V_{N} = V_{N + 1} = \cdots$.
 
-\subsection{\S 5.15}
+\subsection*{\S 5.15}
 
-Let $V_{i} = \textbf{V}(f_{1}, \ldots, f_{i})$. Clearly $V_{j} \subseteq V_{i}$ whenever $j \geq i$. Then we have $\textbf{I}(V_{i}) \subseteq \textbf{I}(V_{j})$ whenever $j \geq i$. Thus we have that
+Let $V_{i} = \textbf{V}(f_{1}, \ldots, f_{i})$. Clearly $V_{j} \subseteq V_{i}$ whenever $j \geq i$. Then we have $\mathbf{I}(V_{i}) \subseteq \mathbf{I}(V_{j})$ whenever $j \geq i$. Thus we have that
 \[
-  \textbf{I}(V_{1}) \subseteq \textbf{I}(V_{2}) \subseteq \textbf{I}(V_{3}) \cdots.
+  \mathbf{I}(V_{1}) \subseteq \mathbf{I}(V_{2}) \subseteq \mathbf{I}(V_{3}) \cdots.
 \]
-By the Ascending Chain Condition, this must stabilize at some $\textbf{I}(V_{N})$ and that $\textbf{I}(V_{N}) = \textbf{I}(V_{N + 1}) = \cdots = \textbf{I}(\textbf{V}(f_{1}, f_{2}, \ldots))$. Thus we have that $V_{N} = V_{N + 1} = \cdots = \textbf{V}(f_{1}, f_{2}, \ldots)$.
+By the Ascending Chain Condition, this must stabilize at some $\mathbf{I}(V_{N})$ and that $\mathbf{I}(V_{N}) = \mathbf{I}(V_{N + 1}) = \cdots = \mathbf{I}(\textbf{V}(f_{1}, f_{2}, \ldots))$. Thus we have that $V_{N} = V_{N + 1} = \cdots = \textbf{V}(f_{1}, f_{2}, \ldots)$.
 
-\subsection{\S 5.16}
+\subsection*{\S 5.16}
 
-Let $V \subseteq k^{n}$ be some variety. Suppose we have $\pqty{a_{1}, \ldots, a_{n}} \in V$. Then by definition of $\textbf{I}(V)$, we have that for all $f \in \textbf{I}(V)$ that $f\pqty{a_{1}, \ldots, a_{n}} = 0$ and thus $\pqty{a_{1}, \ldots, a_{n}} \in \textbf{V}(\textbf{I}(V))$.
+Let $V \subseteq k^{n}$ be some variety. Suppose we have $\pqty{a_{1}, \ldots, a_{n}} \in V$. Then by definition of $\mathbf{I}(V)$, we have that for all $f \in \mathbf{I}(V)$ that $f\pqty{a_{1}, \ldots, a_{n}} = 0$ and thus $\pqty{a_{1}, \ldots, a_{n}} \in \textbf{V}(\mathbf{I}(V))$.
 
-We have that $V = \textbf{V}(S)$ for some set of polynomials $S \subseteq k[x_{1}, \ldots, k_{n}]$. Then let $I$ be the ideal generated by $S$, which by the Hilbert Basis Theorem can be finitely generated. Thus we have that $V = \textbf{V}(f_{1}, \ldots, f_{s})$ for some polynomials $f_{1}, \ldots, f_{s} \in k[x_{1}, \ldots, x_{n}]$. Thus $\textbf{V}(\textbf{I}(V)) = \textbf{V}(\textbf{I}(\textbf{V}(f_{1}, \ldots, f_{s})))$. We have that $\textbf{V}(\textbf{I}(\textbf{V}(f_{1}, \ldots, f_{s}))) \subseteq \textbf{V}(f_{1}, \ldots, f_{s})$ if and only if $\gen{f_{1}, \ldots, f_{s}} \subseteq \textbf{I}(\textbf{V}(f_{1}, \ldots, f_{s}))$ which we know is true. Thus overall we have that $\textbf{V}(\textbf{I}(V)) = V$.
+We have that $V = \textbf{V}(S)$ for some set of polynomials $S \subseteq k[x_{1}, \ldots, k_{n}]$. Then let $I$ be the ideal generated by $S$, which by the Hilbert Basis Theorem can be finitely generated. Thus we have that $V = \textbf{V}(f_{1}, \ldots, f_{s})$ for some polynomials $f_{1}, \ldots, f_{s} \in k[x_{1}, \ldots, x_{n}]$. Thus $\textbf{V}(\mathbf{I}(V)) = \textbf{V}(\mathbf{I}(\textbf{V}(f_{1}, \ldots, f_{s})))$. We have that $\textbf{V}(\mathbf{I}(\textbf{V}(f_{1}, \ldots, f_{s}))) \subseteq \textbf{V}(f_{1}, \ldots, f_{s})$ if and only if $\gen{f_{1}, \ldots, f_{s}} \subseteq \mathbf{I}(\textbf{V}(f_{1}, \ldots, f_{s}))$ which we know is true. Thus overall we have that $\textbf{V}(\mathbf{I}(V)) = V$.
 
-\subsection{\S 6.1}
+\subsection*{\S 6.1}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Let $G = \set{g_{1}, \ldots, g_{t}}$ be a \Grobner\ basis for an ideal $I \subseteq k\bqty{x_{1}, \ldots, x_{n}}$. Let $f \in k\bqty{x_{1}, \ldots, x_{n}}$. Then we have that on division of $f$ by $G$ that $f = q_{1}g_{1} + \cdots + q_{n}g_{n} + r$ such that $r, q_{i} \in k\bqty{x_{1}, \ldots, x_{n}}$. Furthermore, no term of $r$ is divisible by any of the $\lt(g_{i})$. Since $I = \gen{g_{1}, \ldots, g_{t}}$ we have that $q_{1}g_{1} + \cdots + q_{t}g_{t} \in I$. Furthermore, since no term of $r$ is divisible by any term of $\lt(g_{i})$ and $\gen{\lt(I)}$ is a monomial ideal generated by the $\lt(g_{i})$'s, no term of $r$ is divisible by any term in $\lt(I)$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 Now suppose that $f = g + r = g' + r'$ satisfying \textbf{a.} such that $r \neq r'$. Then $g - g' \in I \implies r' - r \in I$. Thus $\lt(r' - r) \in \gen{\lt(I)}$ which implies some $\lt(g_{i})$ divides $r - r'$ which in turn some element in $\lt(I)$ divides $r - r'$. This is impossible and thus we must have that $r = r'$.
 
-\subsection{\S 6.3}
+\subsection*{\S 6.3}
 
 Suppose that $G = \gen{g_{1}, \ldots, g_{t}}$ is a basis with the property such that for all $f$ in a polynomial ideal $I$ we have that $\overline{f}^{G} = 0$. Note that for all $g_{i}, g_{j} \in G$, we have that $S(g_{i}, g_{j}) \in I$. Then since $\overline{G(g_{i}, g_{j})}^{G} = 0$, Buchberger's Criterion, we have that $G$ is a \Grobner\ basis.
 
-\subsection{\S 6.13}
+\subsection*{\S 6.13}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Suppose $\overline{f}^{G} = \overline{g}^{G}$. Then we have that $f = p + r$ and $g = q + r$ for some $p, q \in I$ and $r \in k\bqty{x_{1}, \ldots, x_{n}}$. Then we have that $f - g = p + r - q - r = p - q \in I$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 We have that for $f, g \in k\bqty{x_{1}, \ldots, x_{n}}$ that $f = p + r$ for $p \in I$ and $r$ such that no term of $r$ is divisible by any element of $\lt(I)$. Similarly write $g$ as $g = q + s$. Then we have that $\overline{f}^{G} + \overline{g}^{G} = r + s$. Clearly we can write $f + g = (p + q) + (r + s)$. Since $p, q \in I$ we have that $p + q \in I$. Then since no term of $r$ or $s$ is divisible by any term in $\lt(I)$, we have that no term of $r + s$ is divisible by any term of $\lt(I)$. Thus by \textbf{\S 6.1} we have that $\overline{f + g}^{G} = r + s = \overline{f}^{G} + \overline{g}^{G}$.
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
 We can write $f = p + r$ and $g = q + s$ where $p, q \in I$ and none of the terms of $r, s$ are divisible by any leading term of any element of $I$. Thus, $\overline{fg}^G = \overline{(p + r)(q + s)}^G = \overline{pq}^G + \overline{qr}^G + \overline{ps}^G + \overline{rs}^G$. Clearly $\overline{pq}^G = \overline{qr}^G = \overline{ps}^G = 0$ and so we just need to show that $ \overline{\overline{f}^G \overline{g}^G}^G = \overline{rs}^G$. However since these remainders are unique, we have that $\overline{f}^{G} = r$ and $\overline{g}^{G} = s$ and the claim is proven.
 
-\subsection{\S 7.2}
+\subsection*{\S 7.2}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Lex order: $\set{x^{2} - y, x^{2} y - 1, y^{2} - 1, x y^{2} - x}$
 
 Grlex order: $\set{x^{2} - y, x^{2} y - 1, y^{2} - 1, x y^{2} - x}$
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 Lex order: $\set{x^{2} + y, -3, x^{4} + 2 x^{2} y + y^{2} + 3}$
 
@@ -419,45 +524,45 @@ Grlex order: $\set{x^{2} + y, -3, x^{4} + 2 x^{2} y + y^{2} + 3}$
 
 Since $-3 \in I$ then $1 \in I$ and thus $I = \Q\bqty{x, y}$ and $\textbf{V}(I) = \emptyset$
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
 Lex order: $\set{y - z^{5}, x - z^{4}}$
 
 Grlex order: $\set{y z^{3} - x^{2}, -y^{2} z^{2} + x^{3}, x^{4} - y^{3} z, x z - y, -z^{5} + y, -z^{4} + x}$
 
-\subsection{\S 7.5}
+\subsection*{\S 7.5}
 
 let $I$ be a polynomial ideal and let $G$ be a \Grobner\ basis for $I$ with the property that $\lc(g) = 1$ for all $g \in G$. Suppose $G$ is a minimal \Grobner\ basis. Let $H \subsetneq G$ be a proper subset. Then there is some polynomial $p \in G$ such that $p \notin H$. Suppose that $H$ was a \Grobner\ basis for $I$. Then we would have that $p \in \gen{H}$. Then in particular we would have that $\lt(p) \in \gen{\lt(G \setminus \set{p})}$. This contradicts the minimality of $G$ and thus we must have that $H$ cannot be a \Grobner\ basis for $G$.
 
 Now suppose that no proper subset of $G$ can be a \Grobner\ basis for $I$. Then that means for all $\lt(H) \subsetneq \lt(G)$ we have that $\gen{\lt{H}} \neq \gen{\lt(I)}$. Thus $G$ must be a minimal \Grobner\ basis for $I$.
 
-\subsection{\S 7.7}
+\subsection*{\S 7.7}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Let $I$ be a polynomial ideal and let $G = \gen{g_{1}, \ldots, g_{t}}, \tilde{G} = \gen{g'_{1}, \ldots, g'_{s}}$ be minimal \Grobner\ bases for $I$. Since $\tilde{G}$ is a \Grobner\ basis for $I$, we can apply this to some get $\lt(g_{i})$ to yield that $\lt(g'_{k}) \mid \lt(g_{i})$ for some $\lt(g'_{k})$. Similarly, we have that some $\lt(g_{l}) \mid \lt(g'_{k})$. Thus we have that $\lt(g_{\ell}) \mid \lt(g_{i})$. But $G$ is minimal and so we must have that $\ell = i$. Thus $\lt(g_{i}) = c \lt(g'_{k})$ for some non-zero constant $c$. By minimality of $G$ and $\tilde{G}$, we have that $c = 1$ and thus $\lt(g_{i}) = \lt(g'_{k}) \in G'$. This implies that $\lt(G) \subseteq \lt(\tilde{G})$. The proof for the reverse direction is symmetric and overall we have that $\lt(G) = \lt(\tilde{G})$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 Note that every element in $G$ has a unique leading term since if two elements had the same leading term this would contradict minimality. Since $\lt(G) = \lt(\tilde{G})$, we can match elements by their leading term. Thus the sets have the same number of elements.
 
-\subsection{\S 7.8}
+\subsection*{\S 7.8}
 
 Given an ideal $I$, we may compute a \Grobner\ basis $G$ using Buchberger's Algorithm. Then we may turn $G$ into a minimal basis using \textbf{Lemma 3} from \textbf{\S 7}. Since $G$ is a finite set and $\gen{\lt(G)}$ is a monomial ideal, this is a finite process. Thus we now have that $G$ is a minimal \Grobner\ basis for $I$. Since all leading coefficients of the polynomials in $G$ are $1$, we only need to make it so that for all $p \in G$, no term of $p$ lies in $\gen{\lt(G \setminus \set{p})}$. To do this, we just need to replace elements in $G$ with fully reduced elements. We may do this using the process in the proof of \textbf{Theorem 5} in \textbf{\S 7}. This is a finite process since once we replace an element with a fully reduced element, that fully reduced element is fully reduced in any minimal \Grobner\ basis and the process in the proof retains minimality.
 
-\subsection{\S 7.9}
+\subsection*{\S 7.9}
 
 \quest{Sage cannot do multivariate division and I do not want to learn Singular or Macaulay2}
 
-\subsection{\S 7.10}
+\subsection*{\S 7.10}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Suppose we replace $g_{i} \in G = \set{g_{1}, \ldots, g_{t}}$ with $a \cdot g_{i} + b \cdot g_{t}$, $i \neq j$, $a,b \neq 0 \in k$. Let $G'$ be the resulting set. Then clearly $g_{\ell} \in \gen{G'}$ for $\ell \neq i$. Then note that since $j \neq i$, $g_{j}$ and thus $b \cdot g_{j} \in \gen{G'}$. Thus $a \cdot g_{i} + b \cdot g_{j} - b \cdot g_{j} = a \cdot g_{i} \in \gen{G'}$. Then we have that $a^{-1} a \cdot g_{i} = g_{i} \in \gen{G'}$. Thus $\gen{G'}$ generates $I$.
 
 \clearpage
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 Let $g_{i}$ and $g_{j}$, $i \neq j$, be rows in $B$. Suppose the leading $1$ in the $i$th row of $B$ is in column $s$. Then we can write $g_{i} = x_{s} + C$ as described in the hint. Similarly, we may write $g_{j} = x_{\ell} + D$. Note that $\lcm(\lm(g_{i}), \lm(g_{j})) = x_{s}x_{\ell}$. Thus we have that
 \begin{align*}
@@ -467,11 +572,11 @@ Let $g_{i}$ and $g_{j}$, $i \neq j$, be rows in $B$. Suppose the leading $1$ in 
 \end{align*}
 Carrying out the long division of $x_{\ell} C - x_{s} D$ by $\set{x_{s} + C, x_{\ell} + D}$ yields that the remainder is zero. Thus by Buchberger's criterion, $G$ is a \Grobner\ basis.
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
 Let $G$ again be the \Grobner\ basis defined by the rows of $B$. Clearly by the definition of row reduced echelon form, the leading coefficients of each polynomial in $G$ is 1. Let $g_{i} = x_{s} + C$ as before. Consider $X = \gen{\lt(G \setminus \set{g_{i}})}$. This consists of just leading terms of the rows, and thus only consists of $x_{\ell}$ corresponding to leading 1's. Thus we have that $x_{s} \notin X$. Furthermore, we have that none of the terms in $C$ contain variables corresponding to leading 1's by definition and thus no terms of $C$ are in $X$. Thus $G$ is the reduced \Grobner\ basis.
 
-\subsection{\S 7.11}
+\subsection*{\S 7.11}
 
 Let $f(x) = \sum_{i = 0}^{n} a_{i}x^{i}$ and $g(x) = \sum_{j = 0}^{m} b_{j} x^{i}$ be polynomials in $k\bqty{x}$ and without loss of generality suppose $n \geq m$. Then we have that $\lcm(\lm(f), \lm(g)) = x^{n}$. Thus we have
 \begin{align*}
@@ -486,9 +591,9 @@ However, note that the first the first step of the Euclidian Algorithm is to com
 
 \clearpage
 
-\subsection{\S 8.8}
+\subsection*{\S 8.8}
 
-\subsubsection{a.} The following image is a plot of the parametric surface $T\colon$
+\subsubsection*{a.} The following image is a plot of the parametric surface $T\colon$
 
 \begin{figure}[H]
   \centering
@@ -496,7 +601,7 @@ However, note that the first the first step of the Euclidian Algorithm is to com
   \caption{Plot of $\pqty{(2 \cos(t))\cos(u), (2 + \cos(t))\sin(u), \sin(t)}$ for $0 \leq t, u \leq 2 \pi$.}
 \end{figure}
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 Let $a = \cos(t), b = \sin(t), c = \cos(u)$ and $d = \sin(u)$. Then we have
 \begin{align*}
@@ -505,7 +610,7 @@ Let $a = \cos(t), b = \sin(t), c = \cos(u)$ and $d = \sin(u)$. Then we have
   z &= \sin(t) = b
 \end{align*}
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
 The following is a \Grobner\ basis for the ideal $\gen{x - (2 + a)c, y - (2 + a)d, z - b, a^{2} + b^{2} - 1, c^{2} + d^{2} - 1}\colon$
 \begin{align*}
@@ -527,21 +632,21 @@ The following is a \Grobner\ basis for the ideal $\gen{x - (2 + a)c, y - (2 + a)
   &-b + z\}
 \end{align*}
 
-\subsection{\S 8.11}
+\subsection*{\S 8.11}
 
-\subsubsection{a.}
+\subsubsection*{a.}
 
 Let $I = \gen{a + b + c - 3, a^{2} + b^{2} + c^{2} - 5, a^{3} + b^{3} + c^{3} - 7}$. We use the Ideal Membership Problem to compute if $a^{4} + b^{4} + c^{4} - 9 \in I$ and see that this is true. Thus, $a^{4} + b^{4} + c^{4} = 9$.
 
-\subsubsection{b.}
+\subsubsection*{b.}
 
 Similar to part \textbf{a.} we use the Ideal Membership Problem and see that $a^{5} + b^{5} + c^{5} - 11 \notin I$.
 
-\subsubsection{c.}
+\subsubsection*{c.}
 
 To compute $a^{5} + b^{5} + c^{5}$, we divide this polynomial by a \Grobner\ basis for $I$ and see that on division by this \Grobner\ basis, $a^{5} + b^{5} + c^{5} = \frac{29}{3}$. Similarly we have that $a^{6} + b^{6} + c^{6} = \frac{19}{3}$.
 
-\subsection{\S 9.3}
+\subsection*{\S 9.3}
 
 Let $f, g$ be elements of a basis for $I$ such that the leading monomials of each element in the basis are coprime. If $\gcd(\lm(f), \lm(g)) = 1$ then we have that $\lcm(\lm(f), \lm(g)) = \lm(f) \lm(g)$. Thus we have $S(f, g) = \frac{\lm(f) \lm(g)}{\lc(f)\lm(f)} f - \frac{\lm(f) \lm(g)}{\lc(g)\lm(g)} g = \frac{\lm(g)}{\lc(f)} f - \frac{\lm(f)}{\lc(g)} g$. This implies that $S(f, g) \to_{G} 0$ and thus by \textbf{Theorem 3} of \textbf{\S 9} we have that $G$ is a \Grobner\ basis for $I$.
 
