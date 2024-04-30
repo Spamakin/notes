@@ -172,11 +172,15 @@ Then, Cramer's rule yields that
 
 \begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.1]
   Let $\prec$ be an monomial order and let $I$ be any ideal in $\C[x_{1}, \ldots, x_{n}]$.
-  A monomial $m$ is called \emph{minimally nonstandard} if $M$ is nonstandard and all proper divisors of $m$ are standard.
+  A monomial $m$ is called \emph{minimally nonstandard} if $m$ is nonstandard and all proper divisors of $m$ are standard.
   Show that the set of minimally nonstandard monomials is finite.
 \end{exercise}
 \begin{pf}
-  \quest{Have ugly inductive proof}
+  Let $M$ be a set of monomial generators for $\init(I)$ and let $m$ be minimally nonstandard.
+  Since $m$ is a monomial and in $\init(I)$, we have that $m' \mid m$ for some monomial $m' \in M$.
+  However, note that $m' \in \init(I)$ and furthermore by the fact that $m$ is minimally nonstandard, we cannot have that $m'$ strictly divides $m$.
+  Thus, $m' = m$ and $m \in M$.
+  Then by Dickson's Lemma, we have that $M$ is a finite set and thus there are finitely many minimally nonstandard monomials.
 \end{pf}
 
 \begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.2]
@@ -184,7 +188,7 @@ Then, Cramer's rule yields that
   Given an algorithm which transforms an arbitrary \Grobner\ basis into $\mathcal{G}_{\text{red}}$.
 \end{exercise}
 \begin{pf}
-  This is~\cite[Chapter 2, \S 7, Theorem 5]{IVA}.
+  This is~\cite[Chapter 2, \S 7, Theorem 5]{book:IVA}.
 \end{pf}
 
 \begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.3]
@@ -192,7 +196,7 @@ Then, Cramer's rule yields that
   Using \Grobner\ bases, describe an algorithm for computing the \emph{elimination ideals} $I \cap \C[x_{1}, \ldots, x_{i}]$ for $i = 1, \ldots, n - 1$, and prove its correctness.
 \end{exercise}
 \begin{pf}
-  This is~\cite[Chapter 3, \S 1, Theorem 2]{IVA}.
+  This is~\cite[Chapter 3, \S 1, Theorem 2]{book:IVA}.
 \end{pf}
 
 \begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.4]
@@ -200,6 +204,25 @@ Then, Cramer's rule yields that
   Hint: each variable receives a certain ``weight'' which behaves additively under multiplication of variables.
   Generalize your result to $n$ variables.
 \end{exercise}
+\begin{pf}
+  \quest{Look at~\cite[Chapter 1, \S 2, Exercise 6]{book:UsingAG}.}
+\end{pf}
+
+\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.6]
+  Let $\mathcal{F}$ be a set of polynomials whose initial monomials are pairwise relatively prime.
+  Show that $\mathcal{F}$ is a \Grobner\ basis for its ideal.
+\end{exercise}
+\begin{pf}
+  First, we recall some definitions.
+  The $S$-polynomial of $f$ and $g$ is
+  \[
+    S(f, g) \defeq \frac{\lcm(\lm(f), \lm(g))}{\lt(f)} f - \frac{\lcm(\lm(f), \lm(g))}{\lt(g)} g.
+  \]
+  For a set of polynomials $\mathcal{F} = \set{f_{1}, \ldots, f_{t}} \subseteq k[x_{1}, \ldots, x_{n}]$, we write $f \to_{\mathcal{F}} 0$ if there exists $a_{1}, \ldots, a_{t} \in k[x_{1}, \ldots, x_{n}]$ such that $a_{1} f_{1} + \cdots + a_{t} f_{t} = 0$.
+  Then~\cite[Chapter 2, \S 9, Theorem 3]{book:IVA} says that a basis $\mathcal{F} = \set{f_{1}, \ldots f_{t}}$ is a \Grobner\ basis for $G$ if and only if $S(f_{i}, f_{j}) \to_{\mathcal{F}} 0$ for all $i \neq j$.
+  But~\cite[Chapter 2, \S 9, Proposition 4]{book:IVA} says that for $f, g \in \mathcal{F}$ with relatively prime initial monomials, we have that $S(f, g) \to_{\mathcal{F}} 0$.
+  This proves the claim.
+\end{pf}
 
 \printbibliography
 \end{document}
