@@ -470,6 +470,20 @@ Thus overall we have that $\mathbf{I}(\textbf{V}(f_{1}, \ldots, f_{s})) = \ideal
 
 \section*{Chapter 2}
 
+\subsection*{\S 1.4}
+
+\subsubsection*{a.}
+
+\quest{Duh}
+
+\subsubsection*{b}
+
+Consider any finite generating set $\ideal{f_{1}, \ldots, f_{s}}$.
+For each $f_{i}$, let $m_{i}$ be $\max\set{j \in \N | \deg_{x_{j}}{f_{i}} > 0}$.
+Each $m_{i}$ is finite as polynomials have finitely many terms.
+Let $m = \max_{i} m_{i}$.
+Then $x_{m + 1} \in I$ but $x_{m + 1} \notin \ideal{f_{1}, \ldots, f_{s}}$.
+
 \subsection*{\S 2.7}
 
 \subsubsection*{a.}
@@ -530,8 +544,14 @@ This is immediate from the definitions of $\mdeg$ and the fact that $\max\Set{a 
 
 \subsubsection*{c.}
 
-The most we can hope for is that $\mdeg\pqty{\sum_{i = 1}^{s} f_{i} g_{i}} = \max\set{\mdeg\pqty{f_{i} g_{i}} | 1 \leq i \leq s}$.
-We may not have equality due to cancelling.
+The most we can hope for is that $\mdeg\pqty{\sum_{i = 1}^{s} f_{i} g_{i}} \leq \max\set{\mdeg\pqty{f_{i} g_{i}} | 1 \leq i \leq s}$.
+We may not have equality due to cancellation.
+
+\subsection*{\S 2.13}
+
+Suppose we had a monomial order such that $x^{j} < x^{i}$ for some $j > i$.
+Then $1 < x^{j - i}$ since this is a monomial order.
+However, since this is a monomial order, we must have that $1 \cdot x^{i} = x^{i} < x^{j - i} \cdot x^{i} = x^{j}$ which is a contradiction.
 
 \clearpage
 
