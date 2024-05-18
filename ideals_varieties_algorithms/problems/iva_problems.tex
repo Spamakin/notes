@@ -561,7 +561,7 @@ However, since this is a monomial order, we must have that $1 \cdot x^{i} = x^{i
 
 Clearly for any polynomial we have that $\mdeg(f) = \mdeg(\lt(f))$.
 If $q_{i} f_{i} \neq 0$ then we must have that neither $q_{i}$ nor $f_{i}$ are equal to $0$.
-Let $p$ be as in the proof of the multivariete division algorithm.
+Let $p$ be as in the proof of the multivariate division algorithm.
 We know that $q_{i} = \sfrac{\lt(p)}{\lt(f_{i})}$ for some value of $p$ as the algorithm goes on.
 Since $\mdeg(\lt(p)) \leq \mdeg(\lt(f))$ we have that $\mdeg(q_{i}) \leq \mdeg\pqty{\sfrac{\lt(f)}{\lt(f_{i})}} = \mdeg(\lt(f)) - \mdeg(f_{i})$.
 Thus we have that $\mdeg(q_{i}f_{i}) = \mdeg(q_{i}) + \mdeg(f_{i}) \leq \mdeg(\lt(f)) = \mdeg(f)$.
@@ -569,6 +569,23 @@ Thus we have that $\mdeg(q_{i}f_{i}) = \mdeg(q_{i}) + \mdeg(f_{i}) \leq \mdeg(\l
 \subsubsection*{b.}
 
 We have that $r$ does not divide into any of the $q_{i}f_{i}$ implying that $\mdeg(r) \leq \mdeg(q_{i} f_{i})$ which implies by \textbf{a.} that $\mdeg(f) \geq \mdeg(r)$.
+
+\subsection*{\S 4.1}
+
+Let $A = \set{\alpha \in \Z_{\geq 0}^{n} | x^{\alpha} \in I}$.
+With this, let $I' = \ideal{x^{\alpha} | \alpha \in A}$.
+We wish to show that $I = I'$.
+Let $x^{\alpha} \in I'$.
+Then, by the definition of $A$, $x^{\alpha} \in I$ and we are done.
+Now let $f = \sum c_{\alpha} x^{\alpha} \in I$, then by the property of $I$ we have that every $x^{\alpha} \in I$ and so $\alpha \in I$ meaning $x^{\alpha} \in I'$.
+Since each $x^{\alpha} \in I'$, we must have that $f \in I'$.
+
+\subsection*{\S 4.2}
+
+We want to show that if $f \in I$, $I$ a monomial ideal, then every term of $f$ is in $I$.
+Since $I$ is a monomial ideal, then $I = \ideal{\alpha | \alpha \in A}$ for some $A \in \Z_{\geq 0}^{n}$.
+By the definition of a monomial ideal, $f$ is of the form $f = \sum_{\alpha \in A} h_{\alpha} x^{\alpha}$ where $h_{\alpha} \in k[x_{1}, \ldots, x_{n}]$.
+Clearly for each $\alpha$, $x^{\alpha} \in I$ so $h_{\alpha} x^{\alpha} \in I$ and thus every term of $f$ is in $I$.
 
 \subsection*{\S 4.3}
 
@@ -579,7 +596,7 @@ The following image is the solution:
 \begin{figure}[H]
   \centering
   \includegraphics[scale=0.5]{images/2\-4\-3a.png}
-  \caption{Shaded region represents possible $x^{n}y^{m} \in \gen{x^{6}, x^{2}y^{3}, xy^{6}}$}
+  \caption{Shaded region represents possible $x^{n}y^{m} \in \ideal{x^{6}, x^{2}y^{3}, xy^{6}}$}
 \end{figure}
 
 \subsubsection*{b.}
@@ -593,22 +610,30 @@ The \emph{unshaded} region in the image represents possible remainders up to mul
 
 \subsubsection*{a.}
 
-We have that $I = \gen{x^{3}y^{6}, x^{5}y^{4}, x^{6}}$.
+We have that $I = \ideal{x^{3}y^{6}, x^{5}y^{4}, x^{6}}$.
 We have that the ``projection'' $J = \gen{x^{3}}$.
 Since $x^{3}y^{6} \in I$, we have that $m = 6$.
 Thus we find ``slices'' $J_{\ell}$ for $0 \leq \ell \leq m - 1 = 5$.
 We have that
 \begin{align*}
   J_{0} = J_{1} = J_{2} = J_{3} &= \gen{x^{6}} \\
-  J_{4} = J_{5} &= \gen{x^{5}} \\
+  J_{4} = J_{5} &= \ideal{x^{5}} \\
 \end{align*}
 
-Thus $I = \gen{x^{6}, x^{6}y, x^{6}y^{2}, x^{6}y^{3}, x^{5}y^{4}, x^{5}y^{5}, x^{3}y^{6}}$.
+Thus $I = \ideal{x^{6}, x^{6}y, x^{6}y^{2}, x^{6}y^{3}, x^{5}y^{4}, x^{5}y^{5}, x^{3}y^{6}}$.
 
 \subsubsection*{b.}
 
 We may take our basis from \textbf{a.} and do repeated trial division to make it minimal.
-Thus $I = \gen{x^{6}, x^{5}y^{4}, x^{3}y^{6}}$
+Thus $I = \ideal{x^{6}, x^{5}y^{4}, x^{3}y^{6}}$
+
+\subsection*{\S 4.5}
+
+Let $\mu$ be the minimal element of $S$.
+\quest{Is the minimal element not $0$?}
+We have that $A \subseteq S$ and thus for all $\alpha \in A$, $\mu \leq \alpha$ and so $x^{\mu} | x^{\alpha}$.
+But $x^{mu}$ lies in $I$ and so $x^{\alpha} \mid x^{\mu}$ for some $\alpha \in \mu$.
+Thus $x^{\mu} = x^{\alpha}$ and $\mu = \alpha$.
 
 \subsection*{\S 4.7}
 
@@ -631,6 +656,16 @@ This implies that some $x^{\alpha(i)}$ divides $x^{\alpha}$.
 Thus we have that $x^{\alpha} \in \gen{\alpha(1), \ldots, \alpha(s)}$.
 The other direction of containment is trivial due to the fact that $\gen{\alpha(1), \ldots, \alpha(s)} \subseteq A$.
 Thus we have found a finite basis for $I$, proving Dickson's Lemma.
+
+\subsection*{\S 4.8}
+
+Suppose the remainder of $f$ on division by $x^{\alpha(1)}, \ldots, x^{\alpha(s)}$ is $0$.
+Then the polynomial division algorithm yields an expression showing that $f \in I$.
+Now suppose that $f \in I$.
+Then every term of $f$ lies in $I$, let $c_{\beta}x^{\beta}$ be such a term.
+Then $x^{\beta}$ lies in $I$ which means that some $x^{\alpha(i)}$ divides $x^{\beta}$.
+We may do this for every term in $f$.
+Since ever term is divisible by $\lt(x^{\alpha(i)}) = x^{\alpha(i)}$ for some $i$, we have that division of $f$ by $x^{\alpha(1)}, \ldots, x^{\alpha(s)}$ has remainder $0$.
 
 \subsection*{\S 5.3}
 
