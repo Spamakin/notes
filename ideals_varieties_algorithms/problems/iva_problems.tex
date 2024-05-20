@@ -679,24 +679,33 @@ After division by $F = \pqty{f_{1}, \ldots, f_{s}}$ we have that
 such that no term of $r$ is divisible by any of the $\lt(f_{i})$ by definition of remainder.
 Then by Lemma 2 of \textbf{\S 4} we must have that $\lt(r) \notin \gen{\lt(f_{1}), \ldots, \lt(f_{s})}$.
 Since $0 \in \gen{\lt(f_{1}), \ldots, \lt(f_{s})}$, $\lt(r) \neq 0$ and $r$ is non-zero.
-\quest{This feels circular}
 
 \subsubsection*{b.}
 
 \Grobner\ bases are the best for ideal membership since if we have some \Grobner\ basis $\set{g_{1}.
 \ldots g_{t}}$ then we can test $f \in I$ by checking if the remainder of $f$ after division by $\pqty{g_{1}, \ldots, g_{t}}$ is zero or not.
 
+\subsubsection*{c.}
+
+\quest{Didn't do Exercise $8$ of \textbf{\S 4}}.
+
 \clearpage
+
+\subsection*{\S 5.4}
+
+This is obvious by remembering that for any polynomial $g$, $\lt(g)$ and $\lm(g)$ only differ by multiplication of a constant $\lc(f)$.
 
 \subsection*{\S 5.5}
 
 Let $I \subseteq k\bqty{x_{1}, \ldots, x_{n}}$ be an ideal.
 Let $G = \set{g_{1}, \ldots, g_{t}}$ be a \Grobner\ basis for $I$.
 Thus we have that $\gen{\lt(I)} = \gen{\lt(g_{1}), \ldots, \lt(g_{t})}$.
-Since $\gen{\lt(I)}$ is a monomial ideal, Lemma 2 of \textbf{\S 4} tells us that some $\lt(g_{i})$ divides $\lt(f)$ for $f \in I$.
+Since $\gen{\lt(I)}$ is a monomial ideal, Lemma 2 of \textbf{\S 4} tells us that for each $f \in I$, some $\lt(g_{i})$ divides $\lt(f)$.
 
 Now suppose that we have some set $\set{g_{1}, \ldots, g_{t}}$ such that for every $f \in I$ we had that some $\lt(g_{i})$ divides $\lt(f)$.
-This satisfies the definition of a \Grobner\ basis.
+Clearly we have that $\ideal{\lt(g_{1}), \ldots, \lg(g_{t})} \subseteq \ideal{\lt(I)}$ as $G \subseteq I$.
+Then for $\lt(f) \in \lt(I)$, we have that $\lt(f)$ is divisible by some $\lt(g_{i})$ meaning $\lt(f) \in \ideal{\lt(g_{1}), \ldots, \lt(g_{t})}$.
+Thus, as $\ideal{\lt(I)} = \ideal{\lt(g_{1}), \ldots, \lt(g_{t})}$ we have that $G$ is a \Grobner\ basis of $I$.
 
 \subsection*{\S 5.10}
 
@@ -755,6 +764,8 @@ Thus we have that
 By the Ascending Chain Condition, this must stabilize at some $\mathbf{I}(V_{N})$ and that $\mathbf{I}(V_{N}) = \mathbf{I}(V_{N + 1}) = \cdots = \mathbf{I}(\textbf{V}(f_{1}, f_{2}, \ldots))$.
 Thus we have that $V_{N} = V_{N + 1} = \cdots = \textbf{V}(f_{1}, f_{2}, \ldots)$.
 
+\clearpage
+
 \subsection*{\S 5.16}
 
 Let $V \subseteq k^{n}$ be some variety.
@@ -767,6 +778,28 @@ Thus we have that $V = \textbf{V}(f_{1}, \ldots, f_{s})$ for some polynomials $f
 Thus $\textbf{V}(\mathbf{I}(V)) = \textbf{V}(\mathbf{I}(\textbf{V}(f_{1}, \ldots, f_{s})))$.
 We have that $\textbf{V}(\mathbf{I}(\textbf{V}(f_{1}, \ldots, f_{s}))) \subseteq \textbf{V}(f_{1}, \ldots, f_{s})$ if and only if $\gen{f_{1}, \ldots, f_{s}} \subseteq \mathbf{I}(\textbf{V}(f_{1}, \ldots, f_{s}))$ which we know is true.
 Thus overall we have that $\textbf{V}(\mathbf{I}(V)) = V$.
+
+\subsection*{\S 5.18}
+
+\subsubsection*{a.}
+
+Suppose $\overline{a} = (a_{1}, \ldots, a_{n}) \in \mathbf{V}(f, g)$.
+Then since $g_{1}(\overline{a}) g_{2}(\overline{a}) = 0$ meaning either $g_{1}(\overline{a}) = 0$ or $g_{1}(\overline{a}) = 0$.
+We also have that $f(\overline{a}) = 0$.
+Thus $\mathbf{V}(f, g) \subseteq \mathbf{V}(f, g_{1}) \cup \mathbf{V}(f, g_{2})$.
+Now suppose $\overline{a} \in \mathbf{V}(f, g_{1}) \cup \mathbf{V}(f, g_{2})$.
+Then $f(\overline{a}) = 0$.
+Furthermore, $g_{1}(\overline{a}) = 0$ or $g_{2}(\overline{a}) = 0$ which implies $g(\overline{a}) = 0$.
+Thus $\overline{a} \in \mathbf{V}(f, g)$.
+
+\subsubsection*{b.}
+
+Notice that in both varieties, we have that $y = x^{2}$.
+This then yields that $xz - y^{2} = xz - x^{4}$.
+
+\subsubsection*{c.}
+
+\quest{Not sketching} but notice that $xz - x^{4} = x(z - x^{3})$.
 
 \subsection*{\S 6.1}
 
