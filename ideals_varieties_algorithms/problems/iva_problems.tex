@@ -924,6 +924,14 @@ Lex order: $\set{y - z^{5}, x - z^{4}}$
 
 Grlex order: $\set{y z^{3} - x^{2}, -y^{2} z^{2} + x^{3}, x^{4} - y^{3} z, x z - y, -z^{5} + y, -z^{4} + x}$
 
+\subsection*{\S 7.4}
+
+For an ideal $I = \ideal{F \defeq \set{f_{1}, \ldots, f_{s}}}$
+Let $A = \set{\alpha \in \Z_{\geq 0}^{n} | x^{\alpha} = \lm(f_{i}), 1 \leq i \leq s}$.
+Each iteration of the REPEAT statement in Buchberger's Algorithm adds a new $\alpha$ to $A$.
+Dickson's Lemma says that the monomial ideal defined by $A$ may be defined by finitely many elements of $A$, all of which will be added at some step of Buchberger's algorithms.
+Thus, the algorithm must halt at some point.
+
 \subsection*{\S 7.5}
 
 let $I$ be a polynomial ideal and let $G$ be a \Grobner\ basis for $I$ with the property that $\lc(g) = 1$ for all $g \in G$.
@@ -938,6 +946,18 @@ This contradicts the minimality of $G$ and thus we must have that $H$ cannot be 
 Now suppose that no proper subset of $G$ can be a \Grobner\ basis for $I$.
 Then that means for all $\lt(H) \subsetneq \lt(G)$ we have that $\gen{\lt{H}} \neq \gen{\lt(I)}$.
 Thus $G$ must be a minimal \Grobner\ basis for $I$.
+
+\subsection*{\S 7.6}
+
+Suppose that $G$ is a minimal \Grobner\ basis of $I$.
+Then for all $g \in G$, $\lc(g) = 1$.
+By the minimality of $G$, we have that for all $g \in G$, $\lt(g) \notin \ideal{\lt(G \setminus \set{g})}$ which is true if and only if for all $g \in G$, $\lt(g)$ is not divisible by $\lt(h)$ for any $h \in G \setminus \set{g}$.
+This is exactly the condition for $\lt(G)$ to be a minimal basis of $\ideal{\lt(I)}$.
+
+Now suppose that a \Grobner\ basis $G$ is such that $\lc(g) = 1$ for all $g \in G$ and $\lt(G)$ is a minimal basis of $\ideal{\lt(I)}$.
+We just have to show that for all $g \in G$, $\lt(g) \notin \ideal{\lt(G \setminus \set{g})}$.
+But by a similar argument to above, this is the same as saying that $\lt(G)$ is a minimal basis of the monomial ideal $\ideal{\lt(I)}$.
+Thus, $G$ is a minimal \Grobner\ basis of $I$.
 
 \subsection*{\S 7.7}
 
@@ -974,6 +994,8 @@ This is a finite process since once we replace an element with a fully reduced e
 
 \quest{Sage cannot do multivariate division and I do not want to learn Singular or Macaulay2}
 
+\clearpage
+
 \subsection*{\S 7.10}
 
 \subsubsection*{a.}
@@ -985,8 +1007,6 @@ Then note that since $j \neq i$, $g_{j}$ and thus $b \cdot g_{j} \in \gen{G'}$.
 Thus $a \cdot g_{i} + b \cdot g_{j} - b \cdot g_{j} = a \cdot g_{i} \in \gen{G'}$.
 Then we have that $a^{-1} a \cdot g_{i} = g_{i} \in \gen{G'}$.
 Thus $\gen{G'}$ generates $I$.
-
-\clearpage
 
 \subsubsection*{b.}
 
@@ -1018,7 +1038,16 @@ Thus $G$ is the reduced \Grobner\ basis.
 \subsection*{\S 7.11}
 
 Let $f(x) = \sum_{i = 0}^{n} a_{i}x^{i}$ and $g(x) = \sum_{j = 0}^{m} b_{j} x^{i}$ be polynomials in $k\bqty{x}$ and without loss of generality suppose $n \geq m$.
-Then we have that $\lcm(\lm(f), \lm(g)) = x^{n}$.
+Let $d = \sum_{k = 0}^{p} c_{k} x^{k}$ be the output of the Euclidean algorithm for $f, g \in k[x]$.
+Without loss of generality, $\lc(d) = 1$.
+Since $d \mid f$ and $d \mid g$, we have that $p \leq n, m$ and so $\lt(d) = x^{k}$ divides $\lt(f) = x^{n}$ and $\lt(g) = x^{m}$.
+Thus we have that $\ideal{\lt(d)} \subseteq \ideal{\lt(\ideal{f, g})}$.
+The Extended Euclidean algorithm, or Bezout's theorem, says that there exists polynomials $a, b$ such that $af + bg = d$.
+Thus $\lt(d) \in \ideal{\lt(\ideal{f, g})}$ and so overall $\ideal{\lt(d)} = \ideal{\lt(\ideal{f, g})}$ meaning that $\set{d}$ is a \Grobner\ basis of $\ideal{f, g}$.
+Clearly it is also reduced as $\lc(f) = 1$ and $\ideal{\lt(\set{d} \setminus \set{d})} = \set{0}$ which contains no monomials of $d$.
+
+
+Since $n \geq m$, we have that $\lcm(\lm(f), \lm(g)) = x^{n}$.
 Thus we have
 \begin{align*}
   S(f, g) &= \frac{x^{n}}{\lt(f)} * f - \frac{x^{n}}{\lt(g)}g \\
@@ -1031,7 +1060,48 @@ Thus we have
 However, note that the first the first step of the Euclidian Algorithm is to compute $r_{1} = f - \frac{\lt(f)}{\lt(g)}g$.
 So these steps are the same up to a constant.
 
-\clearpage
+\subsection*{\S 7.14}
+
+\subsubsection*{a.}
+
+We compute $h(a_{k}) = \sum_{i = 1}^{n} b_{i} \prod{j \neq i} \frac{a_{k} - a_{j}}{a_{i} - a_{j}}$.
+If $i = k$ then $\prod{j \neq i} \frac{a_{k} - a_{j}}{a_{k} - a_{j}} = 1$.
+But if $i \neq k$ then $k \in \set{j | 1 \leq j \leq n,\ j \neq i}$ and so $\prod_{j \neq i} \frac{a_{k} - a_{j}}{a_{i} - a_{j}}$ has the term $\frac{a_{k} - a_{k}}{a_{i} - a_{j}} = 0$.
+Thus these terms go to $0$.
+To introduce notation, we use the \href{https://en.wikipedia.org/wiki/Iverson_bracket}{Iverson Bracket}.
+Overall, we have that
+\[
+  h(a_{k}) = \sum_{i = 1}^{n} b_{i} \prod_{j \neq i} \frac{a_{k} - a_{j}}{a_{i} - a_{j}} = \sum_{i = 1}^{k} b_{i} \cdot [i = k] = b_{k}.
+\]
+To see that $\deg(h(x)) \leq n - 1$, notice that $\prod_{j \neq i} \frac{x - a_{j}}{a_{i} - a_{j}}$ is a product of $n - 1$ degree $1$ polynomials.
+
+\subsubsection*{b.}
+
+This follows immediately that to define a polynomial of degree $\leq n - 1$ you need at most $n$ points.
+Since $h(x)$ is defined by $n$ points, we are done.
+
+\subsubsection*{c.}
+
+Clearly $f$ and $y - h(x)$ both vanish on $V$ and so $\ideal{f(x), y - h(x)} \subseteq \mathbf{I}(V)$.
+To show that $\mathbf{I}(V) \subseteq \ideal{f(x), y - h(x)}$, it suffices to show that $\mathbf{V}(\mathbf{I}(V)) \containseq \mathbf{V}(\ideal{f(x), y - h(x)})$.
+We know that $\mathbf{V}(\mathbf{I}(V)) = V$ so we just have to show that $\mathbf{V}(\ideal{f(x), y - h(x)}) \subseteq V$.
+So let $(a, b) \in \mathbf{V}(\ideal{f(x), y - h(x)})$.
+Then $f(a) = 0$ which implies that $a = a_{i}$ for some $i$.
+But then $0 = b - h(a) = b - h(a_{i}) = b - b_{i}$ which means that $b = b_{i}$.
+Thus $(a, b) = (a_{i}, b_{i}) \in V$.
+
+\subsubsection*{d.}
+
+We first show that $\set{f(x), y - h(x)}$ is a \Grobner\ basis.
+It is indeed a basis for $\mathbf{I}(V)$.
+If $\deg(f) = d$ then $\lcm(\lm(f), \lm(g)) = yx^{d}$.
+Thus $S(f(x), y - h(x)) = \frac{yx^{d}}{\lc(f)x^{d}}f(x) - \frac{yx^{d}}{y}(y - h(x)) = \frac{y}{\lc(f)} f(x) - x^{d}(y - h(x))$.
+This implies that the division of $S(f(x), y - h(x))$ is $0$ on division by $\set{f(x), y - h(x)}$.
+Thus $\set{f(x), y - h(x)}$ is a \Grobner\ basis by Buchberger's Criterion.
+Next notice that $\lc(f(x)) = 1$ and $\lc(y - h(x)) = 1$.
+Next, we have that $\lt(f(x)) = x^{d}$ does not divide $y$ and since $\deg(f(x)) = d > \deg_{x}(h(x))$ we also have that $x^{d}$ does not divide any monomial in $h(x)$.
+Conversely, we have that $\lt(y - h(x)) = y$ does not divide any monomial of $f(x)$.
+Thus, $\set{f(x), y - h(x)}$ is the reduced \Grobner basis for $\mathbf{I}(V)$.
 
 \subsection*{\S 8.8}
 
