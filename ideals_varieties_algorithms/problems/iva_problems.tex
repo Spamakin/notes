@@ -1060,6 +1060,8 @@ Thus we have
 However, note that the first the first step of the Euclidian Algorithm is to compute $r_{1} = f - \frac{\lt(f)}{\lt(g)}g$.
 So these steps are the same up to a constant.
 
+\clearpage
+
 \subsection*{\S 7.14}
 
 \subsubsection*{a.}
@@ -1162,12 +1164,75 @@ Similar to part \textbf{a.} we use the Ideal Membership Problem and see that $a^
 To compute $a^{5} + b^{5} + c^{5}$, we divide this polynomial by a \Grobner\ basis for $I$ and see that on division by this \Grobner\ basis, $a^{5} + b^{5} + c^{5} = \frac{29}{3}$.
 Similarly we have that $a^{6} + b^{6} + c^{6} = \frac{19}{3}$.
 
+\subsection*{\S 9.2}
+
+\subsubsection*{a.}
+
+\quest{How to do this quickly?}
+
+\subsubsection*{b.}
+
+We use graded lexographical ordering with $x > y > z$.
+Then we have that $\lm(f_{1} = x^{2} + y + z - 1) = x^{2}$, $\lm(f_{2} = x + y^{2} + z - 1) = y^{2}$, and $\lm(f_{3} = x + y + z^{2} - 1) = z^{2}$ which are all relatively prime.
+
+\subsubsection*{c.}
+
+Since for $i \neq j$ we have that $\lm(f_{i})$ and $\lm(f_{j})$ are relatively prime, we have that $S(f_{i}, f_{j}) \to_{G} 0$.
+Thus $\set{f_{1}, f_{2}, f_{3}}$ forms a \Grobner\ basis.
+
 \subsection*{\S 9.3}
 
 Let $f, g$ be elements of a basis for $I$ such that the leading monomials of each element in the basis are coprime.
 If $\gcd(\lm(f), \lm(g)) = 1$ then we have that $\lcm(\lm(f), \lm(g)) = \lm(f) \lm(g)$.
 Thus we have $S(f, g) = \frac{\lm(f) \lm(g)}{\lc(f)\lm(f)} f - \frac{\lm(f) \lm(g)}{\lc(g)\lm(g)} g = \frac{\lm(g)}{\lc(f)} f - \frac{\lm(f)}{\lc(g)} g$.
 This implies that $S(f, g) \to_{G} 0$ and thus by \textbf{Theorem 3} of \textbf{\S 9} we have that $G$ is a \Grobner\ basis for $I$.
+
+\subsection*{\S 10.4}
+
+The only nonzero components of $S_{ij}$ are $i$-th component $\frac{x^{\gamma}}{\lt(f_{i})}$ and the $j$-th component $-\frac{x^{\gamma}}{\lt(g_{i})}$.
+We have that $\deg\pqty{\frac{x^{\gamma}}{\lt(f_{i})} \cdot f_{i}} = \gamma - \deg(f_{i}) + \deg(f_{i}) = \gamma$ and similarly for the $j$-th component.
+
+\subsection*{\S 10.5}
+
+Consider a decomposition $S = \sum_{\alpha} S_{\alpha}$ of a syzygy $S \in S(F)$ into homogeneous components.
+We fix $i$ and study the $i$-th component of $S_{\alpha}$ for a fixed $\alpha$.
+Then the $i$-th component is $c_{i}x^{\alpha(i)}$ for some constant $c_{i}$.
+If suffices to show that $\alpha(i)$ is uniquely determined if $c_{i} \neq 0$.
+Indeed, if this is the case then $\alpha(i)$ is completely determined to be $\alpha - \mdeg(f_{i})$ both of which are fixed.ok cool that jok cool that j
+
+\subsection*{\S 10.6}
+
+\subsubsection*{a.}
+
+Let $S = (f_{1}, \ldots, f_{s})$.
+This essentially follows from the fact that $\sum_{i = 1}^{s} f_{i} f_{i} \lt(g_{i}) = 0$.
+
+\subsubsection*{b.}
+
+Let $S$ be a homogeneous syzygy of multidegree $\alpha$ such that $S \cdot G \to_{G} 0$.
+Then $S \cdot G$ has a standard representation $S \cdot G = \sum_{i = 1}^{s} A_{i} g_{i} = 0$ such that $\alpha = \mdeg(S \cdot G) \geq \mdeg(A_{i} g_{i})$ for each $i$ such that $A_{i} g_{i} \neq 0$.
+However, by \textbf{a.} we cannot have equality.
+Thus, $\alpha > \mdeg(A_{i} g_{i})$ whenever $A_{i} g_{i} \neq 0$.
+Thus, \textbf{Corollary 7} of \textbf{Chapter 2, \S 10} follows from \textbf{Theorem 6}.
+
+\subsection*{\S 10.7}
+
+We have that
+\begin{align*}
+  \frac{x^{\gamma_{ij}}}{x^{\gamma_{il}}} S_{il} - \frac{x^{\gamma_{ij}}}{x^{\gamma_{jl}}} S_{jl} &= \frac{x^{\gamma_{ij}}}{x^{\gamma_{il}}} \pqty{\frac{x^{\gamma_{il}}}{\lt(f_{i})}\mathbf{e}_{i} -\frac{x^{\gamma_{il}}}{\lt(f_{l})} \mathbf{e}_{l} } - \frac{x^{\gamma_{ij}}}{x^{\gamma_{jl}}} \pqty{\frac{x^{\gamma_{jl}}}{\lt(f_{j})}\mathbf{e}_{j} -\frac{x^{\gamma_{jl}}}{\lt(f_{l})} \mathbf{e}_{l} } \\
+  &= \frac{x^{\gamma_{ij}}}{x^{\gamma_{il}}} \frac{x^{\gamma_{il}}}{\lt(f_{i})}\mathbf{e}_{i} - \frac{x^{\gamma_{ij}}}{x^{\gamma_{il}}}\frac{x^{\gamma_{il}}}{\lt(f_{l})} \mathbf{e}_{l} - \frac{x^{\gamma_{ij}}}{x^{\gamma_{jl}}} \frac{x^{\gamma_{jl}}}{\lt(f_{j})}\mathbf{e}_{j} + \frac{x^{\gamma_{ij}}}{x^{\gamma_{jl}}} \frac{x^{\gamma_{jl}}}{\lt(f_{l})} \mathbf{e}_{l} \\
+  &= \frac{x^{\gamma_{ij}}}{\lt(f_{i})}\mathbf{e}_{i} -\frac{x^{\gamma_{ij}}}{\lt(f_{j})} \mathbf{e}_{j} = S_{ij}.
+\end{align*}
+
+\subsection*{\S 10.8}
+
+Let $G = \set{g_{1}, \ldots, g_{t}}$.
+Suppose that $\overline{f}^{G} = r \neq 0$.
+Then by the division algorithm, we have that there exists polynomials $q_{1}, \ldots, q_{t}$ such that $q_{1}g_{1} + \cdots + q_{t}g_{t} + r = 0$ and whenever $q_{i}g_{i} \neq 0$, $\mdeg(f) \geq \mdeg(q_{i}g_{i})$.
+Furthermore, we have that $\mdeg(f) \geq \mdeg r$.
+Let $g_{t + 1} = r$, $A_{i} = q_{i}$ for $1 \leq i \leq t$ and $A_{t + 1} = 1$.
+Then, $f = \sum_{i = 1}^{t + 1} A_{i}g_{i}$ such that $\mdeg(f) \geq \mdeg(A_{i}g_{i})$ whenever $A_{i}g_{i} \neq 0$.
+Thus, $f \to _{G'} 0$.
 
 \printbibliography
 \end{document}
