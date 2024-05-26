@@ -1304,6 +1304,25 @@ To see this, the only fact about the lexicographic monomial order that we used i
 In other words, we just used the fact that lexicographic order is of $l$-elimination type.
 Thus, the same proof holds using an $l$-elimination type monomial order.
 
+\subsection*{\S 2.1}
+
+We already know that $\pi_{1}(V) \subseteq \mathbf{V}(I_{1})$.
+Now suppose that $(a_{2}, \ldots, a_{n}) \in \mathbf{V}(c_{1}, \ldots, c_{s}) \cap \mathbf{V}(I_{1})$.
+Then in particular, $(a_{2}, \ldots, a_{n}) \in \mathbf{V}(I_{1})$ and thus $\pi_{1}(V) \cup (\mathbf{V}(c_{1}, \ldots, c_{s}) \cap \mathbf{V}(I_{1})) \subseteq \mathbf{V}(I_{1})$.
+Now suppose that $(a_{2}, \ldots, a_{n}) \in \mathbf{V}(I_{1})$.
+If $(a_{2}, \ldots, a_{n}) \in \mathbf{V}(c_{1}, \ldots, c_{s}) \cap \mathbf{V}(I_{1})$ we are done, so suppose not.
+Then by the Extension Theorem, since $(a_{2}, \ldots, a_{n}) \in \mathbf{V}(I_{1})$ but $(a_{2}, \ldots, a_{n}) \notin \mathbf{V}(c_{1}, \ldots, c_{s})$ then there is $a_{1} \in \C$ such that $(a_{1}, a_{2}, \ldots, a_{n}) \in V$.
+Thus, $(a_{2}, \ldots, a_{n}) \in \pi_{1}(V)$ and overall $\mathbf{V}(I_{1}) = \pi_{1}(V) \cup (\mathbf{V}(c_{1}, \ldots, c_{s}) \cap \mathbf{V}(I_{1}))$.
+
+\subsection*{\S 2.5}
+
+We automatically have that $\pi_{1}(V) \subseteq \mathbf{V}(I_{1})$.
+If $\pi_{1}(V) = \set{c_{1}, \ldots, c_{n}}$ then $\pi_{1}(V)$ is indeed a variety itself equal to $\mathbf{V}((x - c_{1}) \cdots (x - c_{n}))$.
+Thus if $\mathbf{V}(I_{1})$ is the smallest variety containing $\pi_{1}$, we must have that $\mathbf{V}(I_{1}) = \pi_{1}(V)$ in case that $\pi_{1}(V)$ is finite.
+Now suppose that $\pi_{1}(V)$ was infinite.
+Since $\mathbf{V}(I_{1})$ is a variety containing $\pi_{1}(V)$, we must have that $\mathbf{V}(I_{1}) = \C$.
+If $\mathbf{V}(I_{1}) = \C$ then $I_{1} = \set{0}$ which we know to not be the case.
+Thus $\pi_{1}(V)$ cannot be infinite in our case.
 
 \printbibliography
 \end{document}
