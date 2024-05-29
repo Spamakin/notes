@@ -1324,5 +1324,26 @@ Since $\mathbf{V}(I_{1})$ is a variety containing $\pi_{1}(V)$, we must have tha
 If $\mathbf{V}(I_{1}) = \C$ then $I_{1} = \set{0}$ which we know to not be the case.
 Thus $\pi_{1}(V)$ cannot be infinite in our case.
 
+\subsection*{\S 3.1}
+
+Let $(t_{1}, \ldots, t_{m}) \in k^{m}$.
+Then
+\[
+  \pi_{m}(i(t_{1}, \ldots, t_{m})) = \pi_{m}(t_{1}, \ldots, t_{m}, f_{1}(t_{1}, \ldots, t_{m}), f_{n}(t_{1}, \ldots, t_{m})) = (f_{1}(t_{1}, \ldots, t_{m}), f_{n}(t_{1}, \ldots, t_{m})) = F(t_{1}, \ldots, t_{m}).
+\]
+Let $(t_{1}, \ldots, t_{m}, f_{1}(t_{1}, \ldots, t_{m}), f_{n}(t_{1}, \ldots, t_{m})) \in i(k_{m})$.
+Then clearly for all $i$, $f_{i}(t_{1}, \ldots, t_{m}) - f_{i}(t_{1}, \ldots, t_{m}) = 0$ is satisfied so $i(k^{m}) \subseteq V$.
+Now let $(t_{1}, \ldots, t_{m}, x_{1}, \ldots, x_{n}) \in V$.
+Then for all $i$, $x_{i} = f_{i}(t_{1}, \ldots, t_{m})$.
+Thus, $(t_{1}, \ldots, t_{m}, x_{1}, \ldots, x_{n}) = (t_{1}, \ldots, t_{m}, f_{1}(t_{1}, \ldots, t_{m}), f_{n}(t_{1}, \ldots, t_{m}) = i(t_{1}, \ldots, t_{m})$ and overall $i(k^{m}) = V$.
+
+\subsection*{\S 3.2}
+
+In the case of $k = \C$, the Closure Theorem as well as the Polynomial Implicitization Theorem both give that $\mathbf{V}(I_{m})$ is the smallest affine variety containing $F(\C^{m}) = \pi_{m}(V)$.
+Then part $(ii)$ of the Closure Theorem gives that when $V$ is nonempty, there exists an affine variety $W \subsetneq \mathbf{V}(I_{m})$ such that $\mathbf{V}(I_{m}) \setminus W \subseteq \pi_{m}(V) = F(\C^{m})$.
+It just remains to show that $V$ is indeed nonempty.
+However, $k^{m}$ is nonempty which implies that $F(k^{m}) = \pi_{m}(V)$ is nonempty.
+If $V$ were empty, this would contradict that $\pi_{m}(V)$ is nonempty, and thus $V$ is nonempty.
+
 \printbibliography
 \end{document}
