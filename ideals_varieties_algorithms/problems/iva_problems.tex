@@ -1335,7 +1335,7 @@ Let $(t_{1}, \ldots, t_{m}, f_{1}(t_{1}, \ldots, t_{m}), f_{n}(t_{1}, \ldots, t_
 Then clearly for all $i$, $f_{i}(t_{1}, \ldots, t_{m}) - f_{i}(t_{1}, \ldots, t_{m}) = 0$ is satisfied so $i(k^{m}) \subseteq V$.
 Now let $(t_{1}, \ldots, t_{m}, x_{1}, \ldots, x_{n}) \in V$.
 Then for all $i$, $x_{i} = f_{i}(t_{1}, \ldots, t_{m})$.
-Thus, $(t_{1}, \ldots, t_{m}, x_{1}, \ldots, x_{n}) = (t_{1}, \ldots, t_{m}, f_{1}(t_{1}, \ldots, t_{m}), f_{n}(t_{1}, \ldots, t_{m}) = i(t_{1}, \ldots, t_{m})$ and overall $i(k^{m}) = V$.
+Thus, $(t_{1}, \ldots, t_{m}, x_{1}, \ldots, x_{n}) = (t_{1}, \ldots, t_{m}, f_{1}(t_{1}, \ldots, t_{m}), f_{n}(t_{1}, \ldots, t_{m})) = i(t_{1}, \ldots, t_{m})$ and overall $i(k^{m}) = V$.
 
 \subsection*{\S 3.2}
 
@@ -1344,6 +1344,76 @@ Then part $(ii)$ of the Closure Theorem gives that when $V$ is nonempty, there e
 It just remains to show that $V$ is indeed nonempty.
 However, $k^{m}$ is nonempty which implies that $F(k^{m}) = \pi_{m}(V)$ is nonempty.
 If $V$ were empty, this would contradict that $\pi_{m}(V)$ is nonempty, and thus $V$ is nonempty.
+
+\subsection*{\S 4.1}
+
+Let $f = x^{3} - xy + y^{2} - 1$ be the curve defining $C$ so that $V(f) = C$.
+When the line $L = (1 + ct, 1 + dt)$ meets $C$, we have that
+\begin{align*}
+  f(1 + ct, 1 + dt) &= (1 + ct)^{3} - (1 + ct)(1 + dt) + (1 + dt)^{2} - 1 \\
+                    &= 1 + 3ct + 3c^{2}t^{2} + c^{3}t^{3} - 1 - ct - dt - cdt^{2} + 1 + 2dt + d^{2}t^{2} \\
+                    &= c^{3}t^{3} + (3c^{2} - cd + d^{2})t^{2} + (2c + d)t = 0.
+\end{align*}
+We now consider cases based on the values of $c, d$.
+Note that $(c, d) \neq (0, 0)$.
+If $d \neq -2c$, then $g(t) = f(1 + ct, 1 + dt)$ meets $C$ with multiplicity $1$.
+Now suppose that $d = -2c$.
+Then
+\[
+  g(t) = c^{3}t^{3} + (3c^{2} - cd + d^{2})t^{2} (2c + d)t = c^{3}t^{3} + (3c^{2} + 2c^{2} + 4c^{2})t^{2} = c^{3}t^{3} + 9t^{2}.
+\]
+In thus case, $g(t)$ meets $C$ with multiplicity $2$.
+These are the only cases since we cannot have that $c = d = 0$.
+
+\subsection*{\S 4.2}
+
+\subsubsection*{a.}
+
+Suppose the two parameterizations correspond to the same line.
+Then both lines are parallel to the vector $(c, d)$ and in particular $(c', d')$ is parallel to $(c, d)$.
+Since $(c, d), (c', d') \neq (0, 0)$, this exactly means that there exists nonzero $\lambda$ such that $(c, d) = \lambda(c', d')$.
+The converse is similar.
+
+\subsubsection*{b.}
+
+Since the parameterizations correspond to the same line, we have parameterizations $L = (a + ct, b + dt)$ and $L' = (a + \lambda ct, b + \lambda dt)$ for some nonzero $\lambda$.
+Suppose that $t = 0$ is a root of multiplicity $m$ of $g(t)$ so that $g(t) = t^{m}h(t)$ for some $h(t)$ such that $h(0) \neq 0$.
+Then \quest{$g'(t) = \lambda^{m}t^{m} h(\lambda t) = t^{m} h'(t)$} where $h'(0) \neq 0$ and so $L'$ also meets $V(f)$ with multiplicity $m$.
+Thus, multiplicity is independent of the choice of parameterization.
+
+\clearpage
+
+\subsection*{\S 4.4}
+
+Let $L = (a + ct, b + dt)$ be the tangent line through $(a, b)$ and let $g(t) = f(a + ct, b + dt)$.
+Then we know that the tangent line is the unique line through $(a, b)$ which meets $\mathbf{V}(f)$ with multiplicity $\geq 2$ and so $g'(0) = 0$.
+This means that
+\[
+ g'(0) = \frac{\partial}{\partial x}f(a, b) \cdot c + \frac{\partial}{\partial y}f(a, b) \cdot d = 0.
+\]
+\quest{The following seems dubious.}
+However, since $x = a + ct$ and $y = b + dt$ always holds for $L$, then in particular it holds for $t = 1$ meaning that $x = a + c$ and $y = b + d$.
+Thus, $c = x - a$ and $d = y - b$ and overall we have that the equation
+\[
+  \frac{\partial}{\partial x}f(a, b) \cdot c + \frac{\partial}{\partial y}f(a, b) \cdot d = \frac{\partial}{\partial x}f(a, b) \cdot (x - a) + \frac{\partial}{\partial y}f(a, b) \cdot (y - b) = 0
+\]
+defines the tangent line.
+
+\subsection*{\S 4.5}
+
+\subsubsection*{a.}
+
+Since $g(0) = 0$ we may write $g(t) = t h(t)$ for some $h(t) \in k[t]$.
+Then $g'(t) = h(t) + t h'(t)$ so that $g'(0) = h(0)$.
+If $0$ is a root of multiplicity $\geq 2$ then $g(t) = t h(t)$ implies that $h(t) = t f(t)$ for some $f(t) \in k[t]$.
+Thus, $g'(0) = h(0) = 0 \cdot f(0) = 0$.
+Now suppose $g'(0) = 0$.
+Then $0 = g'(0) = h(0)$ which implies that $h(t) = t f(t)$ for some $f(t) \in k[t]$.
+Thus $g(t) = t^{2} k(t)$ and $0$ is a root of multiplicity $\geq 2$.
+
+\subsubsection*{b.}
+
+\quest{Annoying induction on $m$.}
 
 \printbibliography
 \end{document}
