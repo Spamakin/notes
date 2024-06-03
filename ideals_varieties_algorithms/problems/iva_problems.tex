@@ -1415,5 +1415,43 @@ Thus $g(t) = t^{2} k(t)$ and $0$ is a root of multiplicity $\geq 2$.
 
 \quest{Annoying induction on $m$.}
 
+\subsection*{\S 4.6}
+
+Suppose that $L$ meets $\mathbf{V}(f)$ with multiplicity $m$.
+Then in particular $g(t)$ has $t = 0$ as a root of multiplicity $m$ and so $g(0) = g'(0) = \cdots = g^{(m - 1)}(0) = 0$ by \textbf{4.5}.
+Since by the definition of multiplicity $m$ is maximal, we cannot have that $g^{(m)}(0) = 0$.
+The converse is similar.
+
+\subsection*{\S 4.7}
+
+\subsubsection*{a.}
+
+Let $x = a + t$ and $y = f(a) + f'(a)t$.
+Showing this is the tangent line through $(a, f(a))$ amounts to showing that $\grad(f(x) - y)(a, f(a)) \neq (0, 0)$ and that the line meets $\mathbf{V}(f)$ with multiplicity $\geq 2$.
+Indeed we have that
+\[
+ \grad(y - f(x))(a, f(a)) = \pqty{\frac{\partial}{\partial x}(y - f(x)), \frac{\partial}{\partial y}(y - f(x))}(a, f(a)) = (-f'(a), 1) \neq (0, 0).
+\]
+To show that the intersection occurs with multiplicity $\geq 2$, we want to show $g(t) = f(a) + f'(a) t - f(a + t)$ has $t = 0$ as root of multiplicity $\geq 2$.
+Note that $g'(t) = f'(a) - f'(a + t)$ and so $g(0) = 0$ and $g'(0) = 0$ follows.
+Thus by \textbf{4.6}, the line meet with multiplicity $\geq 2$ and so the parameterization must yield the tangent line.
+
+\subsubsection*{b.}
+
+We have that $g''(t) = -f''(a + t)$.
+By \textbf{4.6}, the tangent line meets the curve with multiplicity $\geq 3$ if and only if $g''(0) = 0$.
+But this occurs if and only if $f''(a) = 0$ and so we are done.
+
+\subsubsection*{c.}
+
+This is immediate by \textbf{4.6} via the same argument as \textbf{b}.
+
+\subsubsection*{d.}
+
+Since the curve hits with multiplicity $3$, we have that $f''(a) = 0$ but $f'''(a) \neq 0$ by \textbf{c}.
+This exactly means that $f''(x)$ changes sign at $x = a$.
+Thus, $(a, f(a))$ is a point of inflection.
+
+
 \printbibliography
 \end{document}
