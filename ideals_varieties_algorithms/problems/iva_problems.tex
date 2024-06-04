@@ -1452,6 +1452,60 @@ Since the curve hits with multiplicity $3$, we have that $f''(a) = 0$ but $f'''(
 This exactly means that $f''(x)$ changes sign at $x = a$.
 Thus, $(a, f(a))$ is a point of inflection.
 
+\clearpage
+
+\subsection*{\S 5.1}
+
+\subsubsection*{a.}
+
+Take $A_{j}g_{j}$ in the standard representation such that $A_{j} g_{j} \neq 0$.
+Then we know that $\mdeg(f) \geq \mdeg(A_{j}g_{j})$.
+Since the lexicographic order is taken with $x_{1} > \cdots > x_{n}$, the leftmost position of each multidegree corresponds exactly to the degree of $x_{1}$.
+Thus, if $\deg(A_{j}g_{j}, x_{1}) > \deg(f, x_{1})$ then we would have that $\mdeg(A_{j}g_{j}) > \mdeg(f)$, a contradiction.
+This means that $\deg(f, x_{1}) \geq \deg(A_{j}g_{j}, x_{1})$.
+
+\subsubsection*{b.}
+
+By \textbf{a.}, every nonzero $A_{j}g_{j}$ is such that $\deg(f, x_{1}) \geq \deg(A_{j}g_{j}, x_{1})$ and furthermore no non-zero $A_{j}g_{j}$ with $\deg(f, x_{1}) > \deg(A_{j}g_{j}, x_{1})$ can contribute to $c_{f}$ as terms of lower degree cannot cancel or add to terms of a higher degree.
+Thus, we have that
+\[
+  c_{f} = \sum_{\deg(A_{j}g_{j}, x_{1}) = N} c_{A_{j}g_{j}}.
+\]
+It remains to show that when $A_{j}g_{j} \neq 0$ then $c_{A_{j}g_{j}} = c_{A_{j}} c_{g_{j}}$.
+However, this is obvious as terms of not-highest $x_{1}$ degree in $c_{A_{j}}$ and $c_{g_{j}}$ cannot contribute to $c_{A_{j}g_{j}}$.
+
+\subsection*{\S 5.2}
+
+\quest{I know that image of an ideal is an ideal so omitting for now.}
+
+\subsection*{\S 5.3}
+
+Since $\set{g_{1}, \ldots, g_{m}}$ is a \Grobner\ basis for $I$, every $f(\overline{x})$ can be written as $f(\overline{x}) = h_{1}(\overline{x})g_{1}(\overline{x}) + \cdots + h_{m}(\overline{x})g_{m}(\overline{x})$.
+Thus $f(x_{1}, \overline{a}) = h_{1}(x_{1}, \overline{a})g_{1}(x_{1}, \overline{a}) + \cdots + h_{1}(x_{1}, \overline{a})g_{1}(x_{1}, \overline{a})$.
+By assumption, we have that each $g_{j}(x_{1}, \overline{a}) \in \ideal{g_{o}(x_{1}, \overline{a})}$.
+Thus $f(x_{1}, \overline{a}) \in \ideal{g_{o}(x_{1}, \overline{a})}$.
+
+\subsection*{\S 5.5}
+
+\subsubsection*{a.}
+
+Since $G = \set{g_{1}, \ldots, g_{m}}$ is a \Grobner\ basis for $I$, every $f(\overline{x})$ can be written as $f(\overline{x}) = h_{1}(\overline{x})g_{1}(\overline{x}) + \cdots + h_{m}(\overline{x})g_{m}(\overline{x})$.
+Thus $f(x_{1}, \overline{a}) = h_{1}(x_{1}, \overline{a})g_{1}(x_{1}, \overline{a}) + \cdots + h_{1}(x_{1}, \overline{a})g_{1}(x_{1}, \overline{a})$.
+We may discard the terms such that $g_{j}(x_{1}, \overline{a}) = 0$ as they contribute nothing.
+Thus, we have written $f(x_{1}, \overline{a})$ as a combination of $g_{j}(x_{1}, \overline{a})$ such that $g_{j}(x_{1}, \overline{a}) \neq 0$.
+
+\subsubsection*{b.}
+
+Since $G$ is a \Grobner\ basis, for $\lt(f) \in \lt(I)$ there exist polynomials $h_{1}, \ldots, h_{m}$ such that $\lt(f) = h_{1}\lt(g_{1}) + \cdots + h_{m}\lt(g_{m})$.
+Thus $\lt(f)(x_{1}, \overline{a}) = h_{1}(x_{1}, \overline{a})\cdot\lt(g_{1})(x_{1}, \overline{a}) + \cdots + h_{m}(x_{1}, \overline{a})\cdot\lt(g_{m})(x_{1}, \overline{a})$.
+Since this is a \Grobner\ basis with respect to the lex order $x_{1} > \cdot > x_{n}$, we have that $\lt(g_{j})(x_{1}, \overline{a}) = c_{j}(\overline{a}) x_{1}^{N_{j}}$ for all $1 \leq j \leq m$.
+Thus,
+\[
+  \lt(f)(x_{1}, \overline{a}) = h_{1}(x_{1}, \overline{a})\cdot c_{1}(\overline{a}) x_{1}^{N_{1}} + \cdots + h_{m}(x_{1}, \overline{a})\cdot c_{m}(\overline{a}) x_{1}^{N_{m}}.
+\]
+By assumption, not all of the $c_{j}(\overline{a})$ are zero.
+This shows that $G'$ is a \Grobner\ basis.
+
 
 \printbibliography
 \end{document}
