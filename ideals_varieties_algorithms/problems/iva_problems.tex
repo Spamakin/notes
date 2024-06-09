@@ -1512,5 +1512,61 @@ This comes down to the fact that the proof of \textbf{\S 5, Lemma 1} only relies
 Thus, \textbf{Lemma 1} still holds.
 Since \textbf{Lemma 1} holds and \quest{the only portion of the proof of \textbf{\S 5, Theorem 2} that uses the ordering} is the application of \textbf{Lemma 1}, we are done.
 
+\clearpage
+
+\subsection*{\S 6.1}
+
+A quick computation in Sage yields that the resultant is $0$.
+Thus, the two polynomials must have a common factor.
+Indeed both of them are divisible by $x^{2} + x + 1$.
+
+\subsection*{\S 6.2}
+
+The Sylvester matrix of $f$ and $g$ has entries only in $\Z$ since $f, g \in \Z[x]$.
+Since the determinant is just the sum of products of these entries, it is clear that the resultant is in $\Z$.
+
+\subsection*{\S 6.3}
+
+\subsubsection*{a.}
+
+Assume that both $l, m$ are positive.
+The difference between $\Syl(f, g)$ and $\Syl(g, f)$ is just a swapping of the columns of the matrices.
+Specifically, if we swap all $l$ columns with coefficients from $g$ to the left of the columns with coefficients in $g$, maintaining order, then this transforms $\Syl(f, g)$ into $\Syl(g, f)$.
+Doing this amounts to moving $l$ columns each over a total of $m$ columns.
+To move one column over a total of $m$ columns is a total of $m$ swaps.
+Thus we do a total of $lm$ swaps which means the sign of the corresponding resultants differs by a factor of $(-1)^{lm}$.
+Now suppose that $l = 0$, so that $f = c_{0}$ for some $c_{0} \in k \setminus \set{0}$.
+Then, $\Res(c_{0}, g, x) = c_{0}^{m} = (-1)^{0} c_{0}^{m} = (-1)^{lm} c_{0}^{m} = (-1)^{lm} \Res(g, c_{0}, x)$.
+A similar calculation yields the case of $m = 0$ and thus the claim holds in all cases.
+
+\subsubsection*{b.}
+
+Assume that both $l, m$ are positive.
+In this case, the result follows from pretty much the same argument as \textbf{a} except now we use the argument that multiplying any column of a matrix by a scalar $c$ multiplies the determinant by that scalar $c$.
+Now suppose that $l = 0$, so that $f = c_{0}$ for some $c_{0} \in k \setminus \set{0}$.
+Then, $\Res(\lambda c_{0}, \mu g, x) = (\lambda c_{0})^{m} = \lambda^{m} c_{0}^{m} = \lambda^{m} \mu^{0} c_{0} = \lambda^{m} \mu^{0} \Res(\mu g, \lambda c_{0}, x)$.
+A similar calculation yields the case of $m = 0$ and thus the claim holds in all cases.
+
+\subsubsection*{c.}
+
+Now suppose that $l, m = 0$ so that $f = c_{0}$ and $g = d_{0}$ for some $c_{0}, d_{0} \in k \setminus \set{0}$
+Then, $\Res(c_{0}, d_{0}, x) = 1 = (-1)^{0} \cdot 1 = (-1)^{lm} \cdot 1 = (-1)^{\lm} \Res(d_{0}, c_{0}, x)$.
+Similarly we have that $\Res(\lambda c_{0}, \mu d_{0}, x) = 1 = \lambda^{0} \mu^{0} \cdot 1 = \lambda^{m} \mu^{l} \cdot 1 = \lambda^{m} \mu^{l} \Res(d_{0}, c_{0}, x)$.
+
+\subsection*{\S 6.7}
+
+We have that $\Res(2, 2, x) = 1$ and so we want to show that there are no integer polynomials $A, B$ such that $2A + 2B = 1$.
+Since $A, B$ are integer polynomials, it suffices to only look at the constant terms $a_{0}, b_{0}$ of $A$ and $B$ respectively and show that there are no integers $a_{0}, b_{0}$ such that $2a_{0} + 2b_{0} = 1$.
+This is clear since $2a_{0} + 2b_{0}$ will always be even and $1$ is odd.
+Thus, no such integer polynomials $A$ and $B$ can exist.
+
+\subsection*{\S 6.8}
+
+We have that $\Res(1, 0, x) = 0$.
+If \textbf{\S 6, Corollary 4} held in this case, then it would imply that $1$ and $0$ have a common root in $\C$ (or any algebraically complete field).
+This is impossible, as $1$ has no roots and $0$ has ``infinitely many'' roots.
+
+
+
 \printbibliography
 \end{document}
