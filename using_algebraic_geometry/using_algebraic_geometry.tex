@@ -1,0 +1,68 @@
+\documentclass[letterpaper, 11pt, oneside]{book}
+
+\usepackage{style}  % If you feel like procrastinating, mess with this file
+\usepackage{algo}   % Thank you Jeff, very cool!
+
+\addbibresource{refs.bib}
+
+% Required reading
+% https://jmlr.csail.mit.edu/reviewing-papers/knuth_mathematical_writing.pdf
+%   Along with required viewing:
+%   https://www.youtube.com/watch?v=N6QEgbPWUrg&list=PLOdeqCXq1tXihn5KmyB2YTOqgxaUkcNYG
+% https://faculty.math.illinois.edu/~west/grammar.html
+
+% % % % % % % % % %
+%     Cursor      %
+%     Parking     %
+%     Lot         %
+% % % % % % % % % %
+
+% Disable check for mismatched parens/brackets/braces
+%   chktex-file 9
+% Disable check for different counts of parents/brackets/braces
+%   chktex-file 17
+% Exclude these environments from syntax checking
+%   VerbEnvir { tikzcd }
+
+\regtotcounter{figure}
+
+\title{\vspace{-100pt} {\Huge Using Algebraic Geometry} \\ {\small With $\total{figure}$ Figures}}
+\author{\Large Anakin Dey}
+\DTMsavenow{now}
+\date{\small Last Edited on \today\ at \DTMfetchhour{now}:\DTMfetchminute{now}}
+
+% Cover page number chicanery
+\newcommand{\CoverName}{Cover}
+
+\begin{document}
+\frontmatter
+\renewcommand{\thepage}{\CoverName}
+\maketitle
+
+\pagenumbering{roman}
+
+\tableofcontents
+\clearpage
+
+
+% \listoftheorems[ignoreall, show={defn}, title={List of Definitions}]
+%
+% \listoftheorems[ignoreall, show={ex}, title={List of Examples and Counterexamples}]
+
+\chapter*{Preface}
+
+At the time of writing this, I am starting my PhD at The Ohio State University.
+Currently a large part of my interests in algebra are about algorithms as they relate to polynomials and algebraic geometry.
+I've been doing a bunch of problems from \emph{Ideals, Varieties, and Algorithms}~\cite{book:IVA}.
+However,  it seems that \emph{Using Algebraic Geometry}~\cite{book:UAG} moves through the material faster as it assumes you know more algebra.
+So I've moved onto working through this books as well as trying to comprehend Sturmfel's \emph{Algorithms in Invariant Theory}~\cite{book:AlgosInInvTheory}.
+
+\mainmatter
+
+\chapter{Introduction}
+
+\section*{Polynomials and Ideals}
+
+
+\printbibliography
+\end{document}
