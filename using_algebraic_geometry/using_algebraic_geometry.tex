@@ -63,8 +63,8 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 
 \section{Polynomials and Ideals}
 
-\begin{exercise}[\tcite{book:UAG} 1.1.1]
-  \begin{enumerate}
+\begin{exercise}[\tcite{book:UAG} 1.1.1]\label{ex:UAG_1.1.1}
+  \begin{enumerate}[label= (\alph*)]
     \item Show that $x^{2} \in \ideal{x - y^{2}, xy}$ in $k[x, y]$.
     \item Show that $\ideal{x - y^{2}, xy, y^{2}} = \ideal{x, y^{2}}$.
     \item Is $\ideal{x - y^{2}, xy} = \ideal{x^{2}, xy}$? Why or why not?
@@ -72,7 +72,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 \end{exercise}
 
 \begin{pf}
-  \begin{enumerate}
+  \begin{enumerate}[label= (\alph*)]
     \item We have that $x(x - y^{2}) + y(xy) = x^{2} - xy^{2} + xy^{2} = x^{2}$.
     \item It suffices to check for generators.
           We have that $x + (-1)(y^{2}) = x - y^{2}, y(x) = xy$, and $y^{2} = y^{2}$ showing that $\ideal{x - y^{2}, xy, y^{2}} \subseteq \ideal{x, y^{2}}$.
