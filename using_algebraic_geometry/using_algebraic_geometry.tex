@@ -61,7 +61,30 @@ So I've moved onto working through this books as well as trying to comprehend St
 
 \chapter{Introduction}
 
-\section*{Polynomials and Ideals}
+\section{Polynomials and Ideals}
+
+\begin{exercise}[\tcite{book:UAG} 1.1.1]
+  \begin{enumerate}
+    \item Show that $x^{2} \in \ideal{x - y^{2}, xy}$ in $k[x, y]$.
+    \item Show that $\ideal{x - y^{2}, xy, y^{2}} = \ideal{x, y^{2}}$.
+    \item Is $\ideal{x - y^{2}, xy} = \ideal{x^{2}, xy}$? Why or why not?
+  \end{enumerate}
+\end{exercise}
+
+\begin{pf}
+  \begin{enumerate}
+    \item We have that $x(x - y^{2}) + y(xy) = x^{2} - xy^{2} + xy^{2} = x^{2}$.
+    \item It suffices to check for generators.
+          We have that $x + (-1)(y^{2}) = x - y^{2}, y(x) = xy$, and $y^{2} = y^{2}$ showing that $\ideal{x - y^{2}, xy, y^{2}} \subseteq \ideal{x, y^{2}}$.
+          Then $x - y^{2} + y^{2} = x$ and $y^{2} = y^{2}$ shows the reverse containment and overall the ideals are equal.
+    \item We already know from 1.\ that $x^{2}$ lives in $\ideal{x - y^{2}, xy}$.
+          Since $xy = xy$, we overall have that $\ideal{x^{2}, xy} \subseteq \ideal{x - y^{2}, xy}$.
+          It remains to check if $x - y^{2} \in \ideal{x^{2}, xy}$.
+          However, notice that every element of $\ideal{x^{2}, xy}$ is divisible by $x$ while $x - y^{2}$ is clearly not divisible by $x$.
+          Thus $x - y^{2} \notin \ideal{x^{2}, xy}$ and the two ideals are not equal.
+  \end{enumerate}
+\end{pf}
+
 
 
 \printbibliography
