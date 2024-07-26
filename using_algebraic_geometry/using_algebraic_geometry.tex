@@ -85,7 +85,48 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
+\clearpage
 
+\begin{exercise}[\tcite{book:UAG} 1.1.2]\label{ex:UAG_1.1.2}
+  Show that $\ideal{f_{1}, \ldots, f_{s}}$ is closed under sums in $k[x_{1}, \ldots, x_{n}]$.
+  Also show that if $f \in \ideal{f_{1}, \ldots, f_{s}}$ and $p \in k[x_{1}, \ldots, x_{n}]$ then $p \cdot f \in \ideal{f_{1}, \ldots, f_{s}}$.
+\end{exercise}
+\begin{pf}
+  Let $f, g \in \ideal{f_{1}, \ldots, f_{s}}$.
+  Then $\exists p_{1}, \ldots, p_{s}, q_{1}, \ldots, q_{s}$ such that $f = \sum_{i = 1}^{s} p_{i} \cdot f_{i}$ and $g = \sum_{i = 1}^{s} q_{i} \cdot f_{i}$.
+  Thus $f + g = \sum_{i = 1}^{s} (p_{i} + q_{i}) \cdot f_{i}$ which shows that $f + g \in \ideal{f_{1}, \ldots, f_{s}}$.
+  Then let $p \in k[x_{1}, \ldots, x_{n}]$.
+  We have that $p \cdot f = p\sum_{i = 1}^{s} p_{i} f_{i} = \sum_{i = 1}^{s} (p \cdot p_{i}) \cdot f_{i}$ which shows that $\ideal{f_{1}, \ldots, f_{s}}$ is an ideal.
+\end{pf}
+
+\begin{exercise}[\tcite{book:UAG} 1.1.3]\label{ex:UAG_1.1.3}
+  Show that $\ideal{f_{1}, \ldots, f_{s}}$ is the smallest ideal containing $\set{f_{1}, \ldots, f_{s}}$.
+\end{exercise}
+\begin{pf}
+  We already know that $\ideal{f_{1}, \ldots, f_{s}}$ is an ideal by \Cref{ex:UAG_1.1.2}.
+  Now suppose that $J$ is an ideal containing $\set{f_{1}, \ldots, f_{s}}$.
+  Then, since ideals are closed under addition and scaling, we have that for all $p_{1}, \ldots, p_{s} \in k[x_{1}, \ldots, x_{n}]$ that $\sum_{i = 1}^{s} p_{i} \cdot f_{i} \in J$.
+  Thus, $\ideal{f_{1}, \ldots, f_{s}} \subseteq J$.
+\end{pf}
+
+\begin{exercise}[\tcite{book:UAG} 1.1.4]\label{ex:UAG_1.1.4}
+  Using \Cref{ex:UAG_1.1.3}, formulate and prove a general criterion for the equality of $I = \ideal{f_{1}, \ldots, f_{s}}$ and $J = \ideal{g_{1}, \ldots, g_{t}}$.
+\end{exercise}
+\begin{pf}
+  We claim that $\ideal{f_{1}, \ldots, f_{s}} = \ideal{g_{1}, \ldots, g_{t}}$ if and only if $\set{g_{1}, \ldots, g_{t}} \subseteq I$ and $\set{f_{1}, \ldots, f_{s}} \subseteq J$.
+  The forward implication is immediate.
+  Then by \Cref{ex:UAG_1.1.3}, if $\set{g_{1}, \ldots, g_{t}} \subseteq I$ then $J \subseteq I$.
+  Similarly, $\set{f_{1}, \ldots, f_{s}} \subseteq J \implies I \subseteq J$ and overall $I = J$.
+  This fact was used in \Cref{ex:UAG_1.1.1} (b).
+\end{pf}
+
+\begin{exercise}[\tcite{book:UAG} 1.1.5]\label{ex:UAG_1.1.5}
+  Show that $\ideal{y - x^{2}, z - x^{3}} = \ideal{y - x^{2}, z - xy}$ in $\Q[x, y, z]$.
+\end{exercise}
+\begin{pf}
+  It suffices to show that $z - x^{3} \in \ideal{y - x^{2}, z - xy}$ and and $z - xy \in \ideal{x - y^{2}, z - x^{3}}$.
+  Indeed we have that $(z - xy) + x(y - x^{2}) = z - x^{3}$ which also yields that $z - xy = z - x^{3} - x(y - x^{2})$.
+\end{pf}
 
 \printbibliography
 \end{document}
