@@ -236,15 +236,9 @@ So I've moved onto working through this book as well as trying to comprehend Stu
           Let $I = \ideal{x_{1} - a_{1}, \ldots, x_{n} - a_{n}}$.
           Consider the evaluation map $\text{ev}_{\overline{a}}\colon k[x_{1}, \ldots, x_{n}] \to k$ sending $f(x_{1}, \ldots, x_{n}) \mapsto f(a_{1}, \ldots, a_{n})$.
           Clearly this map is surjective.
-          Certainly we have that $I \subseteq \ker(\text{ev}_{\overline{a}})$.
-          Thus $\text{ev}_{\overline{a}}$ factors through a surjective map $\overline{\text{ev}}_{\overline{a}}\colon k[x_{1}, \ldots, x_{n}]/I \to k$ such that $\text{ev}_{\overline{a}} = \overline{\text{ev}}_{\overline{a}} \circ \pi$ where $\pi$ is the projection $\pi\colon k[x_{1}, \ldots, x_{n}] \to k[x_{1}, \ldots, x_{n}] / I$.
-          In $k[x_{1}, \ldots, x_{n}] / I$, since $x_{i} = a_{i}$ for all $i$, we have that $f(x_{1}, \ldots, x_{n}) = f(a_{1}, \ldots, a_{n})$.
-          Thus we have that $\pi(f(x_{1}, \ldots, x_{n})) = \pi(f(a_{1}, \ldots, a_{n}))$ for all $f(x_{1}, \ldots, x_{n}) \in k[x_{1}, \ldots, x_{n}]$.
-          Thus, every element of $k[x_{1}, \ldots, x_{n}] / I$ is equal to $\pi(z)$ for some $z \in k$.
-          However, for $z \in k$ we have that $z = \text{ev}_{\overline{a}}(z) = \overline{\text{ev}}_{\overline{a}}(\pi(z))$.
-          In particular, this implies that $\overline{\text{ev}}_{\overline{a}}(\pi(z)) = 0$ if and only if $z = 0$.
-          Thus, the kernel of $\overline{\text{ev}}_{\overline{a}}$ is $\pi(0) = 0$.
-          Thus, $\overline{\text{ev}}_{\overline{a}}$ is an isomorphism and $I = \ideal{x_{1} - a_{1}, \ldots, x_{n} - a_{n}}$ is maximal.
+          Then since for all $i$ we have that $x_{i} \equiv a_{i} \pmod{I}$, we have that $f(x_{1}, \ldots, x_{n}) \equiv f(a_{1}, \ldots, a_{n}) \pmod{I}$ for all $f(x_{1}, \ldots, x_{n}) \in k[x_{1}, \ldots, x_{n}]$.
+          Thus, $\text{ev}_{\overline{a}}(f) = f(a_{1}, \ldots, a_{n}) = 0$ if and only if $f(x_{1}, \ldots, x_{n}) \in I$.
+          Thus, $\ker(\text{ev}_{\overline{a}}) = I$ and $k[x_{1}, \ldots, x_{n}] / I$ is a field, meaning $\ideal{x_{1} - a_{1}, \ldots, x_{n} - a_{n}}$ is maximal.
     \item Since $\R[x]$ is a principal ideal domain, any ideal $I$ strictly containing $\ideal{x^{2} + 1}$ is of the form $\ideal{g(x)}$ for some $g(x) \mid x^{2} + 1$.
           However, since $x^{2} + 1$ is irreducible in $\R[x]$, we have that $g(x)$ is either $z(x^{2} + 1)$ for some nonzero $z \in \C$ or $g(x) = z$ for some nonzero $z \in \C$, meaning $\ideal{g(x)} = \ideal{x^{2} + 1}$ or or $\ideal{g(x)} = \R[x]$.
           Thus, $\ideal{x^{2} + 1}$ is maximal.
