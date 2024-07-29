@@ -265,5 +265,24 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
+\begin{exercise}[\tcite{book:UAG} 1.1.11]\label{ex:UAG_1.1.11}
+  Let $I, J$ be ideals in $k[\overline{x}]$.
+  \begin{enumerate}[label= (\alph*)]
+    \item Show that $I + J$ is an ideal.
+    \item Show that $I + J$ is the smallest ideal containing $I \cup J$.
+    \item If $I = \ideal{f_{1}, \ldots, f_{s}}$ and $J = \ideal{g_{1}, \ldots, g_{t}}$, what is a finite generating set of $I + J$?
+  \end{enumerate}
+\end{exercise}
+\begin{pf}
+  \begin{enumerate}[label= (\alph*)]
+    \item \quest{meh}
+    \item \quest{meh}
+    \item We claim that $I + J = \ideal{f_{1}, \ldots, f_{s}, g_{1}, \ldots, g_{t}}$.
+          Clearly $I, J \subseteq \ideal{f_{1}, \ldots, f_{s}, g_{1}, \ldots, g_{t}}$ and thus so is $I \cup J$.
+          By (b), this shows that $I + J \subseteq \ideal{f_{1}, \ldots, f_{s}, g_{1}, \ldots, g_{t}}$.
+          Then, since $f_{i} = f_{i} + 0$ and $g_{j} = 0 + g_{j}$ for all $i, j$, we have the reverse inclusion and thus the two ideals are equal.
+  \end{enumerate}
+\end{pf}
+
 \printbibliography
 \end{document}
