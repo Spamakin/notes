@@ -246,5 +246,24 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
+\clearpage
+
+\begin{exercise}[\tcite{book:UAG} 1.1.10]\label{ex:UAG_1.1.10}
+  \begin{enumerate}[label= (\alph*)]
+    \item Let $I = \ideal{x^{2} + y^{2}, x^{2} - z^{3}} \subseteq k[x, y, z]$.
+          Show that $y^{2} + z^{3}$ is in the first elimination ideal with respect to the ordering $x > y > z$.
+    \item Show that if $I$ is an ideal in $k[x_{1}, \ldots, x_{n}]$ then for all $\ell \geq 1$, $I_{\ell}$ is an ideal in $k[x_{\ell + 1}, \ldots, x_{n}]$.
+  \end{enumerate}
+\end{exercise}
+\begin{pf}
+  \begin{enumerate}[label= (\alph*)]
+    \item Since $x^{2} + y^{2} - (x^{2} - z^{3}) = y^{2} + z^{3}$ is an element of $I$ which does not depend on $x$, $y^{2} + z^{3}$ is in $I_{1}$.
+    \item For all $\ell \geq 1$, we have that $0 \in I_{\ell}$.
+          Then, if $f(x_{\ell + 1}, \ldots, x_{n}), g(x_{\ell + 1}, \ldots, x_{n})$ are two polynomials in $I$ who do not depend on the first $\ell$ variables, then so is $f + g$.
+          Finally, let $r(x_{\ell} + 1, \ldots, x_{n}) \in k[x_{\ell + 1}, \ldots, x_{n}]$.
+          Then $r \cdot f \in I_{\ell}$ since $r \cdot f \in I$ and still does not depend on any of the first $\ell$ variables.
+  \end{enumerate}
+\end{pf}
+
 \printbibliography
 \end{document}
