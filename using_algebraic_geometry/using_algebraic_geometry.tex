@@ -341,6 +341,24 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Thus, $\abs{\overline{z}} \leq B \defeq \max\set{1, \abs{a_{n - 1}} + \cdots + \abs{a_{0}}}$.
 \end{pf}
 
+\begin{exercise}[\quest{\tcite{book:UAG} 1.2.4}]\label{ex:UAG_1.2.4}
+  Numerically find all roots of $2z^{6} + 2z^{5} - z^{4} - z^{3} - 2z^{2} - 2z - 2$.
+\end{exercise}
+
+\clearpage
+
+\begin{exercise}[\tcite{book:UAG} 1.2.5]\label{ex:UAG_1.2.5}
+  Verify that if $x > y$ then $G = \bqty{x^{2} + 2x + 3 + y^{5} - y, y^{6} - y^{2} + 2y}$ is a lex \Grobner\ basis for the ideal that $G$ generates in $\mathbb{R}[x, y]$
+\end{exercise}
+\begin{pf}
+  We apply Buchberger's Criterion.
+  Let $f(x, y) = x^{2} + 2x + 3 + y^{5} - y$ and $g(x, y) = y^{6} - y^{2} + 2y$.
+  Then we have that
+  \[
+    S(f, g) = \frac{x^{2}y^{6}}{x^{2}} \cdot (x^{2} + 2x + 3 + y^{5} - y) - \frac{x^{2}y^{6}}{y^{6}} \cdot (y^{6} - y^{2} + 2y) = y^{6} \cdot (x^{2} + 2x + 3 + y^{5} - y) - x^{2} \cdot (y^{6} - y^{2} + 2y).
+  \]
+  This shows that $\overline{S(f, g)}^{G} = 0$ which yields that $G$ is a \Grobner\ basis.
+\end{pf}
 
 \printbibliography
 \end{document}
