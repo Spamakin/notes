@@ -155,7 +155,8 @@
 \declaretheorem[style=theorem, numberlike=defn, name=Proposition]{prop}
 \declaretheorem[style=theorem, numberlike=defn, name=Lemma]{lem}
 \declaretheorem[style=theorem, numberlike=defn, name=Corollary]{cor}
-\declaretheorem[style=theorem, numberwithin=chapter, name=Exercise]{exercise}
+\declaretheorem[style=theorem, numberwithin=section, name=Exercise]{exercise}
+\renewcommand*{\theexercise}{\arabic{exercise}}
 
 \declaretheoremstyle[
     spaceabove=\topsep,
