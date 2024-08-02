@@ -306,6 +306,39 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
+\chapter{Solving Polynomial Equations}
+
+\section{Solving Polynomial Systems by Elimination}
+
+\begin{exercise}[\quest{\tcite{book:UAG} 1.2.1}]\label{ex:UAG_1.2.1}
+
+\end{exercise}
+
+\begin{exercise}[\quest{\tcite{book:UAG} 1.2.2}]\label{ex:UAG_1.2.2}
+
+\end{exercise}
+
+\begin{exercise}[\tcite{book:UAG} 1.2.3]\label{ex:UAG_1.2.3}
+  Suppose $p(z) = z^{n} + a_{n - 1}z^{n - 1} + \cdots + a_{0}$ is a monic polynomial in $\C[z]$.
+  Then all roots $\overline{z}$ of $p(z)$ satisfy
+  \[
+    \overline{z} \leq B \defeq \max\set{1, \abs{a_{n - 1}} + \cdots + \abs{a_{0}}}.
+  \]
+\end{exercise}
+\begin{pf}
+  We may freely rewrite the polynomial as $p(z) = z^{n} - a_{n - 1}z^{n - 1} - \cdots + a_{0}$
+  We have that $0 = \overline{z}^{n} + a_{n - 1}\overline{z}^{n - 1} + \cdots a_{0}$ and so $-\overline{z}^{n} = a_{n - 1}\overline{z}^{n - 1} + \cdots + a_{0}$.
+  Suppose now that $\abs{\overline{z}} \geq 1$.
+  Then
+  \[
+    \abs{\overline{z}}^{n} = \abs{a_{n - 1}\overline{z}^{n - 1} + \cdots + a_{0}} \leq \abs{a_{n - 1}}\abs{z}^{n - 1} + \cdots + a_{0} \leq \abs{a_{n - 1}}\overline{z}^{n - 1} + \cdots \abs{a_{0}}\overline{z}^{n - 1}.
+  \]
+  Thus, $\abs{\overline{z}} \leq \abs{a_{n - 1}} + \cdots + \abs{a_{0}}$.
+  However, we assumed that $\abs{\overline{z}} \geq 1$.
+  This may not be the case.
+  Thus, $\abs{\overline{z}} \leq B \defeq \max\set{1, \abs{a_{n - 1}} + \cdots + \abs{a_{0}}}$.
+\end{pf}
+
 
 \printbibliography
 \end{document}
