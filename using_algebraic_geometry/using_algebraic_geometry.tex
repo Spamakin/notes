@@ -360,5 +360,75 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   This shows that $\overline{S(f, g)}^{G} = 0$ which yields that $G$ is a \Grobner\ basis.
 \end{pf}
 
+\begin{exercise}[\quest{\tcite{book:UAG} 2.1.6}]\label{ex:UAG_2.1.6}
+\end{exercise}
+
+\begin{exercise}[\quest{\tcite{book:UAG} 2.1.7}]\label{ex:UAG_2.1.7}
+\end{exercise}
+
+\begin{exercise}[\tcite{book:UAG} 2.1.8]\label{ex:UAG_2.1.8}
+  Newton's method for an equation $p(z) = 0$ is the sequence of points $\set{z_{k}}_{k \geq 0}$ starting from a chosen $z_{0}$ and defining $z_{k + 1} = N_{p}(z_{k})$ for $N_{p}(z) = z - \frac{p(z)}{p'(z)}$.
+  \begin{enumerate}[label= (\alph*)]
+    \item Prove that a simple root of a polynomial $p(z)$ is a fixed point of $N_{p}(z)$.
+    \item Show that multiple roots of $p(z)$ are removable singularities of $N_{p}(z)$.
+          That is, show that $\abs{N_{p}(z)}$ is bounded in a neighborhood of each multiple root.
+          How should $N_{p}(z)$ be defined at a multiple root of $p(z)$ to make $N_{p}(z)$ continuous.
+    \item Show that $N_{p}'(\overline{z}) = 0$ if $\overline{z}$ is a simple root, meaning that $p(\overline{z}) = 0$ and $p'(\overline{z}) \neq 0$.
+    \item Show that if $\overline{z}$ is a root of multiplicity $k$ of $p(z)$, meaning $p(overline{z}) = p'(\overline{z}) = \cdots = p^{(k - 1)}(\overline{z}) = 0$ and $p^{(k)}(\overline{z}) \neq 0$, then
+          \[
+            \lim_{z \to \overline{z}} N_{p}'(z) = 1 - \frac{1}{k}.
+          \]
+    \item Show that by replacing $p(z)$ with
+          \[
+            p_{\emph{red}}(z) = \frac{p(z)}{\gcd{p(z), p'(z)}}
+          \]
+          that the difficulty in (d) is eliminated as all roots of $p_{\red}(z)$ are simple.
+  \end{enumerate}
+\end{exercise}
+\clearpage
+\begin{pf}
+  \begin{enumerate}[label= (\alph*)]
+    \item Let $\overline{z}$ be a simple root of $p(z)$, so $p(z) = 0$ but $p'(z) \neq 0$.
+          Then $N_{p}(\overline{z}) = \overline{z} - \frac{p(\overline{z})}{p'(\overline{z})} = \overline{z}$ meaning $\overline{z}$ is a fixed point of $N_{p}(z)$.
+    \item Suppose that $\overline{z}$ is a multiple root of $p(z)$ with multiplicity $m \geq 2$.
+          Then we may express $p(z) = \tilde(p)(z)(z - \overline{z})^{m}$ such that $\tilde{p}(\overline{z}) \neq 0$.
+          Thus, we have that
+          \begin{align*}
+            N_{p}(z) &\defeq z - \frac{p(z)}{p'(z)} \\
+            &= z - \frac{\tilde{p}(z)(z - \overline{z})^{m}}{\tilde{p}'(z)(z - \overline{z})^{m} + m\tilde{p}(z)(z - \overline{z})^{m - 1}} = z - \frac{\tilde{p}(z)(z - \overline{z})}{\tilde{p}'(z)(z - \overline{z}) + m\tilde{p}(z)}
+          \end{align*}
+          Note that $m\tilde{p}(\overline{z}) \neq 0$.
+          Thus, we have that
+          \[
+            \abs{N_{p}(\overline{z})} = \abs{\overline{z} - \frac{\tilde{p}(\overline{z})(\overline{z} - \overline{z})}{\tilde{p}'(\overline{z})(\overline{z} - \overline{z}) + m\tilde{p}(\overline{z})}} = \abs{\overline{z}} \leq \lc(p) \cdot B
+          \]
+          where $B$ is the value from~\Cref{ex:UAG_2.1.3} and $\lc(p)$ is the leading coefficient of $p(z)$.
+    \item Suppose now that $\overline{z}$ is a simple root of $p(\overline{z})$.
+          Then we may express $p(z) = \tilde{p}(z)(z - \overline{z})$ such that $\tilde{p}(\overline{z}) \neq 0$.
+          We have that
+          \[
+            p'(z) = \tilde{p}'(z)(z - \overline{z}) + \tilde{p}(z)
+          \]
+          and evaluation of $p'(z)$ at $\overline{z}$ is nonzero.
+    \item Let $\overline{z}$ be a root of multiplicity $m$.
+          Following (b), we write $p(z) = \tilde{p}(z)(z - \overline{z})^{m}$ such that $\tilde{p}(\overline{z}) \neq 0$.
+          Then we have, by differentiating the expression for $N_{p}(z)$ from (b), that
+          \[
+            N'_{p}(z) = 1 - \frac{(\tilde{p}'(z)(z - \overline{z}) + \tilde{p}(z))(\tilde{p}'(z)(z - \overline{z}) + m\tilde{p}(z)) - (\tilde{p}(z)(z - \tilde{z}))(\tilde{p}''(z)(z - \overline{z}) + \tilde{p}'(z) + m\tilde{p}'(z))}{(\tilde{p}'(z)(z - \overline{z}) + m\tilde{p}(z))^{2}}.
+          \]
+          Evaluation at $z = \overline{z}$ yields that $\lim_{z \to \overline{z}} N_{p}'(z) = 1 - \frac{1}{m}$.
+    \item Let $\overline{z}$ be a root of multiplicity $m$.
+          Following (b), we write $p(z) = \tilde{p}(z)(z - \overline{z})^{m}$ such that $\tilde{p}(\overline{z}) \neq 0$.
+          Then
+          \[
+            p'(z) = \tilde{p}'(z - \overline{z})^{m} + m\tilde{p}(z)(z - \overline{z})^{m - 1} = (z - \overline{z})^{m - 1}(\tilde{p}'(z)(z - \overline{z}) + m\tilde{p}(z)).
+          \]
+          Notice that $\tilde{p}'(\overline{z})(\overline{z} - \overline{z}) + m\tilde{p}(\overline{z}) = m\tilde{p}(\overline{z}) \neq 0$.
+          Thus, a root of multiplicity $m \geq 1$ of $p(z)$ is a root of multiplicity $m - 1$ of $p'(z)$.
+          This implies that if we have roots $\overline{z}_{1}, \ldots, \overline{z}_{k}$ with multiplicities $m_{1}, \ldots, m_{k} \geq 1$, then $\gcd(p(z), p'(z)) = (z - \overline{z}_{1})^{m_{1}} \cdots (z - \overline{z}_{k})^{m_{k}}$.
+          Thus, the polynomial $p_{\mathrm{red}}(z) = \frac{p(z)}{\gcd(p(z), p'(z))}$ has the same roots of $p(z)$ but all with multiplicity $1$ which is the best case for Newton's method.
+  \end{enumerate}
+\end{pf}
+
 \printbibliography
 \end{document}
