@@ -430,5 +430,27 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
+\begin{exercise}[\tcite{book:UAG} 2.1.9]\label{ex:UAG_2.1.9}
+  \begin{enumerate}[label= (\alph*)]
+    \item What happens if you do Newton's method to solve $z^{2} + 1 = 0$ starting from a real $z_{0}$ versus a complex $z_{0}$?
+    \item Let $p(z) = z^{4} - z^{2} - \frac{11}{36}$.
+          Let $N_{p}(z) = z - \frac{p(z)}{p'(z)}$.
+          Show that $N_{p}\pqty{\pm\frac{1}{\sqrt{6}}} = \mp \frac{1}{\sqrt{6}}$ and $N_{p}'\pqty{\frac{1}{\sqrt{6}}} = 0$.
+  \end{enumerate}
+\end{exercise}
+\begin{pf}
+  \begin{enumerate}[label= (\alph*)]
+    \item Let $p(z) = z^{2} + 1$.
+          We have that
+          \[
+            N_{p}(z) = z - \frac{z^{2} + 1}{2z} = \frac{2z^{2} - z^{2} + 1}{2z} = \frac{z^{2} + 1}{2z} = \frac{x^{2} + 2ixy - y^{2} + 1}{2x + 2iy}.
+          \]
+          If $z$ is real then $y = 0$ and so $N_{p}(x) = \frac{x^{2} + 1}{2x}$ which is always real.
+          Thus, Newton's method will never reach the imaginary roots of $z^{2} + 1$.
+          However, if we begin with a guess with nonzero imaginary part, then the guess does converge as expected.
+    \item \quest{Just basic arithmetic not worth doing.}
+  \end{enumerate}
+\end{pf}
+
 \printbibliography
 \end{document}
