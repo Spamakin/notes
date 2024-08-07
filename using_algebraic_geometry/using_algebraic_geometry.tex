@@ -452,5 +452,25 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
+\begin{exercise}[\tcite{book:UAG} 2.1.10]\label{ex:UAG_2.1.10}
+  Let $p(z) = z^{n} + a_{n - 1}z^{n - 1} + \cdots + a_{0}$ be a monic polynomial in $\C[z]$.
+  Then all roots $\overline{z}$ of $p(z)$ satisfy
+  \[
+    \overline{z} \leq B \defeq 1 + \max\set{\abs{a_{n - 1}}, \ldots, \abs{a_{0}}}.
+  \]
+\end{exercise}
+\begin{pf}
+  Let $\overline{z}$ be a root of $p(z)$.
+  Then $-\overline{z}^{n} = a_{n - 1}\overline{z}^{n - 1} + \cdots + a_{0}$ and so
+  \begin{align*}
+    \abs{\overline{z}}^{n} &= \abs{a_{n - 1}\overline{z}^{n - 1} + \cdots + a_{0}} \\
+                           &\leq \max_{i}\set{\abs{a_{i}}} \cdot \abs{\overline{z}^{n - 1} + \cdots + 1} \\
+                           &\leq \max_{i}\set{\abs{a_{i}}} \cdot \pqty{\abs{\overline{z}}^{n - 1} + \cdots + 1} \\
+                           &= \max_{i}\set{\abs{a_{i}}} \cdot \frac{\abs{\overline{z}}^{n} + 1}{\abs{\overline{z}} - 1} \leq \max_{i}\set{\abs{a_{i}}} \cdot \frac{\abs{\overline{z}}^{n}}{\abs{\overline{z}} - 1}.
+  \end{align*}
+  Thus, $\abs{\overline{z}}^{n} \leq \max_{i}\set{\abs{a_{i}}} \cdot \frac{\abs{z}^{n}}{\abs{z} - 1}$ which implies that $\abs{z} - 1 \leq \max_{i}\set{\abs{a_{i}}}$.
+  Thus, $\abs{z} \leq 1 + \max_{i}\set{\abs{a_{i}}}$.
+\end{pf}
+
 \printbibliography
 \end{document}
