@@ -472,5 +472,30 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Thus, $\abs{z} \leq 1 + \max_{i}\set{\abs{a_{i}}}$.
 \end{pf}
 
+\clearpage
+
+\section{Finite Dimensional Algebras}
+
+\begin{exercise}[\quest{\tcite{book:UAG} 2.2.1}]\label{ex:UAG_2.2.1}
+\end{exercise}
+
+\begin{exercise}[\tcite{book:UAG} 2.2.2]\label{ex:UAG_2.2.2}
+  Let $p_{i}(x_{i})$ as in \cite[2.2 (2.6)]{book:UAG}.
+  Then show that $p_{i}(x_{i})$ generates $I \cap k[x_{i}]$.
+\end{exercise}
+\begin{pf}
+  It is clear that $\ideal{p_{i}(x_{i})} \subseteq I \cap k[x_{i}]$.
+  Now suppose that $f(x_{i}) \in I \cap k[x_{i}]$.
+  Then $\deg(f(x_{i}))$ must be $\geq m_{i}$.
+  If not, then by the minimality of $m_{i}$ we would arrive at a contradiction.
+  Now by the division algorithm, write $f(x_{i}) = q(x_{i})p_{i}(x_{i}) + r(x_{i})$ where $\deg(r_{x_{i}}) < m_{i}$.
+  Then $r(x_{i}) = f(x_{i}) - q(x_{i})p(x_{i}) \in I$ and so $r(x_{i})$ must be $0$ since if not, we would arrive at a contradiction of the minimality of $m_{i}$.
+
+  This gives us an algorithm to compute $p_{i}(x_{i})$.
+  Let $I$ be a zero dimensional ideal and $G$ a \Grobner\ basis for $I$.
+  Then we know there exists $m_{i}$ such that $\set{1, [x_{i}], \ldots, [x^{m_{i}}]}$ is linearly dependent in $k[\overline{x}] / I$.
+  In fact, we may use the Finiteness Theorem to set $m_{i}$ to the smallest integer such that $x_{i}^{m_{i}} = \lt(g)$ for some $g \in G$.
+\end{pf}
+
 \printbibliography
 \end{document}

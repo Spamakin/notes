@@ -12,3 +12,5 @@
 *.synctex.gz
 _region_.tex
 .auctex-auto/
+
+*.sage.py
