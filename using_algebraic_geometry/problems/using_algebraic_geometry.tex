@@ -495,6 +495,8 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Let $I$ be a zero dimensional ideal and $G$ a \Grobner\ basis for $I$.
   Then we know there exists $m_{i}$ such that $\set{1, [x_{i}], \ldots, [x^{m_{i}}]}$ is linearly dependent in $k[\overline{x}] / I$.
   In fact, we may use the Finiteness Theorem to set $m_{i}$ to the smallest integer such that $x_{i}^{m_{i}} = \lt(g)$ for some $g \in G$.
+  Since $k[x_{1}, \ldots, x_{n}] / I$ is a vector space, we can check linear independence in the usual way.
+  See \quest{Sage code?} for a SageMath implementation of this.
 \end{pf}
 
 \printbibliography
