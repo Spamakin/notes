@@ -499,5 +499,21 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   See \quest{Sage code?} for a SageMath implementation of this.
 \end{pf}
 
+\begin{exercise}[\tcite{book:UAG} 2.2.3]\label{ex:UAG_2.2.3}
+  Let $p(x) \in k[x]$ be a nonzero polynomial.
+  Then $\sqrt{\gen{p(x)}} = \gen{p_{\red}(x)}$.
+\end{exercise}
+\begin{pf}
+  Let $0 \neq f(x) \in \sqrt{\gen{p(x)}}$.
+  Then there exists $m \geq 1$ such that $f^{m} \in \gen{p(x)}$ and so $p(x) \mid f(x)^{m}$.
+  In particular, each linear factor $(x - \overline{z})$ of $p(x)$ divides $f(x)^{n}$ and so divides $f(x)$ as $(x - \overline{z})$ is irreducible.
+  Thus, $p_{\red}(x) \mid f(x)$ and so $f(x) \in \gen{p_{\red}(x)}$.
+  Conversely, suppose $f(x) \in \gen{p_{\red}(x)}$ so that $\gen{p_{\red}} \mid f(x)$.
+  Label the roots of $p(x)$ as $\overline{z}_{1}, \ldots, \overline{z}_{r}$, each $\overline{z}_{i} \in \overline{k}$.
+  Then for each $i$, $(x - \overline{z}_{i}) \mid f(x)$
+  Let $m_{i}$ be the multiplicity of $z_{i}$ in $p(x)$ and $m = \max\set{m_{1}, \ldots, m_{r}}$.
+  Then $p(x) \mid f(x)^{m}$ and so $f(x) \in \sqrt{\gen{p(x)}}$
+\end{pf}
+
 \printbibliography
 \end{document}
