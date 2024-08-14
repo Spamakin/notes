@@ -515,5 +515,26 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Then $p(x) \mid f(x)^{m}$ and so $f(x) \in \sqrt{\gen{p(x)}}$
 \end{pf}
 
+\begin{exercise}[\quest{\tcite{book:UAG} 2.2.4}]\label{ex:UAG_2.2.4}
+\end{exercise}
+
+\clearpage
+
+\begin{exercise}[\quest{\tcite{book:UAG} 2.2.5}]\label{ex:UAG_2.2.5}
+  Let $I$ as in \Cref{ex:UAG_2.2.4}.
+  Then $\sqrt{I} = I + \gen{x(x - 1), y(y - 2)}$.
+  Since $I \subseteq \sqrt{I}$, we see that $\dim \C[x, y] / I \geq \dim \C[x, y] / \sqrt{I}$.
+  A quick \quest{SageMath} computation confirms this: $\dim \C[x, y] / I = 9$ and $\dim \C[x, y] / \sqrt{I} = 2$.
+  Then, since $I \subseteq \sqrt{I}$ we have that $V(\sqrt{I}) \subseteq V(I)$.
+  Notice that
+  \begin{align*}
+    y^{4}x + 3x^{3} - y^{4} - 3x^{2} &= y^{4}(x - 1) + 3x^{2}(x - 1) = (y^{4} + 3x^{2})(x - 1) \\
+    x^{2}y - 2x^{2} &= x^{2}(y - 2) \\
+    2y^{4}x - x^{3} - 2y^{4} + x^{2} &= 2y^{4}(x - 1) - x^{2}(x - 1) = (2y^{4} - x^{2})(x - 1).
+  \end{align*}
+  Thus, $(1, 2)$ and $(0, 0)$ are the only two points in $V(I)$.
+  Since it is evident that $V(\sqrt{I})$ contains these two points, we see in this case that $V(\sqrt{I}) = V(I)$.
+\end{exercise}
+
 \printbibliography
 \end{document}
