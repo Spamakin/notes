@@ -540,5 +540,17 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Since it is evident that $V(\sqrt{I})$ contains these two points, we see in this case that $V(\sqrt{I}) = V(I)$.
 \end{pf}
 
+\begin{exercise}[\tcite{book:UAG} 2.2.6]\label{ex:UAG_2.2.6}
+  Let $I$ as in \Cref{ex:UAG_2.2.4}.
+  Compute the monomial basis for $\C[x, y] / I$ using grevlex order and the multiplication table.
+\end{exercise}
+\begin{pf}
+  A grevlex \Grobner\ basis for $I$ is $\set{y^{4} - 16y^{2}, x^{3} - x^{2}, -2x^{2}}$.
+  Thus, by the Finiteness Theorem, we know that the for monomials $x^{a}y^{b}$ in $\C[x, y] / I$ we must have that $0 \leq a \leq 1$ and $0 \leq b \leq 3$.
+  \quest{TODO: SageMath compute table.}
+  A quick Sagemath computation confirms this.
+  \quest{TODO: Need to look at monomials in $\Q[x, y] / I$ for some reason.}
+\end{pf}
+
 \printbibliography
 \end{document}
