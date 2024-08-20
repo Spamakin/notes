@@ -535,7 +535,8 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 \begin{pf}
   Then $\sqrt{I} = I + \gen{x(x - 1), y(y - 2)}$.
   Since $I \subseteq \sqrt{I}$, we see that $\dim \C[x, y] / I \geq \dim \C[x, y] / \sqrt{I}$.
-  A quick \quest{SageMath} computation confirms this: $\dim \C[x, y] / I = 9$ and $\dim \C[x, y] / \sqrt{I} = 2$.
+  A quick SageMath computation confirms this: $\dim \C[x, y] / I = 9$ and $\dim \C[x, y] / \sqrt{I} = 2$.
+  See \texttt{code/ch2/2\_2\_5.sage} for the code in action.
   Then, since $I \subseteq \sqrt{I}$ we have that $V(\sqrt{I}) \subseteq V(I)$.
   Notice that
   \begin{align*}
