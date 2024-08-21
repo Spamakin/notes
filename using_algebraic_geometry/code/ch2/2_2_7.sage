@@ -33,7 +33,7 @@ def intersect(R, I, J):
     return R.ideal(H_R)
 
 def main():
-    R.<x, y> = PolynomialRing(CC, 2, order='lex')
+    R.<x, y> = PolynomialRing(CC, 2, order='degrevlex')
     I1 = R.ideal(x, y)
     I2 = R.ideal(x - 1, y - 1)
     I3 = R.ideal(x + 1, y - 1)
@@ -46,7 +46,8 @@ def main():
     res = intersect(R, res, I4)
     res = intersect(R, res, I5)
 
-    print(res)
+    print(res.groebner_basis())
+
 
 if __name__ == "__main__":
     main()
