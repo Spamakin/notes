@@ -503,7 +503,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Then we know there exists $m_{i}$ such that $\set{1, [x_{i}], \ldots, [x^{m_{i}}]}$ is linearly dependent in $k[\overline{x}] / I$.
   In fact, we may use the Finiteness Theorem to set $m_{i}$ to the smallest integer such that $x_{i}^{m_{i}} = \lt(g)$ for some $g \in G$.
   Since $k[x_{1}, \ldots, x_{n}] / I$ is a vector space, we can check linear independence in the usual way.
-  See \quest{Sage code?} for a SageMath implementation of this.
+  See \texttt{code/ch2/2\_2\_2.sage} for a SageMath implementation of this.
 \end{pf}
 
 \begin{exercise}[\tcite{book:UAG} 2.2.3]\label{ex:UAG_2.2.3}
@@ -522,7 +522,9 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Then $p(x) \mid f(x)^{m}$ and so $f(x) \in \sqrt{\gen{p(x)}}$
 \end{pf}
 
-\begin{exercise}[\quest{\tcite{book:UAG} 2.2.4}]\label{ex:UAG_2.2.4}
+\begin{exercise}[\tcite{book:UAG} 2.2.4]\label{ex:UAG_2.2.4}
+  We use the algorithm from \Cref{ex:UAG_2.2.2} implemented in \texttt{code/ch2/2\_2\_2sage}.
+  See \texttt{code/ch2/2\_2\_2sage} for the code in action.
 \end{exercise}
 
 \clearpage
@@ -565,6 +567,14 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   We implement the algorithm described in \Cref{ex:UAG_1.3.11}.
   See \texttt{/code/ch2/2\_2\_7.sage} for the code in action.
 \end{pf}
+
+\begin{exercise}[\tcite{book:UAG} 2.2.7]\label{ex:UAG_2.2.7}
+  Use the method described in~\cite[Prop. 2.2.7]{book:UAG} to show that the ideal
+  \[
+    I = \ideal{x^{2} + \frac{3xy}{2} + \frac{y^{2}}{2} - \frac{3x}{2} - \frac{3y}{2}, xy^{2} - x, y^{3} - y}
+  \]
+  is a radical ideal.
+\end{exercise}
 
 \printbibliography
 \end{document}
