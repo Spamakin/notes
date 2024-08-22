@@ -1,4 +1,5 @@
 
+# from 2_2_2.sage
 def single_var_generator(R, I, x):
     if I.dimension() != 0:
         raise ValueError(f"The inputted ideal I is not zero dimensional: dim(I) = {I.dimension()}")
@@ -33,10 +34,21 @@ def single_var_generator(R, I, x):
         j += 1
 
 def main():
-    R.<x, y> = PolynomialRing(QQ, 2, order='lex')
-    I = R.ideal(x^2 + 3*x*y/2 + y^2/2 + 3*x/2 - 3*y/2, x*y^2 - x, y^3 - y)
+    R.<x, y> = PolynomialRing(QQ, 2)
+    I = R.ideal(x^2 + 3*x*y/2 + y^2/2 - 3*x/2 - 3*y/2, x*y^2 - x, y^3 - y)
     p_x = single_var_generator(R, I, x)
-    print(p_x)
+    p_x_red = p_x / (p_x.gcd(derivative(p_x, x)))
+    p_y = single_var_generator(R, I, y)
+    p_y_red = p_y / (p_y.gcd(derivative(p_y, y)))
+
+    print(f"{p_x     = }")
+    print(f"{p_x_red = }")
+    print(f"{p_y     = }")
+    print(f"{p_y_red = }")
+
+    constructed_rad = I + R.ideal(p_x_red) + R.ideal(p_y_red)
+    print(f"I == sqrt(I) == I + <p_x_rad, p_y_rad>: {I == constructed_rad == I.radical()}")
+
 
 if __name__ == "__main__":
     main()

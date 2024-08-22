@@ -314,6 +314,11 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 
 \end{exercise}
 
+\section{Affine Varieties}
+
+\begin{exercise}[\quest{\tcite{book:UAG} 1.4.9}]\label{ex:UAG_1.4.9}
+
+\end{exercise}
 
 \chapter{Solving Polynomial Equations}
 
@@ -568,13 +573,27 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   See \texttt{/code/ch2/2\_2\_7.sage} for the code in action.
 \end{pf}
 
-\begin{exercise}[\tcite{book:UAG} 2.2.7]\label{ex:UAG_2.2.7}
-  Use the method described in~\cite[Prop. 2.2.7]{book:UAG} to show that the ideal
+\begin{exercise}[\tcite{book:UAG} 2.2.8]\label{ex:UAG_2.2.8}
+  Let $I$ be the following ideal:
   \[
     I = \ideal{x^{2} + \frac{3xy}{2} + \frac{y^{2}}{2} - \frac{3x}{2} - \frac{3y}{2}, xy^{2} - x, y^{3} - y}
   \]
-  is a radical ideal.
+  \begin{enumerate}[label= (\alph*)]
+    \item Use the method described in~\cite[Prop. 2.2.7]{book:UAG} to show that $I$ is a radical ideal.
+    \item Give a non-computational proof of the statement in \textbf{(a)} using the following observation:
+          By the form of the generators of the ideals $I_{j}$ in~\Cref{ex:UAG_2.2.7}, we have that $V(I_{j})$ is a single point and $I(V(I_{j})) = I_{j}$.
+          Thus, $I_{j} = \sqrt{I_{j}}$ by the Nullstellensatz.
+          Then use~\Cref{ex:UAG_1.4.9}.
+  \end{enumerate}
 \end{exercise}
+\begin{pf}
+  \begin{enumerate}[label= (\alph*)]
+    \item See \texttt{code/ch2/2\_2\_8.sage} for the code in action.
+    \item Since each of the $I_{j}$ are maximal ideals and $I_{j} \subseteq \sqrt{I_{j}}$, we must have that $I = \sqrt{I_{j}}$.
+          Thus $I(V(I_{j})) = I_{j}$ and we must have that $I_{j} = \sqrt{I_{j}}$.
+          Since each $I_{j}$ is radical and $I = \bigcap_{j = 1}^{5} I_{j}$, we have by~\Cref{ex:UAG_2.2.7} that $I$ is radical.
+  \end{enumerate}
+\end{pf}
 
 \printbibliography
 \end{document}
