@@ -86,7 +86,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 \end{pf}
 
 \begin{pf}[\tcite{book:UAG} 1.1.3]\label{ex:UAG_1.1.3}
-  We already know that $\ideal{f_{1}, \ldots, f_{s}}$ is an ideal by \Cref{ex:UAG_1.1.2}.
+  We already know that $\ideal{f_{1}, \ldots, f_{s}}$ is an ideal by \nameref{ex:UAG_1.1.2}.
   Now suppose that $J$ is an ideal containing $\set{f_{1}, \ldots, f_{s}}$.
   Then, since ideals are closed under addition and scaling, we have that for all $p_{1}, \ldots, p_{s} \in k[x_{1}, \ldots, x_{n}]$ that $\sum_{i = 1}^{s} p_{i} \cdot f_{i} \in J$.
   Thus, $\ideal{f_{1}, \ldots, f_{s}} \subseteq J$.
@@ -95,9 +95,9 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 \begin{pf}[\tcite{book:UAG} 1.1.4]\label{ex:UAG_1.1.4}
   We claim that $\ideal{f_{1}, \ldots, f_{s}} = \ideal{g_{1}, \ldots, g_{t}}$ if and only if $\set{g_{1}, \ldots, g_{t}} \subseteq I$ and $\set{f_{1}, \ldots, f_{s}} \subseteq J$.
   The forward implication is immediate.
-  Then by \Cref{ex:UAG_1.1.3}, if $\set{g_{1}, \ldots, g_{t}} \subseteq I$ then $J \subseteq I$.
+  Then by \nameref{ex:UAG_1.1.3}, if $\set{g_{1}, \ldots, g_{t}} \subseteq I$ then $J \subseteq I$.
   Similarly, $\set{f_{1}, \ldots, f_{s}} \subseteq J \implies I \subseteq J$ and overall $I = J$.
-  This fact was used in \Cref{ex:UAG_1.1.1} (b).
+  This fact was used in \nameref{ex:UAG_1.1.1} (b).
 \end{pf}
 
 \begin{pf}[\tcite{book:UAG} 1.1.5]\label{ex:UAG_1.1.5}
@@ -304,7 +304,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
           \[
             \abs{N_{p}(\overline{z})} = \abs{\overline{z} - \frac{\tilde{p}(\overline{z})(\overline{z} - \overline{z})}{\tilde{p}'(\overline{z})(\overline{z} - \overline{z}) + m\tilde{p}(\overline{z})}} = \abs{\overline{z}} \leq \lc(p) \cdot B
           \]
-          where $B$ is the value from~\Cref{ex:UAG_2.1.3} and $\lc(p)$ is the leading coefficient of $p(z)$.
+          where $B$ is the value from~\nameref{ex:UAG_2.1.3} and $\lc(p)$ is the leading coefficient of $p(z)$.
     \item Suppose now that $\overline{z}$ is a simple root of $p(\overline{z})$.
           Then we may express $p(z) = \tilde{p}(z)(z - \overline{z})$ such that $\tilde{p}(\overline{z}) \neq 0$.
           We have that
@@ -393,7 +393,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 \end{pf}
 
 \begin{pf}[\tcite{book:UAG} 2.2.4]\label{ex:UAG_2.2.4}
-  We use the algorithm from \Cref{ex:UAG_2.2.2} implemented in \texttt{code/ch2/2\_2\_2sage}.
+  We use the algorithm from \nameref{ex:UAG_2.2.2} implemented in \texttt{code/ch2/2\_2\_2sage}.
   See \texttt{code/ch2/2\_2\_2sage} for the code in action.
 \end{pf}
 
@@ -422,7 +422,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 \end{pf}
 
 \begin{pf}[\tcite{book:UAG} 2.2.7]\label{ex:UAG_2.2.7}
-  We implement the algorithm described in \Cref{ex:UAG_1.3.11}.
+  We implement the algorithm described in \nameref{ex:UAG_1.3.11}.
   See \texttt{/code/ch2/2\_2\_7.sage} for the code in action.
 \end{pf}
 
@@ -431,7 +431,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
     \item See \texttt{code/ch2/2\_2\_8.sage} for the code in action.
     \item Since each of the $I_{j}$ are maximal ideals and $I_{j} \subseteq \sqrt{I_{j}}$, we must have that $I = \sqrt{I_{j}}$.
           Thus $I(V(I_{j})) = I_{j}$ and we must have that $I_{j} = \sqrt{I_{j}}$.
-          Since each $I_{j}$ is radical and $I = \bigcap_{j = 1}^{5} I_{j}$, we have by~\Cref{ex:UAG_2.2.7} that $I$ is radical.
+          Since each $I_{j}$ is radical and $I = \bigcap_{j = 1}^{5} I_{j}$, we have by~\nameref{ex:UAG_2.2.7} that $I$ is radical.
   \end{enumerate}
 \end{pf}
 
