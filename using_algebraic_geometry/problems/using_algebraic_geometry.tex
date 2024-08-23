@@ -54,7 +54,7 @@
 At the time of writing this, I am starting my PhD at The Ohio State University.
 Currently a large part of my interests in algebra are about algorithms as they relate to polynomials and algebraic geometry.
 I've been doing a bunch of problems from \emph{Ideals, Varieties, and Algorithms}~\cite{book:IVA}.
-However,  it seems that \emph{Using Algebraic Geometry}~\cite{book:UAG} moves through the material faster as it assumes you know more algebra.
+However,  it seems that \emph{Using Algebraic Geometry}~\cite{book:UAG} Ex. moves through the material faster as it assumes you know more algebra.
 So I've moved onto working through this book as well as trying to comprehend Sturmfel's \emph{Algorithms in Invariant Theory}~\cite{book:AlgosInInvTheory}.
 
 \mainmatter
@@ -63,7 +63,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 
 \section{Polynomials and Ideals}
 
-\begin{pf}[\tcite{book:UAG} 1.1.1]\label{ex:UAG_1.1.1}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.1]\label{ex:UAG_1.1.1}
   \begin{enumerate}[label= (\alph*)]
     \item We have that $x(x - y^{2}) + y(xy) = x^{2} - xy^{2} + xy^{2} = x^{2}$.
     \item It suffices to check for generators.
@@ -77,7 +77,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.2]\label{ex:UAG_1.1.2}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.2]\label{ex:UAG_1.1.2}
   Let $f, g \in \ideal{f_{1}, \ldots, f_{s}}$.
   Then $\exists p_{1}, \ldots, p_{s}, q_{1}, \ldots, q_{s}$ such that $f = \sum_{i = 1}^{s} p_{i} \cdot f_{i}$ and $g = \sum_{i = 1}^{s} q_{i} \cdot f_{i}$.
   Thus $f + g = \sum_{i = 1}^{s} (p_{i} + q_{i}) \cdot f_{i}$ which shows that $f + g \in \ideal{f_{1}, \ldots, f_{s}}$.
@@ -85,14 +85,14 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   We have that $p \cdot f = p\sum_{i = 1}^{s} p_{i} f_{i} = \sum_{i = 1}^{s} (p \cdot p_{i}) \cdot f_{i}$ which shows that $\ideal{f_{1}, \ldots, f_{s}}$ is an ideal.
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.3]\label{ex:UAG_1.1.3}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.3]\label{ex:UAG_1.1.3}
   We already know that $\ideal{f_{1}, \ldots, f_{s}}$ is an ideal by \nameref{ex:UAG_1.1.2}.
   Now suppose that $J$ is an ideal containing $\set{f_{1}, \ldots, f_{s}}$.
   Then, since ideals are closed under addition and scaling, we have that for all $p_{1}, \ldots, p_{s} \in k[x_{1}, \ldots, x_{n}]$ that $\sum_{i = 1}^{s} p_{i} \cdot f_{i} \in J$.
   Thus, $\ideal{f_{1}, \ldots, f_{s}} \subseteq J$.
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.4]\label{ex:UAG_1.1.4}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.4]\label{ex:UAG_1.1.4}
   We claim that $\ideal{f_{1}, \ldots, f_{s}} = \ideal{g_{1}, \ldots, g_{t}}$ if and only if $\set{g_{1}, \ldots, g_{t}} \subseteq I$ and $\set{f_{1}, \ldots, f_{s}} \subseteq J$.
   The forward implication is immediate.
   Then by \nameref{ex:UAG_1.1.3}, if $\set{g_{1}, \ldots, g_{t}} \subseteq I$ then $J \subseteq I$.
@@ -100,12 +100,12 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   This fact was used in \nameref{ex:UAG_1.1.1} (b).
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.5]\label{ex:UAG_1.1.5}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.5]\label{ex:UAG_1.1.5}
   It suffices to show that $z - x^{3} \in \ideal{y - x^{2}, z - xy}$ and and $z - xy \in \ideal{x - y^{2}, z - x^{3}}$.
   Indeed we have that $(z - xy) + x(y - x^{2}) = z - x^{3}$ which also yields that $z - xy = z - x^{3} - x(y - x^{2})$.
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.6]\label{ex:UAG_1.1.6}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.6]\label{ex:UAG_1.1.6}
   If $I = \set{0}$ then $I = \ideal{0}$.
   So suppose $I \neq 0$.
   Let $d \in I$ be of minimal degree.
@@ -121,7 +121,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   So we must have that $r = 0$ and overall $\ideal{d} = I$.
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.7]\label{ex:UAG_1.1.7}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.7]\label{ex:UAG_1.1.7}
   \begin{enumerate}[label= (\alph*)]
     \item Suppose $f(x) \in \ideal{x}$.
           Then $f(x)^{m} \in \ideal{x^{n}}$ so $f(x) \in \sqrt{\ideal{x^{n}}}$
@@ -147,7 +147,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.8]\label{ex:UAG_1.1.8}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.8]\label{ex:UAG_1.1.8}
   \begin{enumerate}[label= (\alph*)]
     \item Let $\mathfrak{p}$ be a prime ideal in $k[\overline{x}]$.
           Clearly $\mathfrak{p} \subseteq \sqrt{\mathfrak{p}}$ always.
@@ -170,7 +170,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.9]\label{ex:UAG_1.1.9}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.9]\label{ex:UAG_1.1.9}
   \begin{enumerate}[label= (\alph*)]
     \item First, observe that $\ideal{x_{1}, \ldots, x_{n}}$ is the ideal consisting exactly of polynomials which have no constant term.
           Let $I$ be an ideal in $k[x_{1}, \ldots, x_{n}]$ such that $\ideal{x_{1}, \ldots, x_{n}} \subsetneq I$.
@@ -193,7 +193,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.10]\label{ex:UAG_1.1.10}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.10]\label{ex:UAG_1.1.10}
   \begin{enumerate}[label= (\alph*)]
     \item Since $x^{2} + y^{2} - (x^{2} - z^{3}) = y^{2} + z^{3}$ is an element of $I$ which does not depend on $x$, $y^{2} + z^{3}$ is in $I_{1}$.
     \item For all $\ell \geq 1$, we have that $0 \in I_{\ell}$.
@@ -203,7 +203,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.11]\label{ex:UAG_1.1.11}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.11]\label{ex:UAG_1.1.11}
   \begin{enumerate}[label= (\alph*)]
     \item \quest{meh}
     \item \quest{meh}
@@ -214,7 +214,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 1.1.12]\label{ex:UAG_1.1.12}
+\begin{pf}[\cite{book:UAG} Ex. 1.1.12]\label{ex:UAG_1.1.12}
   \begin{enumerate}[label= (\alph*)]
     \item \quest{meh}
     \item Suppose that $h(\overline{x}) \in IJ$.
@@ -230,13 +230,13 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 
 \section{\Grobner\ Bases}
 
-\begin{pf}[\quest{\tcite{book:UAG} 1.3.11}]\label{ex:UAG_1.3.11}
+\begin{pf}[\quest{\cite{book:UAG} Ex. 1.3.11}]\label{ex:UAG_1.3.11}
 
 \end{pf}
 
 \section{Affine Varieties}
 
-\begin{pf}[\quest{\tcite{book:UAG} 1.4.9}]\label{ex:UAG_1.4.9}
+\begin{pf}[\quest{\cite{book:UAG} Ex. 1.4.9}]\label{ex:UAG_1.4.9}
 
 \end{pf}
 
@@ -244,15 +244,15 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 
 \section{Solving Polynomial Systems by Elimination}
 
-\begin{pf}[\quest{\tcite{book:UAG} 2.1.1}]\label{ex:UAG_2.1.1}
+\begin{pf}[\quest{\cite{book:UAG} Ex. 2.1.1}]\label{ex:UAG_2.1.1}
 
 \end{pf}
 
-\begin{pf}[\quest{\tcite{book:UAG} 2.1.2}]\label{ex:UAG_2.1.2}
+\begin{pf}[\quest{\cite{book:UAG} Ex. 2.1.2}]\label{ex:UAG_2.1.2}
 
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 2.1.3]\label{ex:UAG_2.1.3}
+\begin{pf}[\cite{book:UAG} Ex. 2.1.3]\label{ex:UAG_2.1.3}
   We may freely rewrite the polynomial as $p(z) = z^{n} - a_{n - 1}z^{n - 1} - \cdots - a_{0}$
   We have that $0 = \overline{z}^{n} - a_{n - 1}\overline{z}^{n - 1} - \cdots - a_{0}$ and so $\overline{z}^{n} = a_{n - 1}\overline{z}^{n - 1} + \cdots + a_{0}$.
   Suppose now that $\abs{\overline{z}} \geq 1$.
@@ -266,13 +266,13 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Thus, $\abs{\overline{z}} \leq B \defeq \max\set{1, \abs{a_{n - 1}} + \cdots + \abs{a_{0}}}$.
 \end{pf}
 
-\begin{pf}[\quest{\tcite{book:UAG} 2.1.4}]\label{ex:UAG_2.1.4}
+\begin{pf}[\quest{\cite{book:UAG} Ex. 2.1.4}]\label{ex:UAG_2.1.4}
   Numerically find all roots of $2z^{6} + 2z^{5} - z^{4} - z^{3} - 2z^{2} - 2z - 2$.
 \end{pf}
 
 \clearpage
 
-\begin{pf}[\tcite{book:UAG} 2.1.5]\label{ex:UAG_2.1.5}
+\begin{pf}[\cite{book:UAG} Ex. 2.1.5]\label{ex:UAG_2.1.5}
   We apply Buchberger's Criterion.
   Let $f(x, y) = x^{2} + 2x + 3 + y^{5} - y$ and $g(x, y) = y^{6} - y^{2} + 2y$.
   Then we have that
@@ -282,13 +282,13 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   This shows that $\overline{S(f, g)}^{G} = 0$ which yields that $G$ is a \Grobner\ basis.
 \end{pf}
 
-\begin{pf}[\quest{\tcite{book:UAG} 2.1.6}]\label{ex:UAG_2.1.6}
+\begin{pf}[\quest{\cite{book:UAG} Ex. 2.1.6}]\label{ex:UAG_2.1.6}
 \end{pf}
 
-\begin{pf}[\quest{\tcite{book:UAG} 2.1.7}]\label{ex:UAG_2.1.7}
+\begin{pf}[\quest{\cite{book:UAG} Ex. 2.1.7}]\label{ex:UAG_2.1.7}
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 2.1.8]\label{ex:UAG_2.1.8}
+\begin{pf}[\cite{book:UAG} Ex. 2.1.8]\label{ex:UAG_2.1.8}
   \begin{enumerate}[label= (\alph*)]
     \item Let $\overline{z}$ be a simple root of $p(z)$, so $p(z) = 0$ but $p'(z) \neq 0$.
           Then $N_{p}(\overline{z}) = \overline{z} - \frac{p(\overline{z})}{p'(\overline{z})} = \overline{z}$ meaning $\overline{z}$ is a fixed point of $N_{p}(z)$.
@@ -332,7 +332,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 2.1.9]\label{ex:UAG_2.1.9}
+\begin{pf}[\cite{book:UAG} Ex. 2.1.9]\label{ex:UAG_2.1.9}
   \begin{enumerate}[label= (\alph*)]
     \item Let $p(z) = z^{2} + 1$.
           We have that
@@ -346,7 +346,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 2.1.10]\label{ex:UAG_2.1.10}
+\begin{pf}[\cite{book:UAG} Ex. 2.1.10]\label{ex:UAG_2.1.10}
   Let $\overline{z}$ be a root of $p(z)$.
   Then $-\overline{z}^{n} = a_{n - 1}\overline{z}^{n - 1} + \cdots + a_{0}$ and so
   \begin{align*}
@@ -361,10 +361,10 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 
 \section{Finite Dimensional Algebras}
 
-\begin{pf}[\quest{\tcite{book:UAG} 2.2.1}]\label{ex:UAG_2.2.1}
+\begin{pf}[\quest{\cite{book:UAG} Ex. 2.2.1}]\label{ex:UAG_2.2.1}
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 2.2.2]\label{ex:UAG_2.2.2}
+\begin{pf}[\cite{book:UAG} Ex. 2.2.2]\label{ex:UAG_2.2.2}
   It is clear that $\ideal{p_{i}(x_{i})} \subseteq I \cap k[x_{i}]$.
   Now suppose that $f(x_{i}) \in I \cap k[x_{i}]$.
   Then $\deg(f(x_{i}))$ must be $\geq m_{i}$.
@@ -380,7 +380,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   See \texttt{code/ch2/2\_2\_2.sage} for a SageMath implementation of this.
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 2.2.3]\label{ex:UAG_2.2.3}
+\begin{pf}[\cite{book:UAG} Ex. 2.2.3]\label{ex:UAG_2.2.3}
   Let $0 \neq f(x) \in \sqrt{\gen{p(x)}}$.
   Then there exists $m \geq 1$ such that $f^{m} \in \gen{p(x)}$ and so $p(x) \mid f(x)^{m}$.
   In particular, each linear factor $(x - \overline{z})$ of $p(x)$ divides $f(x)^{n}$ and so divides $f(x)$ as $(x - \overline{z})$ is irreducible.
@@ -392,14 +392,14 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Then $p(x) \mid f(x)^{m}$ and so $f(x) \in \sqrt{\gen{p(x)}}$
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 2.2.4]\label{ex:UAG_2.2.4}
+\begin{pf}[\cite{book:UAG} Ex. 2.2.4]\label{ex:UAG_2.2.4}
   We use the algorithm from \nameref{ex:UAG_2.2.2} implemented in \texttt{code/ch2/2\_2\_2sage}.
   See \texttt{code/ch2/2\_2\_2sage} for the code in action.
 \end{pf}
 
 \clearpage
 
-\begin{pf}[\quest{\tcite{book:UAG} 2.2.5}]\label{ex:UAG_2.2.5}
+\begin{pf}[\quest{\cite{book:UAG} Ex. 2.2.5}]\label{ex:UAG_2.2.5}
   Then $\sqrt{I} = I + \gen{x(x - 1), y(y - 2)}$.
   Since $I \subseteq \sqrt{I}$, we see that $\dim \C[x, y] / I \geq \dim \C[x, y] / \sqrt{I}$.
   A quick SageMath computation confirms this: $\dim \C[x, y] / I = 9$ and $\dim \C[x, y] / \sqrt{I} = 2$.
@@ -415,18 +415,18 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Since it is evident that $V(\sqrt{I})$ contains these two points, we see in this case that $V(\sqrt{I}) = V(I)$.
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 2.2.6]\label{ex:UAG_2.2.6}
+\begin{pf}[\cite{book:UAG} Ex. 2.2.6]\label{ex:UAG_2.2.6}
   A grevlex \Grobner\ basis for $I$ is $\set{y^{4} - 16y^{2}, x^{3} - x^{2}, -2x^{2}}$.
   Thus, by the Finiteness Theorem, we know that the for monomials $x^{a}y^{b}$ in $\C[x, y] / I$ we must have that $0 \leq a \leq 1$ and $0 \leq b \leq 3$.
   See \texttt{code/ch2/2\_2\_6.sage} for the code in action to compute the table.
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 2.2.7]\label{ex:UAG_2.2.7}
+\begin{pf}[\cite{book:UAG} Ex. 2.2.7]\label{ex:UAG_2.2.7}
   We implement the algorithm described in \nameref{ex:UAG_1.3.11}.
   See \texttt{/code/ch2/2\_2\_7.sage} for the code in action.
 \end{pf}
 
-\begin{pf}[\tcite{book:UAG} 2.2.8]\label{ex:UAG_2.2.8}
+\begin{pf}[\cite{book:UAG} Ex. 2.2.8]\label{ex:UAG_2.2.8}
   \begin{enumerate}[label= (\alph*)]
     \item See \texttt{code/ch2/2\_2\_8.sage} for the code in action.
     \item Since each of the $I_{j}$ are maximal ideals and $I_{j} \subseteq \sqrt{I_{j}}$, we must have that $I = \sqrt{I_{j}}$.
