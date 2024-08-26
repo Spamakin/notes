@@ -450,12 +450,18 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 \begin{sol}[\cite{book:UAG} Ex. 2.2.9]\label{ex:UAG_2.2.9}
   \begin{enumerate}[label= (\alph*)]
     \item Let $f(\overline{x}) \in I + \ideal{p}$ and let $1 \leq j \leq d$.
-          Then $f(\overline{x}) = g(\overline{x}) + h(\overline{x})p(\overline{x})$ for some $g(\overline{x}) \in I$ and $h(\overline{x}) \in k[\overline{x}]$.
-          We have that $(x_{1} - a_{j}) \mid p(\overline{x})$ and so $h(\overline{x})p(\overline{x}) \in \ideal{x_{1} - a_{j}}$.
-          Thus, $f(\overline{x}) = g(\overline{x}) + h(\overline{x})p(\overline{x}) \in I + \ideal{x_{1} - a_{j}}$.
+          Then $f(\overline{x}) = g(\overline{x}) + h(\overline{x})p(x_{1})$ for some $g(\overline{x}) \in I$ and $h(\overline{x}) \in k[\overline{x}]$.
+          We have that $(x_{1} - a_{j}) \mid p(x_{1})$ and so $h(\overline{x})p(x_{1}) \in \ideal{x_{1} - a_{j}}$.
+          Thus, $f(\overline{x}) = g(\overline{x}) + h(\overline{x})p(x_{1}) \in I + \ideal{x_{1} - a_{j}}$.
           As $j$ was arbitrary, we have that $f(\overline{x}) \in \bigcap_{j} (I + \ideal{x_{1} - a_{j}})$.
-    \item
-    \item
+    \item Let $f(\overline{x}) \in p_{j} \cdot (I + \ideal{x_{1} - a_{j}})$.
+          Then $f(\overline{x}) = p_{j}(x_{1})\cdot(g(\overline{x}) + h(\overline{x})(x_{1} - a_{j}))$ for some $g(\overline{x}) \in I$ and $h(\overline{x}) \in k[\overline{x}]$.
+          We have that $p_{j}(x_{1})g(\overline{x}) \in I$ and $p_{j}(x_{1})h(\overline{x})(x_{1} - a_{j}) = h(\overline{x})p(x_{1}) \in \ideal{p}$.
+          Thus, $f(\overline(x)) = p_{j}(x_{1})g(\overline{x}) + h(\overline{x})p(x_{1}) \in I + \ideal{p}$.
+    \item Let $i \neq j$ and let $d = \gcd(p_{i}, p_{j})$.
+          We must have that $d \mid p_{i} - p_{j} = a_{i} - a_{j}$ which is nonzero as $a_{i} \neq a_{j}$.
+          Thus, $d$ itself is a unit in $k[\overline{x}]$ and $p_{i}$ and $p_{j}$ are coprime.
+          By Bezout's Lemma, there exists polynomials $h_{1}, \ldots, h_{d} \in k[\overline{x}]$ such that $1 = \sum_{i = 1}^{d} h_{i}(\overline{x})p_{i}(x_{1})$.
     \item
   \end{enumerate}
 \end{sol}
