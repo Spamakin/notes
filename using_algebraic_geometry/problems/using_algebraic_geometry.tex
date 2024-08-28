@@ -472,5 +472,30 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\clearpage
+
+\begin{sol}[\cite{book:UAG} Ex. 2.2.10]\label{ex:UAG_2.2.10}
+  \begin{enumerate}[label= (\alph*)]
+    \item Let $\overline{f}^{G} = \sum_{j = 1}^{d} c_{j}(f) x^{\alpha(j)}$ and $\overline{g}^{G} = \sum_{j = 1}^{d} c_{j}(g) x^{\alpha(j)}$.
+          Then by combining like terms, we have that $\overline{f}^{G} + \overline{g}^{G} = \sum_{j = 1}^{d} (c_{j}(f) + c_{j}(g)) x^{\alpha(j)}$.
+          On the other hand, we have that $\overline{f + g}^{G} = \sum_{j = 1}^{d} c_{j}(f + g) x^{\alpha(j)}$.
+          Since $\overline{f}^{G} + \overline{g}^{G} = \overline{f + g}^{G}$ and each of the $x^{\alpha(j)}$ are linearly independent, we may equate coefficients and conclude that $c_{j}(f) + c_{j}(g) = c_{j}(f + g)$.
+          For $\lambda \in k$, $\overline{\lambda f}^{G} = \sum_{j = 1}^{d} c_{j}(\lambda f) x^{\alpha(j)}$.
+          Now notice that $\overline{\lambda f}^{G} = \lambda \overline{f}^{G}$ as we are working over a field.
+          Thus, we have by equating coefficients that $c_{j}(\lambda f) = \lambda c_{j}(f)$.
+          Thus, $c_{j}$ is a linear function $A \to k$.
+    \item Let $\alpha_{j} \in A^{*}$ be the linear map $\alpha_{j}(f) = c_{j}(f)$.
+          Notice that for all $1 \leq i, j \leq d$ we have that $\alpha_{j}(x^{\alpha(i)}) = c_{j}(x^{\alpha(i)}) = \delta_{i,j}$.
+          Suppose there exists $\lambda_{1}, \ldots, \lambda_{d} \in k$ such that $\lambda_{1}\alpha_{1} + \cdots + \lambda_{d}\alpha_{d} = 0$.
+          Then for all $1 \leq i \leq d$ we have that
+          \[
+            0 = \pqty{\sum_{j = 1}^{d} \lambda_{j} \alpha_{j}}(x^{\alpha(i)}) = \sum_{j = 1}^{d} \lambda_{j} \alpha_{j}(x^{\alpha(i)}) = \lambda_{i}
+          \]
+          and so for all $1 \leq i \leq d$, $\lambda_{i} = 0$ meaning that $\set{\alpha_{1}, \ldots, \alpha_{d}}$ is linearly independent.
+          Since we know that $d = \dim A = \dim A^{*}$, we have that $\set{\alpha_{1}, \ldots, \alpha_{d}}$ is a basis for $A^{*}$.
+    \item This was proven in \textbf{(b)}.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
