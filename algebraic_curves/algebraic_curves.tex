@@ -1,0 +1,122 @@
+\documentclass[letterpaper, 11pt, oneside]{book}
+
+\usepackage{style}  % If you feel like procrastinating, mess with this file
+\usepackage{algo}   % Thank you Jeff, very cool!
+
+\addbibresource{refs.bib}
+
+% Required reading
+% https://jmlr.csail.mit.edu/reviewing-papers/knuth_mathematical_writing.pdf
+%   Along with required viewing:
+%   https://www.youtube.com/watch?v=N6QEgbPWUrg&list=PLOdeqCXq1tXihn5KmyB2YTOqgxaUkcNYG
+% https://faculty.math.illinois.edu/~west/grammar.html
+
+% % % % % % % % % %
+%     Cursor      %
+%     Parking     %
+%     Lot         %
+% % % % % % % % % %
+
+% Disable check for mismatched parens/brackets/braces
+%   chktex-file 9
+% Disable check for different counts of parents/brackets/braces
+%   chktex-file 17
+% Exclude these environments from syntax checking
+%   VerbEnvir { tikzcd }
+
+\regtotcounter{figure}
+
+\title{\vspace{-100pt} {\Huge Algebraic Curves} \\ {\small With $\total{figure}$ Figures}}
+\author{\Large Anakin Dey}
+\DTMsavenow{now}
+\date{\small Last Edited on \today\ at \DTMfetchhour{now}:\DTMfetchminute{now}}
+
+% Cover page number chicanery
+\newcommand{\CoverName}{Cover}
+
+\begin{document}
+\frontmatter
+\renewcommand{\thepage}{\CoverName}
+\maketitle
+
+\pagenumbering{roman}
+
+\tableofcontents
+\clearpage
+
+
+% \listoftheorems[ignoreall, show={defn}, title={List of Definitions}]
+%
+% \listoftheorems[ignoreall, show={ex}, title={List of Examples and Counterexamples}]
+
+\chapter*{Preface}
+
+At the time of writing this, I am starting my PhD at The Ohio State University.
+Currently a large part of my interests in algebra are about algorithms as they relate to polynomials and algebraic geometry.
+As such, I've been primarily looking at \emph{Ideals, Varieties, and Algorithms}~\cite{book:IVA},
+I've been doing a bunch of problems from \emph{Ideals, Varieties, and Algorithms}~\cite{book:IVA}, \emph{Using Algebraic Geometry}~\cite{book:UAG} and stealing glances at Sturmfel's \emph{Algorithms in Invariant Theory}~\cite{book:AlgosInInvTheory}.
+However, this book is such a classic and I'm of the opinion that you can never know too much about curves and varieties.
+To put my money where my mouth is, I've started to \TeX\ up some exercises from Fulton's \emph{Algebraic Curves}~\cite{book:Curves}.
+
+\mainmatter
+
+\chapter{Affine Algebraic Sets}
+
+\section{Algebraic Preliminaries}
+
+\begin{sol}[\cite{book:Curves} Ex. 1.1]\label{ex:Curves_1.1}
+  As normal, we denote a monomial $x_{1}^{i_{1}} \cdots x_{n}^{i_{n}}$ as $\overline{x}^{I}$ where $\abs{I} = i_{1} + \cdots + i_{n} = d \in \N$ and $I \in \N^{n}$.
+  Thus, if $f(x_{1}, \ldots, x_{n}), g(x_{1}, \ldots, x_{n}) \in R[x_{1}, \ldots, x_{n}]$ are forms of degree $r$ and $s$ respectively, we have that
+  \begin{align*}
+    f(x_{1}, \ldots, x_{n}) &= \sum_{I \in \N ^{n}, \abs{I} = r} f_{I} \overline{x}^{I}, \\
+    g(x_{1}, \ldots, x_{n}) &= \sum_{J \in \N ^{n}, \abs{J} = s} g_{J} \overline{x}^{J}.
+  \end{align*}
+  Then, we have by distribution that
+  \[
+    f(x_{1}, \ldots, x_{n}) \cdot g(x_{1}, \ldots, x_{n}) = \sum_{\substack{I \in \N ^{n}, \abs{I} = r \\ J \in \N ^{n}, \abs{J} = s}} f_{I} \overline{x}^{I} g_{J} \overline{x}^{J}.
+  \]
+  For each $I, J$ we have that if $f_{I}, g_{J} \neq 0$ then $f_{I} g_{J} \overline{x}^{I} \overline{x}^{J} = (fg)_{I, J} \overline{x}^{I + J}$ where $(fg)_{I, J} = (fg)_{I, J} = f_{I} g_{J}$
+  Notice that $\abs{I + J} = r + s$ by coordinatewise addition and so each term is either $0$ or a degree $r + s$ homogeneous form.
+  Thus after combining like terms, we have that $f(x_{1}, \ldots, x_{N}) \cdot g(x_{1}, \ldots, x_{n})$ is either degree $0$ or a degree $r + s$ homogeneous form.
+  As $0$ has any degree we choose, we have that $f \cdot g$ is a degree $r + s$ form.
+
+  If we wanted to show that the product of two nonzero polynomials is still nonzero, it can be shown that $R$ a domain implies $R[x_{1}, \ldots, x_{n}]$ is a domain.
+  This can be seen by looking at leading terms and inducting on the number of variables.
+\end{sol}
+
+\clearpage
+
+\begin{sol}[\cite{book:Curves} Ex. 1.2]\label{ex:Curves_1.2}
+  The expression of $z \in K = \mathrm{Frac}(R)$ as $z = \frac{a}{b}$ for some $a \in R, b \in R$ such that $a, b$ have no common factors, is obvious as we only consider finite sums so we can always take common denominators.
+  Suppose that $z = \frac{a}{b} = \frac{a'}{b'}$ two different representatives.
+  Since $R$ is a UFD, say that $a = u_{a}a_{1} \cdots a_{n_{a}}$ and $a' = u_{a'}a'_{1} \cdots a'_{n_{a'}}$ are factorizations of $a$ and $a'$.
+  We have similar factorizations for $b$ and $b'$.
+  Then we have that $ab' = a'b \in R$.
+  However, as $R$ is a unique factorization domain, we must have
+  \[
+    u_{a}a_{1} \cdots a_{n_{a}} u_{b'}b'_{1} \cdots b'_{n_{b'}} = u_{a'}a'_{1} \cdots a'_{n_{a'}} u_{b}b_{1} \cdots b_{n_{b}}
+  \]
+  are two equivalent factorizations up to unit.
+  This implies that $\frac{a}{b}$ and $\frac{a'}{b'}$ differ only up to unit.
+\end{sol}
+
+\begin{sol}[\cite{book:Curves} Ex. 1.3]\label{ex:Curves_1.3}
+  \begin{enumerate}[label= (\alph*)]
+    \item We know that $P = (p)$ for some nonzero, nonunital $p \in R$.
+          Suppose that $p$ was reducible, so $p = ab$ for some nonzero nonunital $a, b \in R$.
+          Then as $p \nmid a$ and $p \nmid b$, since such divisibility would imply that $a$ or $b$ were equal to $p$ up to unit, we have that $a, b \notin (p)$.
+          But then we have elements $a, b \in R$ such that $a \notin (p)$, $b \notin (p)$ but $ab = p \in (p)$ which contradicts the primality of $P = (p)$.
+          Then $p$ is irreducible.
+    \item We show that $P = (p)$ is maximal.
+          There exists a maximal ideal $M = (m)$ such that $(p) \subseteq (m)$.
+          Thus, $p \mid m$.
+          Notice that by \textbf{(a)} that both $p$ and $m$ are irreducible elements of $R$.
+          As such, if $p \mid m$ we must have that $m \mid p$ as if not, $m$ would be reducible.
+          Thus, $p = um$ for some unit $u \in R^{\times}$.
+          Thus, $(p) = (m)$ and $P = (p)$ is maximal.
+  \end{enumerate}
+\end{sol}
+
+
+\printbibliography
+\end{document}
