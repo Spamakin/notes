@@ -497,5 +497,26 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 2.2.11]\label{ex:UAG_2.2.11}
+  \begin{enumerate}[label= (\alph*)]
+    \item We want a linear polynomial $\ell(\overline{x}) = \ell_{1}x_{1} + \cdots + \ell_{n}x_{n}$ takes distinct values at each of the $p_{i} = (p_{i, 1}, \ldots, p_{i, n}) \in \C^{n}$.
+          Consider the space of all such $(\ell_{1}, \ldots, \ell_{n})$.
+          This itself is a $\C$ vector space, call it $L$.
+          Let $L_{i, j}$ be the subspace of $L$ corresponding to polynomials $\ell(\overline{x})$ such that $\ell(p_{i}) = \ell(p_{j})$.
+          There are finitely many such $L_{i, j}$.
+          We know that vector spaces over an infinite field cannot be expressed as the finite union of proper subspaces.
+          Thus, $L \neq \bigcup_{1 \leq i \neq j \leq m} L_{i, j}$.
+          This means there exists $(\ell_{1}, \ldots, \ell_{n}) \in L \setminus \bigcup_{1 \leq i \neq j \leq m} L_{i, j}$ such that $\ell(\overline{x}) = \ell_{1}x_{1} + \cdots + \ell_{n}x_{n}$ takes distinct values at each of the $p_{i}$.
+
+          \quest{Can we do this constructively?}
+    \item Let $\ell(\overline{x})$ be our constructed polynomial from \textbf{(a)}.
+          For $1 \leq i \leq m$, we define $g_{i} \in \C[x_{1}, \ldots, x_{n}]$ as
+          \[
+            g_{i}(\overline{x}) = \frac{\Prod_{1 \leq i \neq j \leq m} \ell(\overline{x}) - \ell(\overline{p_{j}})}{\Prod_{1 \leq i \neq j \leq m} \ell(p_{i}) - \ell(\overline{p_{j}})}.
+          \]
+          Then clearly $g_{i}(p_{j}) = \delta_{ij}$ as desired.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
