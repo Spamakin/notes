@@ -117,6 +117,56 @@ To put my money where my mouth is, I've started to \TeX\ up some exercises from 
   \end{enumerate}
 \end{sol}
 
+\begin{sol}[\cite{book:Curves} Ex. 1.4]\label{ex:Curves_1.4}
+  We prove by induction on the number of variables $n$.
+  If $n = 1$ then any nonzero polynomial of degree $d$ has at most $d$ distinct zeros.
+  Thus if $F(x) \in k[x]$ is a nonzero polynomial, there exists a $z \in k$ such that $F(z) \neq 0$.
+  Now let $n \geq 1$.
+  Let $F(x_{1}, \ldots, x_{n}, y) \in k[x_{1}, \ldots, x_{n}, y]$ be a nonzero polynomial.
+  Letting $d = \deg_{y}(F)$, we can find $F_{0}[x_{1}, \ldots, x_{n}], \ldots, F_{d}[x_{1}, \ldots, x_{n}]$ such that
+  \[
+    F(x_{1}, \ldots, x_{n}, y) = \sum_{i = 0}^{d} F_{i}(x_{1}, \ldots, x_{n}) \cdot y^{i}.
+  \]
+  Regard $F(x_{1}, \ldots, x_{n}, y)$ as a nonzero polynomial $g(y)$ in $F(x_{1}, \ldots, x_{n})[y]$.
+  As $k$ is infinite and $g(y)$ is nonzero, then we must have there exists $z_{y} \in k$ such that $g(z_{y}) \neq 0$.
+  Thus, we have that $F(x_{1}, \ldots, x_{n}, z_{y}) \in k[x_{1}, \ldots, x_{n}]$ is nonzero.
+  By induction, there exists $(z_{1}, \ldots, z_{n}) \in k^{n}$ such that $F(z_{1}, \ldots, z_{n}, z_{y}) \neq 0$.
+\end{sol}
+
+\begin{sol}[\cite{book:Curves} Ex. 1.5]\label{ex:Curves_1.5}
+  This is Euclid's proof of there being infinitely many primes.
+  Omitted.
+\end{sol}
+
+\clearpage
+
+\begin{sol}[\cite{book:Curves} Ex. 1.6]\label{ex:Curves_1.6}
+  Let $k$ be an algebraically closed field.
+  Then the irreducible monic polynomials of $k[x]$ are of the form $(x - a)$ for each $a \in k$.
+  Thus, they are in bijection with the elements of $k$.
+  By \mbox{\nameref{ex:Curves_1.5}}, there are infinitely many monic irreducible polynomials over any field.
+  Thus, $k$ is an infinite field.
+\end{sol}
+
+\begin{sol}[\cite{book:Curves} Ex. 1.7]\label{ex:Curves_1.7}
+  \begin{enumerate}[label= (\alph*)]
+    \item Let $F(x_{1}, \ldots, x_{n}) \in k[x_{1}, \ldots, x_{n}]$.
+          Then we may express $F(x_{1}, \ldots, x_{n})$ as
+          \[
+            F(x_{1}, \ldots, x_{n}) = \sum_{I = (i_{1}, \ldots, i_{n}) \in \N ^{n}} \lambda_{I} (x_{1})^{i_{1}} \cdots (x_{n})^{i_{n}} = \sum_{I = (i_{1}, \ldots, i_{n}) \in \N ^{n}} \lambda_{I} ((x_{1} - a_{1}) + a_{1})^{i_{1}} \cdots ((x_{n} - a_{n}) + a_{n})^{i_{n}}.
+          \]
+          Expanding and combining like terms yields the desired results.
+    \item Suppose $F(a_{1}, \ldots, a_{n}) = 0$.
+          By \textbf{(a)}, we may express $F(x_{1}, \ldots, x_{n})$ as
+          \[
+            F(x_{1}, \ldots, x_{n}) = \sum_{I = (i_{1}, \ldots, i_{n}) \in \N ^{n}} \lambda_{I} (x_{1} - a_{1})^{i_{1}} \cdots (x_{n} - a_{n})^{i_{n}}
+          \]
+          The claim says that this expression has no constant term, \ie\ $\lambda_{\overline{0}} = 0$.
+          This is immediate as the constant term corresponds to $F(a_{1}, \ldots, a_{n}) = 0$.
+  \end{enumerate}
+\end{sol}
+
+
 
 \printbibliography
 \end{document}
