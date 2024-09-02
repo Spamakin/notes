@@ -518,5 +518,29 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 2.2.12]\label{ex:UAG_2.2.12}
+  \begin{enumerate}[label= (\alph*)]
+    \item Clearly the map is linear.
+          We now show it is well defined.
+          Let $[f] = [g] \in \C[\overline{x}] / I$ meaning that $f - g \in I$.
+          Thus, we have that
+          \[
+            \varphi([f]) - \varphi([g]) = \varphi([f - g]) = 0 \implies \varphi([f]) = \varphi([g])
+          \]
+          as desired.
+    \item Let $[f], [g] \in \C[\overline{x}] / I$. Then we have
+          \begin{align*}
+            \varphi([f] \cdot [g]) &= \varphi([f \cdot g]) \\
+                                   &= ((f \cdot g)(p_{1}), \ldots, (f \cdot g)(p_{m})) \\
+                                   &= (f(p_{1}) \cdot g(p_{1}), \ldots, f(p_{m}) \cdot g(p_{m})) \\
+                                   &= (f(p_{1}), \ldots, f(p_{m})) \cdot (g(p_{1}), \ldots, g(p_{m})) = \varphi([f]) \cdot \varphi([g]).
+          \end{align*}
+          Thus, $\varphi$ is a homomorphism of rings.
+          In fact, it is a homomorphism of $\C$-algebras as $(\lambda \cdot f)(x) \defeq \lambda \cdot f(\overline{x})$ for all $\lambda \in \C$ and $f \in \C[\overline{x}]$ and this descends to $\C[\overline{x}] / I$.
+    \item We have that $\varphi$ is surjective and that $I \subseteq \ker(\varphi)$ as in the proof of~\cite[Theorem 2.10]{book:UAG}.
+          So we want to show that $\ker(\varphi) \subseteq I$ if and only if $I = \sqrt{I}$ which holds exactly as in the proof of~\cite[Theorem 2.10]{book:UAG}.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
