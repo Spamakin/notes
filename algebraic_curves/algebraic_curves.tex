@@ -189,5 +189,43 @@ To put my money where my mouth is, I've started to \TeX\ up some exercises from 
   This follows immediately from the fact that $V \subseteq W \implies \I(V) \containseq \I(W)$.
 \end{sol}
 
+\begin{sol}[\cite{book:Curves} Ex. 1.17]\label{ex:Curves_1.17}
+  \begin{enumerate}[label= (\alph*)]
+    \item Note that as single points are algebraic sets, and the union of two algebraic sets is algebraic, $V \cup \set{\overline{P}}$ is algebraic.
+          Since $V \subsetneq V \cup \set{\overline{P}}$, we have that $\I(V) \containsneq \I(V \cup \set{\overline{P}})$ by \nameref{ex:Curves_1.16}.
+          Let $\tilde{F}(\overline{x}) \in \I(V) \setminus \I(V \cup \set{\overline{P}})$.
+          Then $\tilde{F}(\overline{z}) = 0$ for all $\overline{z} \in \I(V)$ but $\tilde{F}(\overline{P}) = c$ for some $c \in k^{\times}$.
+          Then $F(\overline{x}) \defeq \frac{\tilde{F}(\overline{x})}{c}$ is $0$ on $V$ but $F(\overline{P}) = 0$.
+    \item Let $U = V \cup \set{\overline{P}_{1}, \ldots, \overline{P}_{r}}$ and for $1 \leq i \leq r$ let $U_{i} = U \setminus \set{\overline{P}_{i}}$.
+          These are algebraic sets still.
+          Let $F_{i}(\overline{x})$ be the polynomial given by \textbf{(a)} for each $U_{i} \subsetneq U$.
+          As $V \subseteq U_{i}$ for each $i$ and each $F_{i}(\overline{x}) \in \I(U_{i})$, we have that $F_{i}(\overline{x}) \in \I(V)$.
+    \item Let $\overline{P}_{1}, \ldots, \overline{P}_{r}$, $V$, and $F_{1}, \ldots, F_{r}$ be as in \textbf{(b)}.
+          For $1 \leq i \leq r$, let $G_{i}(\overline{x}) = \sum_{k = 1}^{r} a_{i, k} F_{k}(\overline{x})$.
+          Then
+          \[
+            G_{i}(\overline{P}_{j}) = \sum_{k = 1}^{r} a_{i, k} F_{k}(\overline{P}_{j}) = a_{i, j}F_{j}(\overline{P}_{j}) = a_{i, j}.
+          \]
+          Finally, as each $F_{i}(\overline{x}) \in \I(V)$, an ideal, we have that each $G_{i} \in \I(V)$.
+  \end{enumerate}
+\end{sol}
+
+\begin{sol}[\quest{\cite{book:Curves} Ex. 1.18}]\label{ex:Curves_1.18}
+\end{sol}
+
+\begin{sol}[\cite{book:Curves} Ex. 1.20]\label{ex:Curves_1.20}
+  As $I \subseteq \sqrt{I}$ we have that $\V(\sqrt{I}) \subseteq \V(I)$ always.
+  Let $\overline{z} \in \V(I)$ and let $p(\overline{x}) \in \sqrt{I}$ such that $p^{n}(\overline{x}) \in I$.
+  Then $p^{n}(\overline{z}) = 0$ which implies, as $k$ is a field, that $p(\overline{z}) = 0$.
+  Thus, $\overline{z} \in \V(\sqrt{I})$.
+
+  Now let $p(\overline{x}) \in \sqrt{I}$ such that $p^{n}(\overline{x}) \in I$ and let $\overline{z} \in \V(I)$.
+  Then again, $p^{n}(\overline{z}) = 0$ which implies that $p(\overline{z}) = 0$.
+  Then $p(\overline{z}) \in \I(\V(I))$.
+\end{sol}
+
+\begin{sol}[\quest{\cite{book:Curves} Ex. 1.21}]\label{ex:Curves_1.21}
+\end{sol}
+
 \printbibliography
 \end{document}
