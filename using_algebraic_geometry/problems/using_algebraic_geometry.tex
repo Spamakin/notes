@@ -546,9 +546,37 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 
 \section{\Grobner\ Basis Conversion}
 
-\begin{sol}[\cite{book:UAG} Ex. 2.3.1]\label{ex:UAG_2.3.1}
+\begin{sol}[\cite{book:UAG} Ex. 2.3.2]\label{ex:UAG_2.3.2}
   Recall that \emph{lex} ordering compares the exponents of $x_{1}$, and then in the case of equality compares the exponents of $x_{2}$, and continues on in this manner.
-  As such $\overline{x}^{\alpha} = x_{1}^{\alpha_{1}} \cdots x_{n}^{\alpha_{n}} > x_{1}^{a}$. if and only if $alpha_{1} > a_{1}$ which is equivalent to saying that $x_{1}^{a_{1}} \mid x_1^{\alpha_{1}} \mid \overline{x}^{\alpha}$
+  As such $\overline{x}^{\alpha} = x_{1}^{\alpha_{1}} \cdots x_{n}^{\alpha_{n}} \geq x_{1}^{a}$ if and only if $alpha_{1} \geq a_{1}$ which is equivalent to saying that $x_{1}^{a_{1}} \mid x_1^{\alpha_{1}} \mid \overline{x}^{\alpha}$
+\end{sol}
+
+\begin{sol}[\cite{book:UAG} Ex. 2.3.3]\label{ex:UAG_2.3.3}
+  \begin{enumerate}[label= (\alph*)]
+    \item Suppose for some $1 \leq i \leq k$ we have that $\lt(g_{i}) \mid x_{1}^{a_{1} + 1}$.
+          This would imply that $\lt(g_{i})$ is a power of $x_{1}$.
+          However, we assumed that we were in the situation of the Next Monomial procedure, meaning that the algorithm has not terminated which in turn implies that we have not added any polynomials to $G_{\emph{lex}}$ such that their leading term is a power of $x_{1}$.
+          Thus, no such $\lt(g_{i})$ divides $x_{1}^{a_{1} + 1}$.
+    \item Clearly we have that
+          \[
+            \overline{x}^{\beta} = x_{1}^{a_{1}} \cdots x_{k - 1}^{a_{k - 1}} x_{k}^{a_{k} + 1} > x_{1}^{a_{1}} \cdots x_{k - 1}^{a_{k - 1}} x_{k}^{a_{k}} = \overline{x}^{\alpha}.
+          \]
+          To show that $\overline{x}^{\beta}$ is the smallest monomial greater than $\overline{x}^{\alpha}$ where no $\lt(g_{i})$ divides $\overline{x}^{\beta}$, we want to show that $k + 1 \leq j, \ell \leq n$ and monomial $\overline{x}^{\gamma}$ of the form
+          \begin{equation}\label{eq:2.3.2(b)-conditions}
+            \overline{x}^{\gamma} = x_{1}^{a_{1}} \cdots x_{k}^{a_{k}} x_{k + 1}^{c_{k + 1}} \cdots x_{j}^{c_{j}},\ c_{k + 1} \geq a_{k + 1}, \ldots, c_{\ell - 1} \geq a_{\ell - 1}, c_{\ell} > a_{\ell}, c_{\ell + 1} \geq 0, \ldots, c_{j} \geq 0.
+          \end{equation}
+          sharing the same properties as $\overline{x}^{\beta}$.
+          First, we indeed see that $\overline{x}^{\beta} > \overline{x}^{\gamma}$ as $a_{k} + 1 > a_{k}$ and $x^{\gamma} > x^{\alpha}$ by the assumption on $\ell$.
+          We also see that any $x^{\gamma}$ such that $x^{\beta} > x^{\gamma} > x^{\alpha}$ must satisfy \Cref{eq:2.3.2(b)-conditions}.
+          Suppose towards contradiction that none of the $\lt(g_{i})$ divide $\overline{x}^{\gamma}$.
+          Then we have that
+          \[
+            \overline{x}^{\beta} > x_{1}^{a_{1}} \cdots x_{k}^{a_{k}} x_{k + 1}^{c_{k + 1}} \cdots x_{j}^{c_{j}} \geq x_{1}^{a_{1}} \cdots x_{k}^{a_{k}} x_{k + 1}^{c_{k + 1}} \cdots x_{\ell}^{c_{\ell}} \geq x_{1}^{a_{1}} \cdots x_{k}^{a_{k}} x_{k + 1}^{c_{k + 1}} \cdots x_{\ell}^{a_{\ell} + 1} > \overline{x}^{\alpha}.
+          \]
+          Since No $\lt(g_{i})$ divides $\overline{x}^{\gamma}$, we have that no $\lt(g_{i})$ divides $x_{1}^{a_{1}} \cdots x_{k}^{a_{k}} x_{k + 1}^{c_{k + 1}} \cdots x_{\ell}^{a_{\ell} + 1}$.
+          As $\ell > k$, this contradicts the maximality of $k$.
+          Thus, we cannot have that none of the $\lt(g_{i})$ divide $\overline{x}^{\gamma}$.
+  \end{enumerate}
 \end{sol}
 
 
