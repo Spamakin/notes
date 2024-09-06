@@ -210,7 +210,8 @@ To put my money where my mouth is, I've started to \TeX\ up some exercises from 
   \end{enumerate}
 \end{sol}
 
-\begin{sol}[\quest{\cite{book:Curves} Ex. 1.18}]\label{ex:Curves_1.18}
+\begin{sol}[\cite{book:Curves} Ex. 1.18]\label{ex:Curves_1.18}
+    \quest{Meh I know how to do this.}
 \end{sol}
 
 \begin{sol}[\cite{book:Curves} Ex. 1.20]\label{ex:Curves_1.20}
@@ -224,7 +225,50 @@ To put my money where my mouth is, I've started to \TeX\ up some exercises from 
   Then $p(\overline{z}) \in \I(\V(I))$.
 \end{sol}
 
-\begin{sol}[\quest{\cite{book:Curves} Ex. 1.21}]\label{ex:Curves_1.21}
+\begin{sol}[\cite{book:Curves} Ex. 1.21]\label{ex:Curves_1.21}
+    \quest{Meh I know how to do this.}
+\end{sol}
+
+\begin{sol}[\cite{book:Curves} Ex. 1.22]\label{ex:Curves_1.22}
+  \begin{enumerate}[label= (\alph*)]
+    \item \quest{Meh I know how to do this.}
+    \item We prove first that $J'$ is radical if and only if $J$ is radical.
+          Suppose that $J' = \sqrt{J'}$ is radical.
+          We automatically have $J \subseteq \sqrt{J}$ so let $f \in \sqrt{J}$.
+          Then $\exists n > 0$ such that $f^{n} \in J$.
+          Thus, $\pi(f)^{n} = \pi(f^{n}) \in J'$ meaning that $\pi(f) \in \sqrt{J'} = J'$.
+          Thus, $f \in \pi^{-1}(J') = J$.
+          Suppose that $J = \sqrt{J}$ is radical.
+          We again have $J' \subseteq \sqrt{J'}$ so let $f \in \sqrt{J'}$.
+          Then $\exists n > 0$ such that $f^{n} \in J'$.
+          As $\pi$ is surjective, there exists $a \in J$ such that $\pi(a) = f^{n}$ and $\pi(b) = f$.
+          We have that
+          \[
+            \pi(a) = f^{n} = \pi(b)^{n} = \pi(b^{n})
+          \]
+          and so $a - b^{n} \in \ker(pi) = I \subseteq J$.
+          Since $a \in J$, we have that $b^{n} \in J = \sqrt{J}$ meaning that $b \in \sqrt{J}$.
+          Thus, $f = \pi(b) \in \pi(\sqrt{J}) = \pi(J) = J'$.
+
+          Now we prove that $J$ is prime if and only if $J'$ is prime.
+          Suppose that $J'$ is prime and let $a, b \in R$ such that $ab \in J$.
+          Then $\pi(a)\pi(b) \in J' \implies \pi(a)$ or $\pi(b) \in J'$, say $\pi(a)$.
+          Since $\pi(a) \in J'$ we have that $a \in J$.
+          Now suppose that $J$ is prime and let $a', b' \in R/I$ such that $a'b' \in J'$.
+          Then $\exists a, b \in R$ such that $\pi(a) = a'$ and $\pi(b) = b'$.
+          Thus, $\pi(ab) \in J'$ meaning that $ab \in J$ and so either $a \in J$ or $b \in J$, say $a$.
+          Thus, $\pi(a) = a' \in J'$.
+
+          Now we prove that $J$ is maximal if and only if $J'$ is maximal.
+          Suppose that $J'$ is maximal and let $K$ be an ideal such that $J \subseteq K \subseteq R$.
+          Then $\pi(J) = J' \subseteq \pi(K) \subseteq R/I$.
+          If $\pi(K) = R / I$, then $1 \in \pi(K) \implies 1 \in K$ and so $K = R$.
+          Otherwise, if $\pi(K) \neq R / I$ we must have that $J' = \pi(K)$ by maximality which implies that $J = K$.
+          Now suppose that $J$ is maximal and let $K'$ be an ideal such that $J' \subseteq K' \subseteq R/I$.
+          Then $\pi^{-1}(J') = J \subseteq \pi^{-1}(K) \subseteq R$.
+          If $\pi^{-1}(K) = R$, then we must have that $1 \in \pi^{-1}(J) \implies 1 \in K'$ and so $K' = R/I$.
+          Otherwise, by maximality we must have that $J = \pi^{-1}(K')$ which implies that $J' = K'$.
+  \end{enumerate}
 \end{sol}
 
 \printbibliography
