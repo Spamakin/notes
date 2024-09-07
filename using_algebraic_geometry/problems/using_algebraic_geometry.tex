@@ -579,6 +579,12 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 2.3.4]\label{ex:UAG_2.3.4}
+  We want to show that $B_{\emph{lex}}$ is a monomial basis for $k[x_{1}, \ldots, x_{n}] / I$.
+  A monomial basis is the set of all monomials that are not in $\ideal{\lt(g) | g \in G_{\emph{lex}}}$, \ie\ the non-leading monomials.
+  However, in the proof of the correctness of the FGLM algorithm, we note that because we are stepping through monomials in $k[\overline{x}]$ in increasing \emph{lex} order, all non-leading monomials of each $g \in G_{\emph{lex}}$ must have been included in $B_{\emph{lex}}$ already.
+  Thus, $B_{\emph{lex}}$ is our desired monomial basis.
+\end{sol}
 
 \printbibliography
 \end{document}
