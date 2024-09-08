@@ -586,5 +586,23 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Thus, $B_{\emph{lex}}$ is our desired monomial basis.
 \end{sol}
 
+\clearpage
+
+\begin{sol}[\cite{book:UAG} Ex. 2.3.7]\label{ex:UAG_2.3.7}
+  Since polynomials are added to $G_{\emph{lex}}$ with coefficient 1 in the Main Loop (a.), we have that $G_{\emph{lex}}$ is a monic \Grobner\ basis.
+  Then, as monomials are considered in increasing order and we consider them only once per iteration of the Main Loop, we automatically have that $G_{\emph{lex}}$ is a \emph{minimal lex} \Grobner\ basis meaning that for all distinct $p \in G_{\emph{lex}}$, we have that $\lt(p) \notin \ideal{\lt(G_{\emph{lex}} \setminus \set{p})}$.
+  Recall that a \emph{reduced lex} \Grobner\ basis $G$ is one such that for all distinct $p, q \in G$ that no monomial appearing in $p$ is a multiple of $\lt(q)$.
+  Suppose there was such distinct $p, q \in G$ and let $\overline{x}^{\alpha}$ be the monomial in $p$ such that $\lt(q) \mid x^{\alpha}$.
+  Then in particular, this implies that $\lt(q) \leq_{\emph{lex}} \overline{x}^{\alpha}$.
+  Suppose that $\lt(q) = \overline{x}^{\alpha}$.
+  Then if $\overline{x}^{\alpha}$ is not a leading term of some $p \in G_{\emph{lex}}$, then when $p$ was added to $G_{\emph{lex}}$ we must have that $x^{\alpha} = \lt(q) \in B_{\emph{lex}}$, contradicting that $q \in G_{\emph{lex}}$.
+  If $\overline{x}^{\alpha}$ is a leading term of some $p \in G_{\emph{lex}}$, then $p = q$ contradicting distinctness.
+  Now suppose that $\lt(q) <_{\emph{lex}} \overline{x}^{\alpha}$.
+  Then $\lt(q) < \lt(p)$.
+  When $\lt(p)$ was added to $G_{\emph{lex}}$, $\overline{x}^{\alpha} = \lt(q)$ was a monomial in $B_{\emph{lex}}$ but $\lt(q)$ cannot be an element of $B_{\emph{lex}}$, a contradiction.
+  \quest{There should be an easier cleaner solution.}
+\end{sol}
+
+
 \printbibliography
 \end{document}
