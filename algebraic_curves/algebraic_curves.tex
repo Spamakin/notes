@@ -309,5 +309,21 @@ To put my money where my mouth is, I've started to \TeX\ up some exercises from 
   \end{enumerate}
 \end{sol}
 
+\clearpage
+
+\section{Hilbert's Nullstellensatz}
+
+\begin{sol}[\cite{book:Curves} Ex. 1.37]\label{ex:Curves_1.37}
+  It is clear that $k[x] / (f)$ is a $k$-vector space.
+  Without loss of generality, we ca assume that $f$ is monic.
+  Write $f = x^{n} + \sum_{i = 0}^{n - 1} f_{i}x^{i}$ where $f_{i} \in k$.
+  Then $x^{n} = f - \sum_{i = 0}^{n} f_{i}x_{i}$ which means that in $k[x] / (f)$ we have that $\overline{x}^{n} = \sum_{i = 0}^{n} if_{i}x_{i}$, a linear dependence.
+  Induction yields similar expressions for $\overline{x}^{k}$ for all $k \geq 0$.
+  Suppose that $\set{\overline{1}, \ldots, \overline{x}^{n - 1}}$ was not linearly independent.
+  Then there exists $\lambda_{i} \in k$, $0 \leq i \leq n - 1$ such that $\sum_{i = 0}^{n - 1} \lambda_{i} \overline{x}^{i} = 0$ and not all $\lambda_{i}$ are zero.
+  Lifting to $k[x]$, this yields that $\sum_{i = 0}^{n - 1} \lambda_{i} \overline{x}^{i} = f$, contradicting the fact that $\deg(f) = n$.
+\end{sol}
+
+
 \printbibliography
 \end{document}
