@@ -290,6 +290,24 @@ To put my money where my mouth is, I've started to \TeX\ up some exercises from 
 
 \section{Algebraic Subsets of the Plane}
 
+\begin{sol}[\cite{book:Curves} Ex. 1.30]\label{ex:Curves_1.30}
+  \begin{enumerate}[label= (\alph*)]
+    \item Suppose there was $(x, y) \in \A_{\R}^{2}$ such that $x^{2} + y^{2} + 1 = 0$.
+          Then we would have that $-1 = x^{2} + y^{2} \geq 0$, a contradiction.
+    \item Let $V \subseteq \A_{\R}^{2}$ be an algebraic set, $V = \V(I)$ for some $I \leq \R[x, y]$.
+          Since $\R$ is Noetherian as it is a field, $\R[x, y]$ is Noetherian and so there exists $f_{1}, \ldots, f_{r} \in \R[x, y]$ such that $I = \ideal{f_{1}, \ldots, f_{n}}$.
+          Consider $f = f_{1}^{2} + \cdots + f_{r}^{2}$.
+          Clearly $V = \V(f_{1}, \ldots, f_{r}) \subseteq \V(f)$.
+          Now suppose that $(a, b) \notin V$.
+          Then there exists $f_{i}$ such that $f_{i}(a, b) \neq 0$.
+          Thus, we have that
+          \[
+            f(a, b) = f_{1}^{2}(a, b) + \cdots + f_{r}^{2}(a, b) \geq f_{i}^{2}(a, b) > 0
+          \]
+          and so $(a, b) \notin \V(f)$.
+          Thus, $V = \V(f)$.
+  \end{enumerate}
+\end{sol}
 
 \printbibliography
 \end{document}
