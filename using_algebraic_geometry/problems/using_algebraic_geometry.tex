@@ -630,6 +630,24 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Since the matrix for $\Res(g, f)$ is formed by moving each of the $l$ columns of $\Res(f, g)$ corresponding to $g$ a total of $m$ columns each, we have that the determinants must differ by a factor of $(-1)^{l \cdot m}$.
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 3.1.3]\label{ex:UAG_3.1.3}
+  \begin{enumerate}
+    \item Let $f(x) = a_{0}(x - \xi_{1}) \cdots (x - \xi_{l})$ and $g(x) = b_{0}(x - \eta_{1}) \cdots (x - \eta_{m})$.
+          To see the first equality, we have that
+          \[
+            a_{0}^{m} b_{0}^{l} \prod_{i = 1}^{l}\prod_{j = 1}^{m} (\xi_{i} - \eta_{j}) = a_{0}^{m} \prod_{i = 1}^{l} b_{0} (\xi_{i} - \eta_{1}) \cdots (\xi_{i} - \eta_{m}) = a_{0}^{m} \prod_{i = 1}^{k} g(\xi_{i}).
+          \]
+          The equality $a_{0}^{m} b_{0}^{l} \prod_{i = 1}^{l}\prod_{j = 1}^{m} (\xi_{i} - \eta_{j}) = (-1)^{lm} b_{0}^{l} \prod_{j = 1}^{m} f(\eta_{j})$ follows the same logic using the fact that $(\xi_{i} - \eta_{j}) = -(\eta_{j} - \xi_{i})$ and there are $lm$ many such pairs.
+    \item Let $f_{1}(x) = a_{1}(x - \xi_{1}) \cdots (x - \xi_{l_{1}})$, $f_{2}(x) = a_{2}(x - \xi_{l_{1} + 1}) \cdots (x - \xi_{l_{2}})$, and $g(x) = b_{0}(x - \eta_{1}) \cdots (x - \eta_{m})$.
+          Then $f_{1}(x) f_{2}(x) = a_{1} a_{2} (x - \xi_{1}) \cdots (x - \xi_{l_{1}}) (x - \xi_{l_{1} + 1}) \cdots (x - \xi_{l_{2}})$.
+          Thus, we have that
+          \begin{align*}
+            \Res(f_{1}f_{2}, g) &= a_{1}^{m}a_{2}^{m}b_{0}^{l_{1} + l_{2}} \prod_{i = 1}^{l_{1} + l_{2}} \prod_{j = 1}^{m} (\xi_{i} - \eta_{j}) \\
+                                &= a_{1}^{m}a_{2}^{m}b_{0}^{l_{1} + l_{2}} \pqty{\prod_{i = 1}^{l_{1}} \prod_{j = 1}^{m} (\xi_{i} - \eta_{j})} \pqty{\prod_{i = l_{1} + 1}^{l_{2}} \prod_{j = 1}^{m} (\xi_{i} - \eta_{j})} \\
+                                &= \pqty{a_{1}^{m}b_{0}^{l_{1}}  \prod_{i = 1}^{l_{1}} \prod_{j = 1}^{m} (\xi_{i} - \eta_{j})} \pqty{a_{2}^{m}b_{0}^{l_{2}}\prod_{i = l_{1} + 1}^{l_{2}} \prod_{j = 1}^{m} (\xi_{i} - \eta_{j})} = \Res(f_{1}, g) \cdot \Res(f_{2}, g).
+          \end{align*}
+  \end{enumerate}
+\end{sol}
 
 \printbibliography
 \end{document}
