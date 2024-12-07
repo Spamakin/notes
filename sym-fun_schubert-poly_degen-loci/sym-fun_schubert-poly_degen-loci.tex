@@ -51,14 +51,20 @@
 
 \chapter*{Preface}
 
-These are notes for a reading course under Prof. \href{https://people.math.osu.edu/anderson.2804/index.html}{Dave Anderson}.
+These are notes for a reading course under Professor \href{https://people.math.osu.edu/anderson.2804/index.html}{Dave Anderson}.
 They begin with a review of some material from Fulton's \emph{Young Tableaux}\footnote{which throughout these notes will be spelled as ``tableaux'' or ``tableau'' with no real consistency.}~\cite{book:YT}.
 However, the primary focus is Manivel's \emph{Symmetric Functions, Schubert Polynomials, and Degeneracy Loci}~\cite{book:ManivelSFSPDL} which one could see as a quasi-sequel.
 
 \mainmatter
 
-\chapter{\tcite{book:YT} Geometry}
+\chapter{\cite{book:YT} Geometry}
 
+\begin{sol}[\cite{book:YT} \S 9.1 Ex. 1]\label{ex:YT_9.1.1}
+  Choose a basis $\set{e_{1}, \ldots, e_{m}}$ so that $E$ can be identified with $\C^{m}$.
+  Let $i_{1} < \cdots < i_{d - 1}$ and $j_{1} < \cdots j_{d + 1}$ be sequences in $[m]$.
+  Apply \S 9.1 Equation (1) with $k = 1$ to the sequences $j_{2} < \cdots < j_{d + 1}$ and $i_{1} < \cdots < i_{d - 1}, j_{1}$ by fixing $j_{1}$ to be the vector swapped successively with the $j_{2} < \cdots < j_{d + 1}$.
+  Reordering the indices and applying the appropriate sign change yields the desired alternating summation.
+\end{sol}
 
 \printbibliography
 \end{document}
