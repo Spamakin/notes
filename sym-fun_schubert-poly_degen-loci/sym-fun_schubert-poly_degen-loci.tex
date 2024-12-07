@@ -66,5 +66,40 @@ However, the primary focus is Manivel's \emph{Symmetric Functions, Schubert Poly
   Reordering the indices and applying the appropriate sign change yields the desired alternating summation.
 \end{sol}
 
+\begin{sol}[\cite{book:YT} \S 9.1 Ex. 2]\label{ex:YT_9.1.2}
+  We have that $V \subseteq E = \C^{4}$ is given as the kernel of multiplication of a matrix $A = (a_{i, j})_{\substack{1 \leq i \leq 4 \\ 1 \leq j \leq 2}}$.
+  To find this matrix, the given conditions of the $x_{i, j}$ describe the following determinantal conditions on the entries of $A$:
+  \begin{align*}
+    x_{1, 2} = 1 &\iff \Delta_{1, 2}(A) = 1, \\
+    x_{1, 3} = 2 &\iff \Delta_{1, 3}(A) = 2, \\
+    x_{1, 4} = 1 &\iff \Delta_{1, 4}(A) = 1, \\
+    x_{2, 3} = 1 &\iff \Delta_{2, 3}(A) = 1, \\
+    x_{2, 4} = 2 &\iff \Delta_{2, 4}(A) = 2, \\
+    x_{3, 4} = 3 &\iff \Delta_{3, 4}(A) = 3,
+  \end{align*}
+  where $\Delta(j_{1}, j_{2})(A)$ is the $2 \times 2$ minor of $A$ defined by picking columns $j_{1}, j_{2}$.
+  From here, we must make an assumption based on which affine portion of $\mathbb{P}^{6}$ our matrix lives in.
+  This amounts to picking some $i_{1}, i_{2}$ so that the minor given by those columns is the identity matrix.
+  For the given conditions, we could pick $(i_{1}, i_{2}) = (1, 2)$, $(1, 4)$, or $(2, 3)$.
+  We give $A$ for each of these conditions respectively:
+  \begin{align*}
+    A =
+    \begin{pmatrix}
+      1 & 0 & -1 & -2 \\
+      0 & 1 & 2 & 1
+    \end{pmatrix},
+    A =
+    \begin{pmatrix}
+      1 & 2 & 3 & 0 \\
+      0 & 1 & 2 & 1
+    \end{pmatrix},
+    A =
+    \begin{pmatrix}
+      2 & 1 & 0 & -3 \\
+      -1 & 0 & 1 & 2
+    \end{pmatrix}.
+  \end{align*}
+\end{sol}
+
 \printbibliography
 \end{document}
