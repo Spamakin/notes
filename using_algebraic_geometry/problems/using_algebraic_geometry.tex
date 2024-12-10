@@ -666,5 +666,36 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\chapter{Computation in Local Rings}
+
+\section{Local Rings}
+
+\begin{sol}[\cite{book:UAG} Ex. 4.1.6]\label{ex:UAG_4.1.6}
+  Let $R$ be the set of all elements $x$ of $F$ such that $v(x) \geq 0$, along with $0$.
+  \begin{enumerate}
+    \item We claim that the unique maximal ideal in $R$ is $M \defeq \set{x \in \R | v(x) > 0}$.
+          To show this, we will show that every element in $R \setminus M$, the nonzero elements $x$ such that $v(x) = 0$, is a unit in $R$.
+          As such, let $0 \neq x \in R \setminus M$.
+          Then $0 \neq x \in F$ implies that $0 \neq x^{-1} \in F$.
+          We claim that $x^{-1} \in R \setminus M$.
+          Indeed, we have that
+          \[
+            v(1) + v(x^{-1}) = v(1 \cdot x^{-1}) = v(x^{-1}) = v(x) + v(x^{-1}) = v(xx^{-1}) = v(1)
+          \]
+          and so $v(x^{-1}) = 0$ as well showing that $x^{-1} \in R \setminus M$.
+          Thus, $R$ is a local ring.
+    \item The check that $v$ is a discrete valuation is straightforward \quest{and omitted for now}.
+          The maximal ideal is given by
+          \[
+            M = \set{x \in k(x) | v(x) = 0} = \Set{\frac{n}{d} \in k(x) | f \text{ does not divide } n, d}.
+          \]
+    \item The check that $v$ is a discrete valuation is straightforward \quest{and omitted for now}.
+          The maximal ideal is given by
+          \[
+            M = \set{x \in \Q | v(x) = 0} = \Set{\frac{n}{d} \in \Q | p \text{ does not divide } n, d}.
+          \]
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
