@@ -713,7 +713,17 @@ So I've moved onto working through this book as well as trying to comprehend Stu
           Such $C$ exists as all terms with $\deg_{x} \geq 2$ go to $0 \pmod{x^{2}}$ and we can factor out the remaining $x$.
           Then as $f(0, a_{i}) = 0$, we want $a_{i, 1}$ such that $\pqty{C + \frac{\partial f}{\partial y}(0, a_{i}) a_{i, 1}}x \equiv 0 \pmod{x^{2}}$.
           This is equivalent to saying that $C + \frac{\partial f}{\partial y}(0, a_{i}) a_{i, 1} = 0$ in $k$.
-          Then as $a_{i}$ is a \emph{simple} root, we know that $\frac{\partial f}{\partial y}(0, a_{i}) \neq 0$ and so we can solve for $a_{1, i}$.
+          Then as $a_{i}$ is a \emph{simple} root, we know that $\frac{\partial f}{\partial y}(0, a_{i}) \neq 0$ and so we can solve for $a_{i, 1}$.
+    \item Let $c_{0}(x) = 1$ and $\ell \geq 1$.
+          As $f(x, y_{i}^{(\ell)}(x)) \equiv 0 \pmod{x^{\ell + 1}}$, let $C$ be a constant which is a polynomial in the coefficients of $f$ and coefficients of $y_{i}^{(\ell)}$ such that $f(x, y_{i}^{(\ell)}(x)) \equiv C x^{\ell + 1} \pmod{x^{\ell + 2}}$.
+          Treating $a_{i, \ell + 1}$ as an indeterminate, we have by similar arguments to above that
+          \begin{align*}
+            f(x, y_{i}^{(\ell + 1)}(x)) &\equiv f(x, y_{i}^{(\ell)}) + (a_{i, \ell + 1} x^{\ell + 1}) \frac{\partial f}{\partial y}(x, y_{i}^{(\ell)}(x)) \\
+                                        &\equiv f(x, y_{i}^{(\ell)}) + (a_{i, \ell + 1} x^{\ell + 1}) \frac{\partial f}{\partial y}(0, a_{i}) \equiv \pqty{D + a_{i, \ell + 1} \frac{\partial f}{\partial y}(0, a_{i})}x^{\ell + 1} \pmod{x^{\ell + 2}}.
+          \end{align*}
+          This \quest{implies} that $D + a_{i, \ell + 1} \frac{\partial f}{\partial y}(0, a_{i}) = 0$ in $k$.
+          Again, as $a_{i}$ is a simple root, we know that $\frac{\partial f}{\partial y}(0, a_{i}) \neq 0$ and so we can solve for $a_{1, \ell + 1}$.
+    \item The prior two parts lay out an inductive argument for the claim.
   \end{enumerate}
 \end{sol}
 
