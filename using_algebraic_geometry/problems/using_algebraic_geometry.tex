@@ -735,5 +735,40 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   These two facts yields that $\set{f_{1}, \ldots, f_{s}}$ generates $I_{M}$ in $R$.
 \end{sol}
 
+\clearpage
+
+\section{Multiplicities and Milnor Numbers}
+
+\begin{sol}[\cite{book:UAG} Ex. 4.2.1]\label{ex:UAG_4.2.1}
+  \begin{enumerate}
+    \item Recall that the maximal ideal of $k[x_{1}, \ldots, x_{n}]_{\ideal{x_{1} - a_{1}, \ldots, x_{n} - a_{n}}}$ is the set $\Set{\frac{f}{g} | f, g \in k[x_{1}, \ldots, x_{n}], g(\overline{a}) \neq 0, f(\overline{a}) = 0}$.
+          Thus, as $1 + 0 = 1 \neq 0$, we know that $1 + x$ is not in the maximal ideal $\mathfrak{m}$ of $R$ and so must be a unit.
+    \item This follows immediately from part \textbf{a.} where $1 + x$ is a unit in $R$ and the fact that $x^{2} + x^{3} = x^{2}(1 + x)$.
+    \item Note that for all $h \in \ideal{x, y} \subseteq R$, $1 + h(0, 0) \neq 0$ and so $\frac{1}{1 + h} \in R$.
+          Then, $\ideal{x, y} \subseteq k[x, y]$ is the set of all polynomials with constant term $0$.
+          Since we know that elements $f = \frac{g}{b} \in R$, where $g, b \in k[x, y]$, are such that $b(0, 0) \neq 0$, we know there is a non-zero constant term.
+          Via rescaling, we may assume that $b$ has constant term $1$ and so $b = 1 + h$ for some $h \in \ideal{x, y} \subseteq k[x, y]$.
+          To see uniqueness, suppose $\frac{g'}{1 + h'} = f = \frac{g}{1 + h}$ so that there exists $s \in k[x, y] \setminus \ideal{x, y}$ such that
+          \[
+            0 = s(g'(1 + h) - g(1 + h')) = s(g' - g + g'h - gh').
+          \]
+          We know that $s \neq 0$ and so  $g'(1 + h) = g(1 + h')$.
+          Thus, $\frac{g}{1 + h} = \frac{g'}{1 + h'}$ in $k[x, y]$.
+          The constant term being $1$ in each denominator immediately implies uniqueness.
+    \item Let $f \in R$ and $g, h$ as in \textbf{(c)} such that $f = \frac{g}{1 + h}$.
+          Note that $g(1 - h + h^{2}) \in R$ by the inclusion $k[x, y] \into R$.
+          We want to show that $f - g(1 - h + h^{2}) \in \ideal{x^{2}, y^{2}} \subseteq R$.
+          To see this, first we compute the following:
+          \[
+            f - g(1 - h + h^{2}) = \frac{g}{1 + h} - g(1 - h + h^{2}) = \frac{-h^{3}}{1 + h}.
+          \]
+          As $h \in \ideal{x, y}$, we have that $h = ax + by$ for some $a, b \in R$.
+          Then, $h^{3}$ is such that every term has degree at least $2$ in $x$ or $y$ and so $\frac{-h^{3}}{1 + h} \in \ideal{x^{2}, y^{2}}$ as desired.
+    \item Since we are working in $R / \ideal{x^{2}, y^{2}R}$, in $g$ and $h$ we may ignore terms in $f, g$ which have degree at least $2$ in either $x$ or $y$.
+          Writing $g = g_{1} + g_{x}x + g_{y}y + g_{xy}xy$ where $g_{1} g_{x}, g_{y}$, and $g_{xy} \in k$, and similarly $h = h_{x}x + h_{y}y + h_{xy}xy$, and expanding $[f] = [g(1 - h + h^{2})]$ yields the desired constants.
+          Uniqueness follows from the uniqueness of $f, g$.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
