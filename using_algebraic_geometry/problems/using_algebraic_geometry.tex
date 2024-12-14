@@ -776,10 +776,10 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \begin{enumerate}
     \item Using SageMath, we find the following four solutions:
           \begin{gather*}
-            (-1.032426, -1.732051), \\
-            (1.032426, 1.732051), \\
-            (-0.516213 + 3.130404i, 1.732051), \\
-            (0.516213 - 3.130404i,  -1.732051).
+            (-3.464102, -1.732051) \\
+            (3.464102, 1.732051) \\
+            (-1.732051, 1.732051) \\
+            (1.732051, -1.732051) \\
           \end{gather*}
     \item In \Cref{fig:4-2-3b_plot}, we see that two points of intersection ``bounce'' which we know geometrically indicates these points have multiplicity > 1.
           \begin{figure}[h]
@@ -801,10 +801,15 @@ So I've moved onto working through this book as well as trying to comprehend Stu
           \]
           which has characteristic polynomial
           \[
-            x^{6} - 18x^{4} + 81x^{2} - 108 = (x^{2} - 12)(x^{2} - 3)^{2}.
+            u^{6} - 18u^{4} + 81u^{2} - 108 = (u^{2} - 12)(u^{2} - 3)^{2}.
           \]
     \clearpage
-    \item
+    \item Further factoring of the characteristic polynomial over $k$ into linear parts yields that
+          \[
+            u^{6} - 18u^{4} + 81u^{2} - 108 = (u^{2} - 12)(u^{2} - 3)^{2} = (u - 2\sqrt{3})(u + 2\sqrt{3})(u - \sqrt{3})^{2}(u + \sqrt{3})^{2}.
+          \]
+          Applying~\cite[\S 4.2, Proposition 2.7]{book:UAG} yields that the points with $x$-coordinate $\pm \sqrt{3}$ each have multiplicity $2$, as expected from \Cref{fig:4-2-3b_plot}, and the other points with $x$-coordinate $\pm 2\sqrt{3}$ each have multiplicity $2$.
+    \item \quest{TODO: Return once you have learned more about resultants.}
   \end{enumerate}
 \end{sol}
 
