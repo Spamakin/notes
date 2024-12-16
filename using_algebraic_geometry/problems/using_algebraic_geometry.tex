@@ -813,5 +813,26 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 4.2.6]\label{ex:UAG_4.2.6}
+  To show that $k[\overline{x}]_{M} / I k[\overline{x}]_{M}$ is a local ring, it suffices to show that $(k[\overline{x}] / I k[\overline{x}])_{M} \simeq k[\overline{x}]_{M} / I k[\overline{x}]_{M}$.
+  Consider the following morphism:
+  \begin{align*}
+    \phi\colon k[\overline{x}]_{M} / I k[\overline{x}]_{M} &\to  (k[\overline{x}] / I k[\overline{x}])_{M} \\
+                       \frac{f}{g} + I k[\overline{x}]_{M} &\mapsto \frac{f + I}{g + I}.
+  \end{align*}
+  It is immediate that $\phi$ is well defined and surjective.
+  To see that $\phi$ is injective, suppose that $\frac{f}{g} + Ik[\overline{x}]_{M} \in \ker \phi$.
+  Then $\frac{f + I}{g + I} = 0$ implies that $f \in I$.
+  Thus, $f \in I k[\overline{x}]_{M}$ which implies that $\frac{f}{g} + I k[\overline{x}]_{M} = 0$.
+  Thus, $\phi$ is an isomorphism which implies that $k[\overline{x}]_{M} / I k[\overline{x}]_{M}$ is a local ring.
+
+  To see that $k[\overline{x}]_{M} / I k[\overline{x}]_{M}$ has dimension $\geq 1$ as a $k$-vector-space, we show that evaluation at $p$, $\evaluation_{p}$ is a well-defined linear surjection of vector spaces.
+  It is immediate that $\evaluation_{p}$ is a linear map.
+  To see that it is well defined, suppose $\frac{f}{g} + I k[\overline{x}]_{M} = \frac{f'}{g'} + I k[\overline{x}]_{M}$.
+  Then we have that $\frac{fg' - f'g}{gg'} \in Ik[\overline{x}]_{M}$ which implies that $fg' - f'g \in K$.
+  Thus, $\evaluation_{p}\pqty{\frac{f}{g} - \frac{f'}{g'} + I k[\overline{x}]_{M}} = 0$ and so by linearity of $\evaluation_{p}$, we have that $\evaluation_{p}\pqty{\frac{f}{g} + I k[\overline{x}]_{M}} = \evaluation_{p}\pqty{\frac{f'}{g'} + I k[\overline{x}]_{M}}$ as desired.
+  Since $\evaluation_{p}$ is obviously surjective, we must have that $\dim_{k}k[\overline{x}]_{M} / I k[\overline{x}]_{M} \geq 1$.
+\end{sol}
+
 \printbibliography
 \end{document}
