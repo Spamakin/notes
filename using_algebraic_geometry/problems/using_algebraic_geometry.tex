@@ -842,5 +842,13 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Then for all $f \in \bigcap_{i = 1}^{n} M_{i}$, we have that $f^{d} \in I$ and so $\pqty{\bigcap_{i = 1}^{n} M_{i}}^{d} \subseteq I$.
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 4.2.9]\label{ex:UAG_4.2.9}
+  Fix $1 \leq i \leq n$.
+  As $\sum_{j = 1}^{m} e_{j} \equiv 1 \pmod{I}$ and for $i \neq j$ we have that $e_{i}e_{j} \equiv 0 \pmod{I}$, we have that
+  \[
+    e_{i} \equiv e_{i} \sum_{j = 1}^{m} e_{j} = e_{i}^{2} + \sum_{\substack{j = 1 \\ j \neq i}}^{m} e_{i}e_{j} \equiv e_{i}^{2} \pmod{I}.
+  \]
+\end{sol}
+
 \printbibliography
 \end{document}
