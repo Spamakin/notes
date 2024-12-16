@@ -850,5 +850,48 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \]
 \end{sol}
 
+\clearpage
+
+\begin{sol}[\cite{book:UAG} Ex. 4.2.11]\label{ex:UAG_4.2.11}
+  \begin{enumerate}
+    \item If $f \in I$, then $f(p_{i}) = 0$ and so $[f]_{i} = [0]_{i}$ in $A_{i}$ meaning $f \in Q_{i}$.
+          To see the desired description of $Q_{i}$, we have that
+          \begin{align*}
+            f \in Q_{i} &\iff [f]_{i} = [0]_{i} \\
+                        &\iff f \in I \mathcal{O}_{i} \\
+                        &\iff f = \frac{g_{i}}{u}, u \in k[\overline{x}] \setminus M_{i}, g_{i} \in I \iff f \cdot u = g_{i} \in I.
+          \end{align*}
+    \item Fix $1 \leq i \leq m$ and $j \neq i$.
+          Let $\tilde{u} \defeq 1 - g_{j}$.
+          We have that $\tilde{u} \notin M_{i}$.
+          For $k \neq j$ we have that $(\tilde{u} \cdot g_{j})(p_{k}) = \tilde{u}(p_{k}) \cdot g_{j}(p_{k}) = 1 \cdot 0 = 0$.
+          On the other hand, we have that $(\tilde{u} \cdot g_{j})(p_{j}) = \tilde{u}(p_{j}) \cdot g_{j}(p_{j}) = 0 \cdot 1 = 0$.
+          Thus, $\tilde{u} \cdot g_{j} \in \I(\V(I)) = \sqrt{I}$ and so there exists $d$ such that $(\tilde{u} \cdot g_{j})^{d} \in I$.
+          Let $u = \tilde{u}^{d}$.
+          Then $u \notin M_{i} \implies \tilde{u} \notin M_{i}$ and yet $u \cdot g_{j}^{d} \in I$.
+          Thus, by \textbf{(a)} we have that $g_{j}^{d} \in Q_{i}$.
+    \item Since $I \subseteq Q_{i}$, we have that $\V(Q_{i}) \subseteq \set{p_{1}, \ldots, p_{m}}$ and so we can consider this finite list of points individually.
+          For all $j \neq i$, there exists $d_{j}$ such that $g_{j}^{d_{j}} \in Q_{i}$.
+          Since $g_{j}^{d_{j}}(p_{j}) = 1$, we have that $p_{j} \notin Q_{i}$.
+          For $f \in Q_{i}$, there exists $u \notin M_{i}$ such that $u \cdot f \in I$.
+          Since $u(p_{i}) \neq 0$ but $u(p_{i}) \cdot f(p_{i}) = 0$, we must have that $f(p_{i}) = 0$.
+          Thus, $\V(Q_{i}) = \set{p_{i}}$.
+          With this, $\sqrt{Q_{i}} = \I(\V(Q_{i})) = \I(\set{p_{i}}) = M_{i}$ as desired.
+    \item Suppose that $f \cdot g \in Q_{i}$.
+          If $f \in Q_{i}$ we are done, so suppose not.
+          Then $f(p_{i}) \neq 0$ but $f(p_{i}) \cdot g(p_{i}) = 0$ which implies that $g(p_{i}) = 0$.
+          Thus, $g \in M_{i} = \sqrt{Q_{i}}$ and so there exists $d > 0$ such that $g^{d} \in M_{i}$.
+          \quest{Unsure about the relevance of the hint saying that $A_{i}$ is a local ring.}
+    \item By \textbf{(a)}, we have that $I \subseteq Q_{i}$ for all $i$ and so $I \subseteq Q_{1} \cap \cdots \cap Q_{m}$.
+          Now suppose that $f \in Q_{1} \cap \cdots \cap Q_{m}$ which implies that for all $i$, $f \in \ker \varphi_{i}$.
+          By the proof of~\cite[\S 4.2, Theorem 2.]{book:UAG}, this means that $f \in I$.
+          Thus, $I = Q_{1} \cap \cdots \cap Q_{m}$.
+    \item We know that $\varphi\colon k[\overline{x}] \to A_{1} \times \cdots \times A_{m}$ is surjective.
+          Trivially, the projection $\pi_{i}\colon A_{1} \times \cdots \times A_{m} \to A_{i}$ is also surjective.
+          Thus, $\varphi_{i} = \pi_{i} \circ \varphi$ is surjective.
+          By an isomorphism theorem, this means that $k[\overline{x}] / Q_{i} \simeq A_{i}$.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
