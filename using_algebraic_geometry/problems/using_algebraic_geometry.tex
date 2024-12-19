@@ -905,5 +905,18 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \quest{TODO: Come back after learning more about resultants.}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 4.2.15]\label{ex:UAG_4.2.15}
+  \begin{enumerate}
+    \item Let $I = \I(\ell_{1}, \ldots, \ell_{n})$.
+          Since $\V(\ell_{1}, \ldots, \ell_{n}) = \set{\overline{0}}$, we must have that the matrix with rows given by the coefficients of the $\ell_{i}$ is full rank.
+          Thus, $k[\overline{x}] / I \simeq k$.
+          Let $f = 1$ so that $m_{f}$ is the $1 \times 1$ identity matrix.
+          Then $(-1)^{1} (u - 1)^{m(\overline{0})} = \det(m_{f} - uI) = 1 - u$ which implies that $m(\overline{0}) = 1$ as desired.
+    \item By~\cite[\S 4.2, Proposition 2.11]{book:UAG}, we have that the multiplicity of the origin in $\V(I)$ is also given by $\dim_{k} k[[\overline{x}]] / Ik[[\overline{x}]]$.
+          Since the Jacobian matrix is invertible, \quest{there is} an automorphism of $k[[\overline{x}]]$ sending $f_{i}$ to $x_{i}$.
+          Since $\overline{0} \in \V(x_{1}, \ldots, x_{n})$ which is a variety defined by homogeneous linear polynomials, by \textbf{(a)} we have that the multiplicity of the origin is $1$.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
