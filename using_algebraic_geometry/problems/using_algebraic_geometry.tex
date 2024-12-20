@@ -929,5 +929,22 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Thus, the Milnor number of an ordinary double point is $1$.
 \end{sol}
 
+\clearpage
+
+\section{Term Orders and Division in Local Rings}
+
+\begin{sol}[\cite{book:UAG} Ex. 4.3.8]\label{ex:UAG_4.3.8}
+  \begin{enumerate}
+    \item Following the given hint, let $>_{r}$ be the reverse ordering of $>$.
+          Then by~\cite[\S 2.4, Corollary 6]{book:IVA}, to prove that $>_{r}$ is a well-ordering it suffices to show that $\alpha \geq_{r} 0$ for all $\alpha \in \Z_{\geq 0}^{n}$.
+          Since for all $i$ we have that $1 > x_{i}$, we have that $x_{i} >_{r} 1$.
+          Compatibility with multiplication then inductively shows that for all $\alpha \in \Z_{\geq 0}^{n}$ that $\alpha \geq_{r} 0$ and this $>_{r}$ is a well-ordering.
+          Translating back to $>$, this shows that every nonempty set of monomials has a maximal element.
+    \item Since every nonempty set of monomials has a maximal element by \textbf{(a)}, we can define $\mdeg,\ \lt$, and $\lc$ in the usual manner.
+    \item \quest{Immediate}
+    \item \quest{Immediate}
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
