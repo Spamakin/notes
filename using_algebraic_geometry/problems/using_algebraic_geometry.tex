@@ -953,5 +953,14 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   These facts imply the statement as well as its converse.
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 4.3.10]\label{ex:UAG_4.3.10}
+  In the proof of correctness, we found polynomials $A_{l, j}, U_{j}$, and $H_{j}$ such that on the $j\textsuperscript{th}$ pass through the WHILE loop we had
+  \[
+    U_{j}F = A_{1, j}F_{1} + \cdots + A_{s, j}F_{s} + H_{j}.
+  \]
+  For $j = 0$, we can take $H_{0} = F$, $U_{0} = 1$, and $A_{l, 0} = 0$ for all $l$.
+  The proof of correctness of~\cite[\S 4.2, Theorem 3.10]{book:UAG}, there are given rules on how to update not just $H_{j}$ and $U_{j}$ but also how to find $A_{l, j + 1}$ from $A_{l, j}$ depending on what $G$ is on each given loop.
+\end{sol}
+
 \printbibliography
 \end{document}
