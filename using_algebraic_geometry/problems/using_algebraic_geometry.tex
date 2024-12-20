@@ -962,5 +962,18 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   The proof of correctness of~\cite[\S 4.2, Theorem 3.10]{book:UAG}, there are given rules on how to update not just $H_{j}$ and $U_{j}$ but also how to find $A_{l, j + 1}$ from $A_{l, j}$ depending on what $G$ is on each given loop.
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 4.3.13]\label{ex:UAG_4.3.13}
+  \quest{Is there a non-tedious non-inductive way to do this?}
+\end{sol}
+
+\begin{sol}[\cite{book:UAG} Ex. 4.3.14]\label{ex:UAG_4.3.14}
+  Homogenize $f, f_{1}, \ldots, f_{s}$ to obtain $F, F_{1}, \ldots, F_{s}$.
+  Then run the algorithm described in~\cite[\S 4.2, Theorem 3.10]{book:UAG}.
+  Dehomogenize the result by setting $t = 1$.
+  We know that homogenization and dehomogenization preserve leading terms and both take units to units.
+  This proves~\cite[\S 4.2, Corollary 3.13]{book:UAG}.
+  \quest{TODO: SageMath implementation.}
+\end{sol}
+
 \printbibliography
 \end{document}
