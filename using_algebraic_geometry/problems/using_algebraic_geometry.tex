@@ -975,5 +975,19 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \quest{TODO: SageMath implementation.}
 \end{sol}
 
+\clearpage
+
+\section{Standard Bases in Local Rings}
+
+\begin{sol}[\cite{book:UAG} Ex. 4.4.1]\label{ex:UAG_4.4.1}
+  \begin{enumerate}
+    \item Recall that every semigroup order $>$ on $R$ can be lifted to a monomial order $>'$ on $k[t, \overline{x}]$ such that homogenization and dehomogenization with respect to $t$ maintains leading terms.
+          Thus, we can consider $\ideal{\lt(I)} \subseteq k[t, \overline{x}]$ with respect to $>'$.
+          Here, as we are dealing with a monomial order, Dickson's Lemma implies that $\ideal{\lt(I)}$ has a finite generating set.
+          As dehomogenization, by setting $t = 1$, takes leading terms to leading terms, we have that $\ideal{\lt(I)} \subseteq R$ has a finite generating set.
+    \item \quest{Immediate}
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
