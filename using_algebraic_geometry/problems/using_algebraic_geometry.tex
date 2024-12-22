@@ -1012,5 +1012,19 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \quest{TODO: SageMath implementation.}
 \end{sol}
 
+\clearpage
+
+\section{Applications of Standard Bases}
+
+\begin{sol}[\cite{book:UAG} Ex. 4.5.2]\label{ex:UAG_4.5.2}
+  \begin{enumerate}
+    \item As $f_{1}, \ldots, f_{n}$ are homogeneous already, homogenization with respect to $x_{0}$ does nothing.
+          Thus, as $\V(f_{1}, \ldots, f_{n}) = \set{\overline{0}}$, the have no non-trivial solutions when $x_{0} = 0$.
+          Given this, \Bezout's Theorem~\cite[\S 3.5, Theorem 5.5]{book:UAG} applies.
+          Combining \Bezout's Theorem with~\cite[\S 4.2, Theorem 2.5]{book:UAG} yields that $d_{1} \cdots d_{n} = \dim k[\overline{x}] / I = m(\overline{0})$.
+    \item Apply \textbf{(a)} to $\ideal{\frac{\partial f}{\partial x_{1}}, \ldots, \frac{\partial f}{\partial x_{n}}}$.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
