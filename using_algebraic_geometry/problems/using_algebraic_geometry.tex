@@ -1058,5 +1058,60 @@ So I've moved onto working through this book as well as trying to comprehend Stu
     \item \quest{TODO after installing Singular}
   \end{enumerate}
 \end{sol}
+
+\chapter{Modules}
+
+\section{Modules over Rings}
+
+\quest{TODO: Every exercise as qualifying prep.}
+
+\begin{sol}[\cite{book:UAG} Ex. 5.1.2]\label{ex:UAG_5.1.2}
+  \begin{enumerate}
+    \item Clearly $f_{1}, f_{2}, f_{3} \in \ker A$ and so $M \subseteq \ker A$.
+          Now suppose that $f = \begin{pmatrix} p & q & r \end{pmatrix}^{\top} \in R^{3}$ such that $Af = 0$.
+          Thus, $xp + yq + zr = 0$.
+          As $k[x, y, z] = k[x, y][z]$, there exists $p_{1}, q_{1} \in k[x, y]$ and $p_{2}, q_{2} \in k[x, y, z]$ such that $p = p_{1} + z p_{2}$ and $q = q_{1} + z q_{2}$.
+          Let $z = 0$.
+          Then $0 = x p_{1} + y q_{1}$ and so there exists $a \in k[x, y]$ such that $xa = q_{1}$ and so $-ya = p_{1}$.
+          Given this, we have that
+          \[
+          \begin{pmatrix}
+            p \\ q \\ r
+          \end{pmatrix}
+          =
+          -a f_{1} +
+          \begin{pmatrix}
+            z p_{2} \\ z q_{2} \\ r
+          \end{pmatrix}.
+          \]
+          As both $\begin{pmatrix} p & q & r \end{pmatrix}^{\top}$ and $-a f_{1}$ are in $\ker A$, we have that $\begin{pmatrix} z p_{2} & z q_{2} & r \end{pmatrix}^{\top}$ is in $\ker A$.
+          Thus, $xzp_{2} + yzq_{2} + zr = 0$ and so $r = -xp_{2} - y q_{2}$ and overall we have that
+          \[
+          \begin{pmatrix}
+            p \\ q \\ r
+          \end{pmatrix}
+          =
+          -a f_{1} +
+          \begin{pmatrix}
+            z p_{2} \\ z q_{2} \\ r
+          \end{pmatrix}
+          = -a f_{1} + p_{2} f_{2} + q_{2} f_{3} \in M.
+          \]
+    \item Consider $\gen{f_{1}, f_{2}}$.
+          Then for all $a, b \in k[x, y]$ we have that $a f_{1} + b f_{2} = \begin{pmatrix} a y + b z & -a x & - b x \end{pmatrix}^{\top}$.
+          Thus, for all $\begin{pmatrix} p & q & r \end{pmatrix}^{\top} \in \gen{f_{1}, f_{2}}$ we must have that $x \mid q$ and $x \mid r$.
+          However, we know that $f_{3} = \begin{pmatrix} 0 & z & -y \end{pmatrix}^{\top} \in M$ but $x \nmid z$ and $x \nmid -y$.
+          Thus, $\gen{f_{1}, f_{2}} \subsetneq M$.
+          The other cases are similar.
+
+          \clearpage
+
+    \item We have that $-z f_{1} + y f_{2} - x f_{3} = \overline{0}$.
+    \item Nothing to do.
+    \item \quest{STUCK}
+  \end{enumerate}
+\end{sol}
+
+
 \printbibliography
 \end{document}
