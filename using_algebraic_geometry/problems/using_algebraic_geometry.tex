@@ -1112,6 +1112,22 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 5.1.8]\label{ex:UAG_5.1.8}
+  \begin{enumerate}
+    \item Let $\phi\colon M \to R$ be a $R$-module homomorphism such that $\phi(x^{2}) = y$ and $\phi(y^{3}) = x$.
+          Then we must have that
+          \[
+            0 = \phi(0) = \phi(y^{3}x^{2} - x^{2}y^{3}) = y^{3} \phi(x^{2}) - x^{2} \phi(y^{3}) = y^{4} - x^{3}.
+          \]
+          However, $y^{4} \neq x^{3}$ yields a contradiction and so no such $\phi$ exists.
+    \item Let $\phi\colon M \to R$ be a $R$-module homomorphism and let $a = \phi(x^{2})$ and $b = \phi(y^{3})$.
+          Then as above, we must have that $y^{3}a = x^{2} b$.
+          This means that $y^{3} \mid b$ and so there exists $c \in k[x, y]$ such that $y^{3} c = b$.
+          Then $y^{3} a = x^{2} b = x^{2} y^{3} c$ implies that $a = x^{2} c$.
+          So $\phi(x^{2}) = x^{2} c$ and $\phi(y^{3}) = y^{3} c$, \ie\ $\phi(1) = c$.
+          This implies that $\Hom(\gen{x^{2}, y^{3}}, k[x, y]) \simeq k[x, y]$ as $k[x, y]$-modules as we can choose any $c$ and such $c$ is unique.
+  \end{enumerate}
+\end{sol}
 
 \printbibliography
 \end{document}
