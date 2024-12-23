@@ -1037,7 +1037,7 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 \begin{sol}[\cite{book:UAG} Ex. 4.5.5]\label{ex:UAG_4.5.5}
   \begin{enumerate}
     \item Trivial.
-    \item We take ideas from~\cite{Mora1989}.
+    \item We take ideas from~\cite[Proposition 4]{Mora1989}.
           Recall that degree-anticompatible orderings are local orderings.
           Then for all $h = \frac{f}{1 + g} \in k[\overline{x}]_{\ideal{x_{1}, \ldots, x_{n}}}$ we have that $\lt(h) = \lt(f) = \lt(f_{\min}) = \lt(h_{\min})$.
           Let $\mathrm{in}(I) = \ideal{f_{\min} \mid f \in I}$.
@@ -1047,6 +1047,14 @@ So I've moved onto working through this book as well as trying to comprehend Stu
             \ideal{\lt(\mathrm{in}(I))} = \ideal{\lt(I)} = \ideal{\lt(G)} = \ideal{\lt(\mathrm{in}(G))}.
           \]
           Thus, $\mathrm{in}(G)$ is a standard basis for $\mathrm{I}$ and so $\mathbf{C}(V) = \V(\mathrm{in}(G))$.
+
+          \textbf{Remark:} In fact, we have shown more.
+          We know that $G = \set{g_{1}, \ldots, g_{t}}$ are all polynomials and so it makes sense to talk about \Grobner\ bases.
+          Let $>$ be the degree-anticompatible ordering in question and define $>_{w}$ by undoing the degree-anticompatibility in that
+          \[
+            \overline{x}^{\alpha} >_{w} \overline{x}^{\beta} \iff \abs{\alpha} > \abs{\beta} \text{ or } \abs{\alpha} = \abs{\beta} \text{ and } \overline{x}^{\alpha} > \overline{x}^{\beta}.
+          \]
+          Then we can actually show that $G$ is a \Grobner\ basis with respect to $>_{w}$.
     \item \quest{TODO after installing Singular}
   \end{enumerate}
 \end{sol}
