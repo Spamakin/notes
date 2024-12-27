@@ -1199,5 +1199,24 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Thus, $\varphi$ is well-defined if and only if $BA = 0$.
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 5.1.19]\label{ex:UAG_5.1.19}
+  \begin{enumerate}
+    \item Let $c = \begin{pmatrix} c_{1} & \cdots & c_{s} \end{pmatrix}$.
+          If $\sum_{i = 1}^{s} c_{i}f_{i} = 0$, then $Ac = 0$.
+          But $A$ is invertible and so $c = 0$ meaning that $\set{f_{1}, \ldots, f_{s}}$ forms a basis.
+    \item Suppose that $N \simeq R^{s}$.
+          Then there exists an isomorphism $\varphi\colon N \to R^{s}$.
+          This is given by a matrix $A$ where $A$ is invertible as $\varphi$ is an isomorphism.
+          We have a standard basis $\set{e_{1}, \ldots, e_{s}}$ for $R^{s}$.
+          Define $f_{i}$ as in \textbf{(a)}.
+          We saw that this forms a basis for $N$ and so $N$ is free.
+
+          Now suppose that $N$ is free with basis $\set{f_{1}, \ldots, f_{s}}$.
+          Let $\varphi\colon N \to R^{s}$ be given by $f_{i} \mapsto e_{i}$ and extend by linearity.
+          This is well defined, linear, surjective, and injective by linear independence of the basis $\set{e_{1}, \ldots, e_{s}}$.
+          Thus, $N \simeq R^{s}$.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
