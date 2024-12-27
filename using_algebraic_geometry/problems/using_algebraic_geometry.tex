@@ -1179,6 +1179,16 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{align*}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 5.1.17]\label{ex:UAG_5.1.17}
+  We saw in \Cref{ex:UAG_5.1.2}(c) that  $\Syz(f_{1}, f_{2}, f_{3}) = \gen{\begin{pmatrix} -z & y & -x \end{pmatrix}}$.
+  Since $M = \gen{f_{1}, f_{2}, g_{3}}$ has 3 generators and $\Syz(f_{1}, f_{2}, f_{3})$ has one generator, we have that our presentation matrix $A$ is $3 times 1$.
+  Then, $\varphi\colon M \to R^{l}$ is given by an $l \times 3$ matrix $B = (b_{i, j})$.
+  The condition from~\cite[\S 5.1, Proposition 1.11]{book:UAG} stating that $BA = 0$ means that for all $1 \leq i \leq l$ we have that $-z b_{i, 1} + y b_{i, 2} - x b_{i, 3} = 0$.
+  This completely characterizes all morphisms $\varphi\colon M \to R^{l}$.
+\end{sol}
+
+\clearpage
+
 \begin{sol}[\cite{book:UAG} Ex. 5.1.18]\label{ex:UAG_5.1.18}
   Let $c = \begin{pmatrix} c_{1} & \cdots & c_{l} \end{pmatrix}$ and $d = \begin{pmatrix} d_{1} & \cdots & d_{l} \end{pmatrix}$.
   Suppose that $\sum_{i = 1}^{l} c_{i}f_{i} = \sum_{i = 1}^{l} d_{i}f_{i}$.
