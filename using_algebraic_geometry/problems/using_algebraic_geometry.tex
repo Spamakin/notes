@@ -1179,5 +1179,15 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{align*}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 5.1.18]\label{ex:UAG_5.1.18}
+  Let $c = \begin{pmatrix} c_{1} & \cdots & c_{l} \end{pmatrix}$ and $d = \begin{pmatrix} d_{1} & \cdots & d_{l} \end{pmatrix}$.
+  Suppose that $\sum_{i = 1}^{l} c_{i}f_{i} = \sum_{i = 1}^{l} d_{i}f_{i}$.
+  We have that $\sum_{i = 1}^{l} c_{i}\varphi(f_{i}) = Bc$ and $\sum_{i = 1}^{l} d_{i}\varphi(f_{i}) = Bd$.
+  Showing that $\varphi$ is well-defined is equivalent to showing that $Bc = Bd$ for all $c, d$.
+  Equivalently, we want to show that $Bx = 0$ for all $x \in \Syz(f_{1}, \ldots, f_{l})$.
+  Recall that the columns of $A$ are the generators of $\Syz(f_{1}, \ldots, f_{n})$,
+  Thus, $\varphi$ is well-defined if and only if $BA = 0$.
+\end{sol}
+
 \printbibliography
 \end{document}
