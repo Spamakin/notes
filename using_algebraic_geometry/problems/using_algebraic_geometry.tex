@@ -1143,5 +1143,31 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\clearpage
+
+\begin{sol}[\cite{book:UAG} Ex. 5.1.10]\label{ex:UAG_5.1.10}
+  \begin{enumerate}
+    \item We know that $\gen{a_{1}, \ldots, a_{m}} = R$ if and only if $1 \in \gen{a_{1}, \ldots, a_{m}}$.
+          So we show that the morphism is surjective if and only if $1 \in \gen{a_{1}, \ldots, a_{m}}$.
+          If the morphism is surjective, then there exists $f = \begin{pmatrix} f_{1} & \cdots & f_{m} \end{pmatrix}^{\top}$ such that $a_{1}f_{1} + \cdots + a_{m}f_{m} = 1$ and so $1 \in \gen{a_{1}, \ldots, a_{m}}$.
+          Now suppose that $1 \in \gen{a_{1}, \ldots, a_{m}}$.
+          Choose $g_{1}, \ldots, g_{m} \in R$ such that $1 = a_{1}g_{1} + \cdots + a_{m}g_{m}$.
+          Let $r \in R$.
+          Define $f_{i} = f g_{i}$ for $1 \leq i \leq m$.
+          Then clearly for $f = \begin{pmatrix} f_{1} & \cdots & f_{m} \end{pmatrix}^{\top}$ we have that $f$ maps to $g$ and so the morphism is onto.
+    \item This follows from the fact that nonzero constants in $k[\overline{x}]$ are invertible.
+    \item We have that
+          \[
+            \frac{1}{2}(x + xy) + \pqty{-\frac{x}{2} + 1}(1 - y) + (-y)(1 + x) = 1.
+          \]
+    \item \quest{Gave up.}
+    \item We see that $a_{3} h_{1} - a_{2} h_{2} + a_{1} h_{3} = 0$ showing a linear dependence.
+          Consider $\gen{h_{1}, h_{2}}$.
+          Notice that for every $\begin{pmatrix} X_{1} & X_{2} & X_{3} \end{pmatrix}^{\top} \in \gen{h_{1}, h_{2}}$ we must have that $a_{1} \mid X_{2}$ and $a_{2} \mid X_{3}$.
+          Clearly this is not true for $h_{3}$ and so $h_{3} \notin \gen{h_{1}, h_{2}}$ and so $\gen{h_{1}, h_{2}} \neq M$.
+          Showing $\gen{h_{1}, h_{3}}, \gen{h_{2}, h_{3}} \neq M$ is similar.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
