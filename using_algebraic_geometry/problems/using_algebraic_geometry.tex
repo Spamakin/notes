@@ -1239,5 +1239,17 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 5.2.7]\label{ex:UAG_5.2.7}
+  Recall that the only monomial ordering on $R = k[x]$ is $1 < x < x^{2} < \cdots$.
+  Let $M$ be some submodule of $R^{m}$ and $G$ a \Grobner\ basis for $M$.
+  Without loss of generality, say $G$ is monic and reduced.
+  Suppose there were elements of $G$ whose leading terms both contain some $e_{i}$, say $x^{a}e_{i}$ and $x^{b}e_{i}$.
+  Then either $x^{a} \mid x^{b}$ or $x^{b} \mid x^{a}$.
+  So $G$ is not reduced, a contradiction and so no such pair of elements can exist.
+  Via similar logic, if an element of $G$ has a term which contains $e_{i}$, then the $i$-th component of every other element of $G$ must be zero.
+  In particular, this shows that every monic, reduced \Grobner\ basis of a submodule of $R^{m}$ must have $\leq m$ elements.
+  Thus, by the uniqueness of monic, reduced \Grobner\ bases, there are at most $2^{m}$ submodules of $R^{m}$.
+\end{sol}
+
 \printbibliography
 \end{document}
