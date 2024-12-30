@@ -1218,5 +1218,26 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\clearpage
+
+\section{Monomial Orders and \Grobner\ Bases for Modules}
+
+\begin{sol}[\cite{book:UAG} Ex. 5.2.6]\label{ex:UAG_5.2.6}
+  \begin{enumerate}
+    \item Follows immediately from the distributivity of multiplication in $S = k[x_{1}, \ldots, x_{n}, X_{1}, \ldots, X_{m}]$.
+    \item Follows immediately from the distributivity of multiplication in $S$ and the fact that $R = k[x_{1}, \ldots, x_{n}]$ contains no monomials containing any of the $X_{j}$.
+    \item Consider $f_{i}$, one of the generators of $M$.
+          Then there exists $r_{i} \in R$ such that $f_{i} = \sum_{i = 1}^{s} r_{i} e_{i}$.
+          We have that $F_{i} = \varphi(f_{i}) = \sum_{i = 1}^{s} r_{i} X_{i}$ and so each $F_{i}$ is an element of $S_{1}$.
+          By $R$-linearity, this shows that $\varphi(M) \subseteq \ideal{F_{1}, \ldots, F_{s}}S \cap S_{1}$.
+          Now suppose that $f \in \ideal{F_{1}, \ldots, F_{s}}S \cap S_{1}$.
+          Then as $f \in \ideal{F_{1}, \ldots, F_{s}}S$, there exists $r_{i} \in S$ such that $f = \sum_{i = 1}^{s} r_{i}F_{i}$.
+          Note that each $F_{i} \in S_{1}$.
+          Thus, as polynomial rings over a field are a domain and $f \in S_{1}$, we must have that each $r_{i} \in R$ instead of just $r_{i} \in S$.
+          Thus, $f = \varphi\pqty{\sum_{i = 1}^{s} r_{i} f_{i}}$ as desired.
+    \item The fact that the given modification of Buchberger's Algorithm works follows from the fact that in \textbf{(c)}, we know that the image of $M$ in $S$ under $\varphi$ is contained in $S_{1}$ and so any other $S$-polynomials not in $S_{1}$ are irrelevant as they do not appear in the image of $M$.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
