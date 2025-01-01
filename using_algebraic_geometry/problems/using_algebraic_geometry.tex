@@ -1263,5 +1263,15 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Thus, $\mathbf{s}_{i j} \in \Syz(g_{1}, \ldots, g_{s})$.
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 5.3.7]\label{ex:UAG_5.3.7}
+  Suppose $h_{0} \in I \cap J$.
+  Then there exists $h_{1}, \ldots, h_{t}, h_{t + 1}, \ldots, h_{t + s}$ such that $h_{0} = \sum_{i = 1}^{t} h_{i}f_{i}$ and $h_{0} = \sum_{j = 1}^{s} h_{t + j}g_{j}$.
+  Then, it is easy to see that
+  \[
+    \mathbf{0} = h_{0}\mathbf{v}_{0} + \sum_{i = 1}^{t} -h_{i}\mathbf{v}_{i} + \sum_{j = 1}^{s} h_{t + j}\mathbf{v}_{t + j}
+  \]
+  and so $\begin{pmatrix} h_{0} & h_{1} & \cdots & h_{t + s} \end{pmatrix}^{\top} \in R^{t + s + 1}$.
+\end{sol}
+
 \printbibliography
 \end{document}
