@@ -1251,5 +1251,17 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Thus, by the uniqueness of monic, reduced \Grobner\ bases, there are at most $2^{m}$ submodules of $R^{m}$.
 \end{sol}
 
+\clearpage
+
+\section{Computing Syzygies}
+
+\begin{sol}[\cite{book:UAG} Ex. 5.3.1]\label{ex:UAG_5.3.1}
+  We have that
+  \[
+    \mathbf{s}_{i j} \cdot \begin{pmatrix} g_{1} & \cdots & g_{s} \end{pmatrix}^{\top} = \frac{x^{\gamma_{i j}}}{\lt(g_{i})} g_{i} - \frac{x^{\gamma_{i j}}}{\lt(g_{j})}g_{j} - \sum_{k = 1}^{s} a_{i j k} g_{k} = S(g_{i}, g_{j}) - S(g_{i}, g_{j}) = 0.
+  \]
+  Thus, $\mathbf{s}_{i j} \in \Syz(g_{1}, \ldots, g_{s})$.
+\end{sol}
+
 \printbibliography
 \end{document}
