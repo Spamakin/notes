@@ -1294,5 +1294,17 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 5.3.12]\label{ex:UAG_5.3.12}
+  Let $f_{1}, f_{2} \in k[\overline{x}]$ be nonzero.
+  Then $\Syz(f_{1}, f_{2}) \subseteq k[\overline{x}]^{2}$ is the set of $\begin{pmatrix} a_{1} & a_{2} \end{pmatrix}^{\top}$ such that $a_{1}f_{1} + a_{2}f_{2} = 0$.
+  Let $g = \gcd(f_{1}, f_{2})$ and let $g_{1} = \frac{f_{2}}{g}$ and $g_{2} = \frac{f_{1}}{g}$.
+  Then it is easy to see that $\begin{pmatrix} g_{1} & -g_{2} \end{pmatrix}^{\top}$ generates $\Syz(f_{1}, f_{2})$.
+  Indeed, suppose that $\begin{pmatrix} a_{1} & a_{2} \end{pmatrix}^{\top} \in \Syz(f_{1}, f_{2})$.
+  Then since $a_{1}f_{1} + a_{2}f_{2} = 0$, we have that $a_{1}f_{1} = -a_{2}f_{2}$ and so $f_{2} \mid a_{1}f_{1}$.
+  Thus, $g_{1} = \frac{f_{2}}{g} \mid a_{1}$.
+  Similarly, we get that $g_{2} = \frac{f_{1}}{g} \mid -a_{2}$.
+  Thus, $\begin{pmatrix} a_{1} & a_{2} \end{pmatrix}^{\top} \in \gen{\begin{pmatrix} g_{1} & -g_{2} \end{pmatrix}^{\top}}$.
+\end{sol}
+
 \printbibliography
 \end{document}
