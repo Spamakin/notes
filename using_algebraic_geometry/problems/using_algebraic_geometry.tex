@@ -1273,5 +1273,26 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   and so $\begin{pmatrix} h_{0} & h_{1} & \cdots & h_{t + s} \end{pmatrix}^{\top} \in \Syz(\mathbf{v}_{0}, \mathbf{v}_{1}, \ldots, \mathbf{v}_{t}, \mathbf{v}_{t + 1}, \ldots \mathbf{v}_{t + s}) \subseteq R^{t + s + 1}$.
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 5.3.10]\label{ex:UAG_5.3.10}
+  \begin{enumerate}
+    \item Recall from~\cite[\quest{Exercise 1.3.12}]{book:UAG} that if $\set{g_{1}, \ldots, g_{t}}$ is \Grobner\ basis for $I \cap \ideal{h}$ then $I \colon \ideal{h}$ has a \Grobner\ basis given by $\ideal{g_{1} / h, \ldots, g_{t} / h}$.
+          Given $I = \gen{f_{1}, \ldots, f_{s}}$ and $h$, first compute the generators of the syzygy modules $\Syz(\mathbf{v}_{0}, \mathbf{v}_{1}, \ldots, \mathbf{v}_{s}, \mathbf{v}_{s + 1})$ where
+          \begin{gather*}
+            \mathbf{v}_{0} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \\
+            \mathbf{v}_{1} = \begin{pmatrix} f_{1} \\ 0 \end{pmatrix}, \ldots, \mathbf{v}_{s} = \begin{pmatrix} f_{1} \\ 0 \end{pmatrix}, \\
+            \mathbf{v}_{s + 1} = \begin{pmatrix} 0 \\ h \end{pmatrix}.
+          \end{gather*}
+          By~\cite[\S 5.3, Proposition 3.11]{book:UAG}, the first components of these generators are the generators $\ideal{g_{1}, \ldots, g_{t}}$ of $I \cap \ideal{h}$.
+          Furthermore, if  $\begin{pmatrix} g_{i} & h_{i, 1} & \cdots & h_{i, s} & h_{i, s + 1} \end{pmatrix}^{\top}$ is the syzygy generator witnessing $g_{i}$, then we can compute $g_{i} / h$ without division.
+          To see this, study the second row of the following syzygy relation:
+          \[
+            \mathbf{0} = g_{i}\mathbf{v}_{0} + \mathbf{v}_{1} h_{i, 1} + \cdots \mathbf{v}_{s} h_{i, s} + \mathbf{v}_{s + 1} h_{i, s + 1}
+          \]
+          This means $0 = g_{i} + h \cdot h_{i, s + 1}$ and so $g_{i} / h = -h_{i, s + 1}$.
+          Thus, we can recover the generators of $I \colon \ideal{h}$ without doing polynomial division.
+    \item \quest{Is there anything better} than repeating~\cite[\S 5.3, Proposition 3.11]{book:UAG} multiple times?
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
