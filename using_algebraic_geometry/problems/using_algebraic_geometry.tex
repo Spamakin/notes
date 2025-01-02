@@ -1315,5 +1315,22 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   Then the claim follows from the same proof as~\cite[\S 5.2, Proposition 2.3a]{book:UAG}.
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 5.4.4]\label{ex:UAG_5.4.4}
+  \begin{enumerate}
+    \item We have that $\V(M) = \set{(1, 1)} \cup \set{x = 0}$.
+          Given this, we see that if we remove any generator of the ideal, the set of common zeros will then include a whole new line of common zeros, thus defining a different variety.
+          This shows that if we remove any particular generator then we no longer have the ideal $M$ and so $\set{xy(y - 1), xy(x - 1), x(y - 1)(x - 1)}$ is unshortenable.
+    \item Let $N = \ideal{xy^{2} - x^{2}y, x^{2} - x}$.
+          We show that the generators of $N$ are in $M$ and vice versa, which implies that $M = N$:
+          \begin{gather*}
+            xy^{2} - x^{2}y = xy(y - 1) - xy(x - 1), \\
+            x^{2} - x = -x(y - 1)(x -1) + xy(x - 1), \\
+            xy(y - 1) = xy^{2} - x^{2}y + y(x^{2} - x), \\
+            xy(x - 1) = y(x^{2} - x), \\
+            x(y - 1)(x - 1) = (y - 1)(x^{2} -x).
+          \end{gather*}
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
