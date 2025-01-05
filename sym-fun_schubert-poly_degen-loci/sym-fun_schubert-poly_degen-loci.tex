@@ -131,5 +131,41 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
 \end{sol}
 
 
+\clearpage
+
+\chapter{\cite{book:ManivelSFSPDL} The Ring of Symmetric Functions}
+
+\section{Ordinary Functions}
+
+\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.1.2]\label{ex:Manivel_1.1.2}
+  We will denote the dominance ordering by $\lambda \leq \mu$ and the ordering given by inclusion of Ferrers diagrams by $\lambda \subseteq \mu$.
+  Let $\lambda = (\lambda_{1} \geq \cdots \geq \lambda_{k} \geq 0)$ and $\lambda' = (\lambda'_{1} \geq \cdots \geq \lambda'_{l} \geq 0)$ be two partitions.
+
+  We first consider the ordering $\subseteq$.
+  Note that $\lambda \subseteq \lambda'$ if and only if $k \leq l$ and for all $1 \leq i \leq k$ we have that $\lambda_{i} \leq \lambda'_{i}$.
+  Let $m = \min\set{k, l}$.
+  Then define a partition $\mu = (\min\set{\lambda_{1}, \lambda'_{1}} \geq \cdots \min\set{\lambda_{m}, \lambda'_{m}} \geq 0)$.
+  Then we have that $\mu \subseteq \lambda$ and $\mu \subseteq \lambda'$.
+  Now suppose that $\nu \subseteq \lambda$ and $\nu \subseteq \lambda'$ where $\nu = (\nu_{1} \geq \cdots \geq \nu_{n} \geq 0)$.
+  Then we must have that $n \leq \min\set{k, l} = m$ and that for all $1 \leq i \leq n$ that $\nu_{i} \leq \min\set{\lambda_{i}, \lambda'_{i}} = \mu_{i}$.
+  Thus, $\nu \subseteq \mu$ and so $\mu = \lambda \land \lambda'$ with respect to $\subseteq$.
+  The existence and uniqueness of $\lambda \lor \lambda'$ is similar.
+
+  We now consider the ordering $\leq$, now assuming that $\abs{\lambda} = \abs{\lambda'}$
+  Before we define $\lambda \lor \lambda'$ for $\leq$, we prove that $\lambda \leq \lambda'$ if and only if ${\lambda'}^{*} \leq \lambda^{*}$.
+  This follows a proof given by~\cite{SE:dominance_conjugation}.
+  Note that $\lambda \leq \lambda'$ if and only if $\lambda$ can be obtained from $\lambda'$ by moving boxes successively down from higher rows to lower rows such that every intermediate diagram is still a Ferrers diagram.
+  This immediately implies the duality.
+
+  First, for a partition $\lambda$ let $\hat{\lambda} \defeq (0, \lambda_{1}, \lambda_{1} + \lambda_{2}, \ldots, \lambda_{1} + \cdots + \lambda_{k})$.
+  We remark that $\lambda \leq \lambda'$ if and only $\hat{\lambda} \leq_{\ell} \hat{\lambda'}$ where $\leq_{\ell}$ is \emph{lexicographic ordering}.
+  One can easily recover $\lambda$ from $\hat{\lambda}$.
+  By taking componentwise minimums as above for $\hat{\lambda}$ and $\hat{\lambda'}$, one recovers a tuple $\hat{\mu}$ which yields a partition $\mu$.
+  By the remark, we have that $\mu = \lambda \land \lambda'$ with respect to $\leq$.
+  Then to define $\lambda \lor \lambda'$, we have that $\lambda \lor \lambda' \defeq (\lambda^{*} \land {\lambda'}^{*})^{*}$.
+  That this is our desired maximum follows from the above paragraph on conjugation being a lattice antiautomorphism on partitions of the same weight.
+  Uniqueness is also immediate.
+\end{sol}
+
 \printbibliography
 \end{document}
