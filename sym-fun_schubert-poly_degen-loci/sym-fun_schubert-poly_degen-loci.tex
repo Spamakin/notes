@@ -195,5 +195,15 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
   \quest{Stuck, look at terms in polynomials but what is the correspondence?}
 \end{sol}
 
+\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.2.4]\label{ex:Manivel_1.2.4}
+  We have that $a_{\delta + \delta} = \det(x_{i}^{\delta_{j} + n - j}) = \det(x_{i}^{2n - 2j})$.
+  This is the Vandermonde determinant again, but now every term is squared.
+  Thus, $a_{\delta + \delta} = \prod_{1 \leq i < j \leq n} (x_{i}^{2} - x_{j}^{2})$.
+  Thus, we have that
+  \[
+    s_{\delta} = \frac{a_{\delta + \delta}}{a_{\delta}} = \frac{\prod_{1 \leq i < j \leq n} (x_{i}^{2} - x_{j}^{2})}{\prod_{1 \leq i < j \leq n} (x_{i} - x_{j})} = \prod_{1 \leq i < j \leq n} (x_{i} + x_{j}).
+  \]
+\end{sol}
+
 \printbibliography
 \end{document}
