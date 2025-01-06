@@ -167,5 +167,33 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
   Uniqueness is also immediate.
 \end{sol}
 
+\clearpage
+
+\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.1.7]\label{ex:Manivel_1.1.7}
+  These ideas come from~\cite[Proposition 7.4.1]{book:ECII}.
+  Let $X = (x_{ij})$ be the matrix of variables where $x_{ij} = x_{j}$, so the first column of $X$ is all $x_{1}$, the second column is all $x_{2}$, etc.
+  We can obtain a term from of $e_{\lambda}$ from $X$ by choosing $\lambda_{1}$ elements from the first row, $\lambda_{2}$ elements from the second row, corresponding to picking a term from $e_{\lambda_{1}}$, then a term from $e_{\lambda_{2}}$, etc.
+  After choosing all elements, let the result be $\overline{x}^{\alpha}$.
+  Replace all the chosen elements with $1$'s and all the other elements with $0$'s.
+  This gives a matrix with row sums given by $\lambda$ and all column sums given by $\alpha$.
+  Note that $\alpha$ is not necessarily a partition, but rather just a tuple (also called a \emph{weak composition}), which is in line with the fact that monomial symmetric functions are sums over arbitrary orderings of tuples with a fixed set of entries.
+  Conversely, any such $0$-$1$1matrix with the prescribed row and column sums describes a term of $e_{\lambda}$.
+  Thus, we have that $e_{\lambda} = \sum_{\mu} a_{\lambda \mu} m_{\mu}$.
+
+  Similarly, with $X$ as before, we can obtain a term of $h_{\lambda}$ as follows.
+  Choose $\lambda_{1}$ elements from the first row, but we allow each term to be chosen more than once.
+  Next, choose $\lambda_{2}$ elements from the second row, again allowing for each term to be chosen more than once.
+  Continuing on in this manner yields a term $\overline{x}^{\alpha}$.
+  This again give a matrix, however this time with entries in $\N$ given by numbering the elements with however many times they were chosen.
+  This matrix has the prescribed row and column sums.
+  Conversely, any such matrix with entries in $\N$ with the given row and column sums gives a term of $h_{\lambda}$ and so $h_{\lambda} = \sum_{\mu} b_{\lambda \mu} m_{\mu}$.
+
+  Now suppose that $a_{\lambda \mu} > 0$.
+  Then we want to show that $\mu \leq \lambda^{*}$,  \ie\ that $\abs{\lambda} = \abs{\mu}$ and that for all $i$ we have that $\mu_{1} + \cdots + \mu_{i} \leq \lambda^{*}_{1} + \cdots + \lambda^{*}_{i}$.
+  If $\abs{\lambda} \neq \abs{\mu}$, then we must have that $a_{\lambda \mu = 0}$ and so we know that $\abs{\lambda} = \abs{\mu}$.
+  So by the above argument, there exist a $0$-$1$-matrix $M$ with row sums given by $\lambda$ and column sums given by $\mu$.
+  \quest{Stuck, look at terms in polynomials but what is the correspondence?}
+\end{sol}
+
 \printbibliography
 \end{document}
