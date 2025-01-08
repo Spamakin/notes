@@ -1347,5 +1347,21 @@ So I've moved onto working through this book as well as trying to comprehend Stu
 
 \section{Presentations and Resolutions of Modules}
 
+\begin{sol}[\cite{book:UAG} Ex. 6.1.7]\label{ex:UAG_6.1.7}
+  \begin{enumerate}
+    \item Denote the kernel morphisms as $k_{i}\colon \ker(\varphi_{i}) \to M_{i}$.
+          Note that the morphism $\varphi_{i}\colon M_{i} \to \ker(\varphi_{i - 1})$ is well defined as $\im(\varphi_{i}) = \ker(\varphi_{i - 1})$.
+          Exactness at $\ker(\varphi_{i})$ is immediate as $k_{i}$ is an inclusion morphism and thus injective.
+          To show exactness at $M_{i}$, we want to show that $\im(k_{i}) = \ker(\varphi_{i})$ which is immediate as $\im(k_{i}) = \ker(\varphi_{i})$ as the inclusion map $k_{i}$ is injective.
+          Exactness at $\ker(\varphi_{i - 1})$ follows from the fact that $\ker(\varphi_{i - 1}) = \im(\varphi_{i})$ and obviously morphisms are surjective onto their images.
+    \item We clearly have exactness as $\ker(\varphi_{n - 1})$ as inclusion morphisms are injective.
+          Again, let $k_{n - 1}$ be the kernel morphism $k_{n - 1}\colon \ker(\varphi_{n - 1}) \to M_{n - 1}$.
+          To show exactness as $M_{n - 1}$, we want that $\im(k_{i}) = \ker(\varphi_{n - 1})$ which is immediate again by the exactness of $0 \to \ker(\varphi_{n - 1}) \xrightarrow{k_{n - 1}} M_{i} \xrightarrow{\varphi_{n - 1}} N_{i} \to 0$.
+          For $1 \leq i \leq n - 2$, showing exactness at $M_{i}$ amounts to showing that $\im(\varphi_{i + 1}) = \ker(\varphi_{i})$.
+          This follows from exactness at $N_{i + 1} = \ker(\varphi_{i})$ in the given short exact sequences.
+          Finally, exactness at $\im(\varphi_{1})$ is immediate as every morphism is surjective onto its image.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
