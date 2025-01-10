@@ -1364,5 +1364,23 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\clearpage
+
+\section{Hilbert's Syzygy Theorem}
+
+\begin{sol}[\cite{book:UAG} Ex. 6.2.8]\label{ex:UAG_6.2.8}
+  \begin{enumerate}
+    \item If there were two elements of $\mathcal{G}$ with leading term $e_{i}$, this would contradict the fact that $\mathcal{G}$ is reduced.
+    \item Let $\mathcal{G} = \set{g_{1}, \ldots, g_{s}}$.
+          Let us study the structure of $\mathcal{G}$ further.
+          By \textbf{(a)} we know that $s \leq t$ and that $\lt(g_{j}) = e_{i_{j}}$ for some unique $i_{j}$ such that $1 \leq i_{1} < \cdots < i_{s} \leq t$.
+          As $\mathcal{G}$ is reduced, we know that no term of $g_{j}$ is divisible by $e_{i_{k}}$ for $k \neq j$.
+          From the discussion just prior to Schreyer's Theorem~\cite[\S 5.3, Theorem 5.3]{book:UAG}, we see that the expressions $\mathbf{s}_{ij}$ are $0$ as $\lcm(\lt(g_{j}), \lt(g_{k})) = \lcm(e_{i_{j}}, e_{i_{k}}) = 0$ by definition for $j \neq k$ and are also clearly $0$ for $j = k$.
+          Thus, as the $\mathbf{s}_{ij}$ form a \Grobner\ basis for $\Syz(\mathcal{G})$, we must have that $\Syz(\mathcal{G}) = 0$.
+    \item Free modules are exactly the modules with trivial syzygy modules.
+  \end{enumerate}
+\end{sol}
+
+
 \printbibliography
 \end{document}
