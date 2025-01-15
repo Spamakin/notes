@@ -1381,6 +1381,30 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 6.2.10]\label{ex:UAG_6.2.10}
+  \begin{enumerate}
+    \item Let $R = k[x_{1}, \ldots, x_{5}]$.
+          For $I_{2}$, we have the exact sequence
+          \[
+            0 \to R \xrightarrow{\varphi_{2}} R^{2} \xrightarrow{\varphi_{1}} I_{2} \to 0
+          \]
+          where $\varphi_{2}(1) = (x_{2}, -x_{1})$ and $\varphi_{1}(a, b) = ax_{1} + bx_{2}$.
+          For $I_{3}$, we have the exact sequence
+          \[
+            0 \to R \xrightarrow{\varphi_{3}} R^{3} \xrightarrow{\varphi_{2}} R^{3} \xrightarrow{\varphi_{1}} I_{3} \to 0.
+          \]
+          Here, $\varphi_{3}(1) = (x_{1}, -x_{2}, x_{3})$.
+          Then $\varphi_{2}(a, 0, 0) = (0, -ax_{3}, ax_{2})$, $\varphi_{2}(0, b, 0) = (-bx_{3}, 0, bx_{1})$, and $\varphi_{2}(0, 0, c) = (-cx_{2}, cx_{1}, 0)$.
+          Finally, $\varphi_{1}(a, b, c) = ax_{1} + bx_{2} + cx_{3}$.
+          \quest{TODO: Further examples with computer.}
+    \item Now let $R = k[x_{1}, \ldots, x_{n}]$.
+          First, $\varphi_{1}\colon R^{m} \to I_{m}$ is given by $(r_{1}, \ldots, r_{m}) \mapsto r_{1}x_{1} + \cdots + r_{m}x_{m}$ which is clearly surjective.
+          Next, the map $\varphi_{m}\colon R = R^{\binom{m}{m}} \to R^{\binom{m}{m - 1}} = R^{m}$ is given by $1 \mapsto (x_{1}, -x_{2}, \ldots, (-1)^{m - 1} x_{m})$ which is injective as $R$ is a domain.
+          A tedious check yields that for $1 < k < m$, $\varphi_{k - 1} \circ \varphi_{k} = 0$ and so $\im(\varphi_{k}) \subseteq \ker(\varphi_{k - 1})$.
+
+          \quest{STUCK:} How do I show that $\ker(\varphi_{k - 1}) \subseteq \im(\varphi_{k})$?
+  \end{enumerate}
+\end{sol}
 
 \printbibliography
 \end{document}
