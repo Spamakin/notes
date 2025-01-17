@@ -190,9 +190,11 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
 
   Now suppose that $a_{\lambda \mu} > 0$.
   Then we want to show that $\mu \leq \lambda^{*}$,  \ie\ that $\abs{\lambda} = \abs{\mu}$ and that for all $i$ we have that $\mu_{1} + \cdots + \mu_{i} \leq \lambda^{*}_{1} + \cdots + \lambda^{*}_{i}$.
-  If $\abs{\lambda} \neq \abs{\mu}$, then we must have that $a_{\lambda \mu = 0}$ and so we know that $\abs{\lambda} = \abs{\mu}$.
+  If $\abs{\lambda} \neq \abs{\mu}$, then we must have that $a_{\lambda \mu} = 0$ as both $\abs{\lambda}$ and $\abs{\mu}$ are equal to the total number of ones and so we must have that $\abs{\lambda} = \abs{\mu}$.
   So by the above argument, there exist a $0$-$1$-matrix $M$ with row sums given by $\lambda$ and column sums given by $\mu$.
-  \quest{Stuck, look at terms in polynomials but what is the correspondence?}
+  Suppose there exists $i$ such that $\mu_{1} + \cdots + \mu_{i} > \lambda_{1}^{*} + \cdots + \lambda_{i}^{*}$.
+
+  \quest{Morally} I would like to say the $\lambda_{i}^{*}$ correspond to column sums as well in some manner but I am not sure how to phrase that.
 \end{sol}
 
 \clearpage
@@ -224,16 +226,69 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
   Furthermore, if you add a box labelled $n$ to any valid position of a Young tableaux with $n - 1$ boxes, valid meaning the resulting shape is still a partition, then you obtain a standard Young tableaux with $n$ boxes.
   This gives a combinatorial bijection between the two sets described by each side of first identity.
 
-  \quest{Stuck on the other two.}
+  For the second identity, suppose that $\abs{\lambda} = (1)$.
+  Then $\lambda$ is just a single box and thus we must have that $K_{\lambda} = K_{(1)} = 1$ and so $(1 + \abs{(1)})K_{(1)} = 2$.
+  Then $(1) \otimes 1 = \set{(1, 1), (2)}$ which each have exactly one standard filling and so we have that $K_{(1, 1)} = K_{(2)} = 1$ and thus $\sum_{\mu \in (1) \otimes 1} K_{\mu} = 2$.
+  Now suppose that $\abs{\lambda} = n > 1$.
+  We have that
+  \begin{align*}
+    (1 + \abs{\lambda})K_{\lambda} &= (1 + \abs{\lambda}) \sum_{\lambda \in \mu \otimes 1} K_{\mu} \\
+                                   &= \sum_{\lambda \in \mu \otimes 1} K_{\mu} + \sum_{\lambda \in \mu \otimes 1} (1 + \abs{\mu})K_{\mu}
+                                   &= \sum_{\lambda \in \mu \otimes 1} K_{\mu} + \sum_{\lambda \in \mu \otimes 1} \sum_{\nu \in \mu \otimes 1} K_{\nu}
+  \end{align*}
+  \quest{Not sure} how to work with this double summation.
+
+  \clearpage
+
+  For the third identity, as $K_{(1)} = 1$ we immediately have that $\sum_{\lambda = 1} K_{\lambda}^{2} = K_{(1)}^{2} = 1 = 1!$.
+  Now suppose that $\abs{\lambda} = \ell > 0$.
+  Then we have that
+  \begin{align*}
+    \ell! &= \ell \cdot (\ell - 1)! \\
+          &= \ell \sum_{\abs{\lambda} = \ell - 1} K_{\lambda}^{2} \\
+          &= \sum_{\abs{\lambda} = \ell - 1} K_{\lambda} \cdot (\ell K_{\lambda}) \\
+          &= \sum_{\abs{\lambda} = \ell - 1} K_{\lambda} \cdot \sum_{\mu \in \lambda \otimes 1} K_{\mu}\\
+  \end{align*}
+  \quest{Not sure} how to work with this double summation.
+\end{sol}
+
+\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.2.15]\label{ex:Manivel_1.2.15}
+  Recall that $h_{j} = s_{(j)}$ and $e_{k} = s_{1^{k}}$.
+  Using the Pieri formulas, we can express $h_{j}e_{k}$ as
+  \[
+       \sum_{\mu \in 1^{k} \otimes j} s_{\mu} = s_{1^{k}}h_{j} = h_{j}e_{k} = s_{(j)}e_{k} = \sum_{\mu \in (j) \otimes 1^{k}} s_{\mu}.
+  \]
+  \quest{Expanding either side} gives $h_{j}s_{k} = s_{(j - 1 \mid k)} + s_{(j \mid k - 1)}$ which is already stated.
+  Not sure what a second way would be, nor how to introduce the variable $q$ in a generating-function sort of way.
 \end{sol}
 
 \clearpage
 
 \section{The Knuth Correspondence}
 
-\clearpage
+\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.3.1]\label{ex:Manivel_1.3.1}
+  Already saw this as the \emph{Row Bumping Lemma} in~\cite{book:YT} which gives a slightly stronger characterization.
+\end{sol}
 
 \section{Some Applications to Symmetric Functions}
+
+\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.4.4]\label{ex:Manivel_1.4.4}
+  \quest{Why} are these bases?
+
+  Let $M_{\lambda \nu}$ and $N_{\lambda \nu}$ be such that $s_{\lambda} = \sum_{\mu} M_{\lambda \mu} = \sum_{\nu} N_{\lambda \nu} b_{\nu}$.
+  Then we have that
+  \begin{align*}
+    \sum_{\lambda} a_{\lambda}(\overline{x}) b_{\lambda}(\overline{y}) &= \prod_{i, j} (1 - x_{i}y_{j})^{-1} \\
+                                                                       &= \sum_{\lambda} s_{\lambda}(\overline{x})s_{\lambda}(\overline{y}) \\
+                                                                       &= \sum_{\lambda} \pqty{\sum_{\rho} M_{\lambda \rho} a_{\rho}(\overline{x})} \pqty{\sum_{\nu} N_{\lambda \nu} b_{\nu}(\overline{y})} = \sum_{\rho, \nu} \pqty{\sum_{\lambda} M_{\lambda \rho} N_{\lambda \nu}} a_{\rho}(\overline{x}) b_{\nu}(\overline{y}).
+  \end{align*}
+  Thus by the fact that the $a_{\rho}$ and $b_{\nu}$ form bases in their respective variables, we have that $\sum_{\lambda} M_{\lambda \rho} N_{\lambda \nu} = \inner{a_{\rho}, b_{\nu}}$.
+  We want to show that $\inner{a_{\rho}, b_{\nu}} = \delta_{\rho \nu}$.
+  Indeed, this follows from that
+  \[
+    \sum_{\lambda} s_{\lambda}(\overline{x}) s_{\lambda}(\overline{y}) = \sum_{\lambda} a_{\lambda}(\overline{x}) b_{\lambda}(\overline{y}) \implies \sum_{\lambda} M_{\lambda \rho} N_{\lambda \nu} = \delta_{\rho \nu}.
+  \]
+\end{sol}
 
 \printbibliography
 \end{document}
