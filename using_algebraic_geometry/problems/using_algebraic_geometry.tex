@@ -1406,5 +1406,37 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\clearpage
+
+\section{Graded Resolutions}
+
+\begin{sol}[\cite{book:UAG} Ex. 6.3.3]\label{ex:UAG_6.3.3}
+  \begin{enumerate}
+    \item Clearly $R_{t}$ is a finite dimensional $k$-vector space with a basis given by monomials.
+          Then by similar logic, $R(-d)_{t}$ is a finite dimensional $k$-vector space.
+          If $M = \gen{f_{1}, \ldots, f_{m}}$ is a finitely generated $R$-module, then we have a graded surjection
+          \[
+          \varphi\colon R(-d_{1}) \oplus \cdots \oplus R(-d_{m}) \to M.
+          \]
+          Thus, we must have that $M_{t}$ is finite dimensional as a $k$-vector space for all $t$.
+          Furthermore, $\varphi$ is a graded homomorphism of degree $0$.
+          So for all $t$, $\varphi(R(-d_{1})_{t} \oplus \cdots \oplus R(-d_{m})_{t}) = M_{t}$ by surjectivity.
+          However, $R(-d_{i})_{t} = R_{t -d_{i}} = 0$ whenever $t - d_{i} < 0$, meaning $t < d_{i}$.
+          Thus, $M_{t} = 0$ whenever $t < \min\set{d_{1}, \ldots, d_{m}}$.
+    \item We already know that $\psi(M_{t}) \subseteq M_{t}$.
+          If $\psi$ is an isomorphism, it is surjective and so for all $y \neq 0 \in M_{t}$, there exists $x \in M$ such that $\psi(x) = y$.
+          But we know that $x \in M_{t}$ as $\psi(M_{t}) \subseteq M_{t}$ and for all $s \neq t$, $\psi(M_{s}) \cap M_{t} = \set{0}$.
+          Thus, $\psi\colon M_{t} \to M_{t}$ is surjective.
+          Now suppose that $\psi\colon M_{t} \to M_{t}$ is surjective for all $t$.
+          Clearly this implies that $\psi\colon M \to M$ is surjective.
+          Since $M_{t}$ is a finite dimensional $k$-vector space, $\psi\colon M_{t} \to M_{t}$ must be an isomorphism.
+          Now let $x \in M_{t}$ such that $\psi(x) = 0$.
+          If $x \in M_{t}$, then since $\psi\colon M_{t} \to M_{t}$ is an isomorphism, we must have that $\psi(x) = 0 \in M_{t}$ and so $x = 0$.
+          Thus, $\psi$ is an isomorphism.
+          Since $\psi$ is surjective if and only if $\psi\colon M_{t} \to M_{t}$ is surjective for all $t$, we have that $\psi$ is an isomorphism if and only if it is a surjection.
+  \end{enumerate}
+\end{sol}
+
+
 \printbibliography
 \end{document}
