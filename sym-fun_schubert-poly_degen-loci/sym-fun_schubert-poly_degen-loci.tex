@@ -52,8 +52,8 @@
 \chapter*{Preface}
 
 These are notes for a reading course under Professor \href{https://people.math.osu.edu/anderson.2804/index.html}{Dave Anderson}.
-The primary focus is Manivel's \emph{Symmetric Functions, Schubert Polynomials, and Degeneracy Loci}~\cite{book:ManivelSFSPDL} which one could see as a quasi-sequel to Fulton's \emph{Young Tableaux}\footnote{which throughout these notes will be spelled as ``tableaux'' or ``tableau'' with no real consistency.}~\cite{book:YT}.
-Primarily, the solutions will be to exercises from~\cite{book:ManivelSFSPDL}.
+The primary focus is Manivel's \emph{Symmetric Functions, Schubert Polynomials, and Degeneracy Loci}~\cite{book:Manivel} which one could see as a quasi-sequel to Fulton's \emph{Young Tableaux}\footnote{which throughout these notes will be spelled as ``tableaux'' or ``tableau'' with no real consistency.}~\cite{book:YT}.
+Primarily, the solutions will be to exercises from~\cite{book:Manivel}.
 However, as needed there will be solutions to material from~\cite{book:YT}, or perhaps even other texts such as~\cite{book:MacdonaldSymmetricHall} or~\cite{book:ECII}.
 
 \mainmatter
@@ -133,11 +133,11 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
 
 \clearpage
 
-\chapter{\cite{book:ManivelSFSPDL} The Ring of Symmetric Functions}
+\chapter{\cite{book:Manivel} The Ring of Symmetric Functions}
 
 \section{Ordinary Functions}
 
-\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.1.2]\label{ex:Manivel_1.1.2}
+\begin{sol}[\cite{book:Manivel} Ex. 1.1.2]\label{ex:Manivel_1.1.2}
   We will denote the dominance ordering by $\lambda \leq \mu$ and the ordering given by inclusion of Ferrers diagrams by $\lambda \subseteq \mu$.
   Let $\lambda = (\lambda_{1} \geq \cdots \geq \lambda_{k} \geq 0)$ and $\lambda' = (\lambda'_{1} \geq \cdots \geq \lambda'_{l} \geq 0)$ be two partitions.
 
@@ -169,7 +169,7 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
 
 \clearpage
 
-\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.1.7]\label{ex:Manivel_1.1.7}
+\begin{sol}[\cite{book:Manivel} Ex. 1.1.7]\label{ex:Manivel_1.1.7}
   These ideas come from~\cite[Proposition 7.4.1]{book:ECII}.
   Let $X = (x_{ij})$ be the matrix of variables where $x_{ij} = x_{j}$, so the first column of $X$ is all $x_{1}$, the second column is all $x_{2}$, etc.
   We can obtain a term from of $e_{\lambda}$ from $X$ by choosing $\lambda_{1}$ elements from the first row, $\lambda_{2}$ elements from the second row, corresponding to picking a term from $e_{\lambda_{1}}$, then a term from $e_{\lambda_{2}}$, etc.
@@ -201,7 +201,7 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
 
 \section{Schur Functions}
 
-\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.2.4]\label{ex:Manivel_1.2.4}
+\begin{sol}[\cite{book:Manivel} Ex. 1.2.4]\label{ex:Manivel_1.2.4}
   We have that $a_{\delta + \delta} = \det(x_{i}^{\delta_{j} + n - j}) = \det(x_{i}^{2n - 2j})$.
   This is the Vandermonde determinant again, but now every term is squared.
   Thus, $a_{\delta + \delta} = \prod_{1 \leq i < j \leq n} (x_{i}^{2} - x_{j}^{2})$.
@@ -211,7 +211,7 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
   \]
 \end{sol}
 
-\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.2.7]\label{ex:Manivel_1.2.7}
+\begin{sol}[\cite{book:Manivel} Ex. 1.2.7]\label{ex:Manivel_1.2.7}
   By Pieri's formulas, we have that
   \begin{equation}\label{eq:Pieri_even_expansion}
     \pqty{\sum_{\mu \text{ even}} s_{\mu}} \cdot \pqty{\sum_{n = 0}^{k} e_{k}} = \sum_{\mu \text{ even}} \sum_{k = 0}^{n} s_{\mu} e_{k} = \sum_{\mu \text{ even}} \sum_{k = 0}^{n} \sum_{\lambda \in \mu \otimes 1^{k}} s_{\lambda}.
@@ -221,7 +221,7 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
   This follows from the fact that for any $\lambda$, we can decompose $\lambda$ into an even $\mu$ by removing at most one box from each row of $\lambda$ in each row which is odd and that this removal is unique.
 \end{sol}
 
-\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.2.12]\label{ex:Manivel_1.2.12}
+\begin{sol}[\cite{book:Manivel} Ex. 1.2.12]\label{ex:Manivel_1.2.12}
   The first identity comes from noticing that if you take any standard Young tableaux with $n$ boxes and remove the box labelled $n$, then you obtain a standard Young tableaux with $n - 1$ boxes.
   Furthermore, if you add a box labelled $n$ to any valid position of a Young tableaux with $n - 1$ boxes, valid meaning the resulting shape is still a partition, then you obtain a standard Young tableaux with $n$ boxes.
   This gives a combinatorial bijection between the two sets described by each side of first identity.
@@ -252,7 +252,7 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
   \quest{Not sure} how to work with this double summation.
 \end{sol}
 
-\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.2.15]\label{ex:Manivel_1.2.15}
+\begin{sol}[\cite{book:Manivel} Ex. 1.2.15]\label{ex:Manivel_1.2.15}
   Recall that $h_{j} = s_{(j)}$ and $e_{k} = s_{1^{k}}$.
   Using the Pieri formulas, we can express $h_{j}e_{k}$ as
   \[
@@ -266,13 +266,13 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
 
 \section{The Knuth Correspondence}
 
-\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.3.1]\label{ex:Manivel_1.3.1}
+\begin{sol}[\cite{book:Manivel} Ex. 1.3.1]\label{ex:Manivel_1.3.1}
   Already saw this as the \emph{Row Bumping Lemma} in~\cite{book:YT} which gives a slightly stronger characterization.
 \end{sol}
 
 \section{Some Applications to Symmetric Functions}
 
-\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.4.4]\label{ex:Manivel_1.4.4}
+\begin{sol}[\cite{book:Manivel} Ex. 1.4.4]\label{ex:Manivel_1.4.4}
   \quest{Why} are these bases?
 
   Let $M_{\lambda \nu}$ and $N_{\lambda \nu}$ be such that $s_{\lambda} = \sum_{\mu} M_{\lambda \mu} = \sum_{\nu} N_{\lambda \nu} b_{\nu}$.
@@ -294,7 +294,7 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
 
 \section{The Littlewood-Richardson Rule}
 
-\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.5.4]\label{ex:Manivel_1.5.4}
+\begin{sol}[\cite{book:Manivel} Ex. 1.5.4]\label{ex:Manivel_1.5.4}
   We consider the coefficient of $\overline{x}^{\alpha}$ on both sides.
   We have that
   \[
@@ -302,7 +302,7 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
   \]
   Notices that the coefficient of $\overline{x}^{\alpha}$ is equal to the number of symmetric matrices $A$ such that the vector of row-sums of $A$ is equal to $\alpha$.
   Then, by the combinatorial definition of Schur polynomials, the coefficient of $\overline{x}^{\alpha}$ in $\sum_{\lambda} s_{\lambda}(\overline{x})$ is equal to the number of semistandard Young tableaux with weight vector $\alpha$.
-  Then by~\cite[Knuth Correspondence 1.3.4]{book:ManivelSFSPDL} and in particular~\cite[Corollary 1.5.3]{book:ManivelSFSPDL}, we know these two quantities must be equivalent, and thus the identity holds.
+  Then by~\cite[Knuth Correspondence 1.3.4]{book:Manivel} and in particular~\cite[Corollary 1.5.3]{book:Manivel}, we know these two quantities must be equivalent, and thus the identity holds.
 \end{sol}
 
 \printbibliography
