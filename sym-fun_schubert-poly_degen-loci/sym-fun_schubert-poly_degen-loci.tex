@@ -290,5 +290,20 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
   \]
 \end{sol}
 
+\clearpage
+
+\section{The Littlewood-Richardson Rule}
+
+\begin{sol}[\cite{book:ManivelSFSPDL} Ex. 1.5.4]\label{ex:Manivel_1.5.4}
+  We consider the coefficient of $\overline{x}^{\alpha}$ on both sides.
+  We have that
+  \[
+    \prod_{i} (1 - x_{i})^{-1} \cdot \prod_{i < j} (1 - x_{i}x_{j})^{-1} = \pqty{\prod_{i} \sum_{n \geq 0} x_{i}^{n}} \cdot \pqty{\prod_{i < j} \sum_{n \geq 0} x_{i}^{n}x_{j}^{n}}.
+  \]
+  Notices that the coefficient of $\overline{x}^{\alpha}$ is equal to the number of symmetric matrices $A$ such that the vector of row-sums of $A$ is equal to $\alpha$.
+  Then, by the combinatorial definition of Schur polynomials, the coefficient of $\overline{x}^{\alpha}$ in $\sum_{\lambda} s_{\lambda}(\overline{x})$ is equal to the number of semistandard Young tableaux with weight vector $\alpha$.
+  Then by~\cite[Knuth Correspondence 1.3.4]{book:ManivelSFSPDL} and in particular~\cite[Corollary 1.5.3]{book:ManivelSFSPDL}, we know these two quantities must be equivalent, and thus the identity holds.
+\end{sol}
+
 \printbibliography
 \end{document}
