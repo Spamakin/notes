@@ -314,5 +314,17 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
   The same arguments above generalize to the generating function with $t^{o(\lambda)}$ by multiplying/dividing appropriately by $1 + tx_{i}$ corresponding to odd parts of $\lambda$.
 \end{sol}
 
+\begin{sol}[\cite{book:Manivel} Ex. 1.5.6]\label{ex:Manivel_1.5.6}
+  By~\cite[Corollary 1.5.3]{book:Manivel}, every standard tableau with $n$ boxes corresponds to an involution $\sigma\colon [n] \tofrom [n]$.
+  Thus, we can establish the recurrence for involution.
+  Every involution $\sigma\colon [n + 1] \tofrom [n + 1]$ takes one of two forms.
+  The first is that $\sigma(n + 1) = n + 1$ and the rest is an involution $\sigma|_{[n]}\colon [n] \tofrom [n]$.
+  Otherwise, $\sigma$ swaps $n + 1$ and some $i \in [n]$ and the rest of $\sigma$ is an involution on the other $n - 1$ elements which up to relabelling is an involution from $n - 1$ to $n - 1$ elements.
+  As these cases are disjoint, this yields the recursive formula.
+
+  To prove the identity, we work with exponential generating functions.
+  This follows ideas from~\cite[Example 7.8.5]{book:ECII}.
+\end{sol}
+
 \printbibliography
 \end{document}
