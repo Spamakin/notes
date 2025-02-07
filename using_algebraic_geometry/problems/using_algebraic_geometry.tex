@@ -1437,6 +1437,27 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 6.3.8]\label{ex:UAG_6.3.8}
+  We first show a.\ $\implies$ c.
+  \quest{STUCK.}
+  Then c.\ $\implies$ b.\ $\implies$ a.\ is trivial and overall we have equivalence.
+\end{sol}
+
+\begin{sol}[\cite{book:UAG} Ex. 6.3.10]\label{ex:UAG_6.3.10}
+  Consider the resolution
+  \[
+    \cdots \xrightarrow{} F_{\ell} \xrightarrow{\varphi_{\ell}} F_{\ell - 1} \xrightarrow{} \cdots \xrightarrow{} F_{0} \xrightarrow{} M \xrightarrow{} 0
+  \]
+  Suppose that for all $\ell \geq 0$, $\varphi_{\ell}$ takes the standard basis of $F_{\ell}$ to a minimal generating set of $\im(\varphi_{\ell})$.
+  Let $\ell \geq 1$ and consider the matrix $A_{\ell}$ of $\varphi_{\ell}\colon F_{\ell} \to F_{\ell - 1}$.
+  Let $F_{\ell}$ have standard generating set $\set{e_{1}, \ldots, e_{m}}$ so that $\set{\varphi_{\ell}(e_{1}), \ldots, \varphi_{\ell}(e_{m})}$ is a minimal generating set for $\im(\varphi_{\ell})$.
+  Let $\set{f_{1}, \ldots, f_{n}}$ be the standard generating set for $F_{\ell - 1}$.
+  Then $A_{\ell}$ is given by a matrix $\begin{pmatrix} a_{i, j} \end{pmatrix}_{1 \leq i, j \leq n}$ such that
+  We want to show that every non-zero entry of $A_{\ell}$ has positive degree.
+  Suppose not, say that $a_{i, j}$ is some nonzero constant $c \in k$.
+  \quest{Sketch:}
+  You can then use this non-zero constant to express $\varphi_{\ell}(e_{j})$ terms of the other vectors contradicting minimality.
+\end{sol}
 
 \printbibliography
 \end{document}
