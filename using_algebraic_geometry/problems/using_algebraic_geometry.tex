@@ -1469,5 +1469,28 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \]
 \end{sol}
 
+\begin{sol}[\cite{book:UAG} Ex. 6.4.2]\label{ex:UAG_6.4.2}
+  \begin{enumerate}
+    \item
+          \[
+            H_{M \oplus N}(t) = \dim_{k} (M \oplus N)_{t} = \dim_{k} M_{t} \oplus N_{t} = \dim_{k} M_{t} + \dim_{k} N_{t} = H_{M}(t) + H_{N}(t).
+          \]
+    \item
+          Note that for all $t \in \Z$, $\alpha$ and $\beta$ restrict to $k$-vector space morphisms $\alpha\colon M_{t} \to P_{t}$ and $\beta\colon P_{t} \to N_{t}$.
+          In particular, we have for all $t \in \Z$ the following short exact sequence:
+          \[
+            0 \to M_{t} \xrightarrow{\alpha} \to P_{t} \xrightarrow{\beta} N_{t} \to 0.
+          \]
+          We know that for $k$-vector spaces, all such short exact sequences split so that $P_{t} \simeq M_{t} \oplus N_{t}$.
+          Thus, by \textbf{(a)} we have that $H_{P} = H_{M} + H_{N}$.
+    \item
+          Apply \textbf{(b)} to the short exact sequence
+          \[
+            0 \to M \to M \oplus N \to N \to 0
+          \]
+          with the obvious maps.
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
