@@ -326,5 +326,25 @@ However, as needed there will be solutions to material from~\cite{book:YT}, or p
   This follows ideas from~\cite[Example 7.8.5]{book:ECII}.
 \end{sol}
 
+\chapter{\cite{book:Manivel} Schubert Polynomials}
+
+\section{Permutations and the Bruhat Order}
+
+\section{Some Classes of Permutations}
+
+For the following two problems, look at \texttt{code/grassmannian\_perm\_enum.sage}.
+\begin{sol}[\cite{book:Manivel} Ex. 2.2.4]\label{ex:Manivel_2.2.4}
+  Consider a Grassmannian permutation $\sigma \in \mathcal{S}_{n}$ with unique descent at $r < n$.
+  Then the Rothe diagrams of such are in bijection with partitions of which fit into a $r \times (n - r)$ box.
+  The partition can be read off by reading the non-zero portion of the Lehmer code of $\sigma$ in reverse.
+  \quest{Can we say anything interesting about the positioning of the blocks in the diagram?}
+\end{sol}
+
+\begin{sol}[\cite{book:Manivel} Ex. 2.2.5]\label{ex:Manivel_2.2.5}
+  Consider a Bigrassmannian permutation $\sigma \in \mathcal{S}_{n}$ with unique descent at $r < n$.
+  Then the Rothe diagrams of such are in bijection with the partitions which fit into a $r \times (n - r)$ box with all parts the same size.
+  \quest{Probably can prove by studying the codes of $\sigma$ and $\sigma^{-1}$.}
+\end{sol}
+
 \printbibliography
 \end{document}
