@@ -1492,5 +1492,46 @@ So I've moved onto working through this book as well as trying to comprehend Stu
   \end{enumerate}
 \end{sol}
 
+\clearpage
+
+\begin{sol}[\cite{book:UAG} Ex. 6.4.3]\label{ex:UAG_6.4.3}
+  \begin{enumerate}
+    \item Let $I \defeq \ideal{x^{2} - xz, xy, y^{2} - yz}$.
+          Clearly $V \subseteq \V(I)$ so that $\I(V) \containseq \I(\V(I)) = \sqrt{I}$.
+          Now suppose that $\bqty{a \colon b \colon c} \in \V(I)$.
+          We have that $a^{2} = ac$.
+          First, suppose that $a = 0$ so that $b^{2} = bc$.
+          Again, we have two cases.
+          If $b = 0$ then $c$ is free and so $\bqty{a \colon b \colon c} = \bqty{0 \colon 0 \colon 1}$.
+          On the other hand, if $b \neq 0$ we have that $b = c$ and so $\bqty{a \colon b \colon c} = \bqty{0 \colon 1 \colon 1}$.
+          Otherwise, $a \neq 0$ so that $a = c$.
+          Thus, we must have that $b = 0$ so that $\ideal{a \colon b \colon c} = \bqty{1 \colon 0 \colon 1}$.
+          This yields that $\V(I) \subseteq V$ and thus $\I(V) \subseteq \I(\V(I)) = \sqrt{I}$.
+          Overall, we have that $\I(V) = \sqrt{I}$.
+          A quick check in SageMath yields that $I = \sqrt{I}$ and so $\I(V) = I$ as desired.
+    \item A quick check in SageMath computes the following graded free resolution:
+          \[
+            0 \to R(-3)^{2} \xrightarrow{\begin{pmatrix} -x & 0 \\ y - z & -x + z \\ 0 & y \end{pmatrix}} R(-2)^{3} \xrightarrow{\begin{pmatrix} y^{2} - yz & xy & x^{2} - xz \end{pmatrix}} I \to 0.
+          \]
+          Compare this to the free resolution of $\tilde{I} = \ideal{x^{2} - x, xy, y^{2} - y}$
+          \[
+            0 \to R^{2} \xrightarrow{\begin{pmatrix} -x & 0 \\ y - 1 & -x + 1 \\ 0 & y \end{pmatrix}} R^{3} \xrightarrow{\begin{pmatrix} y^{2} - y & xy & x^{2} - x \end{pmatrix}} \tilde{I} \to 0.
+          \]
+          We see that $\tilde{I}$ is the dehomogenization of the ideal $I$ obtained by setting $z = 1$.
+          Similarly, this free resolution of $\tilde{I}$ is obtained by setting $z = 1$ in all the matrices defining the maps.
+    \item From the graded free resolution, we see that
+          \[
+            \dim_{k} I_{t} = \dim_{k}(R(-2)^{3})_{t} - \dim_{k}(R(-3)^{2})_{t} = 3 \binom{t}{2} - 2 \binom{t - 1}{2}.
+          \]
+          Thus, we have that
+          \[
+          H_{R / I}(t) = \dim_{k} R_{i} - \dim_{k} I_{t} = \binom{t + 2}{2} - 3 \binom{t}{2} + 2 \binom{t - 1}{2} = \begin{cases}
+                                                                                                                      1 & t = 0, \\
+                                                                                                                      3 & t \geq 1.
+                                                                                                                    \end{cases}
+          \]
+  \end{enumerate}
+\end{sol}
+
 \printbibliography
 \end{document}
