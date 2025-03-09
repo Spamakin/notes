@@ -1595,5 +1595,40 @@ So I've moved onto working through this book as well as trying to comprehend Stu
           This matches what was found earlier where $H_{R / I}(t) = 3t + 1$ for $t \geq 0$.
   \end{enumerate}
 \end{sol}
+
+\clearpage
+
+\begin{sol}[\cite{book:UAG} Ex. 6.4.22]\label{ex:UAG_6.4.22}
+  \begin{enumerate}
+    \item We can compute a \Grobner\ basis for $I = \I(V)$ via elimination in SageMath.
+          This gives that
+          \[
+            I = \gen{x_{0}x_{1} - x_{3}^{2}, x_{0}x_{2} - x_{4}^{2}, x_{0}x_{5} - x_{3}x_{4}, x_{1}x_{2} - x_{5}^{2}, x_{1}x_{4} - x_{3}x_{5}, x_{2}x_{3} - x_{4}x_{5}}.
+          \]
+    \item We can use SageMath to get the following graded free resolution of $I$:
+          \[
+            0 \to R(-4)^{3} \to R(-3)^{8} \to R(-2)^{6} \to I \to 0.
+          \]
+          Thus, the Hilbert function for $I$ is given as
+          \[
+            H_{I}(t) = 6 H_{R(-2)}(t) - 8 H_{R(-3)}(t) + 3 H_{R(-4)}(t) = 6 \binom{5 - 2 + t}{5} - 8 \binom{5 - 3 + t}{5} + 3 \binom{5 - 4 + t}{5}.
+          \]
+          By \Cref{ex:UAG_6.4.13}, this expression give the Hilbert polynomial for $t \geq \max\set{2 - 5, 3 - 5, 4 - 5} = -1$.
+          For $t \geq -1$, we have that
+          \[
+            HP_{I}(t) = 6 \binom{3 + t}{5} - 8 \binom{2 + t}{5} + 3 \binom{1 + t}{5} = \frac{1}{120}t^{5} + \frac{1}{8}t^{4} + \frac{17}{24}t^{3} - \frac{1}{8}t^{2} - \frac{43}{60}t.
+          \]
+          To compute the degree and dimension of $V$, we have that
+          \[
+            H_{R /I}(t) = H_{R}(t) - H_{I}(t) = \binom{t + n}{n} - 6 \binom{3 + t}{5} + 8 \binom{2 + t}{5} - 3 \binom{1 + t}{5}.
+          \]
+          For $t \geq \max\set{0, -1} = 0$, this is a polynomial.
+          Thus,
+          \[
+            HP_{R/I}(t) = \binom{t + n}{n} - 6 \binom{3 + t}{5} + 8 \binom{2 + t}{5} - 3 \binom{1 + t}{5} = \frac{4}{2!}t^{2} + 3t + 1.
+          \]
+          This shows that $\dim(V) = 2$ and $\deg(V) = 4$.
+  \end{enumerate}
+\end{sol}
 \printbibliography
 \end{document}
