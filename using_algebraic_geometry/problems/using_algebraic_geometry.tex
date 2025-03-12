@@ -1630,5 +1630,47 @@ So I've moved onto working through this book as well as trying to comprehend Stu
           This shows that $\dim(V) = 2$ and $\deg(V) = 4$.
   \end{enumerate}
 \end{sol}
+
+\chapter{Polytopes, Resultants, and Equations}
+
+\section{Geometry of Polytopes}
+
+\begin{sol}[\cite{book:UAG} Ex. 7.1.2]\label{ex:UAG_7.1.2}
+  \begin{enumerate}
+    \item We have that
+          \[
+            \Conv(\mathcal{A}_{d}) = \Set{\lambda_{1}m_{1} + \cdots + \lambda_{s}m_{s} | m_{i} \in \Z_{\geq 0}^{n}, \abs{m_{i}} \leq d, \lambda_{i} \geq 0, \sum_{i = 1}^{s} \lambda_{i} = 1}.
+          \]
+          So say that $(a_{1}, \ldots, a_{n}) = \lambda_{1}m_{1} + \cdots + \lambda_{s}m_{s} \in \Conv(\mathcal{A}_{d})$.
+          Say each $m_{i} = \sum_{j = 1}^{n} b_{j}e_{j}$.
+          Then we have that
+          \[
+            \sum_{i = 1}^{d} a_{i} = \sum_{i = 1}^{s} \lambda_{i} \sum_{j = 1}^{n} b_{i} \leq \sum_{i = 1} \lambda_{i} d = d.
+          \]
+          Thus, $(a_{1}, \ldots, a_{n}) \in Q_{d}$.
+          Now suppose that $(a_{1}, \ldots, a_{n}) \in Q_{d}$.
+          Then since $\sum_{i = 1}^{n} a_{i} \leq d$, we have that $\sum_{i = 1}^{n} \frac{a_{i}}{d} \leq 1$.
+          Note that $\overline{0} \in \mathcal{A}_{d}$ and $d \cdot e_{i} \in \mathcal{A}_{d}$ for all $i$.
+          Thus, we have that
+          \[
+            (a_{1}, \ldots, a_{n}) = \frac{a_{1}}{d} \cdot d \cdot e_{1} + \cdots + \frac{a_{n}}{d} \cdot d \cdot e_{i} + \pqty{1 - \sum_{i = 1}^{n} \frac{a_{i}}{d}} \cdot \overline{0}.
+          \]
+          This shows that $(a_{1}, \ldots, a_{n}) \in \Conv(\mathcal{A}_{d})$ and overall $Q_{d} = \Conv(\mathcal{A}_{d})$.
+          See \Cref{fig:7-1-2a_plot} for some examples.
+    \item We see that $Q_{d}$ is the convex hull of $m_{i} = d \cdot e_{i}$ for $1 \leq i \leq n$ and $m_{n + 1} = \overline{0}$.
+          Then $m_{2} - m_{1}, \ldots, m_{n + 1} - m_{n}, m_{n + 1} - m_{1}$ are a basis of $\R^{n}$.
+  \end{enumerate}
+\end{sol}
+
+\clearpage
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{figs/7-1-2a.png}
+  \caption{Plot of $\mathcal{A}_{d}$ in blue and $Q_{d}$ in purple for $n = 1, 2, 3$ and $d = 1, 2, 3$.}\label{fig:7-1-2a_plot}
+\end{figure}
+
+\clearpage
+
 \printbibliography
 \end{document}
