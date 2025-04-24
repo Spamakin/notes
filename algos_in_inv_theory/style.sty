@@ -75,6 +75,7 @@
 
 % ---- Item stuff ----
 \usepackage{enumitem}
+\setlist[enumerate,1]{label={\bfseries(\alph*)}}
 \usepackage{listofitems}
 \usepackage{totcount}
 
@@ -143,7 +144,8 @@
     spacebelow=\topsep,
     headindent=0pt,
     headfont=\bfseries,
-    postheadspace=5pt plus 1pt minus 1pt,
+    postheadhook={\hspace*{\parindent}},
+    postheadspace=\newline,
     headpunct=\(\colon\),
     notefont=\bfseries,
 ]{theorem}
@@ -154,19 +156,21 @@
 \declaretheorem[style=theorem, numberlike=defn, name=Proposition]{prop}
 \declaretheorem[style=theorem, numberlike=defn, name=Lemma]{lem}
 \declaretheorem[style=theorem, numberlike=defn, name=Corollary]{cor}
-\declaretheorem[style=theorem, numberwithin=chapter, name=Exercise]{exercise}
+\declaretheorem[style=theorem, numberwithin=section, name=Exercise]{exercise}
+\renewcommand*{\theexercise}{\arabic{exercise}}
 
 \declaretheoremstyle[
     spaceabove=\topsep,
     spacebelow=12pt,
     headindent=0pt,
     headfont=\bfseries,
-    postheadspace=5pt plus 1pt minus 1pt,
+    postheadhook={\hspace*{\parindent}},
     headpunct=\(\colon\),
     notefont=\bfseries,
     qed=\qedsymbol,
+    notebraces={\hspace*{-2.5pt}: }{},
 ]{solution}
-\declaretheorem[style=solution, name=Proof, numbered=no]{pf}
+\declaretheorem[style=solution, name=Solution, numbered=no]{sol}
 
 % Formatting to improve list of theorems environment
 % TODO: Do this for named theorems?
@@ -265,50 +269,79 @@
 \newcommand*\Ungor{\"Ung\"or}                                   % Alper
 \newcommand*\Voronoi{Vorono\"\i}                                % ... diagram [for francophile pedants only]
 \newcommand*\Godel{G\"odel}                                     % The reason we don't know anything
+\newcommand*\Bezout{B\'ezout}                                   % ...'s Theorem, Lemma
 
 % -------------------------------------------------------------------------
 %  Math operators and symbols
 % -------------------------------------------------------------------------
 
-% ---- OPERATORS ----
+% ---- Misc Functions ----
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\stab}{stab}
 \DeclareMathOperator{\lcm}{lcm}
-\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\evaluation}{ev}
+\DeclareMathOperator{\1}{\mathbb{1}}
+
+% ---- Matrices ----
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Sp}{Sp}
 \DeclareMathOperator{\SO}{SO}
 \DeclareMathOperator{\SU}{SU}
-\DeclareMathOperator{\Sp}{Sp}
 \DeclareMathOperator{\GF}{GF}
+\DeclareMathOperator{\IMM}{IMM}
+\DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\perm}{perm}
+\DeclareMathOperator{\diag}{diag}
+
+% ---- Functors ----
+\DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\Aut}{Aut}
 \DeclareMathOperator{\Emb}{Emb}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\Tor}{Tor}
 \DeclareMathOperator{\Ext}{Ext}
-\DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\Alt}{Alt}
-\DeclareMathOperator{\red}{red}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Ass}{Ass}
+\DeclareMathOperator{\Mult}{Mult}
+
+% ---- Polynomials ----
 \DeclareMathOperator{\poly}{poly}
-\DeclareMathOperator{\init}{init}
+\DeclareMathOperator{\red}{red}
 \DeclareMathOperator{\mdeg}{multideg}
-\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\init}{init}
 \DeclareMathOperator{\fchar}{char}
-\DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\coeff}{coeff}
 \DeclareMathOperator{\lc}{\textsc{lc}}
 \DeclareMathOperator{\lm}{\textsc{lm}}
 \DeclareMathOperator{\lt}{\textsc{lt}}
+\DeclareMathOperator{\I}{\mathbf{I}}
+\DeclareMathOperator{\V}{\mathbf{V}}
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\J}{\mathbf{J}}
+\DeclareMathOperator{\Loc}{Loc}
+
+% ---- Analysis / Topology ----
 \DeclareMathOperator{\dist}{dist}
 \DeclareMathOperator{\cl}{cl}
 \DeclareMathOperator{\inte}{int}
 \DeclareMathOperator{\bdry}{bdry}
 \DeclareMathOperator{\diam}{diam}
-\DeclareMathOperator{\supp}{support}
-\DeclareMathOperator{\rel}{rel}
-\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\supp}{supp}
+
+% ---- Algebra ----
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\Syz}{Syz}
+
+% ---- Polytopes ----
+\DeclareMathOperator{\Conv}{Conv}
 
 \newcommand*\argmax{\operatornamewithlimits{arg\,max}}
 \newcommand*\argmin{\operatornamewithlimits{arg\,min}}
@@ -476,6 +509,8 @@
 
 % We use the same notation for finitely generated groups / ideals
 \newcommand*{\gen}{\encode}
+% And for ideals
+\newcommand*{\ideal}{\encode}
 % and for inner products
 \newcommand*{\inner}{\encode}
 

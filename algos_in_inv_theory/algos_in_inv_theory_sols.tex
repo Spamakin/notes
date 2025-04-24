@@ -26,7 +26,7 @@
 
 \regtotcounter{figure}
 
-\title{\vspace{-100pt} {\Huge Algorithms in Invariant Theory Exercises} \\ {\small With $\total{figure}$ Figures}}
+\title{\vspace{-100pt} {\Huge Algorithms in Invariant Theory} \\ {\small With $\total{figure}$ Figures}}
 \author{\Large Anakin Dey}
 \DTMsavenow{now}
 \date{\small Last Edited on \today\ at \DTMfetchhour{now}:\DTMfetchminute{now}}
@@ -53,7 +53,6 @@
 
 A core interest of mine (at the time of writing this) is algorithms in the context of commutative algebra and algebraic geometry.
 As such, Bernd Sturmfel's text \emph{Algorithms in Invariant Theory}~\cite{book:AlgosInInvTheory} is a good resource for first learning this stuff.
-This solely just contains exercises for now.
 Perhaps in the future I'll include notes and some source code
 
 \mainmatter
@@ -76,7 +75,7 @@ Perhaps in the future I'll include notes and some source code
     \end{pmatrix}
   \]
 \end{exercise}
-\begin{pf}
+\begin{sol}
   From~[Page 23, 2.11']\cite{book:MacdonaldSymmetricHall}, we have the following identities
   \begin{align*}
     1 \cdot \sigma_{1} &= p_{1}, \\
@@ -166,7 +165,7 @@ Then, Cramer's rule yields that
     p_{k} & p_{k - 1} & \cdots & \cdots & p_{1}
   \end{pmatrix}.
 \end{align*}
-\end{pf}
+\end{sol}
 
 \section*{\Grobner\ Bases}
 
@@ -175,44 +174,44 @@ Then, Cramer's rule yields that
   A monomial $m$ is called \emph{minimally nonstandard} if $m$ is nonstandard and all proper divisors of $m$ are standard.
   Show that the set of minimally nonstandard monomials is finite.
 \end{exercise}
-\begin{pf}
+\begin{sol}
   Let $M$ be a set of monomial generators for $\init(I)$ and let $m$ be minimally nonstandard.
   Since $m$ is a monomial and in $\init(I)$, we have that $m' \mid m$ for some monomial $m' \in M$.
   However, note that $m' \in \init(I)$ and furthermore by the fact that $m$ is minimally nonstandard, we cannot have that $m'$ strictly divides $m$.
   Thus, $m' = m$ and $m \in M$.
   Then by Dickson's Lemma, we have that $M$ is a finite set and thus there are finitely many minimally nonstandard monomials.
-\end{pf}
+\end{sol}
 
 \begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.2]
   Prove that the reduced \Grobner\ basis $\mathcal{G}_{\text{red}}$ of $I$ with respect to $\prec$ is unique (up to multiplicative constants from $\C$).
   Given an algorithm which transforms an arbitrary \Grobner\ basis into $\mathcal{G}_{\text{red}}$.
 \end{exercise}
-\begin{pf}
+\begin{sol}
   This is~\cite[Chapter 2, \S 7, Theorem 5]{book:IVA}.
-\end{pf}
+\end{sol}
 
 \begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.3]
   Let $I \subseteq \C[x_{1}, \ldots, x_{n}]$ be an ideal, given by a finite set of generators.
   Using \Grobner\ bases, describe an algorithm for computing the \emph{elimination ideals} $I \cap \C[x_{1}, \ldots, x_{i}]$ for $i = 1, \ldots, n - 1$, and prove its correctness.
 \end{exercise}
-\begin{pf}
+\begin{sol}
   This is~\cite[Chapter 3, \S 1, Theorem 2]{book:IVA}.
-\end{pf}
+\end{sol}
 
 \begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.4]
   Find a characterization of all monomial orders on the polynomial ring $\C[x_{1}, x_{2}]$.
   Hint: each variable receives a certain ``weight'' which behaves additively under multiplication of variables.
   Generalize your result to $n$ variables.
 \end{exercise}
-\begin{pf}
+\begin{sol}
   \quest{Look at~\cite[Chapter 1, \S 2, Exercise 6]{book:UsingAG}.}
-\end{pf}
+\end{sol}
 
 \begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.6]
   Let $\mathcal{F}$ be a set of polynomials whose initial monomials are pairwise relatively prime.
   Show that $\mathcal{F}$ is a \Grobner\ basis for its ideal.
 \end{exercise}
-\begin{pf}
+\begin{sol}
   First, we recall some definitions.
   The $S$-polynomial of $f$ and $g$ is
   \[
@@ -222,7 +221,7 @@ Then, Cramer's rule yields that
   Then~\cite[Chapter 2, \S 9, Theorem 3]{book:IVA} says that a basis $\mathcal{F} = \set{f_{1}, \ldots f_{t}}$ is a \Grobner\ basis for $G$ if and only if $S(f_{i}, f_{j}) \to_{\mathcal{F}} 0$ for all $i \neq j$.
   But~\cite[Chapter 2, \S 9, Proposition 4]{book:IVA} says that for $f, g \in \mathcal{F}$ with relatively prime initial monomials, we have that $S(f, g) \to_{\mathcal{F}} 0$.
   This proves the claim.
-\end{pf}
+\end{sol}
 
 \printbibliography
 \end{document}
