@@ -59,23 +59,9 @@ Perhaps in the future I'll include notes and some source code
 
 \chapter{Introduction}
 
-\section*{Symmetric Polynomials}
+\section{Symmetric Polynomials}
 
-\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.1.5]
-  Prove the following explicit formula for elementary symmetric polynomials in terms of the power sums~\cite[Page 29]{book:MacdonaldSymmetricHall}.
-  \[
-    \sigma_{k} = \frac{1}{k!}
-    \det
-    \begin{pmatrix}
-      p_{1} & 1 & 0 & \cdots & 0 \\
-      p_{2} & p_{1} & 2 & \cdots & 0 \\
-      \vdots & \vdots & \ddots & \ddots & \vdots \\
-      p_{k - 1} & p_{k - 2} & \cdots & p_{1} & k - 1 \\
-      p_{k} & p_{k - 1} & \cdots & \cdots & p_{1}
-    \end{pmatrix}
-  \]
-\end{exercise}
-\begin{sol}
+\begin{sol}[\cite{book:AlgosInInvTheory} 1.1.5]
   From~[Page 23, 2.11']\cite{book:MacdonaldSymmetricHall}, we have the following identities
   \begin{align*}
     1 \cdot \sigma_{1} &= p_{1}, \\
@@ -167,14 +153,28 @@ Then, Cramer's rule yields that
 \end{align*}
 \end{sol}
 
-\section*{\Grobner\ Bases}
+\clearpage
 
-\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.1]
-  Let $\prec$ be an monomial order and let $I$ be any ideal in $\C[x_{1}, \ldots, x_{n}]$.
-  A monomial $m$ is called \emph{minimally nonstandard} if $m$ is nonstandard and all proper divisors of $m$ are standard.
-  Show that the set of minimally nonstandard monomials is finite.
-\end{exercise}
+\section{\Grobner\ Bases}
+
+\begin{lem}
+  Let $R = \C[x_{1}, \ldots, x_{n}]$.
+  Then with the usual grading, let $H(R, z) \defeq \sum_{d = 0}^{\infty} \dim_{\C}(R_{d}) z^{d}$.
+  We have that
+  \[
+    H(R, z) \defeq \sum_{d = 0}^{\infty} \dim_{\C}(R_{d}) z^{d} = \sum_{d = 0}^{\infty} \binom{d + n - 1}{n - 1} = \frac{1}{(1 - z)^{n}}.
+  \]
+\end{lem}
 \begin{sol}
+  To see that $H(R, z) = \sum_{d = 0}^{\infty} \binom{d + n - 1}{n - 1}$, just count the number of monomials of degree $d$ in $n$ variables.
+  The value $\binom{d + n - 1}{n - 1}$ is the number of non-negative integer solutions to $a_{1} + \cdots + a_{n} = d$.
+  Each solution corresponds to a monomial $x_{1}^{a_{1}} \cdots x_{n}^{a_{n}}$.
+  Then to see that $H(R, z) = \frac{1}{(1 - z)^{n}}$, consider the product of infinite sums $(1 + z + z^{2} + \cdots) \cdots (1 + z + z^{2} + \cdots)$ a total of $n$-times.
+  Then the coefficient of $z^{d}$ again corresponds to the number of such non-negative integer solutions.
+  Since $\frac{1}{1 - z} = 1 + z + z^{2} + \cdots$, we obtain the desired equality.
+\end{sol}
+
+\begin{sol}[\cite{book:AlgosInInvTheory} 1.2.1]
   Let $M$ be a set of monomial generators for $\init(I)$ and let $m$ be minimally nonstandard.
   Since $m$ is a monomial and in $\init(I)$, we have that $m' \mid m$ for some monomial $m' \in M$.
   However, note that $m' \in \init(I)$ and furthermore by the fact that $m$ is minimally nonstandard, we cannot have that $m'$ strictly divides $m$.
@@ -182,36 +182,15 @@ Then, Cramer's rule yields that
   Then by Dickson's Lemma, we have that $M$ is a finite set and thus there are finitely many minimally nonstandard monomials.
 \end{sol}
 
-\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.2]
-  Prove that the reduced \Grobner\ basis $\mathcal{G}_{\text{red}}$ of $I$ with respect to $\prec$ is unique (up to multiplicative constants from $\C$).
-  Given an algorithm which transforms an arbitrary \Grobner\ basis into $\mathcal{G}_{\text{red}}$.
-\end{exercise}
-\begin{sol}
+\begin{sol}[\cite{book:AlgosInInvTheory} 1.2.2]
   This is~\cite[Chapter 2, \S 7, Theorem 5]{book:IVA}.
 \end{sol}
 
-\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.3]
-  Let $I \subseteq \C[x_{1}, \ldots, x_{n}]$ be an ideal, given by a finite set of generators.
-  Using \Grobner\ bases, describe an algorithm for computing the \emph{elimination ideals} $I \cap \C[x_{1}, \ldots, x_{i}]$ for $i = 1, \ldots, n - 1$, and prove its correctness.
-\end{exercise}
-\begin{sol}
+\begin{sol}[\cite{book:AlgosInInvTheory} 1.2.3]
   This is~\cite[Chapter 3, \S 1, Theorem 2]{book:IVA}.
 \end{sol}
 
-\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.4]
-  Find a characterization of all monomial orders on the polynomial ring $\C[x_{1}, x_{2}]$.
-  Hint: each variable receives a certain ``weight'' which behaves additively under multiplication of variables.
-  Generalize your result to $n$ variables.
-\end{exercise}
-\begin{sol}
-  \quest{Look at~\cite[Chapter 1, \S 2, Exercise 6]{book:UsingAG}.}
-\end{sol}
-
-\begin{exercise}[\tcite{book:AlgosInInvTheory} 1.2.6]
-  Let $\mathcal{F}$ be a set of polynomials whose initial monomials are pairwise relatively prime.
-  Show that $\mathcal{F}$ is a \Grobner\ basis for its ideal.
-\end{exercise}
-\begin{sol}
+\begin{sol}[\cite{book:AlgosInInvTheory} 1.2.6]
   First, we recall some definitions.
   The $S$-polynomial of $f$ and $g$ is
   \[
