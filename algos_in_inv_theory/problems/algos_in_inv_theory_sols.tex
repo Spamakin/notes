@@ -190,6 +190,35 @@ Then, Cramer's rule yields that
   This is~\cite[Chapter 3, \S 1, Theorem 2]{book:IVA}.
 \end{sol}
 
+\begin{sol}[\cite{book:AlgosInInvTheory} 1.2.4]
+  This is following~\cite{Robbiano_term_orders} and~\cite{book:Singular_Introduction}.
+  Let $\geq$ be a monomial ordering on $\C[x_{1}, \ldots, x_{n}]$.
+  This is equivalent to a total semigroup ordering $\geq$ on $\Z^{n}$.
+  Such a semigroup ordering gives a unique total ordering on $\Q^{n}$.
+  To see this, for $\overline{q} = (q_{1}, \ldots, q_{n}) \in \Q^{n}$, let $m \in \Z$ such that $m \cdot q_{i} \in \Z$ for all $i$.
+  Then say that $\overline{q} \geq 0$ if and only if $m \cdot \overline{q} \geq 0$ where the latter ordering is in $\Z^{n}$.
+
+  Let $V \subseteq \Q^{n}$ be a $\Q$-vector space with $\dim_{\Q}(V) = r$.
+  Then let
+  \[
+    V_{0} \defeq \Set{z \in \R^{n} | \forall \e > 0, \exists\; z_{+}(\e), z_{-}(\e) \in V \cap B_{\e}(z) \text{ such that } z_{+}(\e) > 0, z_{-}(\e) < 0}.
+  \]
+  Then $V_{0}$ is clearly a $\R$-subspace of $\R^{n}$.
+  With the ordering $\geq$ on $\Q^{n}$, we can define $V_{+}$ and $V_{-}$ depending on if $\overline{q} \geq 0$ or $\overline{q} < 0$.
+  We define a map $\pi\colon V \to \set{-1, 1}$, where $V$ has the Euclidean topology and $\set{-1, 1}$ has the discrete topology.
+  Let $\pi(q) = 1$ if there exists an open ball $U_{\e}(q)$ such that $U_{\e}(q) \cap V \subseteq V_{+}$ and $\pi(q) = -1$ if there exists an open ball $U_{\e}(q)$ such that $U_{\e}(q) \cap V \subseteq V_{-}$.
+  Then $\pi$ is continuous.
+  Recall that topological vector spaces over $\R$ are connected.
+  Thus, we cannot have that $\dim_{\R} V_{0} < r - 1$ as if it were, then $V_{\R} \setminus V_{0}$ would be connected \quest{why is this bad?}.
+  Then suppose that $\dim_{\R} V_{0} = r$.
+  Then we have an ordered basis $e_{1}, \ldots, e_{r}$ such that $e_{i} > 0$ for all $i$.
+  But then the linear combinations of the $e_{i}$ with positive coefficients are a subspace of $V_{+}$ which is a contradiction \quest{why?}.
+
+  To construct the first row of the matrix, start with $V = \Q^{n}$ and consider the obtained $V_{0}$.
+  Then the dimension $1$ subspace orthogonal to $V_{0}$ in $\R^{n}$ defines the first row of $A$.
+  We can continue this construction inductively to obtain the full matrix $A$.
+\end{sol}
+
 \begin{sol}[\cite{book:AlgosInInvTheory} 1.2.6]
   First, we recall some definitions.
   The $S$-polynomial of $f$ and $g$ is
