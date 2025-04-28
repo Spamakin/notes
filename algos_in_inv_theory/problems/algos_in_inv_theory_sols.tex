@@ -165,14 +165,29 @@ Then, Cramer's rule yields that
     H(R, z) \defeq \sum_{d = 0}^{\infty} \dim_{\C}(R_{d}) z^{d} = \sum_{d = 0}^{\infty} \binom{d + n - 1}{n - 1} = \frac{1}{(1 - z)^{n}}.
   \]
 \end{lem}
-\begin{sol}
+\begin{pf}
   To see that $H(R, z) = \sum_{d = 0}^{\infty} \binom{d + n - 1}{n - 1}$, just count the number of monomials of degree $d$ in $n$ variables.
   The value $\binom{d + n - 1}{n - 1}$ is the number of non-negative integer solutions to $a_{1} + \cdots + a_{n} = d$.
   Each solution corresponds to a monomial $x_{1}^{a_{1}} \cdots x_{n}^{a_{n}}$.
   Then to see that $H(R, z) = \frac{1}{(1 - z)^{n}}$, consider the product of infinite sums $(1 + z + z^{2} + \cdots) \cdots (1 + z + z^{2} + \cdots)$ a total of $n$-times.
   Then the coefficient of $z^{d}$ again corresponds to the number of such non-negative integer solutions.
   Since $\frac{1}{1 - z} = 1 + z + z^{2} + \cdots$, we obtain the desired equality.
-\end{sol}
+\end{pf}
+
+\begin{lem}
+  For $1 \leq k \leq n$, we have that
+  \[
+    h_{k}(x_{k}, \ldots, x_{n}) + \sum_{i = 1}^{k} (-1)^{i}h_{k - i}(x_{k}, \ldots, x_{n})\sigma_{i}(x_{1}, \ldots, x_{n}) = 0.
+  \]
+\end{lem}
+\begin{pf}
+  Using the generating functions for the $h_{i}$ and $\sigma_{i}$, we have that the above expression is the coefficient of $t^{k}$ in the product
+  \[
+    \prod_{i = k}^{n} (1 - x_{i}t)^{-1} \cdot \prod_{i = 1}^{n}(1 - x_{i} t) = \prod_{i = 1}^{k - 1} (1 - x_{i}t).
+  \]
+  However, the right-hand side of this has degree $k - 1$ in $t$.
+  Thus, the coefficient of $t^{k}$ is indeed $0$.
+\end{pf}
 
 \begin{sol}[\cite{book:AlgosInInvTheory} 1.2.1]
   Let $M$ be a set of monomial generators for $\init(I)$ and let $m$ be minimally nonstandard.
@@ -189,6 +204,8 @@ Then, Cramer's rule yields that
 \begin{sol}[\cite{book:AlgosInInvTheory} 1.2.3]
   This is~\cite[Chapter 3, \S 1, Theorem 2]{book:IVA}.
 \end{sol}
+
+\clearpage
 
 \begin{sol}[\cite{book:AlgosInInvTheory} 1.2.4]
   This is following~\cite{Robbiano_term_orders} and~\cite{book:Singular_Introduction}.
