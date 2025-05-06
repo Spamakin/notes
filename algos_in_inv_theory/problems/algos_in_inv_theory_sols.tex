@@ -277,5 +277,29 @@ Then, Cramer's rule yields that
   \quest{Is there a more direct way to see this?}
 \end{sol}
 
+\begin{sol}[\cite{book:AlgosInInvTheory} 1.3.4]
+  Recall that $\GL_{n}(\C)$ is an affine algebraic subvariety of $\A_{\C}^{n^{2} + 1}$.
+  Consider the subspace of matrices in $\GL_{n}(\C)$ which have distinct eigenvalues.
+  Note that this is a Zariski open, and thus dense, subspace of $\GL_{n}(\C)$.
+  Indeed, let $A \in \GL_{n}(\C)$ have eigenvalues $\lambda_{1}, \ldots, \lambda_{n}$.
+  Then the discriminant of the characteristic polynomial $p_{A}$ of $A$ is $D(p_{A}) = \prod_{1 \leq i < j \leq n} (\lambda_{i} - \lambda_{j})$.
+  Recall that the discriminant of a degree $d$ polynomial $f(x)$ is $\frac{(-1)^{\binom{d}{2}}}{\lc(f)} \Res_{x}(f(x), f'(x))$.
+  For the characteristic polynomials, this is all expressible in terms of the entries of the matrix.
+  Thus, the subspace of matrices in $\GL_{n}(\C)$ is a dense open subset of $\GL_{n}(\C)$.
+  As this is an infinite set of matrices, any polynomial invariant on this dense subset must be invariant everywhere.
+
+  Let $f(\overline{X}) \in \C[\overline{x}]^{\GL_{n}(\C)}$, where $\overline{X}$ is a matrix of indeterminates.
+  Let $A$ have distinct eigenvalues, and so $A$ is diagonalizable so that there exists a matrix $M \in \GL_{n}(\C)$ such $A = MDM^{-1}$ for some diagonal matrix $D$.
+  In particular, the entries of $D$ are the eigenvalues of $A$.
+  Thus, $f(A) = f(MDM^{-1}) = f(D)$.
+  Furthermore, we may conjugate $A$ by permutation matrices to reorder the eigenvalues.
+  Thus, $f$ must be a \emph{symmetric} polynomial in the eigenvalues of $A$, denote these by $e_{i} \defeq e_{i}(\lambda_{1}, \ldots, \lambda_{n})$.
+  Recall that via the characteristic polynomial, we can express these $e_{i}$ in terms of the entries of $A$ in general so that each $e_{i} \in \C[\overline{X}]$ and it makes sense to write that $\C[e_{1}, \ldots, e_{n}] \subseteq \C[\overline{X}]$.
+  Thus, $\C[\overline{X}]^{\GL_{n}(\C)} \subseteq \C[e_{1}, \ldots, e_{n}]$.
+  Denote by $f_{i}(\overline{X})$ the coefficient of $t^{i}$ in $\det(tI_{n} - \overline{X})$.
+  Then by noting that the characteristic polynomial is fixed under conjugation, and by comparing coefficients, we see that each $f_{i}$ is also fixed under conjugation.
+  Thus, we overall have that each $e_{i}$ is fixed under conjugation and overall, $\C[\overline{X}]^{\GL_{n}(\C)} = \C[e_{1}, \ldots, e_{n}]$.
+\end{sol}
+
 \printbibliography
 \end{document}
