@@ -266,6 +266,16 @@ Then, Cramer's rule yields that
   Thus, $\C[\overline{x}]^{\Gamma} = \C$.
 \end{sol}
 
+\begin{sol}[\cite{book:AlgosInInvTheory} 1.3.3]
+  Fix $a_{1}, \ldots, a_{n} \in \Z$ and let $\Gamma = \set{\diag(t^{a_{1}, \ldots, t^{a_{n}}}) | t \in \C^{\times}}$.
+  For $d \in \Gamma$ and a monomial $x_{1}^{\nu_{1}} \cdots x_{n}^{\nu_{n}}$, we have that $d \cdot x_{1}^{\nu_{1}} \cdots x_{n}^{\nu_{n}} = t^{a_{1}\nu_{1} + \cdots + a_{n}\nu_{n}} x_{1}^{\nu_{1}} \cdots x_{n}^{\nu_{1}}$.
+  Thus, we want to determine the set of fixed exponent vectors
+  \[
+    \mathcal{M} = \set{(\nu_{1}, \ldots, \nu_{n}) \in \Z^{n} | \nu_{1}, \ldots, \nu_{n} \geq 0, a_{1}\nu_{1} + \cdots + a_{n}\nu_{n} = 0}.
+  \]
+  This is exactly the object of student in \S 1.4, and in particular is solved by~\cite[Algorithm 1.4.5]{book:AlgosInInvTheory}.
+  \quest{Is there a more direct way to see this?}
+\end{sol}
 
 \printbibliography
 \end{document}
