@@ -248,5 +248,24 @@ Then, Cramer's rule yields that
   This proves the claim.
 \end{sol}
 
+\clearpage
+
+\section{What is Invariant Theory?}
+
+\begin{sol}[\cite{book:AlgosInInvTheory} 1.3.1]
+  Let $\Gamma$ be a finite group.
+  Consider $f(x) = \prod_{g \in \Gamma} g \cdot x$.
+  Then $f$ is well defined as $\Gamma$ is finite, invariant under the action of $\Gamma$, and of degree $\abs{\Gamma} > 0$.
+
+  Now suppose $\Gamma$ is the subgroup of matrices $\lambda I_{n}$ for $\lambda \in \C^{\times}$.
+  Then for any polynomial $f(\overline{x}) = \sum_{I} \overline{a}^{I} \overline{x}^{I} \in \C[\overline{x}]^{\Gamma}$ and for any such $\lambda I_{n} \in \Gamma$, we have that
+  \[
+    \sum_{I} \overline{a}^{I} \overline{x}^{I} = f(\overline{x}) = \lambda I_{n} \cdot f(\overline{x}) = \sum_{I} \overline{a}^{I} \lambda^{\abs{I}} \overline{x}^{I}.
+  \]
+  Then comparing coefficients, we deduce that $f(\overline{x})$ is fixed if and only if $f(\overline{x}) \in \C$.
+  Thus, $\C[\overline{x}]^{\Gamma} = \C$.
+\end{sol}
+
+
 \printbibliography
 \end{document}
