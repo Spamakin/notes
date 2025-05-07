@@ -52,7 +52,7 @@
 \chapter*{Preface}
 
 A core interest of mine (at the time of writing this) is algorithms in the context of commutative algebra and algebraic geometry.
-As such, Bernd Sturmfel's text \emph{Algorithms in Invariant Theory}~\cite{book:AlgosInInvTheory} is a good resource for first learning this stuff.
+As such, Bernd Sturmfel's text \emph{Algorithms in Invariant Theory}~\cite{book:AIT} is a good resource for first learning this stuff.
 Perhaps in the future I'll include notes and some source code
 
 \mainmatter
@@ -61,7 +61,7 @@ Perhaps in the future I'll include notes and some source code
 
 \section{Symmetric Polynomials}
 
-\begin{sol}[\cite{book:AlgosInInvTheory} 1.1.5]
+\begin{sol}[\cite{book:AIT} 1.1.5]
   From~[Page 23, 2.11']\cite{book:MacdonaldSymmetricHall}, we have the following identities
   \begin{align*}
     1 \cdot \sigma_{1} &= p_{1}, \\
@@ -189,7 +189,7 @@ Then, Cramer's rule yields that
   Thus, the coefficient of $t^{k}$ is indeed $0$.
 \end{pf}
 
-\begin{sol}[\cite{book:AlgosInInvTheory} 1.2.1]
+\begin{sol}[\cite{book:AIT} 1.2.1]
   Let $M$ be a set of monomial generators for $\init(I)$ and let $m$ be minimally nonstandard.
   Since $m$ is a monomial and in $\init(I)$, we have that $m' \mid m$ for some monomial $m' \in M$.
   However, note that $m' \in \init(I)$ and furthermore by the fact that $m$ is minimally nonstandard, we cannot have that $m'$ strictly divides $m$.
@@ -197,17 +197,17 @@ Then, Cramer's rule yields that
   Then by Dickson's Lemma, we have that $M$ is a finite set and thus there are finitely many minimally nonstandard monomials.
 \end{sol}
 
-\begin{sol}[\cite{book:AlgosInInvTheory} 1.2.2]
+\begin{sol}[\cite{book:AIT} 1.2.2]
   This is~\cite[Chapter 2, \S 7, Theorem 5]{book:IVA}.
 \end{sol}
 
-\begin{sol}[\cite{book:AlgosInInvTheory} 1.2.3]
+\begin{sol}[\cite{book:AIT} 1.2.3]
   This is~\cite[Chapter 3, \S 1, Theorem 2]{book:IVA}.
 \end{sol}
 
 \clearpage
 
-\begin{sol}[\cite{book:AlgosInInvTheory} 1.2.4]
+\begin{sol}[\cite{book:AIT} 1.2.4]
   This is following~\cite{Robbiano_term_orders} and~\cite{book:Singular_Introduction}.
   Let $\geq$ be a monomial ordering on $\C[x_{1}, \ldots, x_{n}]$.
   This is equivalent to a total semigroup ordering $\geq$ on $\Z^{n}$.
@@ -236,7 +236,7 @@ Then, Cramer's rule yields that
   We can continue this construction inductively to obtain the full matrix $A$.
 \end{sol}
 
-\begin{sol}[\cite{book:AlgosInInvTheory} 1.2.6]
+\begin{sol}[\cite{book:AIT} 1.2.6]
   First, we recall some definitions.
   The $S$-polynomial of $f$ and $g$ is
   \[
@@ -252,7 +252,7 @@ Then, Cramer's rule yields that
 
 \section{What is Invariant Theory?}
 
-\begin{sol}[\cite{book:AlgosInInvTheory} 1.3.1]
+\begin{sol}[\cite{book:AIT} 1.3.1]
   Let $\Gamma$ be a finite group.
   Consider $f(x) = \prod_{g \in \Gamma} g \cdot x$.
   Then $f$ is well defined as $\Gamma$ is finite, invariant under the action of $\Gamma$, and of degree $\abs{\Gamma} > 0$.
@@ -266,18 +266,18 @@ Then, Cramer's rule yields that
   Thus, $\C[\overline{x}]^{\Gamma} = \C$.
 \end{sol}
 
-\begin{sol}[\cite{book:AlgosInInvTheory} 1.3.3]
+\begin{sol}[\cite{book:AIT} 1.3.3]
   Fix $a_{1}, \ldots, a_{n} \in \Z$ and let $\Gamma = \set{\diag(t^{a_{1}, \ldots, t^{a_{n}}}) | t \in \C^{\times}}$.
   For $d \in \Gamma$ and a monomial $x_{1}^{\nu_{1}} \cdots x_{n}^{\nu_{n}}$, we have that $d \cdot x_{1}^{\nu_{1}} \cdots x_{n}^{\nu_{n}} = t^{a_{1}\nu_{1} + \cdots + a_{n}\nu_{n}} x_{1}^{\nu_{1}} \cdots x_{n}^{\nu_{1}}$.
   Thus, we want to determine the set of fixed exponent vectors
   \[
     \mathcal{M} = \set{(\nu_{1}, \ldots, \nu_{n}) \in \Z^{n} | \nu_{1}, \ldots, \nu_{n} \geq 0, a_{1}\nu_{1} + \cdots + a_{n}\nu_{n} = 0}.
   \]
-  This is exactly the object of student in \S 1.4, and in particular is solved by~\cite[Algorithm 1.4.5]{book:AlgosInInvTheory}.
+  This is exactly the object of student in \S 1.4, and in particular is solved by~\cite[Algorithm 1.4.5]{book:AIT}.
   \quest{Is there a more direct way to see this?}
 \end{sol}
 
-\begin{sol}[\cite{book:AlgosInInvTheory} 1.3.4]
+\begin{sol}[\cite{book:AIT} 1.3.4]
   Recall that $\GL_{n}(\C)$ is an affine algebraic subvariety of $\A_{\C}^{n^{2} + 1}$.
   Consider the subspace of matrices in $\GL_{n}(\C)$ which have distinct eigenvalues.
   Note that this is a Zariski open, and thus dense, subspace of $\GL_{n}(\C)$.
@@ -299,6 +299,22 @@ Then, Cramer's rule yields that
   Denote by $f_{i}(\overline{X})$ the coefficient of $t^{i}$ in $\det(tI_{n} - \overline{X})$.
   Then by noting that the characteristic polynomial is fixed under conjugation, and by comparing coefficients, we see that each $f_{i}$ is also fixed under conjugation.
   Thus, we overall have that each $e_{i}$ is fixed under conjugation and overall, $\C[\overline{X}]^{\GL_{n}(\C)} = \C[e_{1}, \ldots, e_{n}]$.
+\end{sol}
+
+\clearpage
+
+\section{Torus Invariants and Integer Programming}
+
+\begin{sol}[\cite{book:AIT} 1.4.3]
+  With the addition of slack variables, we can without loss of generality compute a Hilbert basis for the monoid
+  \[
+    \mathcal{M}_{\mathcal{A}}' = \set{\overline{\mu} \in \Z^{d} | \mathcal{A} \cdot \overline{\mu} = \overline{0}}.
+  \]
+  At a high level, we may use~\cite[Algorithm 1.4.5]{book:AIT} multiple times to compute the Hilbert basis for $\mathcal{M}_{\mathcal{A}}'$.
+  Of course if $\overline{\mu} = \overline{0}$ then $\mathcal{A} \cdot \overline{0} = \overline{0}$.
+  Then for the nonzero case, we may divide $\Z^{\d}$ into \href{orthants}{https://en.wikipedia.org/wiki/Orthant} and apply~\cite{Algorithm 1.4.5} to each orthant.
+  Then we can take the union over all the orthants of the Hilbert bases for each orthant to get a Hilbert basis for the whole space.
+  This is still minimal because when defining a Hilbert basis, we care about \emph{non-negative} integer linear combinations.
 \end{sol}
 
 \printbibliography
